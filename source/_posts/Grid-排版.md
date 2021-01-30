@@ -2,7 +2,7 @@
 title: Grid 排版練習
 author: Phoebe
 date: 2020-12-22 11:32:46
-tags: HTML
+tags: HTML&CSS
 categories: Web
 ---
 [參考網站](https://css-tricks.com/snippets/css/complete-guide-grid/)
