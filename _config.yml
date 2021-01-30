@@ -106,3 +106,11 @@ deploy:
   type: git
   repo: https://github.com/hff2/hff2.github.io.git
   branch: master
+
+symbols_count_time:
+  # 文章是否顯示字數統計以及閱讀時間
+  symbols: true
+  time: true
+  # 網頁底部是否顯示字數統計以及閱讀時間
+  total_symbols: true
+  total_time: true
