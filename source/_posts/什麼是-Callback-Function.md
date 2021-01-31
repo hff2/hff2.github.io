@@ -1,3 +1,4 @@
+---
 title: 什麼是 Callback Function?
 author: Phoebe
 tags: Javascript
@@ -6,13 +7,13 @@ date: 2021-01-25 19:37:11
 ---
 ## 簡介
 
-Callback Function，又稱回呼函式，簡單來說，就是在<font color=#FF0000>一支函式執行完後，才要執行的函式。</font>
+Callback Function，又稱回呼函式，簡單來說，就是在**一支函式執行完後，才要執行的函式。**
 
-在 ES6 中的 Promise 語法還未能使用前，就很常使用 Callback function 來接收非同步的資料。
+在 ES6 中的 Promise 語法還未能使用前，就很常使用 Callback function 來接收**非同步的資料**。
 <!--more-->
 例如一支函式`First()`，在執行結束才執行`Second()`，這個`Second()`就是一支Callback Function。
 
-舉例來說：
+### 舉例來說
 
 > 程式碼
  
@@ -54,7 +55,7 @@ var Second = function () {
 
 原本`First()`中直接印出First文字的工作，改交給`setTimeout()`這個非同步(Asynchronous)程式處理。
 
-`setTimeout()`的第一個參數為<font color=#FF0000>時間到時要被執行的程式</font>，第二個參數為<font color=#FF0000>要延遲的時間（毫秒）</font>。
+`setTimeout()`的第一個參數為**時間到時要被執行的程式**，第二個參數為**要延遲的時間（毫秒）**。
 
 ```javascript=
 var First = function () {
@@ -75,11 +76,11 @@ Second();
 
 為什麼Second會出現在First上面?
 
-因為`setTimeout()`是非同步，所以下面的`Second()`<font color=#FF0000>不須等待</font>`First()`執行完就會先被執行了。
+因為`setTimeout()`是非同步，所以下面的`Second()`**不須等待**`First()`執行完就會先被執行了。
 
-所以為了確保`Second()`，要在`First()`中的`setTimeout()`後執行。
+所以為了確保`Second()`，要在`First()`中的`setTimeout()`**後**執行。
 
-我們可以將`Second()`做為callback函式以參數傳入`First()`。
+我們可以將`Second()`做為**callback函式以參數**傳入`First()`。
 
 ```javascript=
 var First = function (callback) {
@@ -97,9 +98,9 @@ First(Second);
 
 ![](https://i.imgur.com/qrIV88s.png)
 
-同步(Synchronous)，指程式<font color=#FF0000>必須</font>等待前面的程式執行完才能執行。
+同步(Synchronous)，指程式**必須**等待前面的程式執行完才能執行。
 
-非同步(Asynchronous)，指程式<font color=#FF0000>不須</font>等待前面的程式執行完就能執行。
+非同步(Asynchronous)，指程式**不須**等待前面的程式執行完就能執行。
 
 同步就像只有一個隊伍，而非同步有好幾個隊伍執行。
 

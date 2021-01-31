@@ -12,11 +12,13 @@ date: 2021-01-30 00:56:50
 1. 從英文「Pseudo」翻譯過來
 2. 因為它並不是真正網頁裡的元素，但行為與表現又和真正網頁元素一樣，也可以對其使用 CSS 操控。
 <!--more-->
-跟偽元素很像的還有**「偽類」**( Pseudo classes )，在 W3C 的定義裡總共有五個偽元素，分別是`::before`、`::after`、`::first-line`、`::first-letter`和`::selection`。
+跟偽元素很像的還有**「偽類」**( Pseudo classes )。
+
+在 W3C 的定義裡總共有五個偽元素，分別是`::before`、`::after`、`::first-line`、`::first-letter`和`::selection`。
 
 為了區別偽類與偽元素，偽元素使用兩個冒號「`::`」開頭，而偽類使用一個冒號「`:`」開頭 ( 像是 `:hover` )。
 
-## 偽元素與偽類差異
+## 偽元素 vs 偽類
 
 | 種類 | 符號 | 比較 | 是否出現在DOM tree | 作用 |
 | - | ------------- | ------------- |------------- |------------- |
@@ -35,6 +37,15 @@ DOM tree為**文件物件模型**。
 
 `::after`則是在原本的元素**之後**加入內容，同時偽元素也會「**繼承**」原本元素的屬性，如果原本文字是黑色，偽元素的文字也會是黑色。
 
+### 舉例來說
+
+> 輸出：
+
+
+![](https://i.imgur.com/ejt1CUE.png)
+
+> 程式碼
+
 ```css=
     div::before {
       content: "I am before ";
@@ -49,7 +60,7 @@ DOM tree為**文件物件模型**。
 ```html=
     <div>Hi,I am div.</div>
 ```
-![](https://i.imgur.com/ejt1CUE.png)
+
 
 
 
@@ -58,6 +69,16 @@ DOM tree為**文件物件模型**。
 使用偽元素一定要具備 `content` 的屬性，就算是只有`content:"";`也可以，因為沒有 `content` 的偽元素是**不會出現在畫面上的**。然而，`content` 是個很特別的屬性，它可以使用 attr 直接獲取內容元素的屬性值 ( attribute )。
 
 比如說，在 HTML 裡有一個超連結，點擊後會彈出新視窗並連結至 Google：
+
+### 舉例來說
+
+> 輸出：
+
+
+![](https://i.imgur.com/m6Fk6sL.png)
+
+
+> 程式碼
 
 ```css=
     a::before {
@@ -73,10 +94,20 @@ DOM tree為**文件物件模型**。
     <a href="https://www.google.com" target="_blank">google</a>
 ```
 
-![](https://i.imgur.com/m6Fk6sL.png)
+
 
 
 此外，`content` 內容是可以「**相加**」的，直接使用`空白鍵`就可以不斷的累加下去，以下面的程式碼來說，可以在剛剛擷取的超連結文字後方和 target 屬性前方，加入標點符號。
+
+### 舉例來說
+
+> 輸出：
+
+
+![](https://i.imgur.com/bH9e1eZ.png)
+
+
+> 程式碼
 
 ```css=
     a::before {
@@ -93,11 +124,21 @@ DOM tree為**文件物件模型**。
     <a href="https://www.google.com" target="_blank">google</a>
 ```
 
-![](https://i.imgur.com/bH9e1eZ.png)
 
 ## 實際應用
 
 ### 偽類與偽元素 同時使用
+
+> 輸出：
+
+
+![](https://i.imgur.com/cptVBXk.png)
+
+滑鼠移上去後
+
+![](https://i.imgur.com/zaW5auy.png)
+
+> 程式碼
 
 ```css=
     div:hover::after {
@@ -114,15 +155,17 @@ DOM tree為**文件物件模型**。
     <div>Hello</div>
 ```
 
-![](https://i.imgur.com/cptVBXk.png)
-
-滑鼠移上去後
-
-![](https://i.imgur.com/zaW5auy.png)
 
 ### 疊字效果
 
-偽元素中也可搭配 `attr` ，從原本的 Element 獲取屬性的資料
+> 輸出：
+
+
+![](https://i.imgur.com/Sf0X35x.png)
+
+偽元素中搭配 `attr` ，可以從原本的 Element 獲取屬性的資料
+
+> 程式碼
 
 ```css=
     .outBlock {
@@ -162,7 +205,6 @@ DOM tree為**文件物件模型**。
       <div class="textBlock" data-content="HELLO">HELLO</div>
     </div>
 ```
-![](https://i.imgur.com/Sf0X35x.png)
 
 可以從開發人員工具觀察到有`::after`與`::before`的屬性。
 
