@@ -1,5 +1,5 @@
 ---
-title: '實作可排序的清單 認識 Drag & Drop API '
+title: '[實作] 可排序的清單 認識 Drag & Drop API '
 author: Phoebe
 tags: Javascript
 categories: Portfolio
@@ -159,17 +159,21 @@ let dragStartIndex;
 [setAttribute Demo](https://codepen.io/phoebe-ho/pen/qBqELJX)
 
 1. 用html設定一個Button
+  
 ```html=
 <body>
   <button>Hello World</button>
 </body>
 ```
 2. setting設定字為紅色
+
+
 ```css=
 .setting {
   color: red;
 }
 ```
+
 3. `b`變數取得`button`，再利用`setAttribute`增加**樣式**與**方法屬性**。
 
 ```javascript=
