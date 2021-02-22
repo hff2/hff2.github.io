@@ -5,7 +5,7 @@ tags: HTML&CSS
 categories: Portfolio
 date: 2021-02-07 11:07:11
 ---
-## Settings
+## 前置 Settings
 ### HTML
 
 在meta裡面加入一些東西
@@ -28,6 +28,13 @@ date: 2021-02-07 11:07:11
 
 font-size: 62.5%，1rem will be 10px。
 
+
+各瀏覽器預設字型字號為**16px**，16px相當於1rem。
+
+當我們定義 10px / 16px = 0.625 = 62.5% 時，瀏覽器的預設字型為16px * 62.5% = 10px。
+
+此時，10px相當於1rem。
+
 ```css=
 * {
   margin: 0;
@@ -43,58 +50,63 @@ html {
 
 ## Creating Our Nav&Hero
 
-![](https://i.imgur.com/0kxwokq.jpg)
+![](https://i.imgur.com/ngnMpS9.jpg)
 
 <!--more-->
 ### Header Html
-a 可以點選標題時，直接到該頁位置。
-```pug=
-header.main-head
-  nav
-    h1#logo
-      a(href='#hero') Travelly
-    ul
-      li
-        a(href='#locations') Location
-      li
-        a(href='#benefits') Benefits
-      li
-        a(href='#contact') Contact
+超連結使點選標題時，直接到頁面的該位置。
+
+```html=
+<header class="main-head">
+  <nav>
+    <h1 id="logo"><a href="#hero">Travelly</a></h1>
+    <ul>
+      <li><a href="#locations">Location</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 ```
 
 ### Section Hero
 
-```pug=
-section#hero
-  h2 Travel Beyond Limits.
-  h3
-    | Start your travel at an affordable price with Travelly
-    br
-    | Contact us
-    |           now bellow.
-  button Book now
+```html=
+<section id="hero">
+  <h2>Travel Beyond Limits.</h2>
+  <h3>
+    Start your travel at an affordable price with Travelly<br />Contact us
+    now bellow.
+  </h3>
+  <button>Book now</button>
+</section>
 ```
 
 ### Header Css
 
-1. vh會隨著視窗做變化，但我們希望nav bar不要隨著視窗做變化時，可以使用padding代替。
+1. nav bar會隨著視窗做變化，但我們希望nav bar不要隨著視窗做變化時，可以使用`padding`+`min-height`代替。
 2. 要讓整個頁面的兩邊保持空間，`width: 90%`， `margin: auto`。
 
-![](https://i.imgur.com/uDVsNuL.png)
+![](https://i.imgur.com/U7LMA6s.png)
 
 3. `flex: 1 1 40rem`，flex: grow shrink basis。`flex-grow`不長大，`flex-shrink`不縮小，`flex-basis`基本標準。
 
-![](https://i.imgur.com/gap9mbK.png)
+4. 直接套給logo的字體,`font-weight`可以在下載字體時設定。
 
+```css=
+#logo{  
+  font-family: "Pattaya", sans-serif;
+  font-weight: 400;
+}
+```
+5. `flex-wrap:wrap`，nav的標籤會自動Jump Down。[什麼是flex wrap](https://hff2.github.io/2021/02/23/CSS-flex/)
 
-4. `#logo{  font-family: "Pattaya", sans-serif;
-font-weight: 400;}`，直接套給logo的字體。
-5. `flex-wrap:wrap`，nav的標籤會Jump Down。
+![](https://i.imgur.com/7ksrvwj.png)
+
 6. `flex: 1 1 40rem;`，只要視窗空間小於40rem，就會馬上Jump Down。
 
-![](https://i.imgur.com/ZMrjcfh.png)
-
 7. 讓nav bar保持在上方，`position: sticky;`，`top: 0;`，`z-index: 3;`
+
 ```css=
 h1 {
   font-size: 2.6rem;
@@ -141,7 +153,6 @@ a {
 /* PARENT */
 nav {
   /* 會隨著視窗做變化，
-   * 但在這邊希望bar不要做任何的改變，所以改用padding */
   /* min-height: 10vh; */
   display: flex;
   /* 讓整頁面的兩邊都可以留下內縮的空白 */
@@ -174,10 +185,19 @@ nav ul {
 
 ### Hero Section
 
-1. 對圖片進行設置，`background-repeat: no-repeat;`，`background-size: cover;`，`background-position: center;`。
-2. `background: linear-gradient(rgba(0, 0, 0, 0.8), transparent),url("img/landing-page.jpg")`
-linear-gradient(rgba,transparent)，transparent為透明，所以就是增加透明度。放在圖片前方。
-3. `min-height: 90vh;`圖片的最小高度，讓圖片伸展開來。
+1. 對圖片進行設置，上面疊一層陰影`linear-gradient`，增加字的可視度。
+
+```css=
+#hero{
+    background: linear-gradient(rgba(0, 0, 0, 0.6), transparent),
+      url("img/landing-page.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+```
+2. `min-height: 90vh;`圖片的最小高度，讓圖片伸展開來。
+
 ```css=
 #hero {
   /* 讓圖片伸展開來 */
@@ -202,6 +222,8 @@ linear-gradient(rgba,transparent)，transparent為透明，所以就是增加透
 ```
 
 讓h3跟旁邊撐開距離
+
+![](https://i.imgur.com/jnlu2ue.jpg)
 
 ```css=
 #hero h3 {
@@ -231,7 +253,7 @@ button:hover {
 
 > HTML
 
-```htmlembedded=
+```html=
 <link
   href="https://fonts.googleapis.com/css2?family=Pattaya&family=Poppins:wght@400;500&display=swap"
   rel="stylesheet"
@@ -259,9 +281,10 @@ h3 {
 
 ### Media Query
 
-> 可以確認他什麼size的時候body會不見。
+> 可以確認他什麼size的時候，body會不見。
 
 ```css=
+/* 小於932px的時候會消失 */
 @media screen and (max-width: 932px) {
   html {
     display:none
@@ -270,14 +293,6 @@ h3 {
 ```
 
 更改字體大小，還有header的padding。
-
-各瀏覽器預設字型字號為16px，16px相當於1rem。
-
-當我們定義 10px / 16px = 0.625 = 62.5% 時，瀏覽器的預設字型為16px * 62.5% = 10px。
-
-此時，10px相當於1rem。
-
-![](https://i.imgur.com/0j1AGl8.png)
 
 
 ```css=
