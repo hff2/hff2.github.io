@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="學習到的知識點HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[實作] 記帳簿">
+<meta property="og:url" content="https://hff2.github.io.com/2021/01/22/%E5%AF%A6%E4%BD%9C%E8%A8%98%E5%B8%B3%E7%B0%BF/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="學習到的知識點HTML">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/2mBhwPn.png">
+<meta property="og:image" content="https://i.imgur.com/oduZQ5k.png">
+<meta property="og:image" content="https://i.imgur.com/s0AstOw.png">
+<meta property="og:image" content="https://i.imgur.com/94XWxXl.png">
+<meta property="og:image" content="https://i.imgur.com/8itfOeM.png">
+<meta property="article:published_time" content="2021-01-21T16:50:08.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.689Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/2mBhwPn.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/01/22/%E5%AF%A6%E4%BD%9C%E8%A8%98%E5%B8%B3%E7%B0%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[實作] 記帳簿 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/01/22/%E5%AF%A6%E4%BD%9C%E8%A8%98%E5%B8%B3%E7%B0%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [實作] 記帳簿
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-22 00:50:08" itemprop="dateCreated datePublished" datetime="2021-01-22T00:50:08+08:00">2021-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>10 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><a id="more"></a>
+<ul>
+<li>label</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li>first-of-type</li>
+<li>input [type=” “]</li>
+<li>outline</li>
+</ul>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li>Jquery寫法</li>
+<li><code>map()</code>，<code>filter()</code>，<code>reduce()</code></li>
+<li><code>math.random()</code></li>
+<li><code>math.floor()</code></li>
+<li>LocalStorage</li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a target="_blank" rel="noopener" href="https://hff2.github.io/My-Projects/Expense_Tracker/index.html">Demo</a></p>
+<p>可以紀錄支出與收入的記帳簿。</p>
+<p><img src="https://i.imgur.com/2mBhwPn.png"></p>
+<h2 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>使用模板語言pug讓HTML更好閱讀。</p>
+<h3 id="上半部結構"><a href="#上半部結構" class="headerlink" title="上半部結構"></a>上半部結構</h3><p><img src="https://i.imgur.com/oduZQ5k.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">body</span><br><span class="line">   h2 Expense Tracker</span><br><span class="line">   .container</span><br><span class="line">     h4 Your Balance</span><br><span class="line">     h1#balance $0.00</span><br><span class="line">     .inc-exp-container</span><br><span class="line">       div</span><br><span class="line">         h4 Income</span><br><span class="line">         p#money-plus.money.plus +$0.00</span><br><span class="line">       div</span><br><span class="line">         h4 Expense</span><br><span class="line">         p#money-minus.money.minus +$0.00</span><br></pre></td></tr></table></figure>
+<h3 id="動態生成收入與支出"><a href="#動態生成收入與支出" class="headerlink" title="動態生成收入與支出"></a>動態生成收入與支出</h3><p><img src="https://i.imgur.com/s0AstOw.png"></p>
+<p><code>li.minus</code>的部分是藉由JS控制動態生成<code>&lt;li&gt;</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">h3 History</span><br><span class="line">      ul#list.list</span><br><span class="line">        li.minus</span><br><span class="line">          | Cash </span><br><span class="line">          span -$400</span><br><span class="line">          button.delete-btn x</span><br></pre></td></tr></table></figure>
+<h3 id="輸入框與送出按鈕"><a href="#輸入框與送出按鈕" class="headerlink" title="輸入框與送出按鈕"></a>輸入框與送出按鈕</h3><p>label與placeholder的用法。</p>
+<p><img src="https://i.imgur.com/94XWxXl.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">h3 Add new transaction</span><br><span class="line">form#form</span><br><span class="line">.form-control</span><br><span class="line">  label(for&#x3D;&#39;text&#39;) Text</span><br><span class="line">  input#text(type&#x3D;&#39;text&#39; placeholder&#x3D;&#39;Enter text...&#39;)</span><br><span class="line">.form-control</span><br><span class="line">  label(for&#x3D;&#39;amount&#39;)</span><br><span class="line">    | Amount </span><br><span class="line">    br</span><br><span class="line">    | (negtive - expense,positive - income)</span><br><span class="line">  input#amount(type&#x3D;&#39;number&#39; placeholder&#x3D;&#39;Enter amount...&#39;)</span><br><span class="line">button.btn Add transaction</span><br></pre></td></tr></table></figure>
+<h2 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h2><p>大部分與之前的練習使用到的技巧相同，紀錄幾個提醒自己。</p>
+<h3 id="顏色變數"><a href="#顏色變數" class="headerlink" title="顏色變數"></a>顏色變數</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">3px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.12</span>), <span class="number">0</span> <span class="number">1px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.24</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="置中"><a href="#置中" class="headerlink" title="置中"></a>置中</h3><p><code>30px</code>為上下預留的距離，左右使用<code>auto</code>，讓網頁自己計算就會達成置中的效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">30px</span> auto;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">350px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="first-of-type選擇器"><a href="#first-of-type選擇器" class="headerlink" title="first-of-type選擇器"></a><code>first-of-type</code>選擇器</h3><p>這邊的效果為，選擇到income的div，所以使用到<code>first-of-type</code>，然後在使用<code>border-right</code>。</p>
+<p><img src="https://i.imgur.com/8itfOeM.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.inc-exp-container</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:first-of-type</span> &#123;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">1px</span> solid <span class="number">#dedede</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用type選擇input"><a href="#用type選擇input" class="headerlink" title="用type選擇input"></a>用type選擇input</h3><p>沒有使用過，值得記錄。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">&quot;text&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type=<span class="string">&quot;number&quot;</span>]</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#dedede</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="去除點選的預設外框"><a href="#去除點選的預設外框" class="headerlink" title="去除點選的預設外框"></a>去除點選的預設外框</h3><p>outline設定為0</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span><span class="selector-pseudo">:focus</span>,</span><br><span class="line"><span class="selector-class">.delete-btn</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><p>以下筆記會比較原生JS與Jquery的差異</p>
+<h3 id="設定變數"><a href="#設定變數" class="headerlink" title="設定變數"></a>設定變數</h3><blockquote>
+<p>原生Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> balance = <span class="built_in">document</span>.getElementById(<span class="string">&quot;balance&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> money_plus = <span class="built_in">document</span>.getElementById(<span class="string">&quot;money-plus&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> money_minus = <span class="built_in">document</span>.getElementById(<span class="string">&quot;money-minus&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.getElementById(<span class="string">&quot;list&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="built_in">document</span>.getElementById(<span class="string">&quot;text&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> amount = <span class="built_in">document</span>.getElementById(<span class="string">&quot;amount&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>可以直接以選擇器的方式呈現。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#balance&#x27;</span>)</span><br><span class="line">$(<span class="string">&#x27;#money-plus&#x27;</span>)</span><br><span class="line">$(<span class="string">&#x27;#money-minus&#x27;</span>)</span><br><span class="line">$(<span class="string">&#x27;#list&#x27;</span>)</span><br><span class="line">$(<span class="string">&#x27;#form&#x27;</span>)</span><br><span class="line">$(<span class="string">&#x27;#text&#x27;</span>)</span><br><span class="line">$(<span class="string">&#x27;#amount&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="新增事先做好的資料陣列到list上"><a href="#新增事先做好的資料陣列到list上" class="headerlink" title="新增事先做好的資料陣列到list上"></a>新增事先做好的資料陣列到list上</h3><p><code>addTransactionDOM()</code></p>
+<h4 id="函式的概念"><a href="#函式的概念" class="headerlink" title="函式的概念"></a>函式的概念</h4><ol>
+<li>判斷輸入的符號(sign)為正或負數，產生新的li</li>
+<li>判斷輸入的值為正或負數(item)</li>
+<li>判斷完後，將item放到list上</li>
+</ol>
+<blockquote>
+<p>原生JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//新增陣列，測試addTransactionDOM()是否可以運行</span></span><br><span class="line"><span class="keyword">const</span> dummyTransactions = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">text</span>: <span class="string">&quot;Flower&quot;</span>, <span class="attr">amount</span>: -<span class="number">20</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">text</span>: <span class="string">&quot;Salary&quot;</span>, <span class="attr">amount</span>: <span class="number">300</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">text</span>: <span class="string">&quot;Book&quot;</span>, <span class="attr">amount</span>: -<span class="number">10</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">4</span>, <span class="attr">text</span>: <span class="string">&quot;Camera&quot;</span>, <span class="attr">amount</span>: <span class="number">150</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> transactions = dummyTransactions;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add transactions to DOM list</span></span><br><span class="line"><span class="comment">//把新的li放到list</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTransactionDOM</span>(<span class="params">transaction</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Get sign</span></span><br><span class="line">  <span class="comment">//if(transaction.amount&lt;0)sign就是-</span></span><br><span class="line">  <span class="keyword">const</span> sign = transaction.amount &lt; <span class="number">0</span> ? <span class="string">&quot;-&quot;</span> : <span class="string">&quot;+&quot;</span>;</span><br><span class="line">  <span class="comment">//產生新的li元素</span></span><br><span class="line">  <span class="keyword">const</span> item = <span class="built_in">document</span>.createElement(<span class="string">&quot;li&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add class based on value</span></span><br><span class="line">  <span class="comment">// 把產生新的li元素加上class</span></span><br><span class="line">  <span class="comment">// 判斷當transactions的value，amount&lt;0 放minus，&gt;0 放plus</span></span><br><span class="line">  item.classList.add(transaction.amount &lt; <span class="number">0</span> ? <span class="string">&quot;minus&quot;</span> : <span class="string">&quot;plus&quot;</span>);</span><br><span class="line">  <span class="comment">// 將資料動態讀入，使用$&#123;&#125;讀取變數。</span></span><br><span class="line">  item.innerHTML = <span class="string">`</span></span><br><span class="line"><span class="string">    <span class="subst">$&#123;transaction.text&#125;</span> &lt;span&gt;<span class="subst">$&#123;sign&#125;</span><span class="subst">$&#123;<span class="built_in">Math</span>.abs(</span></span></span><br><span class="line"><span class="string"><span class="subst">    transaction.amount</span></span></span><br><span class="line"><span class="string"><span class="subst">  )&#125;</span>&lt;/span&gt; &lt;button class=&quot;delete-btn&quot;&gt;x&lt;/button&gt;</span></span><br><span class="line"><span class="string">  `</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//使用appenChild，將item接在list</span></span><br><span class="line">  list.appendChild(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ol>
+<li><code>createElement</code>改寫成要選取的元素。</li>
+<li><code>.classList.add</code>改寫成<code>.addClass</code></li>
+<li><code>item.innerHTML =</code>改寫成<code>item.html()</code></li>
+<li> <code>.appendChild(item)</code>改寫成 <code>.append(item);</code></li>
+</ol>
+<p>:bulb:append()和appendTo()方法的區別</p>
+<p><code>append()</code>方法是將方法裡面的參數添加到jquery對象中裡。<br>例如：<code>A.append(B)</code>的意思是將B放到A中來，後面追加A的子元素的最後一個位置。</p>
+<p><code>appendTo()</code>其方法是將jquery對象添加到<code>appendTo</code>指定的參數中裡。<br>例如：<code>A.appendTo(B)</code>的意思是將A放到B裡，後面追加B的子元素的最後一個位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dummyTransactions = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">text</span>: <span class="string">&quot;Flower&quot;</span>, <span class="attr">amount</span>: -<span class="number">20</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">text</span>: <span class="string">&quot;Salary&quot;</span>, <span class="attr">amount</span>: <span class="number">300</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">text</span>: <span class="string">&quot;Book&quot;</span>, <span class="attr">amount</span>: -<span class="number">10</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">4</span>, <span class="attr">text</span>: <span class="string">&quot;Camera&quot;</span>, <span class="attr">amount</span>: <span class="number">150</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> transactions = dummyTransactions;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTransactionDOM</span>(<span class="params">transaction</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> sign = transaction.amount &lt; <span class="number">0</span> ? <span class="string">&quot;-&quot;</span> : <span class="string">&quot;+&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// const item = document.createElement(&quot;li&quot;);</span></span><br><span class="line">  <span class="keyword">const</span> item = $(<span class="string">&quot;&lt;li&gt;&lt;/li&gt;&quot;</span>);</span><br><span class="line">  <span class="comment">// item.classList.add(transaction.amount &lt; 0 ? &quot;minus&quot; : &quot;plus&quot;);</span></span><br><span class="line">  item.addClass(transaction.amount &lt; <span class="number">0</span> ? <span class="string">&quot;minus&quot;</span> : <span class="string">&quot;plus&quot;</span>);</span><br><span class="line">  <span class="comment">// item.innerHTML = ``</span></span><br><span class="line">  item.html(<span class="string">`<span class="subst">$&#123;transaction.text&#125;</span> &lt;span&gt;<span class="subst">$&#123;sign&#125;</span><span class="subst">$&#123;<span class="built_in">Math</span>.abs(</span></span></span><br><span class="line"><span class="string"><span class="subst">    transaction.amount</span></span></span><br><span class="line"><span class="string"><span class="subst">  )&#125;</span>&lt;/span&gt; </span></span><br><span class="line"><span class="string">  &lt;button class=&quot;delete-btn&quot;&gt;x&lt;/button&gt;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line">  <span class="comment">// list.appendChild(item);</span></span><br><span class="line">  $(<span class="string">&quot;#list&quot;</span>).append(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>init()</code></p>
+<h4 id="函式的概念-1"><a href="#函式的概念-1" class="headerlink" title="函式的概念"></a>函式的概念</h4><p>使transactions(預先做好的資料)，每一筆都丟到<code>addTransactionDOM()</code>。</p>
+<p>預設<code>listinnerHTML = &quot;&quot;</code>為空，不設定的話會出現HTML裡設定Cash的-400。</p>
+<blockquote>
+<p>原生Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Init app</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//預設list為空，不設定的話會出現HTML裡設定Cash的-400元</span></span><br><span class="line">  list.innerHTML = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="comment">//將transactions裡面的每一筆資料</span></span><br><span class="line">  <span class="comment">//都執行addTransactionDOM()</span></span><br><span class="line">  transactions.forEach(addTransactionDOM);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>.innerHTML = &quot;&quot;</code>改成<code>.html()</code></li>
+</ul>
+<p> BUG<br>這邊遇到的問題是，dummyTransactions示範陣列的欄位會跑出來，但內容不會顯示。<br>原因是因為js原生寫法為 <code>item.innerHTML = </code>，jquery寫法為<code>item.html()</code>，我沒有把=拿掉，導致它顯示不出來，也不會跳錯誤訊息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Init app</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// list.innerHTML = &quot;&quot;;</span></span><br><span class="line">  $(<span class="string">&quot;#list&quot;</span>).html(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  transactions.forEach(addTransactionDOM);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<h3 id="設定總金額，支出，收入的元素"><a href="#設定總金額，支出，收入的元素" class="headerlink" title="設定總金額，支出，收入的元素"></a>設定總金額，支出，收入的元素</h3><p>add updateValues function to display balance,income and expense</p>
+<ul>
+<li><code>map()</code>需要回傳一個值，他會透過函式內所回傳的值組合成一個陣列。</li>
+<li><code>reduce()</code>方法像是一個<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">累加器</a>，可以陣列中每項元素（由左至右）傳入回呼函式，將陣列化為單一值。</li>
+<li><code>filter()</code>會回傳一個陣列，其條件是return後方為true 的物件，適合用在搜尋符合條件的資料(本範例都是用來搜尋符合的資料)。</li>
+</ul>
+<p>:bulb: <code>.reduce((acc, item) =&gt; (acc += item), 0)</code>，最後面的0，是第一次呼叫callback時，要傳入的累加器的初始值。若沒有提供初始值，則原陣列的第一個元素將會被當作初始的累加器。目前在這邊的程式不會影響到。</p>
+<h4 id="箭頭函式的寫法解說"><a href="#箭頭函式的寫法解說" class="headerlink" title="箭頭函式的寫法解說"></a>箭頭函式的寫法解說</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newArr = oldArr.map(<span class="function">(<span class="params">val,index,arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//return elements to new Array</span></span><br><span class="line">    <span class="comment">//回傳新陣列</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>newArr — 新的Array會被回傳</li>
+<li>oldArr — 在map( )裡面跑的Arr</li>
+<li>val — the current value being processed</li>
+<li>index — the current index of the value being processed</li>
+<li>arr — 原本的arr(資料)</li>
+</ul>
+<h4 id="一般函式與箭頭函式比較"><a href="#一般函式與箭頭函式比較" class="headerlink" title="一般函式與箭頭函式比較"></a>一般函式與箭頭函式比較</h4><p>將function變成箭頭，然後把return去掉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES6 Arrow Function</span></span><br><span class="line"><span class="keyword">const</span> amounts = transactions.map(<span class="function">(<span class="params">transaction</span>) =&gt;</span> transaction.amount);</span><br><span class="line"><span class="comment">//原生Js</span></span><br><span class="line"><span class="keyword">const</span> amounts = transactions.map(<span class="function"><span class="keyword">function</span>(<span class="params">transaction</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> transaction.amount</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>原生Js</p>
+</blockquote>
+<p>BUG<br>這邊遇到了一個問題就是innerHTML一直顯示錯誤訊息。<br>‘cannot set property ‘innertext’ of null javascript’<br>後來發現問題是html裡的id拼錯字，導致它選取不到，才會一直顯示null 。</p>
+<p><code>updateValues()</code></p>
+<h4 id="函式的概念-2"><a href="#函式的概念-2" class="headerlink" title="函式的概念"></a>函式的概念</h4><ol>
+<li>使用<code>map()</code>取得新函數，函數裡有每一個函數的amout數值(未加總)。</li>
+<li>使用<code>reduce()</code>加總每一個amout數值，放到total變數，</li>
+<li>以 income 做範例，所以先使用<code>filter()</code>過濾資料，取得大於0的數。</li>
+<li>再來，用<code>refuce()</code>加總。</li>
+<li>toFixed()取的小數第二位。</li>
+<li>把處理好的income,total,expense放到DOM裡面更新文字。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Update the balance,income and expense</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateValues</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//使用map方法回傳一個新Array，他的內容是舊Array的amount值</span></span><br><span class="line">  <span class="keyword">const</span> amounts = transactions.map(<span class="function">(<span class="params">transaction</span>) =&gt;</span> transaction.amount);</span><br><span class="line">  <span class="comment">// 用reduce方法，加總所有值的amout，並取到小數第二位</span></span><br><span class="line">  <span class="comment">// acc += item -&gt; acc = acc + item</span></span><br><span class="line">  <span class="keyword">const</span> total = amounts.reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> (acc += item), <span class="number">0</span>).toFixed(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> income = amounts</span><br><span class="line">    <span class="comment">//.filter取得大於零的值</span></span><br><span class="line">    .filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="comment">//.refuce將&gt;0的值(income)加總</span></span><br><span class="line">    .reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> (acc += item), <span class="number">0</span>)</span><br><span class="line">    .toFixed(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> expense = (</span><br><span class="line">    amounts</span><br><span class="line">    <span class="comment">//.filter取得大於零的值</span></span><br><span class="line">    .filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="comment">//.refuce將&lt;0的值(expense)加總</span></span><br><span class="line">    .reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> (acc += item), <span class="number">0</span>) *</span><br><span class="line">    -<span class="number">1</span></span><br><span class="line">  ).toFixed(<span class="number">2</span>);</span><br><span class="line">  <span class="comment">//把處理好的income,total,expense放到DOM裡面更新文字</span></span><br><span class="line">  balance.innerText = <span class="string">`$<span class="subst">$&#123;total&#125;</span>`</span>;</span><br><span class="line">  money_plus.innerText = <span class="string">`$<span class="subst">$&#123;income&#125;</span>`</span>;</span><br><span class="line">  money_minus.innerText = <span class="string">`$<span class="subst">$&#123;expense&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Init app</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  list.innerHTML = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  transactions.forEach(addTransactionDOM);</span><br><span class="line">  <span class="comment">//要呼叫updateValues函式</span></span><br><span class="line">  updateValues();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>innerText =</code>改成<code>.text()</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateValues</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> amounts = transactions.map(<span class="function">(<span class="params">transaction</span>) =&gt;</span> transaction.amount);</span><br><span class="line">  <span class="keyword">const</span> total = amounts.reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> (acc += item), <span class="number">0</span>).toFixed(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">const</span> income = amounts</span><br><span class="line"></span><br><span class="line">    .filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item &gt; <span class="number">0</span>)</span><br><span class="line">    .reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> (acc += item), <span class="number">0</span>)</span><br><span class="line">    .toFixed(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> expense = (</span><br><span class="line">    amounts.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item &lt; <span class="number">0</span>).reduce(<span class="function">(<span class="params">acc, item</span>) =&gt;</span> (acc += item), <span class="number">0</span>) *</span><br><span class="line">    -<span class="number">1</span></span><br><span class="line">  ).toFixed(<span class="number">2</span>);</span><br><span class="line">  <span class="comment">// balance.innerText = `$$&#123;total&#125;`;</span></span><br><span class="line">  $(<span class="string">&quot;#balance&quot;</span>).text(<span class="string">`$<span class="subst">$&#123;total&#125;</span>`</span>);</span><br><span class="line">  $(<span class="string">&quot;#money-plus&quot;</span>).text(<span class="string">`$<span class="subst">$&#123;income&#125;</span>`</span>);</span><br><span class="line">  $(<span class="string">&quot;#money-minus&quot;</span>).text(<span class="string">`$<span class="subst">$&#123;expense&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="新增列表-與-亂數ID"><a href="#新增列表-與-亂數ID" class="headerlink" title="新增列表 與 亂數ID"></a>新增列表 與 亂數ID</h3><p><code>addTransaction()</code></p>
+<h4 id="函數的概念"><a href="#函數的概念" class="headerlink" title="函數的概念"></a>函數的概念</h4><ol>
+<li>判斷輸入框是否為空</li>
+<li>不為空，新增一個新的transaction</li>
+<li>將新增的物件，push到transactions</li>
+<li>更新到<code>addTransactionDOM</code>和<code>updateValues</code></li>
+</ol>
+<blockquote>
+<p>原生Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Add transactio</span></span><br><span class="line"><span class="comment">//加入新的資料</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTransaction</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line"><span class="comment">//防止送出時跳掉</span></span><br><span class="line">  e.preventDefault();</span><br><span class="line"><span class="comment">//text,amount其中一個為空會出現alert</span></span><br><span class="line">  <span class="keyword">if</span> (text.value.trim() = <span class="string">&quot;&quot;</span> || amount.value.trim() = <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    alert(<span class="string">&quot;Please add a text and amount&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//正確輸入的話新增一個新的transaction</span></span><br><span class="line">    <span class="keyword">const</span> transaction = &#123;</span><br><span class="line">      id: generateID(),</span><br><span class="line">      text: text.value,</span><br><span class="line">      <span class="comment">//amount必須為數字才可放入開好的陣列</span></span><br><span class="line">      amount: +amount.value,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//把新加入的transaction，push到原本的trasactions裡面</span></span><br><span class="line">    transactions.push(transaction);</span><br><span class="line">    <span class="comment">//更新到list</span></span><br><span class="line">    addTransactionDOM(transaction);</span><br><span class="line">    <span class="comment">//呼叫函式，更新income，expense，total</span></span><br><span class="line">    updateValues();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//輸入完成後變成空字串，增加使用者體驗。</span></span><br><span class="line">    text.value = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    amount.value = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ol>
+<li><code>text.value</code>換成<code>$(&quot;text&quot;).val()</code></li>
+<li><code>text.value = &quot;&quot;</code>換成<code>$(&quot;#text&quot;).val(&quot;&quot;)</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTransaction</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="comment">// if (text.value.trim() = &quot;&quot; || amount.value.trim() = &quot;&quot;) &#123;</span></span><br><span class="line">  <span class="keyword">if</span> ($(<span class="string">&quot;#text&quot;</span>).val().trim() = <span class="string">&quot;&quot;</span> || $(<span class="string">&quot;#amount&quot;</span>).val().trim() = <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    alert(<span class="string">&quot;Please add a text and amount&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> transaction = &#123;</span><br><span class="line">      id: generateID(),</span><br><span class="line">      <span class="comment">// text: text.value,</span></span><br><span class="line">      text: $(<span class="string">&quot;#text&quot;</span>).val(),</span><br><span class="line">      <span class="comment">// amount: +amount.value,</span></span><br><span class="line">      amount: +$(<span class="string">&quot;#amount&quot;</span>).val(),</span><br><span class="line">    &#125;;</span><br><span class="line">    transactions.push(transaction);</span><br><span class="line">    addTransactionDOM(transaction);</span><br><span class="line">    updateValues();</span><br><span class="line"></span><br><span class="line">    updateLocalStorage();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// text.value = &quot;&quot;;</span></span><br><span class="line">    $(<span class="string">&quot;#text&quot;</span>).val(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    $(<span class="string">&quot;#amount&quot;</span>).val(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>generateID()</code></p>
+<p><code>Math.floor()</code>函式會回傳小於等於所給數字的最大整數，簡單來說就是，小數無條件捨去到比自身小的最大整數。</p>
+<p><code>Math.random()</code>函式，會隨機產生出0~1之間的小數，出來的值永遠不會大於1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.random(); <span class="comment">//0.8961082300942438</span></span><br><span class="line"><span class="built_in">Math</span>.random(); <span class="comment">//0.009676286758744546</span></span><br></pre></td></tr></table></figure>
+<p>如果將<code>Math.random()</code>產生出來的數，乘上2就會得到0-2之間的小數，乘上3就會得到0-3之間的小數，再使用<code>Math.floor()</code>無條件取整數位。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">2</span>); <span class="comment">//回傳0或1</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">3</span>); <span class="comment">//回傳0或1或2</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">5</span>); <span class="comment">//回傳0或1或2或3或4</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">50</span>); <span class="comment">//回傳0或1或2或3...或49</span></span><br></pre></td></tr></table></figure>
+<h4 id="函數的概念-1"><a href="#函數的概念-1" class="headerlink" title="函數的概念"></a>函數的概念</h4><ul>
+<li>取0-100000000的亂數當作ID。</li>
+</ul>
+<blockquote>
+<p>原生JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generate random ID</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateID</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">100000000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>一樣的寫法</p>
+<h3 id="移除列表"><a href="#移除列表" class="headerlink" title="移除列表"></a>移除列表</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`&lt;button class=&quot;delete-btn&quot; onclick=&quot;removeTransaction(<span class="subst">$&#123;transaction.id&#125;</span>)&quot;&gt;`</span></span><br></pre></td></tr></table></figure>
+<p>假如我們點擊A列表，那A列表的<code>transaction.id</code>會傳進去<code>removeTransaction()</code>函式裡。</p>
+<p>再使用<code>filter()</code>過濾，當原始的<code>transaction.id</code>們不等於A列表的id，就會被回傳。所以A列表沒有被回傳，再使用<code>init()</code>，就被刪除了。</p>
+<p>如果沒有呼叫<code>init()</code>，畫面是不會改變的。所以最後要記得加上<code>init()</code>函數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Remove transaction by ID</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeTransaction</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  transactions = transactions.filter(<span class="function">(<span class="params">transaction</span>) =&gt;</span> transaction.id ! id);</span><br><span class="line">  init();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//對照一般寫法，較容易理解</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeTransaction</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  transactions = transactions.filter(<span class="function"><span class="keyword">function</span>(<span class="params">transaction</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> transaction.id ! id</span><br><span class="line">  &#125;);</span><br><span class="line">  init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="按下submit提交事件"><a href="#按下submit提交事件" class="headerlink" title="按下submit提交事件"></a>按下submit提交事件</h3><p>事件監聽</p>
+<blockquote>
+<p>原生Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, addTransaction);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>.addEventListener(&quot;submit&quot;,xxx)</code>轉成<code>.submit</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#form&quot;</span>).submit(addTransaction);</span><br></pre></td></tr></table></figure>
+<h3 id="增加Local-Storage"><a href="#增加Local-Storage" class="headerlink" title="增加Local Storage"></a>增加Local Storage</h3><p>從Localstorage抓取資料使用getItem</p>
+<p>需要轉換格式使用JSON.parse</p>
+<p>判斷<code>getItem</code>得到的資料內容是否為空。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> localStorageTransactions = <span class="built_in">JSON</span>.parse(</span><br><span class="line">  <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;transactions&quot;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> transactions =</span><br><span class="line">  <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;transactions&quot;</span>) ! <span class="literal">null</span> ? localStorageTransactions : [];</span><br></pre></td></tr></table></figure>
+<p>更新Localstorage裡面的資料。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Update local storage transactions</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateLocalStorage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;transactions&quot;</span>, <span class="built_in">JSON</span>.stringify(transactions));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>addTransaction()</code>，<code>removeTransaction()</code>函數裡需要呼叫<code>updateLocalStorage()</code>，才能夠更新資料。</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><h3 id="JS-2"><a href="#JS-2" class="headerlink" title="JS"></a>JS</h3><p><a target="_blank" rel="noopener" href="https://wcc723.github.io/javascript/2017/06/29/es6-native-array/#Array-prototype-filter">JavaScript 陣列處理方法 [filter(), find(), forEach(), map(), every(), some(), reduce()]</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeburst.io/learn-understand-javascripts-map-function-ffc059264783">Learn &amp; Understand JavaScript’s Map Function</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1535282542.html">jquery動態插入append、prepend、before、after區別</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Math/floor">Math.floor()</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/20/%E5%AF%A6%E4%BD%9C%E5%8C%AF%E7%8E%87%E8%BD%89%E6%8F%9B%E5%99%A8/" rel="prev" title="[實作] 匯率轉換器">
+      <i class="fa fa-chevron-left"></i> [實作] 匯率轉換器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/23/%E5%AF%A6%E4%BD%9C-%E9%9F%B3%E6%A8%82%E6%92%AD%E6%94%BE%E5%99%A8/" rel="next" title="[實作] 唱盤音樂播放器">
+      [實作] 唱盤音樂播放器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AD%98%E9%BB%9E"><span class="nav-number">1.</span> <span class="nav-text">學習到的知識點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-1"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B"><span class="nav-number">3.1.</span> <span class="nav-text">結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E5%8D%8A%E9%83%A8%E7%B5%90%E6%A7%8B"><span class="nav-number">3.2.</span> <span class="nav-text">上半部結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%95%E6%85%8B%E7%94%9F%E6%88%90%E6%94%B6%E5%85%A5%E8%88%87%E6%94%AF%E5%87%BA"><span class="nav-number">3.3.</span> <span class="nav-text">動態生成收入與支出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%85%A5%E6%A1%86%E8%88%87%E9%80%81%E5%87%BA%E6%8C%89%E9%88%95"><span class="nav-number">3.4.</span> <span class="nav-text">輸入框與送出按鈕</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-1"><span class="nav-number">4.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%8F%E8%89%B2%E8%AE%8A%E6%95%B8"><span class="nav-number">4.1.</span> <span class="nav-text">顏色變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E4%B8%AD"><span class="nav-number">4.2.</span> <span class="nav-text">置中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first-of-type%E9%81%B8%E6%93%87%E5%99%A8"><span class="nav-number">4.3.</span> <span class="nav-text">first-of-type選擇器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8type%E9%81%B8%E6%93%87input"><span class="nav-number">4.4.</span> <span class="nav-text">用type選擇input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E9%BB%9E%E9%81%B8%E7%9A%84%E9%A0%90%E8%A8%AD%E5%A4%96%E6%A1%86"><span class="nav-number">4.5.</span> <span class="nav-text">去除點選的預設外框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-1"><span class="nav-number">5.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E8%AE%8A%E6%95%B8"><span class="nav-number">5.1.</span> <span class="nav-text">設定變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E4%BA%8B%E5%85%88%E5%81%9A%E5%A5%BD%E7%9A%84%E8%B3%87%E6%96%99%E9%99%A3%E5%88%97%E5%88%B0list%E4%B8%8A"><span class="nav-number">5.2.</span> <span class="nav-text">新增事先做好的資料陣列到list上</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E5%BC%8F%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">5.2.1.</span> <span class="nav-text">函式的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E5%BC%8F%E7%9A%84%E6%A6%82%E5%BF%B5-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">函式的概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E7%B8%BD%E9%87%91%E9%A1%8D%EF%BC%8C%E6%94%AF%E5%87%BA%EF%BC%8C%E6%94%B6%E5%85%A5%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-number">5.3.</span> <span class="nav-text">設定總金額，支出，收入的元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F%E7%9A%84%E5%AF%AB%E6%B3%95%E8%A7%A3%E8%AA%AA"><span class="nav-number">5.3.1.</span> <span class="nav-text">箭頭函式的寫法解說</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%87%BD%E5%BC%8F%E8%88%87%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F%E6%AF%94%E8%BC%83"><span class="nav-number">5.3.2.</span> <span class="nav-text">一般函式與箭頭函式比較</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E5%BC%8F%E7%9A%84%E6%A6%82%E5%BF%B5-2"><span class="nav-number">5.3.3.</span> <span class="nav-text">函式的概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E5%88%97%E8%A1%A8-%E8%88%87-%E4%BA%82%E6%95%B8ID"><span class="nav-number">5.4.</span> <span class="nav-text">新增列表 與 亂數ID</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B8%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">5.4.1.</span> <span class="nav-text">函數的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B8%E7%9A%84%E6%A6%82%E5%BF%B5-1"><span class="nav-number">5.4.2.</span> <span class="nav-text">函數的概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E5%88%97%E8%A1%A8"><span class="nav-number">5.5.</span> <span class="nav-text">移除列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E4%B8%8Bsubmit%E6%8F%90%E4%BA%A4%E4%BA%8B%E4%BB%B6"><span class="nav-number">5.6.</span> <span class="nav-text">按下submit提交事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0Local-Storage"><span class="nav-number">5.7.</span> <span class="nav-text">增加Local Storage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">6.</span> <span class="nav-text">參考文章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-2"><span class="nav-number">6.1.</span> <span class="nav-text">JS</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

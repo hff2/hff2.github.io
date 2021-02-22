@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="學習到的知識點HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[實作] 唱盤音樂播放器">
+<meta property="og:url" content="https://hff2.github.io.com/2021/01/23/%E5%AF%A6%E4%BD%9C-%E9%9F%B3%E6%A8%82%E6%92%AD%E6%94%BE%E5%99%A8/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="學習到的知識點HTML">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/HsmaTP3.png">
+<meta property="og:image" content="https://i.imgur.com/yuE6XMo.png">
+<meta property="og:image" content="https://i.imgur.com/DQPe2Pz.png">
+<meta property="og:image" content="https://i.imgur.com/jkvwzfn.png">
+<meta property="og:image" content="https://i.imgur.com/hhPak5J.png">
+<meta property="og:image" content="https://i.imgur.com/4mnJURG.png">
+<meta property="article:published_time" content="2021-01-23T07:19:52.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.664Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/HsmaTP3.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/01/23/%E5%AF%A6%E4%BD%9C-%E9%9F%B3%E6%A8%82%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[實作] 唱盤音樂播放器 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/01/23/%E5%AF%A6%E4%BD%9C-%E9%9F%B3%E6%A8%82%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [實作] 唱盤音樂播放器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-23 15:19:52" itemprop="dateCreated datePublished" datetime="2021-01-23T15:19:52+08:00">2021-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>11 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><a id="more"></a>
+<ul>
+<li>從fontawsome引入圖片</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li>linear-gradient</li>
+<li>animation</li>
+<li>animation-play-state</li>
+<li>::after偽元素</li>
+<li>z-index</li>
+</ul>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li>Jquery</li>
+<li>clientX，screenX，pageX</li>
+<li>favicon</li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a target="_blank" rel="noopener" href="https://hff2.github.io/My-Projects/Music_Player/">Demo</a></p>
+<p>一個有唱盤會旋轉的音樂播放器。</p>
+<p><img src="https://i.imgur.com/HsmaTP3.png"></p>
+<h2 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h2><p><img src="https://i.imgur.com/yuE6XMo.png"></p>
+<h3 id="音樂訊息與Progrees-info"><a href="#音樂訊息與Progrees-info" class="headerlink" title="音樂訊息與Progrees info"></a>音樂訊息與Progrees info</h3><p>包住整個結構的<code>.container</code>，與存放progress bar。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">body</span><br><span class="line">  h1 Music Player</span><br><span class="line">  #music-container.music-container</span><br><span class="line">    .music-info</span><br><span class="line">      h4#title</span><br><span class="line">      #progress-container.progress-container</span><br><span class="line">        #progress.progress</span><br><span class="line">    audio#audio(src&#x3D;&#39;music&#x2F;smallguitar.mp3&#39;)</span><br></pre></td></tr></table></figure>
+<h3 id="照片與播放Button"><a href="#照片與播放Button" class="headerlink" title="照片與播放Button"></a>照片與播放Button</h3><p>圖片容器<code>.img-container</code>，還有三個從<a target="_blank" rel="noopener" href="https://fontawesome.com/icons?d=gallery">Font-awasome</a>網站引入的撥放、倒退、快轉鍵。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.img-container</span><br><span class="line">        img#cover(src&#x3D;&#39;images&#x2F;smallguitar.jpg&#39; alt&#x3D;&#39;music-cover&#39;)</span><br><span class="line">      .navigation</span><br><span class="line">        button#prev.action-btn</span><br><span class="line">          i.fas.fa-backward</span><br><span class="line">        button#play.action-btn.action-btn-big</span><br><span class="line">          i.fas.fa-play</span><br><span class="line">        button#next.action-btn</span><br><span class="line">          i.fas.fa-forward</span><br></pre></td></tr></table></figure>
+<h2 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h2><h3 id="將所有元素置中"><a href="#將所有元素置中" class="headerlink" title="將所有元素置中"></a>將所有元素置中</h3><blockquote>
+<p>背景漸層的效果</p>
+</blockquote>
+<p>使用<code>linear-gradient</code>，在Amos切版也有使用到。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(</span><br><span class="line">    <span class="number">0deg</span>,</span><br><span class="line">    rgba(<span class="number">247</span>, <span class="number">247</span>, <span class="number">247</span>, <span class="number">1</span>) <span class="number">23.8%</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">252</span>, <span class="number">221</span>, <span class="number">221</span>, <span class="number">1</span>) <span class="number">92%</span></span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>這部分的Code</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> url(<span class="string">&quot;https://fonts.googleapis.com/css?family=Lato&amp;display=swap&quot;</span>);</span><br><span class="line"></span><br><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(</span><br><span class="line">    <span class="number">0deg</span>,</span><br><span class="line">    rgba(<span class="number">247</span>, <span class="number">247</span>, <span class="number">247</span>, <span class="number">1</span>) <span class="number">23.8%</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">252</span>, <span class="number">221</span>, <span class="number">221</span>, <span class="number">1</span>) <span class="number">92%</span></span><br><span class="line">  );</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Lato&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="外層容器"><a href="#外層容器" class="headerlink" title="外層容器"></a>外層容器</h3><blockquote>
+<p><code>img-container</code></p>
+</blockquote>
+<p><code>relative</code>可以定位到上層元素<code>.music-container</code>，而不會定位到最外層導致跑版。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img-container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">110px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>這部分的Code</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.music-container</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">20px</span> <span class="number">20px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">252</span>, <span class="number">169</span>, <span class="number">169</span>, <span class="number">0.6</span>);</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span> <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">100px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="設置音樂圖片"><a href="#設置音樂圖片" class="headerlink" title="設置音樂圖片"></a>設置音樂圖片</h3><blockquote>
+<p>圖片設置跟外容器一樣寬</p>
+</blockquote>
+<p>使用<code>width: inherit</code>，瀏覽器會將上層元素<code>img-container</code>的寬度賦值給他，就不需要再<code>img-container</code>上設定<code>position:relative</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1501340167.html">參考文章</a></p>
+<blockquote>
+<p>定位照片</p>
+</blockquote>
+<p>使用絕對定位</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line"><span class="selector-tag">bottom</span>: 0;</span><br><span class="line"><span class="selector-tag">left</span>: 0;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>animation</p>
+</blockquote>
+<p>animation: 動畫名稱 | 動畫持續時間 | 動畫加速度函式 | 動畫播放次數</p>
+<p><code>animation</code>: <code>animation-name</code>|<code>name-duration</code> | <code>animation-timing-function</code> | <code>animation-iteration-count</code></p>
+<p><code>animation-play-state</code> 為動畫播放或暫停狀態。<br>running：預設值，表示動畫運行。<br>paused：表示動畫暫停</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">animation</span>: <span class="selector-tag">rotate</span> 3<span class="selector-tag">s</span> <span class="selector-tag">linear</span> <span class="selector-tag">infinite</span>;</span><br><span class="line"><span class="selector-tag">animation-play-state</span>: <span class="selector-tag">paused</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>音樂播放時開始旋轉</p>
+</blockquote>
+<p>這部分是由JS控制，按下播放音樂的Button，才將.play的class加上去。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.music-container</span><span class="selector-class">.play</span> <span class="selector-class">.img-container</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">animation-play-state</span>: running;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>這部分的Code</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img-container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">110px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.img-container</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">object-fit</span>: cover;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">110px</span>;</span><br><span class="line">  <span class="attribute">width</span>: inherit;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">animation</span>: rotate <span class="number">3s</span> linear infinite;</span><br><span class="line">  <span class="attribute">animation-play-state</span>: paused;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.music-container</span><span class="selector-class">.play</span> <span class="selector-class">.img-container</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">animation-play-state</span>: running;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="圖片上的白點"><a href="#圖片上的白點" class="headerlink" title="圖片上的白點"></a>圖片上的白點</h3><p>將圖片上的白點移到中間，使用到偽元素<code>::after</code>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img-container</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="設定動畫"><a href="#設定動畫" class="headerlink" title="設定動畫"></a>設定動畫</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> rotate &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">0deg</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">360deg</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="播放欄"><a href="#播放欄" class="headerlink" title="播放欄"></a>播放欄</h3><blockquote>
+<p>去除點擊後出現的框框</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.action-btn</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>這部分的Code</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.navigation</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.action-btn</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#dfdbdf</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 放大播放鍵 */</span></span><br><span class="line"><span class="selector-class">.action-btn</span><span class="selector-class">.action-btn-big</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#cdc2d0</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.action-btn</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Music-Info"><a href="#Music-Info" class="headerlink" title="Music Info"></a>Music Info</h3><p>要做出pop up的效果(按下播放時，才出現)，所以一開始要設定<code>transform: translateY(0%)</code>，<code>opacity: 0</code>，不讓Info面板出現。</p>
+<p><code>transform</code>的座標別於我們一般認知的座標，以下面這張圖為例，右下在一般認知裡為(100,-100)，但<code>transform</code>原點在左上，所以往他的右下為(100,100)，相反的往他的左上為(-100,-100)。</p>
+<p><img src="https://i.imgur.com/DQPe2Pz.png"></p>
+<p>這邊使用到<code>transition:ease-in</code>效果，意思為緩慢的開始。</p>
+<p><code>width: calc(100% - 40px)</code>，100%為上層元素的最大寬度，<code>calc()</code>為動態計算，不用在一個一個計算現在的寬度為多少，可以和<code>max()、min()、clamp</code>或是 CSS 的變數互相搭配，中間是減號，前後要留兩個空格。</p>
+<blockquote>
+<p>完整的Code</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 未播放時不出現 */</span></span><br><span class="line"><span class="selector-class">.music-info</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">40px</span>);</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">10px</span> <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0%</span>);</span><br><span class="line">  <span class="attribute">transition</span>: transform <span class="number">0.3s</span> ease-in, opacity <span class="number">0.3s</span> ease-in;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 播放時出現 */</span></span><br><span class="line"><span class="selector-class">.music-container</span><span class="selector-class">.play</span> <span class="selector-class">.music-info</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100%</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 去除h4的預設margin */</span></span><br><span class="line"><span class="selector-class">.music-info</span> <span class="selector-tag">h4</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Progress"><a href="#Progress" class="headerlink" title="Progress"></a>Progress</h3><p><code>.progress</code>裡面的<code>width</code>改變他的長度，會使用Js動態改變。</p>
+<p>transition:<code>新增效果的CSS屬性</code> | <code>效果的持續時間</code> | <code>動畫執行的計算方式</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 外面的白色框框 */</span></span><br><span class="line"><span class="selector-class">.progress-container</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 裡面的進度條 */</span></span><br><span class="line"><span class="selector-class">.progress</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fe8daa</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0%</span>;</span><br><span class="line">  <span class="attribute">transition</span>: width <span class="number">0.1s</span> linear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><h3 id="新增變數"><a href="#新增變數" class="headerlink" title="新增變數"></a>新增變數</h3><blockquote>
+<p>JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> musicContainer = <span class="built_in">document</span>.getElementById(<span class="string">&quot;music-container&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> playBtn = <span class="built_in">document</span>.getElementById(<span class="string">&quot;play&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> prevBtn = <span class="built_in">document</span>.getElementById(<span class="string">&quot;prev&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> nextBtn = <span class="built_in">document</span>.getElementById(<span class="string">&quot;next&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> audio = <span class="built_in">document</span>.getElementById(<span class="string">&quot;audio&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> progress = <span class="built_in">document</span>.getElementById(<span class="string">&quot;progress&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> progressContainer = <span class="built_in">document</span>.getElementById(<span class="string">&quot;progress-container&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> title = <span class="built_in">document</span>.getElementById(<span class="string">&quot;title&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cover = <span class="built_in">document</span>.getElementById(<span class="string">&quot;cover&quot;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>直接選取元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#musicContainer&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#playBtn&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#prevBtn&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#nextBtn&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#audio&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#progress&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#progressContainer&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#title&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#cover&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="宣告歌曲陣列，檢索，呼叫loadSong"><a href="#宣告歌曲陣列，檢索，呼叫loadSong" class="headerlink" title="宣告歌曲陣列，檢索，呼叫loadSong()"></a>宣告歌曲陣列，檢索，呼叫<code>loadSong()</code></h3><p>設定以歌為id的陣列</p>
+<blockquote>
+<p>JS 和 Jquery都要宣告</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Song titles</span><br><span class="line">&#x2F;&#x2F; 設定以歌為id的陣列</span><br><span class="line">const songs &#x3D; [&quot;energy&quot;, &quot;inspire&quot;, &quot;smallguitar&quot;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Keep track of song</span><br><span class="line">&#x2F;&#x2F; 宣告檢索歌曲的變數</span><br><span class="line">let songIndex &#x3D; 0;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Initially load song details into DOM</span><br><span class="line">&#x2F;&#x2F; 呼叫loadSong函數，用檢索呼叫歌曲</span><br><span class="line">loadSong(songs[songIndex]);</span><br></pre></td></tr></table></figure>
+<h3 id="載入歌曲loadSong"><a href="#載入歌曲loadSong" class="headerlink" title="載入歌曲loadSong()"></a>載入歌曲<code>loadSong()</code></h3><p>將歌曲的名字，音檔，照片讀入。</p>
+<blockquote>
+<p>JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Update song details</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadSong</span>(<span class="params">song</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Can change the song</span></span><br><span class="line">  title.innerText = song;</span><br><span class="line">  audio.src = <span class="string">`music/<span class="subst">$&#123;song&#125;</span>.mp3`</span>;</span><br><span class="line">  cover.src = <span class="string">`images/<span class="subst">$&#123;song&#125;</span>.jpg`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>audio.src =</code>轉成<code>$(&quot;#audio&quot;).attr()</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadSong</span>(<span class="params">song</span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&quot;#title&quot;</span>).Text(song);</span><br><span class="line">  $(<span class="string">&quot;#audio&quot;</span>).attr(<span class="string">`music/<span class="subst">$&#123;song&#125;</span>.mp3`</span>);</span><br><span class="line">  $(<span class="string">&quot;#cover&quot;</span>).attr(<span class="string">`images/<span class="subst">$&#123;song&#125;</span>.jpg`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="播放按鈕的事件監聽"><a href="#播放按鈕的事件監聽" class="headerlink" title="播放按鈕的事件監聽"></a>播放按鈕的事件監聽</h3><blockquote>
+<p>JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Event Listeners</span></span><br><span class="line">playBtn.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> isPlaying = musicContainer.classList.contains(<span class="string">&quot;play&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isPlaying) &#123;</span><br><span class="line">    pauseSong();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    playSong();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>playBtn.addEventListener(&quot;click&quot;</code> 轉成 <code>$(&quot;#playBtn&quot;).click(function()&#123;</code></li>
+<li><code>.classList.contains</code>轉成<code>.hasClass</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#playBtn&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">const</span> isPlaying =$(<span class="string">&quot;musicContainer&quot;</span>).hasClass(<span class="string">&quot;play&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (isPlaying  <span class="literal">true</span>) &#123;</span><br><span class="line">    pauseSong();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    playSong();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="播放歌曲-playSong-，暫停歌曲pauseSong"><a href="#播放歌曲-playSong-，暫停歌曲pauseSong" class="headerlink" title="播放歌曲 playSong()，暫停歌曲pauseSong()"></a>播放歌曲 <code>playSong()</code>，暫停歌曲<code>pauseSong()</code></h3></li>
+</ul>
+<p>播放和暫停功能一樣，只有icon交換和<code>audio.play()</code>，<code>audio.pause()</code>不同。</p>
+<blockquote>
+<p>JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Play song</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">playSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  musicContainer.classList.add(<span class="string">&quot;play&quot;</span>);</span><br><span class="line">  playBtn.querySelector(<span class="string">&quot;i.fas&quot;</span>).classList.remove(<span class="string">&quot;fa-play&quot;</span>);</span><br><span class="line">  playBtn.querySelector(<span class="string">&quot;i.fas&quot;</span>).classList.add(<span class="string">&quot;fa-pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">  audio.play();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Pause song</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pauseSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  musicContainer.classList.remove(<span class="string">&quot;play&quot;</span>);</span><br><span class="line">  playBtn.querySelector(<span class="string">&quot;i.fas&quot;</span>).classList.add(<span class="string">&quot;fa-play&quot;</span>);</span><br><span class="line">  playBtn.querySelector(<span class="string">&quot;i.fas&quot;</span>).classList.remove(<span class="string">&quot;fa-pause&quot;</span>);</span><br><span class="line"></span><br><span class="line">  audio.pause();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>從id去找到i，再將圖檔替換掉。</p>
+<ul>
+<li><code>playBtn.querySelector(&quot;i.fas&quot;)</code> 轉成 <code>$(&quot;#play&quot;).find(&quot;i&quot;).attr(&quot;class&quot;, &quot;fas fa-pause&quot;)</code></li>
+<li><code>audio.play()</code>轉成<code>$(&quot;#audio&quot;)[0].play();</code></li>
+</ul>
+<p><code>.play</code>跟<code>.pause</code>都是DOM的操作方法。<code>$</code>queryselector為jquery物件而不是原始的DOM元素，所以我們需要成 <code>$(&quot;#audio&quot;)[0].play()</code>。</p>
+<p>一開始不理解這種用法，搜尋了一下後得到解答，意思為: <strong>利用Jquery選擇器，得到id為audio的第一個DOM對象。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">playSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&quot;#music-container&quot;</span>).addClass(<span class="string">&quot;play&quot;</span>);</span><br><span class="line">  $(<span class="string">&quot;#play&quot;</span>).find(<span class="string">&quot;i&quot;</span>).attr(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;fas fa-pause&quot;</span>);</span><br><span class="line">  $(<span class="string">&quot;#audio&quot;</span>)[<span class="number">0</span>].play();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pauseSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&quot;#music-container&quot;</span>).removeClass(<span class="string">&quot;play&quot;</span>);</span><br><span class="line">  $(<span class="string">&quot;#play&quot;</span>).find(<span class="string">&quot;i&quot;</span>).attr(<span class="string">&quot;class&quot;</span>, <span class="string">&quot;fas fa-play&quot;</span>);</span><br><span class="line">  $(<span class="string">&quot;#audio&quot;</span>)[<span class="number">0</span>].pause();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="按下前一首prevSong-、下一首歌nextSong"><a href="#按下前一首prevSong-、下一首歌nextSong" class="headerlink" title="按下前一首prevSong()、下一首歌nextSong()"></a>按下前一首<code>prevSong()</code>、下一首歌<code>nextSong()</code></h3><blockquote>
+<p>JS</p>
+</blockquote>
+<p>利用<code>songIndex</code>，控制歌曲的撥放。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Next song</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  songIndex++;</span><br><span class="line">  <span class="comment">// 如果songIndex大於總數2時</span></span><br><span class="line">  <span class="keyword">if</span> (songIndex &gt; songs.length - <span class="number">1</span>) &#123;</span><br><span class="line">  <span class="comment">// 就歸0</span></span><br><span class="line">    songIndex = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 重新更換歌曲名字，音檔，圖片</span></span><br><span class="line">  loadSong(songs[songIndex]);</span><br><span class="line">  playSong();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Previous song</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prevSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  songIndex--;</span><br><span class="line">  <span class="comment">// 如果songIndex小於0時</span></span><br><span class="line">  <span class="keyword">if</span> (songIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="comment">// 總數3-1=2，會撥放第3首音樂，形成一個循環</span></span><br><span class="line">    songIndex = songs.length - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  loadSong(songs[songIndex]);</span><br><span class="line">  playSong();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Change song</span></span><br><span class="line">prevBtn.addEventListener(<span class="string">&quot;click&quot;</span>, prevSong);</span><br><span class="line">nextBtn.addEventListener(<span class="string">&quot;click&quot;</span>, nextSong);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>prevBtn.addEventListener(&quot;click&quot;, prevSong)</code>轉成<code>$(&quot;#next&quot;).click(function()&#123;nextSong();&#125;)</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Next song</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  songIndex++;</span><br><span class="line">  <span class="keyword">if</span> (songIndex &gt; songs.length - <span class="number">1</span>) &#123;</span><br><span class="line">    songIndex = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  loadSong(songs[songIndex]);</span><br><span class="line">  playSong();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Previous song</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prevSong</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  songIndex--;</span><br><span class="line">  <span class="keyword">if</span> (songIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    songIndex = songs.length - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  loadSong(songs[songIndex]);</span><br><span class="line">  playSong();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Change song</span></span><br><span class="line">$(<span class="string">&quot;#pre&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    prevSong();</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">&quot;#next&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    nextSong();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="進度條"><a href="#進度條" class="headerlink" title="進度條"></a>進度條</h3><blockquote>
+<p>JS</p>
+</blockquote>
+<p><code>duration</code>是整首歌的時間，<code>currentTime</code>是過了多久。</p>
+<p><code>event.offsetX、event.offsetY</code>，滑鼠相對於事件源元素（srcElement）的X,Y坐標。</p>
+<p><a target="_blank" rel="noopener" href="https://kknews.cc/zh-tw/news/r3pzzr.html">JS一秒區分clientX,offsetX,screenX,pageX之間關係</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/Jsref/prop_audio_duration.asp">Audio duration Property</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Update progress bar</span></span><br><span class="line"><span class="comment">// duration是整首歌的時間，currentTime是過了多久。</span></span><br><span class="line"><span class="comment">// e.srcElement 代表當前的事件源</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateProgress</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; duration, currentTime &#125; = e.srcElement;</span><br><span class="line"><span class="comment">// (當下的音樂時間/總時長)*100就會得到百分比</span></span><br><span class="line">  <span class="keyword">const</span> progressPercent = (currentTime / duration) * <span class="number">100</span>;</span><br><span class="line"><span class="comment">// 百分比變數放到progress上</span></span><br><span class="line">  progress.style.width = <span class="string">`<span class="subst">$&#123;progressPercent&#125;</span>%`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time/song update</span></span><br><span class="line">audio.addEventListener(<span class="string">&quot;timeupdate&quot;</span>, updateProgress);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>.on 就是 addEventListener</p>
+<ul>
+<li><code>audio.addEventListener()</code>轉成<code>$(&quot;#audio&quot;).on()</code></li>
+<li><code>const &#123; duration, currentTime &#125; = e.srcElement</code>轉成<code>const duration = $(&quot;#audio&quot;)[0].duration</code></li>
+<li><code>progress.style.width = ()</code>轉成<code>$(&quot;#progress&quot;).css</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#audio&quot;</span>).on(<span class="string">&quot;timeupdate&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> duration = $(<span class="string">&quot;#audio&quot;</span>)[<span class="number">0</span>].duration;</span><br><span class="line">  <span class="keyword">const</span> progressPercent = $(<span class="string">&quot;#audio&quot;</span>)[<span class="number">0</span>].currentTime;</span><br><span class="line">  <span class="keyword">const</span> progressPercent = (currentTime / duration) * <span class="number">100</span>;</span><br><span class="line">  $(<span class="string">&quot;#progress&quot;</span>).css(width, <span class="string">`<span class="subst">$&#123;progressPercent&#125;</span>%`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="可以點選進度條"><a href="#可以點選進度條" class="headerlink" title="可以點選進度條"></a>可以點選進度條</h3></li>
+</ul>
+<blockquote>
+<p>JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 滑鼠點擊進度條移動Set progress bar</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setProgress</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// this指向progress-container它的width就是216</span></span><br><span class="line">  <span class="keyword">const</span> width = <span class="built_in">this</span>.clientWidth;</span><br><span class="line">  <span class="comment">// clickX為滑鼠點擊progress-container的位置</span></span><br><span class="line">  <span class="keyword">const</span> clickX = e.offsetX;</span><br><span class="line">  <span class="comment">// duration will get from audio api</span></span><br><span class="line">  <span class="comment">// 音檔總時長</span></span><br><span class="line">  <span class="keyword">const</span> duration = audio.duration;</span><br><span class="line">  <span class="comment">// 算出百分比</span></span><br><span class="line">  audio.currentTime = (clickX / width) * duration;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Click on progress bar</span></span><br><span class="line">progressContainer.addEventListener(<span class="string">&quot;click&quot;</span>, setProgress);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>這邊有兩種寫法:</p>
+<ol>
+<li>照著原作者方式改寫</li>
+<li>參考別人寫法</li>
+</ol>
+<p>Bug<br>這邊的width抓取要使用<code>#progress-container</code>，如果使用<code>e.target</code>會導致這種錯誤。目前還不太明白這個錯誤是甚麼意思，待了解…</p>
+<p><img src="https://i.imgur.com/jkvwzfn.png"></p>
+<p>目前使用<code>$(&quot;#progress-container&quot;)</code>可以解決。</p>
+<blockquote>
+<p>使用clientX與width取百分比</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#progress-container&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> duration = $(<span class="string">&quot;#audio&quot;</span>)[<span class="number">0</span>].duration;</span><br><span class="line">  <span class="keyword">const</span> width = $(<span class="string">&quot;#progress-container&quot;</span>).width();</span><br><span class="line">  <span class="keyword">const</span> clickX = e.offsetX;</span><br><span class="line">  <span class="keyword">const</span> percent = (clickX / width) * duration;</span><br><span class="line">  $(<span class="string">&quot;#audio&quot;</span>)[<span class="number">0</span>].currentTime = percent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用到<code>.offset().left</code></p>
+</blockquote>
+<ul>
+<li><code>this.clientWidth</code>轉成<code>$(&#39;#progress-container&#39;).width()</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#progress-container&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 取得progress-container的長度</span></span><br><span class="line">    <span class="keyword">const</span> width = $(<span class="string">&#x27;#progress-container&#x27;</span>).width() </span><br><span class="line"><span class="comment">// offsetX為點擊物件最左側的距離</span></span><br><span class="line">    <span class="keyword">const</span> offsetX = $(e.target).offset().left;</span><br><span class="line"><span class="comment">// clickX為點擊的位置，與畫面最左側的距離</span></span><br><span class="line">    <span class="keyword">const</span> clickX = e.pageX </span><br><span class="line"><span class="comment">// 取得歌曲的總長度</span></span><br><span class="line">    <span class="keyword">const</span> duration = $(<span class="string">&#x27;#audio&#x27;</span>)[<span class="number">0</span>].duration;</span><br><span class="line"><span class="comment">// 利用距離算出百分比</span></span><br><span class="line">    <span class="keyword">const</span> percent = ((clickX - offsetX) / width)</span><br><span class="line">    $(<span class="string">&#x27;#audio&#x27;</span>)[<span class="number">0</span>].currentTime = percent * duration        </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="播放完畢後，自動跳下一首"><a href="#播放完畢後，自動跳下一首" class="headerlink" title="播放完畢後，自動跳下一首"></a>播放完畢後，自動跳下一首</h3><blockquote>
+<p>JS</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">audio.addEventListener(<span class="string">&quot;ended&quot;</span>, nextSong);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p><code>audio.addEventListener()</code>轉成<code>$(&quot;audio&quot;).on</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;audio&quot;</span>).on(<span class="string">&quot;ended&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    nextSong();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h3><blockquote>
+<p>1</p>
+</blockquote>
+<p>Bug</p>
+<p>在輸入commit時，少加了結束的引號，而出現了dquite&gt;的這串文字，按^Z也無效，最後Google一下，<a target="_blank" rel="noopener" href="http://atomzhao-blog.logdown.com/posts/2043855-terminal-environment-how-to-exit-dquote">找到解法</a>。</p>
+<p><img src="https://i.imgur.com/hhPak5J.png"></p>
+<blockquote>
+<p>2</p>
+</blockquote>
+<p>Bug<br>使用Chrome會出現此錯誤，但使用edge和Firefox時不會。</p>
+<p><img src="https://i.imgur.com/4mnJURG.png"></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31075893/im-getting-favicon-ico-error">解決方法是</a>，在index.html加上<code>&lt;link rel=&quot;shortcut icon&quot; href=&quot;#&quot; /&gt;</code></p>
+<p>但是，<a target="_blank" rel="noopener" href="https://blog.miniasp.com/post/2007/12/17/Introduce-faviconico-and-important-concept">favicon是什麼</a>?</p>
+<p>它的是全名是Favorite Icon，就是網頁旁邊出現的小圖案。</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio">The Embed Audio element</a></p>
+<h3 id="CSS-2"><a href="#CSS-2" class="headerlink" title="CSS"></a>CSS</h3><p><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1501340167.html">width:100%和width:inherit</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.oxxostudio.tw/articles/201803/css-animation.html">完整解析 CSS 動畫 ( CSS Animation )</a></p>
+<p><a target="_blank" rel="noopener" href="https://wcc723.github.io/css/2013/08/24/css-transtion-speed/">CSS transition 各種速率</a></p>
+<p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10130065">CSS沒有極限 - CSS的神奇Calc運算</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1550116656.html">css3 transition原理</a></p>
+<h3 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h3><p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jquery/html_attr.asp">jQuery attr() Method</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.itread01.com/content/1542724273.html">原生JS替代jQuery的各種方法彙總</a></p>
+<p><a target="_blank" rel="noopener" href="https://kknews.cc/zh-tw/news/r3pzzr.html">JS一秒區分clientX,offsetX,screenX,pageX之間關係</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/Jsref/prop_audio_duration.asp">Audio duration Property</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/22/%E5%AF%A6%E4%BD%9C%E8%A8%98%E5%B8%B3%E7%B0%BF/" rel="prev" title="[實作] 記帳簿">
+      <i class="fa fa-chevron-left"></i> [實作] 記帳簿
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/24/%E4%BB%80%E9%BA%BC%E6%98%AF-IIFE/" rel="next" title="什麼是 IIFE?">
+      什麼是 IIFE? <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AD%98%E9%BB%9E"><span class="nav-number">1.</span> <span class="nav-text">學習到的知識點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-1"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E6%A8%82%E8%A8%8A%E6%81%AF%E8%88%87Progrees-info"><span class="nav-number">3.1.</span> <span class="nav-text">音樂訊息與Progrees info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%85%A7%E7%89%87%E8%88%87%E6%92%AD%E6%94%BEButton"><span class="nav-number">3.2.</span> <span class="nav-text">照片與播放Button</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-1"><span class="nav-number">4.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%87%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%BD%AE%E4%B8%AD"><span class="nav-number">4.1.</span> <span class="nav-text">將所有元素置中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E5%B1%A4%E5%AE%B9%E5%99%A8"><span class="nav-number">4.2.</span> <span class="nav-text">外層容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E7%BD%AE%E9%9F%B3%E6%A8%82%E5%9C%96%E7%89%87"><span class="nav-number">4.3.</span> <span class="nav-text">設置音樂圖片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%96%E7%89%87%E4%B8%8A%E7%9A%84%E7%99%BD%E9%BB%9E"><span class="nav-number">4.4.</span> <span class="nav-text">圖片上的白點</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E5%8B%95%E7%95%AB"><span class="nav-number">4.5.</span> <span class="nav-text">設定動畫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E6%AC%84"><span class="nav-number">4.6.</span> <span class="nav-text">播放欄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Music-Info"><span class="nav-number">4.7.</span> <span class="nav-text">Music Info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Progress"><span class="nav-number">4.8.</span> <span class="nav-text">Progress</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-1"><span class="nav-number">5.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E8%AE%8A%E6%95%B8"><span class="nav-number">5.1.</span> <span class="nav-text">新增變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A3%E5%91%8A%E6%AD%8C%E6%9B%B2%E9%99%A3%E5%88%97%EF%BC%8C%E6%AA%A2%E7%B4%A2%EF%BC%8C%E5%91%BC%E5%8F%ABloadSong"><span class="nav-number">5.2.</span> <span class="nav-text">宣告歌曲陣列，檢索，呼叫loadSong()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%89%E5%85%A5%E6%AD%8C%E6%9B%B2loadSong"><span class="nav-number">5.3.</span> <span class="nav-text">載入歌曲loadSong()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E6%8C%89%E9%88%95%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%9B%A3%E8%81%BD"><span class="nav-number">5.4.</span> <span class="nav-text">播放按鈕的事件監聽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E6%AD%8C%E6%9B%B2-playSong-%EF%BC%8C%E6%9A%AB%E5%81%9C%E6%AD%8C%E6%9B%B2pauseSong"><span class="nav-number">5.5.</span> <span class="nav-text">播放歌曲 playSong()，暫停歌曲pauseSong()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E4%B8%8B%E5%89%8D%E4%B8%80%E9%A6%96prevSong-%E3%80%81%E4%B8%8B%E4%B8%80%E9%A6%96%E6%AD%8CnextSong"><span class="nav-number">5.6.</span> <span class="nav-text">按下前一首prevSong()、下一首歌nextSong()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%B2%E5%BA%A6%E6%A2%9D"><span class="nav-number">5.7.</span> <span class="nav-text">進度條</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E9%BB%9E%E9%81%B8%E9%80%B2%E5%BA%A6%E6%A2%9D"><span class="nav-number">5.8.</span> <span class="nav-text">可以點選進度條</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E5%AE%8C%E7%95%A2%E5%BE%8C%EF%BC%8C%E8%87%AA%E5%8B%95%E8%B7%B3%E4%B8%8B%E4%B8%80%E9%A6%96"><span class="nav-number">5.9.</span> <span class="nav-text">播放完畢後，自動跳下一首</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%95%8F%E9%A1%8C"><span class="nav-number">5.10.</span> <span class="nav-text">遇到的問題</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">6.</span> <span class="nav-text">參考文章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-2"><span class="nav-number">6.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Javascript"><span class="nav-number">6.2.</span> <span class="nav-text">Javascript</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

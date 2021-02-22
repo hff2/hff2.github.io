@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="cd:切換資料夾 打開wsl預設會在使用者目錄(家目錄)，會是&#x2F;home&#x2F;[使用者名稱]，我的目錄就是&#x2F;home&#x2F;phoebe。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WSL之Command Line常用指令">
+<meta property="og:url" content="https://hff2.github.io.com/2020/11/25/WSL%E4%B9%8BCommand-Line%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="cd:切換資料夾 打開wsl預設會在使用者目錄(家目錄)，會是&#x2F;home&#x2F;[使用者名稱]，我的目錄就是&#x2F;home&#x2F;phoebe。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/bFDrP8T.png">
+<meta property="og:image" content="https://i.imgur.com/zrtbSb5.png">
+<meta property="og:image" content="https://i.imgur.com/O8y05ot.png">
+<meta property="og:image" content="https://i.imgur.com/D2JAni1.png">
+<meta property="og:image" content="https://i.imgur.com/Vw30wqL.png">
+<meta property="og:image" content="https://i.imgur.com/QyW4HHb.png">
+<meta property="og:image" content="https://i.imgur.com/1z0lxoS.png">
+<meta property="og:image" content="https://i.imgur.com/gWl4vOl.png">
+<meta property="og:image" content="https://i.imgur.com/ES0Bqgt.png">
+<meta property="og:image" content="https://i.imgur.com/i7id1xy.png">
+<meta property="og:image" content="https://i.imgur.com/k7xKHZ4.png">
+<meta property="og:image" content="https://i.imgur.com/3FxUZ5v.png">
+<meta property="og:image" content="https://i.imgur.com/QL4rnMr.png">
+<meta property="article:published_time" content="2020-11-25T15:03:18.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.558Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="WSL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/bFDrP8T.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2020/11/25/WSL%E4%B9%8BCommand-Line%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>WSL之Command Line常用指令 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2020/11/25/WSL%E4%B9%8BCommand-Line%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WSL之Command Line常用指令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-11-25 23:03:18" itemprop="dateCreated datePublished" datetime="2020-11-25T23:03:18+08:00">2020-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Window/" itemprop="url" rel="index"><span itemprop="name">Window</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>781</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="cd-切換資料夾"><a href="#cd-切換資料夾" class="headerlink" title="cd:切換資料夾"></a>cd:切換資料夾</h3><p><img src="https://i.imgur.com/bFDrP8T.png"></p>
+<p>打開wsl預設會在使用者目錄(家目錄)，會是/home/[使用者名稱]，我的目錄就是/home/phoebe。</p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/zrtbSb5.png"></p>
+<h3 id="pwd-顯示目前目錄"><a href="#pwd-顯示目前目錄" class="headerlink" title="pwd:顯示目前目錄"></a>pwd:顯示目前目錄</h3><p><img src="https://i.imgur.com/O8y05ot.png"></p>
+<h3 id="cd-回到家目錄"><a href="#cd-回到家目錄" class="headerlink" title="cd ~:回到家目錄"></a>cd ~:回到家目錄</h3><p><img src="https://i.imgur.com/D2JAni1.png"></p>
+<h3 id="ls-看資料夾下面有什麼檔案"><a href="#ls-看資料夾下面有什麼檔案" class="headerlink" title="ls:看資料夾下面有什麼檔案"></a>ls:看資料夾下面有什麼檔案</h3><ul>
+<li>ls      查看資料夾內的檔案</li>
+<li>ls -l   查看資料夾內的檔案和詳細資料</li>
+<li>ls -al  查看資料夾內的隱藏檔案和詳細資料</li>
+</ul>
+<p><img src="https://i.imgur.com/Vw30wqL.png"></p>
+<h3 id="mnt-c-進入C槽"><a href="#mnt-c-進入C槽" class="headerlink" title="/mnt/c:進入C槽"></a>/mnt/c:進入C槽</h3><p>WSL預設把Windows的C:槽掛在/mnt/c，D:槽掛在/mnt/d。</p>
+<p>如果在桌面開一個project資料夾，WSL中就會在/mnt/c/Users/user/Desktop/project。</p>
+<p>先從Linux資料夾跳出後，到C槽裡的git資料夾。</p>
+<p><img src="https://i.imgur.com/QyW4HHb.png"></p>
+<h3 id="mkdir-新增資料夾"><a href="#mkdir-新增資料夾" class="headerlink" title="mkdir:新增資料夾"></a>mkdir:新增資料夾</h3><p><img src="https://i.imgur.com/1z0lxoS.png"></p>
+<h3 id="touch-建立檔案"><a href="#touch-建立檔案" class="headerlink" title="touch:建立檔案"></a>touch:建立檔案</h3><p><img src="https://i.imgur.com/gWl4vOl.png"></p>
+<h3 id="cat-讀取檔案內容"><a href="#cat-讀取檔案內容" class="headerlink" title="cat:讀取檔案內容"></a>cat:讀取檔案內容</h3><p><img src="https://i.imgur.com/ES0Bqgt.png"></p>
+<h3 id="mv-可以用來移動檔案或重新命名檔案："><a href="#mv-可以用來移動檔案或重新命名檔案：" class="headerlink" title="mv:可以用來移動檔案或重新命名檔案："></a>mv:可以用來移動檔案或重新命名檔案：</h3><ul>
+<li>移動檔案位置</li>
+</ul>
+<p>mv /mnt/c/Users/user/git/1121.txt ~/1121.txt</p>
+<ul>
+<li>將 1120.txt 改名成 1121.txt</li>
+</ul>
+<p>mv 1120.txt 1121.txt</p>
+<p><img src="https://i.imgur.com/i7id1xy.png"></p>
+<h3 id="cp-用來複製檔案或資料夾"><a href="#cp-用來複製檔案或資料夾" class="headerlink" title="cp: 用來複製檔案或資料夾"></a>cp: 用來複製檔案或資料夾</h3><p>Test資料夾出現1120.txt</p>
+<p><img src="https://i.imgur.com/k7xKHZ4.png"></p>
+<h3 id="rm：remove-刪除目錄或檔案"><a href="#rm：remove-刪除目錄或檔案" class="headerlink" title="rm：remove 刪除目錄或檔案"></a>rm：remove 刪除目錄或檔案</h3><p><img src="https://i.imgur.com/3FxUZ5v.png"></p>
+<h3 id="rm-i-：刪除之前會詢問"><a href="#rm-i-：刪除之前會詢問" class="headerlink" title="rm -i ：刪除之前會詢問"></a>rm -i ：刪除之前會詢問</h3><p>如果要刪除建議使用這個參數，可以避免誤刪。<br><img src="https://i.imgur.com/QL4rnMr.png"></p>
+<h3 id="rm-f-刪除整個資料夾-徹底刪除"><a href="#rm-f-刪除整個資料夾-徹底刪除" class="headerlink" title="rm -f :刪除整個資料夾(徹底刪除)"></a>rm -f :刪除整個資料夾(徹底刪除)</h3><p>強制刪除檔案或目錄，不會有警告，請小心使用。</p>
+<h3 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h3><p>使用cmder時，遇到許多問題，每次開始前都要輸入wsl才能開始正常使用指令，別人安裝好都可以直接運行ls，car，touch…等指令，但我的就是無法…後來發現Microsoft商店有介面超好看的Terminal，而且可以開不同的分頁，可以運行cmd,powershell,wsl都非常方便。</p>
+<p>遇到Microsoft Terminal問題時，網路上的教學也比Cmder來的多，雖然花了很多時間研究怎麼樣弄好Cmder，後來也成功運行，但Terminal還是方便多，所以還是直接換過去了XD。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/WSL/" rel="tag"># WSL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/20/%E5%9C%A8Windows-%E4%B8%8A%E5%AE%89%E8%A3%9D-WSl/" rel="prev" title="在Windows 上安裝 WSl">
+      <i class="fa fa-chevron-left"></i> 在Windows 上安裝 WSl
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/01/%E8%AA%8D%E8%AD%98-HTML%E3%80%81CSS-%E8%88%87%E5%AF%A6%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%B2%E9%A0%81/" rel="next" title="認識 HTML、CSS 與實作第一個網頁">
+      認識 HTML、CSS 與實作第一個網頁 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-%E5%88%87%E6%8F%9B%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">1.</span> <span class="nav-text">cd:切換資料夾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd-%E9%A1%AF%E7%A4%BA%E7%9B%AE%E5%89%8D%E7%9B%AE%E9%8C%84"><span class="nav-number">2.</span> <span class="nav-text">pwd:顯示目前目錄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-%E5%9B%9E%E5%88%B0%E5%AE%B6%E7%9B%AE%E9%8C%84"><span class="nav-number">3.</span> <span class="nav-text">cd ~:回到家目錄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-%E7%9C%8B%E8%B3%87%E6%96%99%E5%A4%BE%E4%B8%8B%E9%9D%A2%E6%9C%89%E4%BB%80%E9%BA%BC%E6%AA%94%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">ls:看資料夾下面有什麼檔案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mnt-c-%E9%80%B2%E5%85%A5C%E6%A7%BD"><span class="nav-number">5.</span> <span class="nav-text">&#x2F;mnt&#x2F;c:進入C槽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir-%E6%96%B0%E5%A2%9E%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">6.</span> <span class="nav-text">mkdir:新增資料夾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touch-%E5%BB%BA%E7%AB%8B%E6%AA%94%E6%A1%88"><span class="nav-number">7.</span> <span class="nav-text">touch:建立檔案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat-%E8%AE%80%E5%8F%96%E6%AA%94%E6%A1%88%E5%85%A7%E5%AE%B9"><span class="nav-number">8.</span> <span class="nav-text">cat:讀取檔案內容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv-%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%BE%86%E7%A7%BB%E5%8B%95%E6%AA%94%E6%A1%88%E6%88%96%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D%E6%AA%94%E6%A1%88%EF%BC%9A"><span class="nav-number">9.</span> <span class="nav-text">mv:可以用來移動檔案或重新命名檔案：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp-%E7%94%A8%E4%BE%86%E8%A4%87%E8%A3%BD%E6%AA%94%E6%A1%88%E6%88%96%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">10.</span> <span class="nav-text">cp: 用來複製檔案或資料夾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm%EF%BC%9Aremove-%E5%88%AA%E9%99%A4%E7%9B%AE%E9%8C%84%E6%88%96%E6%AA%94%E6%A1%88"><span class="nav-number">11.</span> <span class="nav-text">rm：remove 刪除目錄或檔案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-i-%EF%BC%9A%E5%88%AA%E9%99%A4%E4%B9%8B%E5%89%8D%E6%9C%83%E8%A9%A2%E5%95%8F"><span class="nav-number">12.</span> <span class="nav-text">rm -i ：刪除之前會詢問</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm-f-%E5%88%AA%E9%99%A4%E6%95%B4%E5%80%8B%E8%B3%87%E6%96%99%E5%A4%BE-%E5%BE%B9%E5%BA%95%E5%88%AA%E9%99%A4"><span class="nav-number">13.</span> <span class="nav-text">rm -f :刪除整個資料夾(徹底刪除)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-number">14.</span> <span class="nav-text">後記</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

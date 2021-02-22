@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="箭頭函式，在ES6出現的語法，有著更簡短的語法以及重新定義的 this。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="箭頭函式 Arrow functions">
+<meta property="og:url" content="https://hff2.github.io.com/2021/01/31/%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-functions/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="箭頭函式，在ES6出現的語法，有著更簡短的語法以及重新定義的 this。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/US9HUMX.png">
+<meta property="og:image" content="https://i.imgur.com/tK4tg5w.png">
+<meta property="article:published_time" content="2021-01-31T07:12:59.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.706Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/US9HUMX.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/01/31/%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-functions/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>箭頭函式 Arrow functions | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/01/31/%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          箭頭函式 Arrow functions
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-31 15:12:59" itemprop="dateCreated datePublished" datetime="2021-01-31T15:12:59+08:00">2021-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>箭頭函式，在ES6出現的語法，有著更<strong>簡短的語法</strong>以及<strong>重新定義</strong>的 <code>this</code>。</p>
+<a id="more"></a>
+<h2 id="簡短的語法"><a href="#簡短的語法" class="headerlink" title="簡短的語法"></a>簡短的語法</h2><p>箭頭函式與 function 的用法大致一致，可以傳入<strong>參數</strong>、也有<strong>大括號</strong>包起來，除此之外箭頭函式也有更簡短的寫法如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正常寫法，在大括號內的 &#123;&#125; 是需要自行加入 return。</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 縮寫，單一行陳述不需要 &#123;&#125;</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只有一個參數可以不加括號</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 沒有參數時，一定要有括號</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">() =&gt;</span> <span class="string">&quot;Phoebe&quot;</span> + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="沒有-arguments-參數"><a href="#沒有-arguments-參數" class="headerlink" title="沒有 arguments 參數"></a>沒有 arguments 參數</h2><p>要使用 arguments 這個參數了解總共傳入了幾次並加總，但在箭頭函式內是<strong>沒有此變數</strong>的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Money = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> Spend = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> cash = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// arguments is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">Spend (<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/US9HUMX.png"></p>
+<p>所以當需要使用 arguments 需維持使用 function</p>
+<h2 id="綁定的-this-不同"><a href="#綁定的-this-不同" class="headerlink" title="綁定的 this 不同"></a>綁定的 this 不同</h2><ul>
+<li>傳統函式：依呼叫的方法而定</li>
+<li>箭頭函式：<strong>綁定到其定義時所在的物件</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;全域先生&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">&quot;function小姐&quot;</span>,</span><br><span class="line">  callName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 注意，這裡是 function，以此為基準產生一個作用域</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 1 function小姐</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;2&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 2 function小姐</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;3&quot;</span>, <span class="built_in">this</span>); <span class="comment">// 3 person 這個物件</span></span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  callName2: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 注意，如果使用箭頭函式，this 依然指向 window</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 4 全域先生</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;5&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 5 全域先生</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;6&quot;</span>, <span class="built_in">this</span>); <span class="comment">// 6 window 物件</span></span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.callName();</span><br><span class="line">person.callName2();</span><br></pre></td></tr></table></figure>
+<p><code>綁定到其定義時所在的物件</code>，我們要了解一般函式在建立時是在 <strong>window</strong> 下，所以在 window 下使用<strong>箭頭函式</strong>自然會指向 window。</p>
+<p>要確實將<strong>箭頭函式宣告在物件內部</strong>，這樣 <code>this</code> 才會指向該物件。</p>
+<p>簡單來說，一般函數式是建立在window下，所以箭頭函式，會指向window。但是，若將箭頭函式先告在物件內部，就會指向物件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 這裡才算真正的建立一個物件</span></span><br><span class="line">  <span class="comment">// 因此要在此物件下的箭頭函式才會以此作為基準</span></span><br><span class="line">  <span class="keyword">var</span> func3 = &#123;</span><br><span class="line">    func: func2,</span><br><span class="line">    var4: <span class="number">4</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  func2(); <span class="comment">// this = window</span></span><br><span class="line">  func3.func(); <span class="comment">// func3 Object</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func();</span><br><span class="line"><span class="comment">// 就算在這裡新增一個 function，也不會影響到內層的箭頭函式</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/tK4tg5w.png"></p>
+<ul>
+<li><code>func()</code> 是最外層的函式，他對於內層的箭頭不會有影響。</li>
+<li><code>func2()</code> 是包覆在內層的函式，但由於箭頭函式不是在物件內，所以沒有影響。</li>
+<li><code>func3()</code> 是呼叫在物件內的函式，因此箭頭函式會是使用它所在的物件。</li>
+</ul>
+<p>因為物件<code>func3</code>呼叫了函式<code>func()</code>，所以<strong>箭頭函式會指向他<code>func3</code>所使用所在的物件。</strong></p>
+<h2 id="縮寫的方法"><a href="#縮寫的方法" class="headerlink" title="縮寫的方法"></a>縮寫的方法</h2><ol>
+<li>去除function</li>
+<li>加上等號</li>
+<li>宣告變數</li>
+<li>增加箭頭</li>
+<li>去除大括號</li>
+<li>去除return </li>
+</ol>
+<h3 id="Arrow-Function-1"><a href="#Arrow-Function-1" class="headerlink" title="Arrow Function 1"></a>Arrow Function 1</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 去掉function，加上等號，宣告變數，增加箭頭</span></span><br><span class="line"><span class="keyword">let</span> sum2 = <span class="function">(<span class="params">a,b</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//去除return與大括號</span></span><br><span class="line"><span class="keyword">let</span> sum3 = <span class="function">(<span class="params">a,b</span>) =&gt;</span> a+b</span><br></pre></td></tr></table></figure>
+<h3 id="Arrow-Function-2"><a href="#Arrow-Function-2" class="headerlink" title="Arrow Function 2"></a>Arrow Function 2</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPositive</span>(<span class="params">number</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> number &gt;= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isPositive2 = <span class="function"><span class="params">number</span> =&gt;</span> number  &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h3 id="Arow-Function-3"><a href="#Arow-Function-3" class="headerlink" title="Arow Function 3"></a>Arow Function 3</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> randomNumber2 = <span class="function">() =&gt;</span>  <span class="built_in">Math</span>.random</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Arrow-Function4"><a href="#Arrow-Function4" class="headerlink" title="Arrow Function4"></a>Arrow Function4</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Click&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener = (<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) =&gt;  <span class="title">console</span>.<span class="title">log</span>(<span class="params"><span class="string">&#x27;Click&#x27;</span></span>))</span></span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=h33Srr5J9nY&list=PLZlA0Gpn_vH-0FlQnruw2rd1HuiYJHHkm&index=3">JavaScript ES6 Arrow Functions Tutorial</a></p>
+<p><a target="_blank" rel="noopener" href="https://wcc723.github.io/javascript/2017/12/21/javascript-es6-arrow-function/">鐵人賽：箭頭函式 (Arrow functions)</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/30/CSS-%E5%81%BD%E5%85%83%E7%B4%A0/" rel="prev" title="CSS 偽元素">
+      <i class="fa fa-chevron-left"></i> CSS 偽元素
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/01/%E5%AF%A6%E4%BD%9C%E5%8F%AF%E6%8E%92%E5%BA%8F%E7%9A%84%E6%B8%85%E5%96%AE-%E8%AA%8D%E8%AD%98-Drag-Drop-API/" rel="next" title="[實作] 可排序的清單 認識 Drag & Drop API ">
+      [實作] 可排序的清單 認識 Drag & Drop API  <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E7%9F%AD%E7%9A%84%E8%AA%9E%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">簡短的語法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B2%92%E6%9C%89-arguments-%E5%8F%83%E6%95%B8"><span class="nav-number">2.</span> <span class="nav-text">沒有 arguments 參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B6%81%E5%AE%9A%E7%9A%84-this-%E4%B8%8D%E5%90%8C"><span class="nav-number">3.</span> <span class="nav-text">綁定的 this 不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B8%AE%E5%AF%AB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">縮寫的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow-Function-1"><span class="nav-number">4.1.</span> <span class="nav-text">Arrow Function 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow-Function-2"><span class="nav-number">4.2.</span> <span class="nav-text">Arrow Function 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arow-Function-3"><span class="nav-number">4.3.</span> <span class="nav-text">Arow Function 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow-Function4"><span class="nav-number">4.4.</span> <span class="nav-text">Arrow Function4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">5.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

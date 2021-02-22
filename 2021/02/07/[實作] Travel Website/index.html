@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="SettingsHTML在meta裡面加入一些東西 123456&lt;meta  name&#x3D;&quot;description&quot;  content&#x3D;&quot;Travelly is a travel agency website that helps you pick out your holiday vacation&quot;&#x2F;&gt;&lt;meta name&#x3D;&quot;ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[實作] Travel Website">
+<meta property="og:url" content="https://hff2.github.io.com/2021/02/07/[%E5%AF%A6%E4%BD%9C]%20Travel%20Website/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="SettingsHTML在meta裡面加入一些東西 123456&lt;meta  name&#x3D;&quot;description&quot;  content&#x3D;&quot;Travelly is a travel agency website that helps you pick out your holiday vacation&quot;&#x2F;&gt;&lt;meta name&#x3D;&quot;ro">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/0kxwokq.jpg">
+<meta property="og:image" content="https://i.imgur.com/uDVsNuL.png">
+<meta property="og:image" content="https://i.imgur.com/gap9mbK.png">
+<meta property="og:image" content="https://i.imgur.com/ZMrjcfh.png">
+<meta property="og:image" content="https://i.imgur.com/0j1AGl8.png">
+<meta property="og:image" content="https://i.imgur.com/EkDQb7h.png">
+<meta property="og:image" content="https://i.imgur.com/Pjv4CyY.png">
+<meta property="og:image" content="https://i.imgur.com/xniKvkX.png">
+<meta property="og:image" content="https://i.imgur.com/gnmJwjN.png">
+<meta property="og:image" content="https://i.imgur.com/cyN8ni6.png">
+<meta property="og:image" content="https://i.imgur.com/WiUjbuq.png">
+<meta property="og:image" content="https://i.imgur.com/jih7ZX3.png">
+<meta property="og:image" content="https://i.imgur.com/IidPbxy.jpg">
+<meta property="og:image" content="https://i.imgur.com/QJROdNm.png">
+<meta property="og:image" content="https://i.imgur.com/hhN3kEo.png">
+<meta property="article:published_time" content="2021-02-07T03:07:11.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.563Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="HTML&amp;CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/0kxwokq.jpg">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/02/07/[%E5%AF%A6%E4%BD%9C]%20Travel%20Website/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[實作] Travel Website | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/02/07/[%E5%AF%A6%E4%BD%9C]%20Travel%20Website/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [實作] Travel Website
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-02-07 11:07:11" itemprop="dateCreated datePublished" datetime="2021-02-07T11:07:11+08:00">2021-02-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>11 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>在meta裡面加入一些東西</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta</span><br><span class="line">  name=&quot;description&quot;</span><br><span class="line">  content=&quot;Travelly is a travel agency website that helps you pick out your holiday vacation&quot;</span><br><span class="line">/&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span> /&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>加入頁面標籤的icon</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;icons/plane.svg&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><p>font-size: 62.5%，1rem will be 10px。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="comment">/* 1rem will be 10px */</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">62.5%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Creating-Our-Nav-amp-Hero"><a href="#Creating-Our-Nav-amp-Hero" class="headerlink" title="Creating Our Nav&amp;Hero"></a>Creating Our Nav&amp;Hero</h2><p><img src="https://i.imgur.com/0kxwokq.jpg"></p>
+<!--more-->
+<h3 id="Header-Html"><a href="#Header-Html" class="headerlink" title="Header Html"></a>Header Html</h3><p>a 可以點選標題時，直接到該頁位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">header.main-head</span><br><span class="line">  nav</span><br><span class="line">    h1#logo</span><br><span class="line">      a(href&#x3D;&#39;#hero&#39;) Travelly</span><br><span class="line">    ul</span><br><span class="line">      li</span><br><span class="line">        a(href&#x3D;&#39;#locations&#39;) Location</span><br><span class="line">      li</span><br><span class="line">        a(href&#x3D;&#39;#benefits&#39;) Benefits</span><br><span class="line">      li</span><br><span class="line">        a(href&#x3D;&#39;#contact&#39;) Contact</span><br></pre></td></tr></table></figure>
+<h3 id="Section-Hero"><a href="#Section-Hero" class="headerlink" title="Section Hero"></a>Section Hero</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">section#hero</span><br><span class="line">  h2 Travel Beyond Limits.</span><br><span class="line">  h3</span><br><span class="line">    | Start your travel at an affordable price with Travelly</span><br><span class="line">    br</span><br><span class="line">    | Contact us</span><br><span class="line">    |           now bellow.</span><br><span class="line">  button Book now</span><br></pre></td></tr></table></figure>
+<h3 id="Header-Css"><a href="#Header-Css" class="headerlink" title="Header Css"></a>Header Css</h3><ol>
+<li>vh會隨著視窗做變化，但我們希望nav bar不要隨著視窗做變化時，可以使用padding代替。</li>
+<li>要讓整個頁面的兩邊保持空間，<code>width: 90%</code>， <code>margin: auto</code>。</li>
+</ol>
+<p><img src="https://i.imgur.com/uDVsNuL.png"></p>
+<ol start="3">
+<li><code>flex: 1 1 40rem</code>，flex: grow shrink basis。<code>flex-grow</code>不長大，<code>flex-shrink</code>不縮小，<code>flex-basis</code>基本標準。</li>
+</ol>
+<p><img src="https://i.imgur.com/gap9mbK.png"></p>
+<ol start="4">
+<li><code>#logo&#123;  font-family: &quot;Pattaya&quot;, sans-serif; font-weight: 400;&#125;</code>，直接套給logo的字體。</li>
+<li><code>flex-wrap:wrap</code>，nav的標籤會Jump Down。</li>
+<li><code>flex: 1 1 40rem;</code>，只要視窗空間小於40rem，就會馬上Jump Down。</li>
+</ol>
+<p><img src="https://i.imgur.com/ZMrjcfh.png"></p>
+<ol start="7">
+<li><p>讓nav bar保持在上方，<code>position: sticky;</code>，<code>top: 0;</code>，<code>z-index: 3;</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">2.6rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">li</span>,</span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">label</span>,</span><br><span class="line"><span class="selector-tag">input</span>,</span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">2rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">4.8rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">3rem</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h4</span>,</span><br><span class="line"><span class="selector-tag">h5</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">2.8rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Nav Section With Hero */</span></span><br><span class="line"><span class="comment">/* 改變header的背景色 */</span></span><br><span class="line"><span class="selector-class">.main-head</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#131c17</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="comment">/*  讓nav bar保持在上方  */</span></span><br><span class="line">  <span class="attribute">position</span>: sticky;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="comment">/* 被雲擋住，所以加上z-index:3 */</span></span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* PARENT */</span></span><br><span class="line"><span class="selector-tag">nav</span> &#123;</span><br><span class="line">  <span class="comment">/* 會隨著視窗做變化，</span></span><br><span class="line"><span class="comment">   * 但在這邊希望bar不要做任何的改變，所以改用padding */</span></span><br><span class="line">  <span class="comment">/* min-height: 10vh; */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="comment">/* 讓整頁面的兩邊都可以留下內縮的空白 */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="comment">/* 如果沒有padding，nav不會隨著視窗縮小bar，不會被破壞。 */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span>;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">10vh</span>;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="comment">/* nav bar 可以跟著視窗改變位置，不會擠在一起。 */</span></span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* CHILDREN */</span></span><br><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> <span class="number">40rem</span>;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#logo</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">2</span> <span class="number">1</span> <span class="number">40rem</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Pattaya&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Hero-Section"><a href="#Hero-Section" class="headerlink" title="Hero Section"></a>Hero Section</h3></li>
+<li><p>對圖片進行設置，<code>background-repeat: no-repeat;</code>，<code>background-size: cover;</code>，<code>background-position: center;</code>。</p>
+</li>
+<li><p><code>background: linear-gradient(rgba(0, 0, 0, 0.8), transparent),url(&quot;img/landing-page.jpg&quot;)</code><br>linear-gradient(rgba,transparent)，transparent為透明，所以就是增加透明度。放在圖片前方。</p>
+</li>
+<li><p><code>min-height: 90vh;</code>圖片的最小高度，讓圖片伸展開來。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#hero</span> &#123;</span><br><span class="line">  <span class="comment">/* 讓圖片伸展開來 */</span></span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">90vh</span>;</span><br><span class="line">  <span class="comment">/* img setting */</span></span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>), transparent),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;img/landing-page.jpg&quot;</span>);</span><br><span class="line">  <span class="comment">/* 對圖片進行設置 */</span></span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">background-position</span>: center;</span><br><span class="line">  <span class="comment">/* h2，h3 */</span></span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="comment">/* 讓字向中央對齊 */</span></span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>讓h3跟旁邊撐開距離</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#hero</span> <span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更改button的樣式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span> <span class="number">6rem</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#4c6e97</span>;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.8rem</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#27394e</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>更改字體</p>
+<blockquote>
+<p>HTML</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;link</span><br><span class="line">  href&#x3D;&quot;https:&#x2F;&#x2F;fonts.googleapis.com&#x2F;css2?family&#x3D;Pattaya&amp;family&#x3D;Poppins:wght@400;500&amp;display&#x3D;swap&quot;</span><br><span class="line">  rel&#x3D;&quot;stylesheet&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CSS</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Poppins&quot;</span>, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更改特定的字體粗細度</p>
+<p><code>font-weight: normal</code>，更改它weight。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">3rem</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Media-Query"><a href="#Media-Query" class="headerlink" title="Media Query"></a>Media Query</h3><blockquote>
+<p>可以確認他什麼size的時候body會不見。</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">932px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>:none</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更改字體大小，還有header的padding。</p>
+<p>各瀏覽器預設字型字號為16px，16px相當於1rem。</p>
+<p>當我們定義 10px / 16px = 0.625 = 62.5% 時，瀏覽器的預設字型為16px * 62.5% = 10px。</p>
+<p>此時，10px相當於1rem。</p>
+<p><img src="https://i.imgur.com/0j1AGl8.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">932px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">45%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">nav</span> &#123;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-id">#logo</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Creating-the-City-Section"><a href="#Creating-the-City-Section" class="headerlink" title="Creating the City Section"></a>Creating the City Section</h2><p><a target="_blank" rel="noopener" href="https://autoprefixer.github.io/">Browser Prefixes</a></p>
+<p><a target="_blank" rel="noopener" href="https://caniuse.com/">Can I Use</a></p>
+<p><a target="_blank" rel="noopener" href="https://easings.net/">Easing</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.rgbtohex.net/hextorgb/">Hex to RGB</a></p>
+<p><img src="https://i.imgur.com/EkDQb7h.png"></p>
+<h3 id="City-Section-HTML"><a href="#City-Section-HTML" class="headerlink" title="City Section HTML"></a>City Section HTML</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">section#locations</span><br><span class="line">  header.locations-head</span><br><span class="line">    h2 The Perfect Travelling Experience.</span><br><span class="line">    h3</span><br><span class="line">      | we cover everything from picking the perfect hotel,</span><br><span class="line">      br</span><br><span class="line">      | flight and</span><br><span class="line">      |             Travelly destination.</span><br><span class="line">    img.moving-cloud-1.cloud(src&#x3D;&#39;img&#x2F;cloud.png&#39; alt&#x3D;&#39;&#39;)</span><br><span class="line">    img.moving-cloud-2.cloud(src&#x3D;&#39;img&#x2F;cloud.png&#39; alt&#x3D;&#39;&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="City-Section-CSS"><a href="#City-Section-CSS" class="headerlink" title="City Section CSS"></a>City Section CSS</h3><ol>
+<li><code>width: 90%;margin: auto;</code>，在旁邊留下空白。</li>
+</ol>
+<p><img src="https://i.imgur.com/Pjv4CyY.png"></p>
+<ol start="2">
+<li><code>overflow: hidden;</code>，不讓cloud跑出去，加在根元素section上。</li>
+<li><code>text-decoration: underline;</code>，不一定每個瀏覽器都支援。</li>
+<li><code>text-decoration-thickness: 0.5rem</code>，加粗底線。 </li>
+</ol>
+<p><img src="https://i.imgur.com/xniKvkX.png"></p>
+<ol start="5">
+<li><p><code>background: linear-gradient(#131c27, #663b64)</code>，<code>background-clip: text;</code>，<code>-webkit-text-fill-color: transparent</code>，讓h3的字體是漸層色 (Chrome不支援)。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Locations Section */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#locations</span> &#123;</span><br><span class="line">  <span class="comment">/* section height */</span></span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>), transparent),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;img/new-york-page.png&quot;</span>);</span><br><span class="line">  <span class="comment">/* 照片的設置 */</span></span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">background-position</span>: center;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="comment">/* 為了不讓cloud跑出去 */</span></span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 在旁邊留下空白 */</span></span><br><span class="line"><span class="selector-class">.locations-head</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.locations-head</span> <span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span> <span class="number">0rem</span>;</span><br><span class="line">  <span class="comment">/*  加上底部的線條  */</span></span><br><span class="line">  <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">  <span class="comment">/*  不一定每個瀏覽器都支援  */</span></span><br><span class="line">  <span class="comment">/*  加粗底線  */</span></span><br><span class="line">  <span class="attribute">text-decoration-thickness</span>: <span class="number">0.5rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.locations-head</span> <span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">4rem</span> <span class="number">0rem</span>;</span><br><span class="line">  <span class="comment">/* 只呈現在h3的字上的漸層顏色 */</span></span><br><span class="line">  <span class="comment">/* background: linear-gradient(#131c27, #663b64); */</span></span><br><span class="line">  <span class="comment">/* background-clip: text; */</span></span><br><span class="line">  <span class="comment">/*  下面這行意思是 text-fill-color: transparent  */</span></span><br><span class="line">  <span class="comment">/* -webkit-text-fill-color: transparent; */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Cloud-Animation"><a href="#Cloud-Animation" class="headerlink" title="Cloud Animation"></a>Cloud Animation</h3></li>
+<li><p>transform，位移。<br> translate(mx,my)，元素以參考點為中心，X軸位移mx距離，Y軸位移my距離。</p>
+</li>
+<li><p>animation屬性，normal，reverse，alternate，reverse-alternate。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/cssref/css3-pr-animation-direction.html">參考網站</a></p>
+</li>
+<li><p>infinite為重複播放。</p>
+</li>
+<li><p>-webkit-，支援該屬性的瀏覽器(Chrome，Safari)。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.cloud</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="comment">/* 固定在右上角 */</span></span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.moving-cloud-1</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: cloudAnimation <span class="number">3s</span> infinite alternate ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.moving-cloud-2</span> &#123;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">20%</span>;</span><br><span class="line">  <span class="comment">/* 讓他在原始的雲後面 */</span></span><br><span class="line">  <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">  <span class="comment">/* 添加動畫 */</span></span><br><span class="line">  <span class="comment">/* infinite讓她自己循環 */</span></span><br><span class="line">  <span class="comment">/*  forward不循環  */</span></span><br><span class="line">  <span class="attribute">animation</span>: cloudAnimation <span class="number">3.5s</span> infinite alternate ease-in-out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 動畫 */</span></span><br><span class="line"><span class="comment">/* 0%，50%，100% */</span></span><br><span class="line"><span class="keyword">@keyframes</span> cloudAnimation &#123;</span><br><span class="line">  <span class="selector-tag">from</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">10%</span>, -<span class="number">10%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">to</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(<span class="number">0%</span>, <span class="number">0%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Media-Query-1"><a href="#Media-Query-1" class="headerlink" title="Media Query"></a>Media Query</h3></li>
+<li><p><code>-webkit-text-fill-color: white;</code>，讓字體變白色。</p>
+</li>
+<li><p> <code>background: rgb(19, 28, 39, 0.8)</code>，加上一層背景。</p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/gnmJwjN.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Media Query */</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">932px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">45%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">nav</span> &#123;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-id">#logo</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.cloud</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40rem</span>;</span><br><span class="line">    <span class="attribute">pointer-events</span>: none;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.moving-cloud-1</span> &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.moving-cloud-2</span> &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.locations-head</span> <span class="selector-tag">h3</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">19</span>, <span class="number">28</span>, <span class="number">39</span>, <span class="number">0.8</span>);</span><br><span class="line">    <span class="comment">/*  讓字體變白色  */</span></span><br><span class="line">    <span class="attribute">-webkit-text-fill-color</span>: white;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Card-Section"><a href="#Card-Section" class="headerlink" title="Card Section"></a>Card Section</h2><p><img src="https://i.imgur.com/cyN8ni6.png"></p>
+<h3 id="Card-HTML"><a href="#Card-HTML" class="headerlink" title="Card HTML"></a>Card HTML</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">section#benefits</span><br><span class="line">  header.benefits-head</span><br><span class="line">    h2 The Perfect Travel</span><br><span class="line">    h3</span><br><span class="line">      | We cover everything for picking the perfect hotel</span><br><span class="line">      br</span><br><span class="line">      | to flight and</span><br><span class="line">      |             destination.</span><br><span class="line">  .cards</span><br><span class="line">    .card</span><br><span class="line">      .card-icon</span><br><span class="line">        img(src&#x3D;&#39;icons&#x2F;route-solid.svg&#39; alt&#x3D;&#39;&#39;)</span><br><span class="line">      h4 Travel</span><br><span class="line">      p Travel in over 250 countries with no effort.</span><br><span class="line">    .card</span><br><span class="line">      .card-icon</span><br><span class="line">        img(src&#x3D;&#39;icons&#x2F;bed-solid.svg&#39; alt&#x3D;&#39;&#39;)</span><br><span class="line">      h4 Hotel</span><br><span class="line">      p Hotel located near popular areas.</span><br><span class="line">    .card</span><br><span class="line">      .card-icon</span><br><span class="line">        img(src&#x3D;&#39;icons&#x2F;plane-departure-solid.svg&#39; alt&#x3D;&#39;&#39;)</span><br><span class="line">      h4 Fly</span><br><span class="line">      p Flight included in every purchased trip.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Benefits-Section-Css"><a href="#Benefits-Section-Css" class="headerlink" title="Benefits Section Css"></a>Benefits Section Css</h3><p><img src="https://i.imgur.com/WiUjbuq.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.benefits-head</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#343c44</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">3rem</span>;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">30vh</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.benefits-head</span> <span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/jih7ZX3.png"></p>
+<ol>
+<li>卡片<code>min-height: 70vh;</code>，flex預設會有stretch，所以他會延伸到頁面下(70vh)，只要加上<code>align-item:center</code>就可以使他致中縮短。</li>
+<li><code>box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5)</code>，box-shadow: x y blur 顏色</li>
+<li>開始調整前先把img改成<code>height:100px</code>，較為美觀。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.cards</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="comment">/*  在根元素加上display:flex就可以使他平行  */</span>    </span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">70vh</span>;</span><br><span class="line">  <span class="comment">/* flex預設會有strech所以他會延伸到頁面下(70vh)，</span></span><br><span class="line"><span class="comment">   * 只要加上align-item:center就可以使他縮短。 */</span></span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="comment">/*  responsive  */</span></span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="comment">/* 也可以讓圖片致中 */</span></span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> <span class="number">25rem</span>;</span><br><span class="line">  <span class="comment">/*  每一張圖片都有40vh的高度  */</span></span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">40vh</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">2rem</span> <span class="number">5rem</span>;</span><br><span class="line">  <span class="comment">/*  陰影:x y blur 顏色  */</span></span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">10px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>), <span class="number">0px</span> <span class="number">20px</span> <span class="number">20px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.cards</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="comment">/* 開始調整前先把img改成100px，較為美觀。 */</span></span><br><span class="line">  <span class="comment">/* height: 100px; */</span></span><br><span class="line">  <span class="comment">/*  調整圖片(路徑，飛機)大小  */</span></span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">15%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">2rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> <span class="selector-tag">h4</span>,</span><br><span class="line"><span class="selector-class">.card</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-icon</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#27394e</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Form-Section"><a href="#Form-Section" class="headerlink" title="Form Section"></a>Form Section</h2></li>
+</ol>
+<p><img src="https://i.imgur.com/IidPbxy.jpg"></p>
+<h3 id="Form-HTML"><a href="#Form-HTML" class="headerlink" title="Form HTML"></a>Form HTML</h3><p>注意表格的html怎麼寫!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">scection#contact</span><br><span class="line">  .form-wrapper</span><br><span class="line">    header.form-head</span><br><span class="line">      h2 Contact Us</span><br><span class="line">    form(action&#x3D;&#39;https:&#x2F;&#x2F;formspree.io&#x2F;f&#x2F;mnqoggek&#39; method&#x3D;&#39;POST&#39;)</span><br><span class="line">      .name-form</span><br><span class="line">        label(for&#x3D;&#39;name&#39;) Name:</span><br><span class="line">        input#name(type&#x3D;&#39;text&#39; name&#x3D;&#39;name&#39; required&#x3D;&#39;&#39;)</span><br><span class="line">      .email-form</span><br><span class="line">        label(for&#x3D;&#39;email&#39;) Email:</span><br><span class="line">        input#email(type&#x3D;&#39;email&#39; name&#x3D;&#39;email&#39; required&#x3D;&#39;&#39;)</span><br><span class="line">      button(value&#x3D;&#39;Send&#39; type&#x3D;&#39;submit&#39;) Submit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Form-Css"><a href="#Form-Css" class="headerlink" title="Form Css"></a>Form Css</h3><ol>
+<li><p><code>width: 100%</code>，延伸整個button。</p>
+</li>
+<li><p><code>border-bottom-left-radius: 20px</code>，改變button特定的邊邊圓角。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 圖片 */</span></span><br><span class="line"><span class="selector-id">#contact</span> &#123;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>), transparent),</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;img/contact-mountain.png&quot;</span>);</span><br><span class="line">  <span class="attribute">background-position</span>: center;</span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Form後面的背景色 */</span></span><br><span class="line"><span class="selector-class">.form-wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">19</span>, <span class="number">28</span>, <span class="number">39</span>, <span class="number">0.8</span>);</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">60%</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-head</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">4rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.name-form</span>,</span><br><span class="line"><span class="selector-class">.email-form</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">3rem</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-wrapper</span> <span class="selector-tag">label</span> &#123;</span><br><span class="line">  <span class="comment">/* 框框與字體的距離 */</span></span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0rem</span> <span class="number">3rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-wrapper</span> <span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="comment">/* 讓他延伸整個button */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">8rem</span>;</span><br><span class="line">  <span class="comment">/*  讓他變成圓角  */</span></span><br><span class="line">  <span class="attribute">border-bottom-left-radius</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-bottom-right-radius</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/* 讓輸入框框變大 */</span></span><br><span class="line"><span class="selector-class">.form-wrapper</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span> <span class="number">3rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/QJROdNm.png"></p>
+</li>
+</ol>
+<h2 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h2><p><img src="https://i.imgur.com/hhN3kEo.png"></p>
+<h3 id="Footer-HTML"><a href="#Footer-HTML" class="headerlink" title="Footer HTML"></a>Footer HTML</h3><p><code>&amp;copy;</code>，Travelly旁邊的小c。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">footer</span><br><span class="line">  .footer-wrapper</span><br><span class="line">    h5 Travelly &amp;copy;</span><br><span class="line">    ul</span><br><span class="line">      li</span><br><span class="line">        a(href&#x3D;&#39;#&#39; title&#x3D;&#39;twitter-social-media&#39;)</span><br><span class="line">          img(src&#x3D;&#39;icons&#x2F;twitter.svg&#39; alt&#x3D;&#39;twitter-social-media&#39;)</span><br><span class="line">      li</span><br><span class="line">        a(href&#x3D;&#39;#&#39; title&#x3D;&#39;youtube-social-media&#39;)</span><br><span class="line">          img(src&#x3D;&#39;icons&#x2F;youtube.svg&#39; alt&#x3D;&#39;youtube-social-media&#39;)</span><br><span class="line">      li</span><br><span class="line">        a(href&#x3D;&#39;#&#39; title&#x3D;&#39;instagram-social-media&#39;)</span><br><span class="line">          img(src&#x3D;&#39;icons&#x2F;instagram.svg&#39; alt&#x3D;&#39;instagram-social-media&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Footer-Css"><a href="#Footer-Css" class="headerlink" title="Footer Css"></a>Footer Css</h3><ol>
+<li>flex不是在所有地方都會定位，要在有可以排列的(ul)的地方才可以做使用，如果放在footer裡面就無法排列。</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">19</span>, <span class="number">28</span>, <span class="number">39</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.footer-wrapper</span> &#123;</span><br><span class="line"><span class="comment">/* 要在有ul的地方才可以做使用，如果放在footer裡面就無法排列。 */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">10vh</span>;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">footer</span> <span class="selector-tag">h5</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> <span class="number">40rem</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">footer</span> <span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">list-style</span>: none;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> <span class="number">40rem</span>;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Keyboard */</span></span><br><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#2e435c</span>;</span><br><span class="line">  <span class="attribute">outline-style</span>: solid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Media-Query-2"><a href="#Media-Query-2" class="headerlink" title="Media Query"></a>Media Query</h3><ol>
+<li><p><code>.form-wrapper &#123;width: 100%;&#125;</code>，讓input框框不會突出背景色。</p>
+</li>
+<li><p><code>pointer-events: none;</code>，不會點到雲。</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Media Query */</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">932px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">45%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">nav</span> &#123;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-id">#logo</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.cloud</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40rem</span>;</span><br><span class="line">    <span class="attribute">pointer-events</span>: none;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.moving-cloud-1</span> &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.moving-cloud-2</span> &#123;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.locations-head</span> <span class="selector-tag">h3</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">19</span>, <span class="number">28</span>, <span class="number">39</span>, <span class="number">0.8</span>);</span><br><span class="line">    <span class="attribute">-webkit-text-fill-color</span>: white;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* 讓input不會突出背景色 */</span></span><br><span class="line">  <span class="selector-class">.form-wrapper</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/* 字體致中 */</span></span><br><span class="line">  <span class="selector-tag">footer</span> &#123;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">footer</span> <span class="selector-tag">h5</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">3rem</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Submitting-Forms-Bonus"><a href="#Submitting-Forms-Bonus" class="headerlink" title="Submitting Forms(Bonus)"></a>Submitting Forms(Bonus)</h3><p><a target="_blank" rel="noopener" href="https://formspree.io/">formspree</a></p>
+<p>接受信件回覆的一種方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;&quot;https:&#x2F;&#x2F;formspree.io&#x2F;f&#x2F;mnqoggek&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;name-form&quot;&gt;</span><br><span class="line">      &lt;label for&#x3D;&quot;name&quot;&gt;Name:&lt;&#x2F;label&gt;</span><br><span class="line">      &lt;input id&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;name&quot; required &#x2F;&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;div class&#x3D;&quot;email-form&quot;&gt;</span><br><span class="line">      &lt;label for&#x3D;&quot;email&quot;&gt;Email:&lt;&#x2F;label&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">         id&#x3D;&quot;email&quot;</span><br><span class="line">         type&#x3D;&quot;email&quot;</span><br><span class="line">         name&#x3D;&quot;email&quot;</span><br><span class="line">         required</span><br><span class="line">         name&#x3D;&quot;_replyto&quot;</span><br><span class="line">         &#x2F;&gt;</span><br><span class="line">   &lt;&#x2F;div&gt;</span><br><span class="line">   &lt;button value&#x3D;&quot;Send&quot; type&#x3D;&quot;submit&quot;&gt;Submit&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML-CSS/" rel="tag"># HTML&CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/04/%E5%AF%A6%E4%BD%9C-Github-Finder/" rel="prev" title="[實作] Github Finder">
+      <i class="fa fa-chevron-left"></i> [實作] Github Finder
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/08/%5B%E5%AF%A6%E4%BD%9C%5D%20Weather%20Forecast/" rel="next" title="[實作] Weather Forecast">
+      [實作] Weather Forecast <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Settings"><span class="nav-number">1.</span> <span class="nav-text">Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-Our-Nav-amp-Hero"><span class="nav-number">2.</span> <span class="nav-text">Creating Our Nav&amp;Hero</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Header-Html"><span class="nav-number">2.1.</span> <span class="nav-text">Header Html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Section-Hero"><span class="nav-number">2.2.</span> <span class="nav-text">Section Hero</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Header-Css"><span class="nav-number">2.3.</span> <span class="nav-text">Header Css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hero-Section"><span class="nav-number">2.4.</span> <span class="nav-text">Hero Section</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Media-Query"><span class="nav-number">2.5.</span> <span class="nav-text">Media Query</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-the-City-Section"><span class="nav-number">3.</span> <span class="nav-text">Creating the City Section</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#City-Section-HTML"><span class="nav-number">3.1.</span> <span class="nav-text">City Section HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#City-Section-CSS"><span class="nav-number">3.2.</span> <span class="nav-text">City Section CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cloud-Animation"><span class="nav-number">3.3.</span> <span class="nav-text">Cloud Animation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Media-Query-1"><span class="nav-number">3.4.</span> <span class="nav-text">Media Query</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Card-Section"><span class="nav-number">4.</span> <span class="nav-text">Card Section</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Card-HTML"><span class="nav-number">4.1.</span> <span class="nav-text">Card HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benefits-Section-Css"><span class="nav-number">4.2.</span> <span class="nav-text">Benefits Section Css</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Form-Section"><span class="nav-number">5.</span> <span class="nav-text">Form Section</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Form-HTML"><span class="nav-number">5.1.</span> <span class="nav-text">Form HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Form-Css"><span class="nav-number">5.2.</span> <span class="nav-text">Form Css</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Footer"><span class="nav-number">6.</span> <span class="nav-text">Footer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Footer-HTML"><span class="nav-number">6.1.</span> <span class="nav-text">Footer HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Footer-Css"><span class="nav-number">6.2.</span> <span class="nav-text">Footer Css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Media-Query-2"><span class="nav-number">6.3.</span> <span class="nav-text">Media Query</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Submitting-Forms-Bonus"><span class="nav-number">6.4.</span> <span class="nav-text">Submitting Forms(Bonus)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Git是什麼?  主要是專案開發時用來做的版本管理工具，編輯者可以將檔案變更的歷程儲存起來，隨時參考、取得過去的歷史紀錄。被稱為版本控制系統。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git基礎介紹，常見指令">
+<meta property="og:url" content="https://hff2.github.io.com/2020/12/04/Git%E5%9F%BA%E7%A4%8E%E4%BB%8B%E7%B4%B9%EF%BC%8C%E5%B8%B8%E8%A6%8B%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="Git是什麼?  主要是專案開發時用來做的版本管理工具，編輯者可以將檔案變更的歷程儲存起來，隨時參考、取得過去的歷史紀錄。被稱為版本控制系統。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/84NmYzt.jpg">
+<meta property="og:image" content="https://i.imgur.com/mDfrCb1.png">
+<meta property="og:image" content="https://i.imgur.com/suvKnOJ.png">
+<meta property="og:image" content="https://i.imgur.com/uXxXxIc.png">
+<meta property="og:image" content="https://i.imgur.com/DVfJyvX.png">
+<meta property="og:image" content="https://i.imgur.com/OySPOgm.png">
+<meta property="og:image" content="https://i.imgur.com/wVTZzbY.png">
+<meta property="og:image" content="https://i.imgur.com/AGacIuu.png">
+<meta property="og:image" content="https://i.imgur.com/KbDRXVy.png">
+<meta property="og:image" content="https://i.imgur.com/8TEJIQn.png">
+<meta property="og:image" content="https://i.imgur.com/zqQAuf3.png">
+<meta property="og:image" content="https://i.imgur.com/SHfewGi.png">
+<meta property="og:image" content="https://i.imgur.com/fPUk7w9.png">
+<meta property="article:published_time" content="2020-12-04T14:36:33.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.527Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/84NmYzt.jpg">
+
+<link rel="canonical" href="https://hff2.github.io.com/2020/12/04/Git%E5%9F%BA%E7%A4%8E%E4%BB%8B%E7%B4%B9%EF%BC%8C%E5%B8%B8%E8%A6%8B%E6%8C%87%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Git基礎介紹，常見指令 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2020/12/04/Git%E5%9F%BA%E7%A4%8E%E4%BB%8B%E7%B4%B9%EF%BC%8C%E5%B8%B8%E8%A6%8B%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git基礎介紹，常見指令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-12-04 22:36:33" itemprop="dateCreated datePublished" datetime="2020-12-04T22:36:33+08:00">2020-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Git是什麼"><a href="#Git是什麼" class="headerlink" title="Git是什麼?"></a>Git是什麼?</h2><p><img src="https://i.imgur.com/84NmYzt.jpg"></p>
+<ul>
+<li>主要是專案開發時用來做的版本管理工具，編輯者可以將檔案變更的歷程儲存起來，隨時參考、取得過去的歷史紀錄。被稱為版本控制系統。</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>早期的版本控制管理系統，可以讓多位編輯者共享的檔案儲存庫，以及編輯者自己作業要使用的檔案。但這樣要查看變更時，就需要一直登入伺服器查看。</p>
+</li>
+<li><p>而Git 則是將共享儲存庫的副本儲存在編輯者的電腦裡，也就是所謂的本機儲存庫。有了本機儲存庫，不需要反覆登入伺服器去查看歷史變更資料，效率就可以提高。</p>
+</li>
+</ul>
+<h2 id="Git重要名詞"><a href="#Git重要名詞" class="headerlink" title="Git重要名詞"></a>Git重要名詞</h2><h3 id="共享儲存庫"><a href="#共享儲存庫" class="headerlink" title="共享儲存庫"></a>共享儲存庫</h3><p>多位編輯者所共享的儲存庫，可以在這裡共享由各自本機儲存庫上傳至共享儲存庫的變更。</p>
+<h3 id="本機儲存庫"><a href="#本機儲存庫" class="headerlink" title="本機儲存庫"></a>本機儲存庫</h3><p>編輯者自己電腦的儲存庫，編輯者透過</p>
+<ol>
+<li><code>clone</code> 複製<br>將共享儲存庫複製下來使用，然後再將本機儲存庫的變更，透過</li>
+<li><code>push</code> 上傳<br>傳到共享儲存庫。<br>若要從共享儲存庫上讀取其他編輯者所上傳的變更，就用</li>
+<li><code>pull</code> (下載)</li>
+</ol>
+<h3 id="工作目錄"><a href="#工作目錄" class="headerlink" title="工作目錄"></a>工作目錄</h3><p>編輯者實際編輯的檔案。透過<code>Checkout</code>指令可以切換到其他分支來編輯檔案，並作為特定版本。</p>
+<h3 id="索引-或暫存目錄"><a href="#索引-或暫存目錄" class="headerlink" title="索引(或暫存目錄)"></a>索引(或暫存目錄)</h3><p>暫時存放工作目錄的地方。編輯者透過add指令把工作目錄變更註冊到索引上。而被註冊到索引上的變更，可透過<code>commit</code>(提交)上傳至共享資料庫。</p>
+<h2 id="建立SSH憑證"><a href="#建立SSH憑證" class="headerlink" title="建立SSH憑證"></a>建立SSH憑證</h2><p>GitHub提供了HTTPS與SSH（Secure Shell）兩種通訊方式讓我們的Git Client與之連線。我們選擇使用SSH連線。</p>
+<h3 id="ssh-key是什麼"><a href="#ssh-key是什麼" class="headerlink" title="ssh key是什麼?"></a>ssh key是什麼?</h3><p><img src="https://i.imgur.com/mDfrCb1.png"></p>
+<p>透過 Public Key Authentication 的方式，可以不需輸入密碼就透過 SSH 進入你的遠端主機(Github)。</p>
+<p>Public Key Authentication 是透過非對稱金鑰的方式來驗證 SSH 登入。所謂的非對稱金鑰是指，我們會產生兩把鑰匙：一把稱為公鑰（Public Key）、另一把稱為私鑰（Private Key），其中一個用來加密資料，就必須拿對應的金鑰解密才能得到原本的資料。</p>
+<ol>
+<li>建立Windows的SSH金鑰:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;c:&#x2F;users\uesr\git\usr\bin\&quot;</span><br><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;你的Email&quot;</span><br></pre></td></tr></table></figure>
+<p>產生的金鑰檔案會存入 C:\Users\登入帳號.ssh 資料夾</p>
+<p>私鑰：id_rsa<br>公鑰：id_rsa.pub</p>
+<ol start="2">
+<li>複製公鑰 id_rsa.pub 的內容到系統剪貼簿</li>
+</ol>
+<p>自動開啟vscode，key就會顯示在上面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vscode id_rsa.pub</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>登入 GitHub，按【Settings】，找到【SSH and GPG keys】，按【New SSH Keys】</li>
+<li>輸入辨識用的名稱並貼入id_rsa.pub的內容後按【Add SSH Key】</li>
+<li>建立儲存庫(Repository)並複製其SSH協定的Repository URL</li>
+</ol>
+<p>我一開始安裝putty，結果要上傳靜態網頁時出現了問題!後來才發現不能使用putty，使用上述方法所有問題都迎刃而解。</p>
+<h2 id="常用的指令介紹"><a href="#常用的指令介紹" class="headerlink" title="常用的指令介紹"></a>常用的指令介紹</h2><h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><p>git 儲存庫的初始化，用於建立新的儲存庫。</p>
+<ul>
+<li>mkdir test，創建資料夾 </li>
+</ul>
+<p><img src="https://i.imgur.com/suvKnOJ.png"></p>
+<ul>
+<li>git init，資料夾做初始化</li>
+</ul>
+<p><img src="https://i.imgur.com/uXxXxIc.png"></p>
+<h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p>複製Git儲存庫，將遠端儲存庫複製到本機儲存庫上。</p>
+<ul>
+<li><code>git clone 要clone網址</code></li>
+</ul>
+<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>將變更內容註冊到索引(暫存區)上，並作為提交對象，且尚未被傳到儲存庫上。</p>
+<p><img src="https://i.imgur.com/DVfJyvX.png"></p>
+<ul>
+<li><code>git add .</code>把目前的工作目錄上的所有檔案註冊在索引上。</li>
+<li><code>git add -A</code>不只限於目前的工作目錄，而是包含整個工作目錄的檔案都會在索引上。若檔案被刪除，就不會被註冊。</li>
+</ul>
+<p><img src="https://i.imgur.com/OySPOgm.png"></p>
+<h3 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h3><p>將索引的內容提交至本機儲存庫上。</p>
+<ul>
+<li><code>git commmit -a</code> 可以省去索引註冊的程序，直接將檔案提交到儲存庫。</li>
+<li><code>git commit -m &quot;修正的內容&quot;</code> 給存檔一個名稱，進行存檔。</li>
+</ul>
+<p><img src="https://i.imgur.com/wVTZzbY.png"></p>
+<h3 id="status"><a href="#status" class="headerlink" title="status"></a>status</h3><p>顯示工作目錄上的檔案狀態，確認版本控管檔案以及已註冊於索引的檔案。</p>
+<p><img src="https://i.imgur.com/AGacIuu.png"></p>
+<h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><p>顯示該資料夾底下的文件</p>
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p>顯示分支的變更歷程</p>
+<h3 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h3><p>操作分支</p>
+<ul>
+<li><code>git branch</code> 查看目前分支與既存分支</li>
+<li><code>git branch dev</code> 命名branch</li>
+<li><code>git branch -m</code> 變更分支名稱</li>
+<li><code>git branch -M</code> 變更分支名稱。當所設定的分支名稱已經存在，則強制使用變更的名稱。</li>
+<li><code>git checkout -b</code> ，新增branch + checkout過去。</li>
+</ul>
+<p><img src="https://i.imgur.com/KbDRXVy.png"></p>
+<p><img src="https://i.imgur.com/8TEJIQn.png"></p>
+<p>:bulb: Github把預設分支換成了<strong>main</strong>，而git預設的branch還是<strong>master</strong>，可以用<code>git branch -m main</code>修改主要 branch 名稱為main，然後再用<code>git checkout main</code>進行開發。</p>
+<h3 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h3><p>更換工作目錄</p>
+<p><img src="https://i.imgur.com/zqQAuf3.png"></p>
+<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>將目前分支與特定分支合併</p>
+<ol>
+<li>master裡有Hello.txt檔案</li>
+<li>新增dev裡有 1125.md檔案</li>
+<li>在master裡有Hello2.txt檔案</li>
+<li>git merge dev，成功合併。</li>
+</ol>
+<p><img src="https://i.imgur.com/SHfewGi.png"><br><img src="https://i.imgur.com/fPUk7w9.png"></p>
+<p>:bulb: 如果不小心merge錯誤，可以使用<code>git reset commit-hash</code>回到合併前的分支，再下<code>git push -force</code>，強制刷新github狀態，但<code>git push -f</code>多人協作比需少用，容易覆蓋他人檔案。</p>
+<h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p>將變更過歷程的儲存庫傳送到共享儲存庫</p>
+<h2 id="想刪除Repository-裡的資料夾"><a href="#想刪除Repository-裡的資料夾" class="headerlink" title="想刪除Repository 裡的資料夾?"></a>想刪除Repository 裡的資料夾?</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20418177">參考文章</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached test  #--cached不會把本地的test資料夾删除</span><br><span class="line">git commit -m &#39;delete test dir&#39;</span><br><span class="line">git push </span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/03/%E4%BD%BF%E7%94%A8-Github-Pages-%E4%B8%8A%E5%82%B3%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%B2%E9%A0%81/" rel="prev" title="使用 Github Pages 上傳你的第一個網頁">
+      <i class="fa fa-chevron-left"></i> 使用 Github Pages 上傳你的第一個網頁
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/22/Grid-%E6%8E%92%E7%89%88/" rel="next" title="Grid 排版練習">
+      Grid 排版練習 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E6%98%AF%E4%BB%80%E9%BA%BC"><span class="nav-number">1.</span> <span class="nav-text">Git是什麼?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E9%87%8D%E8%A6%81%E5%90%8D%E8%A9%9E"><span class="nav-number">2.</span> <span class="nav-text">Git重要名詞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%84%B2%E5%AD%98%E5%BA%AB"><span class="nav-number">2.1.</span> <span class="nav-text">共享儲存庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%A9%9F%E5%84%B2%E5%AD%98%E5%BA%AB"><span class="nav-number">2.2.</span> <span class="nav-text">本機儲存庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E7%9B%AE%E9%8C%84"><span class="nav-number">2.3.</span> <span class="nav-text">工作目錄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95-%E6%88%96%E6%9A%AB%E5%AD%98%E7%9B%AE%E9%8C%84"><span class="nav-number">2.4.</span> <span class="nav-text">索引(或暫存目錄)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8BSSH%E6%86%91%E8%AD%89"><span class="nav-number">3.</span> <span class="nav-text">建立SSH憑證</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-key%E6%98%AF%E4%BB%80%E9%BA%BC"><span class="nav-number">3.1.</span> <span class="nav-text">ssh key是什麼?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4%E4%BB%8B%E7%B4%B9"><span class="nav-number">4.</span> <span class="nav-text">常用的指令介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#init"><span class="nav-number">4.1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone"><span class="nav-number">4.2.</span> <span class="nav-text">clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add"><span class="nav-number">4.3.</span> <span class="nav-text">add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commit"><span class="nav-number">4.4.</span> <span class="nav-text">commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status"><span class="nav-number">4.5.</span> <span class="nav-text">status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls"><span class="nav-number">4.6.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log"><span class="nav-number">4.7.</span> <span class="nav-text">log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#branch"><span class="nav-number">4.8.</span> <span class="nav-text">branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkout"><span class="nav-number">4.9.</span> <span class="nav-text">checkout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">4.10.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push"><span class="nav-number">4.11.</span> <span class="nav-text">push</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%B3%E5%88%AA%E9%99%A4Repository-%E8%A3%A1%E7%9A%84%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">5.</span> <span class="nav-text">想刪除Repository 裡的資料夾?</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

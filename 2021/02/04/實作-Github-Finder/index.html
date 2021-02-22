@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="功能搜索Github用戶，並顯示個人訊息和最新的Repository。 學習到的知識點JS Ajax 實作串接 Github API Jquery Ajax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[實作] Github Finder">
+<meta property="og:url" content="https://hff2.github.io.com/2021/02/04/%E5%AF%A6%E4%BD%9C-Github-Finder/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="功能搜索Github用戶，並顯示個人訊息和最新的Repository。 學習到的知識點JS Ajax 實作串接 Github API Jquery Ajax">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/2l4aMZ1.png">
+<meta property="og:image" content="https://i.imgur.com/x14KVGK.png">
+<meta property="og:image" content="https://i.imgur.com/0Xo8ovr.png">
+<meta property="og:image" content="https://i.imgur.com/Qt2Cfit.png">
+<meta property="og:image" content="https://i.imgur.com/N9N7amt.png">
+<meta property="og:image" content="https://i.imgur.com/N6dLCda.png">
+<meta property="article:published_time" content="2021-02-04T06:43:58.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.621Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/2l4aMZ1.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/02/04/%E5%AF%A6%E4%BD%9C-Github-Finder/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[實作] Github Finder | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/02/04/%E5%AF%A6%E4%BD%9C-Github-Finder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [實作] Github Finder
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-02-04 14:43:58" itemprop="dateCreated datePublished" datetime="2021-02-04T14:43:58+08:00">2021-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>6.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>6 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>搜索Github用戶，並顯示個人訊息和最新的Repository。</p>
+<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li>Ajax 實作串接 Github API</li>
+<li>Jquery Ajax</li>
+</ul>
+<a id="more"></a>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a target="_blank" rel="noopener" href="https://hff2.github.io/My-Projects/Github_Finder/index.html">Demo</a></p>
+<p><img src="https://i.imgur.com/2l4aMZ1.png"></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>HTML內容不多，多為用JS動態產生的內容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;navbar navbar-dark bg-primary mb-3&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;navbar-brand&quot;</span>&gt;</span>GitHub Finder<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container searchContainer&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;search card card-body&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Search GitHub Users<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;lead&quot;</span>&gt;</span>Enter a username to fetch a user profile and repos<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;error&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &lt;input</span><br><span class="line">      type=&quot;text&quot;</span><br><span class="line">      id=&quot;searchUser&quot;</span><br><span class="line">      class=&quot;form-control&quot;</span><br><span class="line">      placeholder=&quot;GitHub Username...&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;profile&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">&quot;mt-5 p-3 text-center bg-light&quot;</span>&gt;</span>GitHub Finder <span class="symbol">&amp;copy;</span><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;script.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>使用<a target="_blank" rel="noopener" href="https://bootswatch.com/">Bootswatch</a></p>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><h3 id="取得資料，過濾資料"><a href="#取得資料，過濾資料" class="headerlink" title="取得資料，過濾資料"></a>取得資料，過濾資料</h3><ul>
+<li><p>過濾取到api裡面的資料，這邊使用<code>change</code>，使用<code>keyup</code>時，會不停的觸發搜尋，所以輸入完成後按下enter才會執行。</p>
+</li>
+<li><p>url裡面放的資料可以透過網址先觀察，只要更改後面的名字，就可以取到不同人的資料。</p>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/x14KVGK.png"></p>
+<ul>
+<li><p>data裡面放的資料為<code>clent_id</code>，<code>client_secret</code>，在還沒有放置時，一開始都可以正常存取，但後來會出現403拒絕存取的錯誤，在<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/39907742/github-api-is-responding-with-a-403-when-using-requests-request-function">stackoverflow</a>找到解答，需要有<strong>valid User-Agent header</strong>，所以要加上<code>clent_id</code>，<code>client_secret</code>。</p>
+</li>
+<li><p><code>success</code>為成功運行後執行的function，<code>insertProfile()</code>函式利用物件的方法，將json檔取出，這邊先過濾一整包資料，因為會出現no data的狀況。相較之下，repository就不會出現沒有資料顯示null的狀況，所以只要這邊做資料過濾就可以。</p>
+</li>
+</ul>
+<h4 id="jQuery-ajax-url-settings"><a href="#jQuery-ajax-url-settings" class="headerlink" title="jQuery.ajax(url [, settings])"></a><code>jQuery.ajax(url [, settings])</code></h4><table>
+<thead>
+<tr>
+<th>參數</th>
+<th>型別</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>String</td>
+<td>指定要進行呼叫的位址</td>
+</tr>
+<tr>
+<td>data</td>
+<td>Object</td>
+<td>要傳給 server 的 Key/value 值對</td>
+</tr>
+<tr>
+<td>success</td>
+<td>Function</td>
+<td>Ajax 請求完成時 (必需是 success) 呼叫的 callback</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&quot;#searchUser&quot;</span>).on(<span class="string">&quot;change&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> username = e.target.value; <span class="comment">//取的輸入的內容</span></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="string">&quot;https://api.github.com/users/&quot;</span> + username,</span><br><span class="line">      data: &#123;</span><br><span class="line">        client_id: <span class="string">&quot;b9315bcd5a07fcd759d8&quot;</span>,</span><br><span class="line">        client_secret: <span class="string">&quot;a2b698bf7e7c02f898197cf136d1a41f704ca8e4&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span> <span class="title">insertProfile</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">        obj.avatar_url = user.avatar_url || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.profile_url = user.html_url || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.public_gists = user.public_gists || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.public_repos = user.public_repos || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.followers = user.followers || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.following = user.following || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.company = user.company || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.location = user.location || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        obj.blog = user.blog || <span class="string">&quot;no data&quot;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(obj);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>顯示出來的過濾內容</p>
+<p><img src="https://i.imgur.com/0Xo8ovr.png"></p>
+<h3 id="Profile放到DOM裡面"><a href="#Profile放到DOM裡面" class="headerlink" title="Profile放到DOM裡面"></a>Profile放到DOM裡面</h3><p>將取得的資料放到DOM裡面，使用<code>.html(profile)</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> profile = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;div class=&quot;card card-body mb-3&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;div class=&quot;row&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;col-md-3&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;img class=&quot;img-fluid mb-2&quot; src=&quot;<span class="subst">$&#123;obj.avatar_url&#125;</span>&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;a href=&quot;<span class="subst">$&#123;user.html_url&#125;</span>&quot; target=&quot;_blank&quot; class=&quot;btn btn-primary btn-block mb-4&quot;&gt;View Profile&lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;col-md-9&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;span class=&quot;badge badge-primary&quot;&gt;Public Repos: <span class="subst">$&#123;obj.public_repos&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;span class=&quot;badge badge-secondary&quot;&gt;Public Gists: <span class="subst">$&#123;obj.public_gists&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;span class=&quot;badge badge-success&quot;&gt;Followers: <span class="subst">$&#123;obj.followers&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;span class=&quot;badge badge-info&quot;&gt;Following: <span class="subst">$&#123;obj.following&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">      &lt;br&gt;&lt;br&gt;</span></span><br><span class="line"><span class="string">      &lt;ul class=&quot;list-group&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;li class=&quot;list-group-item&quot;&gt;Company: <span class="subst">$&#123;obj.company&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li class=&quot;list-group-item&quot;&gt;Website/Blog: <span class="subst">$&#123;obj.blog&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li class=&quot;list-group-item&quot;&gt;Location: <span class="subst">$&#123;obj.location&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">          &lt;li class=&quot;list-group-item&quot;&gt;Member Since: <span class="subst">$&#123;user.created_at&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;h3 class=&quot;page-heading mb-3&quot;&gt;Latest Repos&lt;/h3&gt;</span></span><br><span class="line"><span class="string">&lt;div id=&quot;repos&quot;&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line">$(<span class="string">&quot;#profile&quot;</span>).html(profile);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="取得repo資料"><a href="#取得repo資料" class="headerlink" title="取得repo資料"></a>取得repo資料</h3><ul>
+<li>一樣透過網址也可以先觀察到json格式的資料，所以透過url來取得api的資料。</li>
+</ul>
+<p><img src="https://i.imgur.com/Qt2Cfit.png"></p>
+<ul>
+<li><p>data裡面的<code>sort</code>為排序的意思，asc代表正序，desc代表倒序。per_page代表要取得五筆資料。</p>
+</li>
+<li><p>error為發現錯誤執行的function，jqXR為jQuery 1.5 版後，所有 jQuery 的 Ajax 方法 ($.get, $.post, $.ajax, …) 都會返回一個 <strong>jqXHR object</strong>。</p>
+</li>
+</ul>
+<p>404為jqXHR.status的一種狀態。</p>
+<p><img src="https://i.imgur.com/N9N7amt.png"></p>
+<ul>
+<li>使用到<code>setTimeout()</code>為輸入的內容沒有該使用者時，出現2.3s的錯誤警告，再自動清空輸入內容，與profile還有repo，增加使用者體驗。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">      url: <span class="string">&quot;https://api.github.com/users/&quot;</span> + username + <span class="string">&quot;/repos&quot;</span>,</span><br><span class="line">      data: &#123;</span><br><span class="line">        client_id: <span class="string">&quot;b9315bcd5a07fcd759d8&quot;</span>,</span><br><span class="line">        client_secret: <span class="string">&quot;a2b698bf7e7c02f898197cf136d1a41f704ca8e4&quot;</span>,</span><br><span class="line">        sort: <span class="string">&quot;created: asc&quot;</span>,</span><br><span class="line">        per_page: <span class="number">5</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      error: <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> msg = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (jqXHR.status == <span class="number">404</span>) &#123;</span><br><span class="line">          msg = <span class="string">`&lt;div class = &quot;alert alert-danger&quot;&gt;</span></span><br><span class="line"><span class="string">          Please enter again User does not exist&lt;/div&gt;`</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $(<span class="string">&quot;#error&quot;</span>).html(msg);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          $(<span class="string">&quot;#searchUser&quot;</span>).val(<span class="string">&quot;&quot;</span>);</span><br><span class="line">          $(<span class="string">&quot;#repos&quot;</span>).html(<span class="string">&quot;&quot;</span>);</span><br><span class="line">          $(<span class="string">&quot;#error&quot;</span>).html(<span class="string">&quot;&quot;</span>);</span><br><span class="line">          $(<span class="string">&quot;#profile&quot;</span>).html(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125;, <span class="number">2300</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span> <span class="title">insertRopo</span>(<span class="params">repo_obj</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(repo_obj);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>印出來得到的repo就會是我們要的前五筆最新資料。</p>
+<p><img src="https://i.imgur.com/N6dLCda.png"></p>
+<h3 id="Repo放到DOM裡"><a href="#Repo放到DOM裡" class="headerlink" title="Repo放到DOM裡"></a>Repo放到DOM裡</h3><ul>
+<li>讀取連續五筆陣列資料，需要使用到<code>each</code>。這邊我遇到了一個錯誤，忘記了jquery語法，一直使用<code>foreach</code>，導致資料一直無法讀取。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.each(repo_obj, <span class="function"><span class="keyword">function</span> (<span class="params">index, repo</span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&quot;#repos&quot;</span>).append(<span class="string">`</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;card card-body mb-2&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;row&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;div class=&quot;col-md-6&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;a href=&quot;<span class="subst">$&#123;repo.html_url&#125;</span>&quot; target=&quot;_blank&quot; class=&quot;font-weight-bold&quot;&gt;<span class="subst">$&#123;repo.name&#125;</span>&lt;/a&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">        &lt;div class=&quot;col-md-6&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;span class=&quot;badge badge-primary&quot;&gt;Stars: <span class="subst">$&#123;repo.stargazers_count&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">          &lt;span class=&quot;badge badge-secondary&quot;&gt;Watchers: <span class="subst">$&#123;repo.watchers_count&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">          &lt;span class=&quot;badge badge-success&quot;&gt;Forks: <span class="subst">$&#123;repo.forks_count&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="遇到的錯誤"><a href="#遇到的錯誤" class="headerlink" title="遇到的錯誤"></a>遇到的錯誤</h2><h3 id="錯誤一"><a href="#錯誤一" class="headerlink" title="錯誤一"></a>錯誤一</h3><p>一直以為repo的dom是要新增一個<code>div</code>，在html才能夠放上去，所以直接在html加上了<code>div</code>，然後使用<code>.html()</code>更新repo的內容，發現只會出現一筆，所以換成了<code>append</code>，就可以成功跑出五筆。</p>
+<p>但出現五筆後，每當我換一位使用者的名字時，他就會一直疊加資料，從五筆變成十筆，十五筆，非常可怕。</p>
+<p>解決這個問題花了非常多的時間，後來才發現，放repo的<code>div</code>需要動態產生，動態產生時，就可以避免掉疊加的情況。</p>
+<p>所以在profile的html裡，最後加上<code>&lt;div id=&quot;repos&quot;&gt;&lt;/div&gt;</code>，就可以解決問題。</p>
+<h3 id="錯誤二"><a href="#錯誤二" class="headerlink" title="錯誤二"></a>錯誤二</h3><p>keyup會不停的被觸發，輸入可能五個字時他就會被觸發二十幾次，導致repo的內容會顯示超過五筆，Error提醒也會不停被觸發，目前還在釐清這個問題。</p>
+<p>但是，換成change之後，等待使用者輸入完成後，才觸發，就可以解決這個問題。</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://www.fooish.com/jquery/ajax.html">jQuery Ajax</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/02/HTML5-Drag-and-Drop-API-%E7%AD%86%E8%A8%98/" rel="prev" title="HTML5 Drag and Drop API 筆記">
+      <i class="fa fa-chevron-left"></i> HTML5 Drag and Drop API 筆記
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/07/%5B%E5%AF%A6%E4%BD%9C%5D%20Travel%20Website/" rel="next" title="[實作] Travel Website">
+      [實作] Travel Website <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AD%98%E9%BB%9E"><span class="nav-number">2.</span> <span class="nav-text">學習到的知識點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">2.1.</span> <span class="nav-text">JS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">4.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B"><span class="nav-number">4.1.</span> <span class="nav-text">結構</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">5.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-1"><span class="nav-number">6.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%BE%97%E8%B3%87%E6%96%99%EF%BC%8C%E9%81%8E%E6%BF%BE%E8%B3%87%E6%96%99"><span class="nav-number">6.1.</span> <span class="nav-text">取得資料，過濾資料</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery-ajax-url-settings"><span class="nav-number">6.1.1.</span> <span class="nav-text">jQuery.ajax(url [, settings])</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Profile%E6%94%BE%E5%88%B0DOM%E8%A3%A1%E9%9D%A2"><span class="nav-number">6.2.</span> <span class="nav-text">Profile放到DOM裡面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%BE%97repo%E8%B3%87%E6%96%99"><span class="nav-number">6.3.</span> <span class="nav-text">取得repo資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repo%E6%94%BE%E5%88%B0DOM%E8%A3%A1"><span class="nav-number">6.4.</span> <span class="nav-text">Repo放到DOM裡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%8C%AF%E8%AA%A4"><span class="nav-number">7.</span> <span class="nav-text">遇到的錯誤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8C%AF%E8%AA%A4%E4%B8%80"><span class="nav-number">7.1.</span> <span class="nav-text">錯誤一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%8C%AF%E8%AA%A4%E4%BA%8C"><span class="nav-number">7.2.</span> <span class="nav-text">錯誤二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">8.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

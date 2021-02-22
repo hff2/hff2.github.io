@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="學習到的知識點CSS display:none display:flex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[實作] 打字遊戲">
+<meta property="og:url" content="https://hff2.github.io.com/2021/01/28/%E5%AF%A6%E4%BD%9C-%E6%89%93%E5%AD%97%E9%81%8A%E6%88%B2/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="學習到的知識點CSS display:none display:flex">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/gSk59Ap.png">
+<meta property="og:image" content="https://i.imgur.com/9703HpQ.png">
+<meta property="og:image" content="https://i.imgur.com/ou53foz.png">
+<meta property="article:published_time" content="2021-01-28T13:25:17.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:04:31.627Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/gSk59Ap.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/01/28/%E5%AF%A6%E4%BD%9C-%E6%89%93%E5%AD%97%E9%81%8A%E6%88%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>[實作] 打字遊戲 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/01/28/%E5%AF%A6%E4%BD%9C-%E6%89%93%E5%AD%97%E9%81%8A%E6%88%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [實作] 打字遊戲
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-01-28 21:25:17" itemprop="dateCreated datePublished" datetime="2021-01-28T21:25:17+08:00">2021-01-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>7 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li><code>display:none</code></li>
+<li><code>display:flex</code></li>
+</ul>
+<a id="more"></a>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li><code>Math.length()</code></li>
+<li><code>Math.floor()</code></li>
+<li><code>setInterval()</code></li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a target="_blank" rel="noopener" href="https://hff2.github.io/My-Projects/Typing_Game/index.html">Demo</a></p>
+<p>打字遊戲</p>
+<p><img src="https://i.imgur.com/gSk59Ap.png"></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><img src="https://i.imgur.com/9703HpQ.png"></p>
+<h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>這邊的結構十分清楚，沒有特別困難的點。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;settings-btn&quot;</span> <span class="attr">class</span>=<span class="string">&quot;settings-btn&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fas fa-cog&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;settings&quot;</span> <span class="attr">class</span>=<span class="string">&quot;settings&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;settings-form&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;difficulty&quot;</span>&gt;</span>Difficulty<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;difficulty&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;easy&quot;</span>&gt;</span>Easy<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;medium&quot;</span>&gt;</span>Medium<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;hard&quot;</span>&gt;</span>Hard<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">h2</span>&gt;</span>💻 Speed Typer ⌨️<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">small</span>&gt;</span>Type the following:<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;word&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     &lt;input</span><br><span class="line">       type=&quot;text&quot;</span><br><span class="line">       id=&quot;text&quot;</span><br><span class="line">       autocomplete=&quot;off&quot;</span><br><span class="line">       placeholder=&quot;Type the word here...&quot;</span><br><span class="line">     /&gt;</span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;time-container&quot;</span>&gt;</span>Time left: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;time&quot;</span>&gt;</span>10s<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;score-container&quot;</span>&gt;</span>Score: <span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;score&quot;</span>&gt;</span>0<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;end-game-container&quot;</span> <span class="attr">class</span>=<span class="string">&quot;end-game-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li><code>-webkit-</code> 私有前綴</li>
+<li><code>-webkit-appearance: none</code>，去除瀏覽器的預設樣式。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">select</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">appearance</span>: none;</span><br><span class="line">  <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">  <span class="attribute">-moz-appearance</span>: none;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#a7c5e3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><h3 id="宣告變數-Declare-varialbe"><a href="#宣告變數-Declare-varialbe" class="headerlink" title="宣告變數 Declare varialbe"></a>宣告變數 Declare varialbe</h3><blockquote>
+<p>原生 Js</p>
+</blockquote>
+<p>這邊使用陣列儲存測驗單字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> word = <span class="built_in">document</span>.getElementById(<span class="string">&quot;word&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> text = <span class="built_in">document</span>.getElementById(<span class="string">&quot;text&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> scoreEl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;score&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> timeEl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;time&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> endgameEl = <span class="built_in">document</span>.getElementById(<span class="string">&quot;end-game-container&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> settingsBtn = <span class="built_in">document</span>.getElementById(<span class="string">&quot;settings-btn&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> settings = <span class="built_in">document</span>.getElementById(<span class="string">&quot;settings&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> settingsForm = <span class="built_in">document</span>.getElementById(<span class="string">&quot;settings-form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> difficultySelect = <span class="built_in">document</span>.getElementById(<span class="string">&quot;difficulty&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// List of words for game</span></span><br><span class="line"><span class="keyword">const</span> words = [</span><br><span class="line">  <span class="string">&quot;sigh&quot;</span>,</span><br><span class="line">  <span class="string">&quot;tense&quot;</span>,</span><br><span class="line">  <span class="string">&quot;airplane&quot;</span>,</span><br><span class="line">  <span class="string">&quot;ball&quot;</span>,</span><br><span class="line">  <span class="string">&quot;pies&quot;</span>,</span><br><span class="line">  <span class="string">&quot;juice&quot;</span>,</span><br><span class="line">  <span class="string">&quot;warlike&quot;</span>,</span><br><span class="line">  <span class="string">&quot;bad&quot;</span>,</span><br><span class="line">  <span class="string">&quot;north&quot;</span>,</span><br><span class="line">  <span class="string">&quot;dependent&quot;</span>,</span><br><span class="line">  <span class="string">&quot;steer&quot;</span>,</span><br><span class="line">  <span class="string">&quot;silver&quot;</span>,</span><br><span class="line">  <span class="string">&quot;highfalutin&quot;</span>,</span><br><span class="line">  <span class="string">&quot;superficial&quot;</span>,</span><br><span class="line">  <span class="string">&quot;quince&quot;</span>,</span><br><span class="line">  <span class="string">&quot;eight&quot;</span>,</span><br><span class="line">  <span class="string">&quot;feeble&quot;</span>,</span><br><span class="line">  <span class="string">&quot;admit&quot;</span>,</span><br><span class="line">  <span class="string">&quot;drag&quot;</span>,</span><br><span class="line">  <span class="string">&quot;loving&quot;</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Init word</span></span><br><span class="line"><span class="keyword">let</span> randomWord;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Init score</span></span><br><span class="line"><span class="keyword">let</span> score = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Init time</span></span><br><span class="line"><span class="keyword">let</span> time = <span class="number">10</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>選擇器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#word&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#text&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#score&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#time&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#end-game-container&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#settings-btn&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#settings&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#settings-form&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#difficulty&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="隨機挑選陣列裡的單字，加到元素的div裡"><a href="#隨機挑選陣列裡的單字，加到元素的div裡" class="headerlink" title="隨機挑選陣列裡的單字，加到元素的div裡"></a>隨機挑選陣列裡的單字，加到元素的div裡</h3><p><code>getRandomWord()</code><br><code>addWordToDOM()</code></p>
+<blockquote>
+<p>原生 Js</p>
+</blockquote>
+<ul>
+<li><code>Math.random()</code>函式，會隨機產生出0~1之間的小數，出來的值永遠不會大於1。</li>
+<li><code>Math.floor()</code>函式會無條件捨去到比自身小的最大整數。ex 4.6213 回傳 4</li>
+<li><code>words.length</code>是20，乘上隨機0-1之間的數，再取整數。</li>
+</ul>
+<p><img src="https://i.imgur.com/ou53foz.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generate random word from array</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomWord</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//回傳隨機的字</span></span><br><span class="line">  <span class="keyword">return</span> words[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * words.length)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Add word to DOM 將取得的字，放到#word裡。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addWordToDOM</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  randomWord = getRandomWord();</span><br><span class="line">  word.innerHTML = randomWord;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addWordToDOM();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ol>
+<li>原生JS是用打好的陣列，再去取得測驗字。</li>
+<li>這裡使用實作無限滾動頁面取的API的方法(搜尋random word api)，得到測驗字串。</li>
+<li>再直接將得到的字串放入<code>#word</code>裡。</li>
+</ol>
+<p>使用<code>$.ajax</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandomWord</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    url: <span class="string">&quot;https://random-word-api.herokuapp.com/word?number=1&quot;</span>,</span><br><span class="line">    method: <span class="string">&quot;get&quot;</span>,</span><br><span class="line">    dataType: <span class="string">&quot;json&quot;</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">      $(<span class="string">&quot;#word&quot;</span>).text(data);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更新成績，判斷輸入的字是否符合出現的字"><a href="#更新成績，判斷輸入的字是否符合出現的字" class="headerlink" title="更新成績，判斷輸入的字是否符合出現的字"></a>更新成績，判斷輸入的字是否符合出現的字</h3><p><code>updateScore()</code></p>
+<p><code>addEventListener</code>的<code>input</code>不需要按下Enter就會直接輸入。</p>
+<p>判斷輸入是正確後，會直接清空輸入框。</p>
+<blockquote>
+<p>原生 Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Update score 更新成績</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateScore</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  score++;</span><br><span class="line">  scoreEl.innerHTML = score;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addWordToDOM();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Event listeners</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Typing</span></span><br><span class="line">text.addEventListener(<span class="string">&quot;input&quot;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//取得輸入的值</span></span><br><span class="line">  <span class="keyword">const</span> insertedText = e.target.value;</span><br><span class="line">  <span class="comment">//如果輸入的值與隨機單字相同</span></span><br><span class="line">  <span class="keyword">if</span> (insertedText === randomWord) &#123;</span><br><span class="line">    <span class="comment">//更新成績+更換下一個隨機單字，更新成績</span></span><br><span class="line">    addWordToDOM();</span><br><span class="line">    updateScore();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Clear</span></span><br><span class="line">    <span class="comment">//輸入正確，自動清空輸入框，增加體驗</span></span><br><span class="line">    e.target.value = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>.innerHTML =</code> 轉成 <code>.html</code></li>
+<li><code>text.addEventListener(&quot;input&quot;</code>轉成 <code>$(&quot;#text&quot;).on(&quot;input&quot;</code></li>
+<li><code>e.target.value</code> 轉成 <code>$(this).val()</code></li>
+<li><code>e.target.value = &quot;&quot;</code> 轉成 <code>$(this).val(&quot;&quot;)</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateScore</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  score++;</span><br><span class="line">  $(<span class="string">&quot;#score&quot;</span>).html(score);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;#text&quot;</span>).on(<span class="string">&quot;input&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> insertedText = $(<span class="built_in">this</span>).val();</span><br><span class="line">  <span class="keyword">const</span> randomWord = $(<span class="string">&quot;#word&quot;</span>).text();</span><br><span class="line">  <span class="keyword">if</span> (insertedText === randomWord) &#123;</span><br><span class="line">    updateScore();</span><br><span class="line">    getRandomWord();</span><br><span class="line">    $(<span class="built_in">this</span>).val(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="每秒更新倒數狀態，倒數到0時，出現gameOver-Panel"><a href="#每秒更新倒數狀態，倒數到0時，出現gameOver-Panel" class="headerlink" title="每秒更新倒數狀態，倒數到0時，出現gameOver Panel"></a>每秒更新倒數狀態，倒數到0時，出現gameOver Panel</h3><blockquote>
+<p>原生 Js</p>
+</blockquote>
+<p><code>updateTime()</code><br><code>gameOver()</code></p>
+<ul>
+<li><p><code>setInterval()</code>固定延遲了某段時間之後，才去執行對應的程式碼，然後「不斷循環」。</p>
+</li>
+<li><p>使用<code>setInterval()</code>才會開始倒數，少了這一行，<code>time</code>變數就不會更動。</p>
+</li>
+<li><p>秒數歸0時，在css預先寫好的style，讓他出現(<code>display:flex</code>)，預設為(<code>display:none</code>)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Start counting down</span></span><br><span class="line"><span class="keyword">const</span> timeInterval = <span class="built_in">setInterval</span>(updateTime, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Update time</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateTime</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  time--;</span><br><span class="line">  timeEl.innerHTML = time + <span class="string">&quot;s&quot;</span>;</span><br><span class="line">  <span class="comment">// 等於0時，呼叫gameOevr()</span></span><br><span class="line">  <span class="keyword">if</span> (time === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(time);</span><br><span class="line">    <span class="comment">//end the game</span></span><br><span class="line">    gameOver();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Game over,show end screen</span></span><br><span class="line"><span class="comment">// 顯示GameOver的Panel</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gameOver</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  endgameEl.innerHTML = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;h1&gt;Time ran out&lt;/h1&gt;</span></span><br><span class="line"><span class="string">  &lt;p&gt;Your final score is <span class="subst">$&#123;score&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">  &lt;button onclick=&quot;location.reload()&quot;&gt;Reload&lt;/button&gt;</span></span><br><span class="line"><span class="string">  `</span>;</span><br><span class="line"></span><br><span class="line">  endgameEl.style.display = <span class="string">&quot;flex&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+</li>
+<li><p><code>.style.display =</code>轉成<code>.css(&quot;display&quot;, &quot;flex&quot;)</code></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timeInterval = <span class="built_in">setInterval</span>(updateTime, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateTime</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeEl = $(<span class="string">&quot;#time&quot;</span>);</span><br><span class="line">  time--;</span><br><span class="line">  timeEl.html(time + <span class="string">&quot;s&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (time === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(time);</span><br><span class="line">    gameOver();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">gameOver</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> endgameEl = $(<span class="string">&quot;#end-game-container&quot;</span>);</span><br><span class="line">  endgameEl.html(<span class="string">`</span></span><br><span class="line"><span class="string">  &lt;h1&gt;Time ran out&lt;/h1&gt;</span></span><br><span class="line"><span class="string">  &lt;p&gt;Your final score is <span class="subst">$&#123;score&#125;</span>&lt;/p&gt;</span></span><br><span class="line"><span class="string">  &lt;button onclick=&quot;location.reload()&quot;&gt;Reload&lt;/button&gt;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line"></span><br><span class="line">  endgameEl.css(<span class="string">&quot;display&quot;</span>, <span class="string">&quot;flex&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用Localstorge去設定與判斷使用者選的難度"><a href="#用Localstorge去設定與判斷使用者選的難度" class="headerlink" title="用Localstorge去設定與判斷使用者選的難度"></a>用Localstorge去設定與判斷使用者選的難度</h3><blockquote>
+<p>原生Js</p>
+</blockquote>
+<ul>
+<li>宣告<code>difficulty</code>變數，並且做判斷。如果困難度為空，就從localStorage取得值，如果沒有值，就預設<code>medium</code>。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Set difficulty to value in localStorage or medium</span></span><br><span class="line"><span class="keyword">let</span> difficulty =</span><br><span class="line">  <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>) !== <span class="literal">null</span></span><br><span class="line">    ? <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>)</span><br><span class="line">    : <span class="string">&quot;medium&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set difficulty select value</span></span><br><span class="line">difficultySelect.value =</span><br><span class="line">  <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>) !== <span class="literal">null</span></span><br><span class="line">    ? <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>)</span><br><span class="line">    : <span class="string">&quot;medium&quot;</span>;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 依照不同的困難度，增加不同的時間。</span></span><br><span class="line"><span class="keyword">if</span> (difficulty == <span class="string">&quot;hard&quot;</span>) &#123;</span><br><span class="line">  time += <span class="number">3</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (difficulty == <span class="string">&quot;medium&quot;</span>) &#123;</span><br><span class="line">  time += <span class="number">4</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  time += <span class="number">6</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">updateTime();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>.value =</code> 轉成 <code>.val</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> difficulty =</span><br><span class="line">  <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>) !== <span class="literal">null</span></span><br><span class="line">    ? <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>)</span><br><span class="line">    : <span class="string">&quot;medium&quot;</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;#difficulty&quot;</span>).val(</span><br><span class="line">  <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>) !== <span class="literal">null</span></span><br><span class="line">    ? <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;difficulty&quot;</span>)</span><br><span class="line">    : <span class="string">&quot;medium&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (difficulty == <span class="string">&quot;hard&quot;</span>) &#123;</span><br><span class="line">      time += <span class="number">3</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (difficulty == <span class="string">&quot;medium&quot;</span>) &#123;</span><br><span class="line">      time += <span class="number">6</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      time += <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    updateTime();</span><br></pre></td></tr></table></figure>
+<h3 id="設定與下拉選單的事件監聽"><a href="#設定與下拉選單的事件監聽" class="headerlink" title="設定與下拉選單的事件監聽"></a>設定與下拉選單的事件監聽</h3><blockquote>
+<p>Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Settings btn click</span></span><br><span class="line"><span class="comment">// 按下左下角的齒輪，可以收合settings面板。</span></span><br><span class="line">settingsBtn.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function">() =&gt;</span> settings.classList.toggle(<span class="string">&quot;hide&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Settings select</span></span><br><span class="line"><span class="comment">// 下拉式選單改變時，將值儲存在localStorage</span></span><br><span class="line">settingsForm.addEventListener(<span class="string">&quot;change&quot;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  difficulty = e.target.value;</span><br><span class="line">  <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;difficulty&quot;</span>, difficulty);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>.classList.toggle()</code> 轉成 <code>.toggleClass()</code></li>
+<li><code>.target.value</code> 轉成 <code>.val()</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#settings-btn&quot;</span>).on(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">&quot;#settings&quot;</span>).toggleClass(<span class="string">&quot;hide&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;#settings-form&quot;</span>).on(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  difficulty = $(<span class="string">&quot;#difficulty&quot;</span>).val();</span><br><span class="line">  <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;difficulty&quot;</span>, difficulty);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2></li>
+</ul>
+<p>許多內容都跟之前的實作有重複，都是參考之前的筆記XD。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/27/%E5%AF%A6%E4%BD%9C-%E6%96%B0%E5%B9%B4%E5%80%92%E6%95%B8%E5%99%A8/" rel="prev" title="[實作] 新年倒數器">
+      <i class="fa fa-chevron-left"></i> [實作] 新年倒數器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/29/%E5%AF%A6%E4%BD%9C-%E7%8C%9C%E6%95%B8%E5%AD%97%E4%BA%92%E5%8B%95%E9%81%8A%E6%88%B2-1/" rel="next" title="[實作] 猜數字互動遊戲">
+      [實作] 猜數字互動遊戲 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AD%98%E9%BB%9E"><span class="nav-number">1.</span> <span class="nav-text">學習到的知識點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">1.2.</span> <span class="nav-text">JS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B"><span class="nav-number">3.1.</span> <span class="nav-text">結構</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-1"><span class="nav-number">4.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-1"><span class="nav-number">5.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A3%E5%91%8A%E8%AE%8A%E6%95%B8-Declare-varialbe"><span class="nav-number">5.1.</span> <span class="nav-text">宣告變數 Declare varialbe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%A8%E6%A9%9F%E6%8C%91%E9%81%B8%E9%99%A3%E5%88%97%E8%A3%A1%E7%9A%84%E5%96%AE%E5%AD%97%EF%BC%8C%E5%8A%A0%E5%88%B0%E5%85%83%E7%B4%A0%E7%9A%84div%E8%A3%A1"><span class="nav-number">5.2.</span> <span class="nav-text">隨機挑選陣列裡的單字，加到元素的div裡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%88%90%E7%B8%BE%EF%BC%8C%E5%88%A4%E6%96%B7%E8%BC%B8%E5%85%A5%E7%9A%84%E5%AD%97%E6%98%AF%E5%90%A6%E7%AC%A6%E5%90%88%E5%87%BA%E7%8F%BE%E7%9A%84%E5%AD%97"><span class="nav-number">5.3.</span> <span class="nav-text">更新成績，判斷輸入的字是否符合出現的字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%8F%E7%A7%92%E6%9B%B4%E6%96%B0%E5%80%92%E6%95%B8%E7%8B%80%E6%85%8B%EF%BC%8C%E5%80%92%E6%95%B8%E5%88%B00%E6%99%82%EF%BC%8C%E5%87%BA%E7%8F%BEgameOver-Panel"><span class="nav-number">5.4.</span> <span class="nav-text">每秒更新倒數狀態，倒數到0時，出現gameOver Panel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8Localstorge%E5%8E%BB%E8%A8%AD%E5%AE%9A%E8%88%87%E5%88%A4%E6%96%B7%E4%BD%BF%E7%94%A8%E8%80%85%E9%81%B8%E7%9A%84%E9%9B%A3%E5%BA%A6"><span class="nav-number">5.5.</span> <span class="nav-text">用Localstorge去設定與判斷使用者選的難度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%9B%A3%E8%81%BD"><span class="nav-number">5.6.</span> <span class="nav-text">設定與下拉選單的事件監聽</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">6.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">149k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:16</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
