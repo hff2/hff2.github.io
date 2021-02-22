@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。 參考範例 1. 先設定flex排版123.container&amp;#123;  display:flex&amp;#125; 2. 設定排版方向 flex-direction預設是row flex-direction 效果預覽。 1234.container &amp;#123;  display: flex;  flex-direction: row">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS flex">
+<meta property="og:url" content="https://hff2.github.io.com/2021/02/23/CSS-flex/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="前言flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。 參考範例 1. 先設定flex排版123.container&amp;#123;  display:flex&amp;#125; 2. 設定排版方向 flex-direction預設是row flex-direction 效果預覽。 1234.container &amp;#123;  display: flex;  flex-direction: row">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-02-22T16:56:50.000Z">
+<meta property="article:modified_time" content="2021-02-22T16:02:00.849Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="HTML&amp;CSS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/02/23/CSS-flex/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>CSS flex | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/02/23/CSS-flex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS flex
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-02-23 00:56:50 / 修改時間：00:02:00" itemprop="dateCreated datePublished" datetime="2021-02-23T00:56:50+08:00">2021-02-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/frank890417/pen/ayLvRp">參考範例</a></p>
+<h3 id="1-先設定flex排版"><a href="#1-先設定flex排版" class="headerlink" title="1. 先設定flex排版"></a>1. 先設定flex排版</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-設定排版方向-flex-direction"><a href="#2-設定排版方向-flex-direction" class="headerlink" title="2. 設定排版方向 flex-direction"></a>2. 設定排版方向 <code>flex-direction</code></h3><p>預設是<code>row</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-direction">flex-direction</a> 效果預覽。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row|row-reverse|column|column-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-元素超出螢幕範圍時是否換行-flex-wrap"><a href="#3-元素超出螢幕範圍時是否換行-flex-wrap" class="headerlink" title="3. 元素超出螢幕範圍時是否換行 flex-wrap"></a>3. 元素超出螢幕範圍時是否換行 <code>flex-wrap</code></h3><p>視窗縮小時，不會被強行擠壓，自動換行。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-wrap">flex-wrap</a> 預覽效果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap|wrap|wrap-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-direction-和-wrap-二合一-flex-flow"><a href="#4-direction-和-wrap-二合一-flex-flow" class="headerlink" title="4. direction 和 wrap 二合一 flex-flow"></a>4. direction 和 wrap 二合一 <code>flex-flow</code></h3><p>用flex-flow可以只寫一行，就把direction 和 wrap 二合一。</p>
+<p>第一個參數direction，第二個是wrap。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-flow</span>:row-reverse nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-元素對齊的方式之一-justify-content"><a href="#5-元素對齊的方式之一-justify-content" class="headerlink" title="5.元素對齊的方式之一 justify-content"></a>5.元素對齊的方式之一 <code>justify-content</code></h3><p><code>justify-content</code>是元素對齊的方式</p>
+<p>是一種<strong>水平排版</strong>的方式，但會隨著主軸和副軸產生變化。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_justify-content">justify-content</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start|flex-end|center|space-between|space-around|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-元素對齊的方式之二-align-items"><a href="#6-元素對齊的方式之二-align-items" class="headerlink" title="6.元素對齊的方式之二 align-items"></a>6.元素對齊的方式之二 <code>align-items</code></h3><p><code>align-items</code>是元素對齊的方式</p>
+<p>是一種<strong>垂直置中</strong>的方式，但會隨著主軸和副軸產生變化。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-items">align-items</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-多行元素對齊的方式-align-content"><a href="#7-多行元素對齊的方式-align-content" class="headerlink" title="7.多行元素對齊的方式 align-content"></a>7.多行元素對齊的方式 <code>align-content</code></h3><p>align-content是<strong>多行元素對齊</strong>的方式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-content">align-content</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-content</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS-Flex個別子元素的排版"><a href="#CSS-Flex個別子元素的排版" class="headerlink" title="CSS Flex個別子元素的排版"></a>CSS Flex個別子元素的排版</h2><h3 id="1-個別子元素的對齊-–-align-self"><a href="#1-個別子元素的對齊-–-align-self" class="headerlink" title="1.個別子元素的對齊 – align-self"></a>1.個別子元素的對齊 – align-self</h3><p><code>align-self</code>是針對個別子元素的對齊調整，外層需要是flex。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-self">align-self</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">align-self</span>: auto|stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-個別子元素的寬度-–-flex-grow-amp-flex-shrink"><a href="#2-個別子元素的寬度-–-flex-grow-amp-flex-shrink" class="headerlink" title="2.個別子元素的寬度 – flex-grow &amp; flex-shrink"></a>2.個別子元素的寬度 – flex-grow &amp; flex-shrink</h3><p>字面上的意思就是增加與減少，針對個別子元素的寬度調整。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-grow">flex-grow</a> 效果預覽</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-shrink">flex-shrink</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">flex-shrink</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div2</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-最基本的寬度-flex-basis"><a href="#3-最基本的寬度-flex-basis" class="headerlink" title="3. 最基本的寬度 flex-basis"></a>3. 最基本的寬度 <code>flex-basis</code></h3><p><code>flex-grow</code>不能使<code>flex-wrap</code>功能運行，會<strong>無法跳行</strong>。</p>
+<p>但是，只要設定了<code>flex-basis</code>之後可以換行。假如設定<code>flex-basis</code>為10rem，只要視窗讓方框小於10rem，它就會換行。</p>
+<p>flex-basis有點像是最基本(最小)的寬度。</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-basis">flex-basis</a> 效果預覽</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/phoebe-ho/pen/ExgWqeB">flex 實際練習</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML-CSS/" rel="tag"># HTML&CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/22/Sass%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="prev" title="Sass的基本用法">
+      <i class="fa fa-chevron-left"></i> Sass的基本用法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%85%88%E8%A8%AD%E5%AE%9Aflex%E6%8E%92%E7%89%88"><span class="nav-number">2.</span> <span class="nav-text">1. 先設定flex排版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A8%AD%E5%AE%9A%E6%8E%92%E7%89%88%E6%96%B9%E5%90%91-flex-direction"><span class="nav-number">3.</span> <span class="nav-text">2. 設定排版方向 flex-direction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%85%83%E7%B4%A0%E8%B6%85%E5%87%BA%E8%9E%A2%E5%B9%95%E7%AF%84%E5%9C%8D%E6%99%82%E6%98%AF%E5%90%A6%E6%8F%9B%E8%A1%8C-flex-wrap"><span class="nav-number">4.</span> <span class="nav-text">3. 元素超出螢幕範圍時是否換行 flex-wrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-direction-%E5%92%8C-wrap-%E4%BA%8C%E5%90%88%E4%B8%80-flex-flow"><span class="nav-number">5.</span> <span class="nav-text">4. direction 和 wrap 二合一 flex-flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%83%E7%B4%A0%E5%B0%8D%E9%BD%8A%E7%9A%84%E6%96%B9%E5%BC%8F%E4%B9%8B%E4%B8%80-justify-content"><span class="nav-number">6.</span> <span class="nav-text">5.元素對齊的方式之一 justify-content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%85%83%E7%B4%A0%E5%B0%8D%E9%BD%8A%E7%9A%84%E6%96%B9%E5%BC%8F%E4%B9%8B%E4%BA%8C-align-items"><span class="nav-number">7.</span> <span class="nav-text">6.元素對齊的方式之二 align-items</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%A4%9A%E8%A1%8C%E5%85%83%E7%B4%A0%E5%B0%8D%E9%BD%8A%E7%9A%84%E6%96%B9%E5%BC%8F-align-content"><span class="nav-number">8.</span> <span class="nav-text">7.多行元素對齊的方式 align-content</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-Flex%E5%80%8B%E5%88%A5%E5%AD%90%E5%85%83%E7%B4%A0%E7%9A%84%E6%8E%92%E7%89%88"><span class="nav-number"></span> <span class="nav-text">CSS Flex個別子元素的排版</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%80%8B%E5%88%A5%E5%AD%90%E5%85%83%E7%B4%A0%E7%9A%84%E5%B0%8D%E9%BD%8A-%E2%80%93-align-self"><span class="nav-number">1.</span> <span class="nav-text">1.個別子元素的對齊 – align-self</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%80%8B%E5%88%A5%E5%AD%90%E5%85%83%E7%B4%A0%E7%9A%84%E5%AF%AC%E5%BA%A6-%E2%80%93-flex-grow-amp-flex-shrink"><span class="nav-number">2.</span> <span class="nav-text">2.個別子元素的寬度 – flex-grow &amp; flex-shrink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%AF%AC%E5%BA%A6-flex-basis"><span class="nav-number">3.</span> <span class="nav-text">3. 最基本的寬度 flex-basis</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">151k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:18</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
