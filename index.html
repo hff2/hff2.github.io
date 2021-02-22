@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-02-23 00:56:50 / 修改時間：00:02:00" itemprop="dateCreated datePublished" datetime="2021-02-23T00:56:50+08:00">2021-02-23</time>
+              <time title="創建時間：2021-02-23 00:56:50 / 修改時間：00:05:40" itemprop="dateCreated datePublished" datetime="2021-02-23T00:56:50+08:00">2021-02-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,40 +248,15 @@
       
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。</p>
 <p><a target="_blank" rel="noopener" href="https://codepen.io/frank890417/pen/ayLvRp">參考範例</a></p>
-<h3 id="1-先設定flex排版"><a href="#1-先設定flex排版" class="headerlink" title="1. 先設定flex排版"></a>1. 先設定flex排版</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-設定排版方向-flex-direction"><a href="#2-設定排版方向-flex-direction" class="headerlink" title="2. 設定排版方向 flex-direction"></a>2. 設定排版方向 <code>flex-direction</code></h3><p>預設是<code>row</code></p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-direction">flex-direction</a> 效果預覽。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row|row-reverse|column|column-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-元素超出螢幕範圍時是否換行-flex-wrap"><a href="#3-元素超出螢幕範圍時是否換行-flex-wrap" class="headerlink" title="3. 元素超出螢幕範圍時是否換行 flex-wrap"></a>3. 元素超出螢幕範圍時是否換行 <code>flex-wrap</code></h3><p>視窗縮小時，不會被強行擠壓，自動換行。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-wrap">flex-wrap</a> 預覽效果</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap|wrap|wrap-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-direction-和-wrap-二合一-flex-flow"><a href="#4-direction-和-wrap-二合一-flex-flow" class="headerlink" title="4. direction 和 wrap 二合一 flex-flow"></a>4. direction 和 wrap 二合一 <code>flex-flow</code></h3><p>用flex-flow可以只寫一行，就把direction 和 wrap 二合一。</p>
-<p>第一個參數direction，第二個是wrap。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-flow</span>:row-reverse nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-元素對齊的方式之一-justify-content"><a href="#5-元素對齊的方式之一-justify-content" class="headerlink" title="5.元素對齊的方式之一 justify-content"></a>5.元素對齊的方式之一 <code>justify-content</code></h3><p><code>justify-content</code>是元素對齊的方式</p>
-<p>是一種<strong>水平排版</strong>的方式，但會隨著主軸和副軸產生變化。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_justify-content">justify-content</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start|flex-end|center|space-between|space-around|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-元素對齊的方式之二-align-items"><a href="#6-元素對齊的方式之二-align-items" class="headerlink" title="6.元素對齊的方式之二 align-items"></a>6.元素對齊的方式之二 <code>align-items</code></h3><p><code>align-items</code>是元素對齊的方式</p>
-<p>是一種<strong>垂直置中</strong>的方式，但會隨著主軸和副軸產生變化。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-items">align-items</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="7-多行元素對齊的方式-align-content"><a href="#7-多行元素對齊的方式-align-content" class="headerlink" title="7.多行元素對齊的方式 align-content"></a>7.多行元素對齊的方式 <code>align-content</code></h3><p>align-content是<strong>多行元素對齊</strong>的方式。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-content">align-content</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-content</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="CSS-Flex個別子元素的排版"><a href="#CSS-Flex個別子元素的排版" class="headerlink" title="CSS Flex個別子元素的排版"></a>CSS Flex個別子元素的排版</h2><h3 id="1-個別子元素的對齊-–-align-self"><a href="#1-個別子元素的對齊-–-align-self" class="headerlink" title="1.個別子元素的對齊 – align-self"></a>1.個別子元素的對齊 – align-self</h3><p><code>align-self</code>是針對個別子元素的對齊調整，外層需要是flex。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-self">align-self</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">align-self</span>: auto|stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-個別子元素的寬度-–-flex-grow-amp-flex-shrink"><a href="#2-個別子元素的寬度-–-flex-grow-amp-flex-shrink" class="headerlink" title="2.個別子元素的寬度 – flex-grow &amp; flex-shrink"></a>2.個別子元素的寬度 – flex-grow &amp; flex-shrink</h3><p>字面上的意思就是增加與減少，針對個別子元素的寬度調整。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-grow">flex-grow</a> 效果預覽</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-shrink">flex-shrink</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">flex-shrink</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div2</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-最基本的寬度-flex-basis"><a href="#3-最基本的寬度-flex-basis" class="headerlink" title="3. 最基本的寬度 flex-basis"></a>3. 最基本的寬度 <code>flex-basis</code></h3><p><code>flex-grow</code>不能使<code>flex-wrap</code>功能運行，會<strong>無法跳行</strong>。</p>
-<p>但是，只要設定了<code>flex-basis</code>之後可以換行。假如設定<code>flex-basis</code>為10rem，只要視窗讓方框小於10rem，它就會換行。</p>
-<p>flex-basis有點像是最基本(最小)的寬度。</p>
-<p><a target="_blank" rel="noopener" href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-basis">flex-basis</a> 效果預覽</p>
-<p><a target="_blank" rel="noopener" href="https://codepen.io/phoebe-ho/pen/ExgWqeB">flex 實際練習</a></p>
-
+<h3 id="1-先設定flex排版"><a href="#1-先設定flex排版" class="headerlink" title="1. 先設定flex排版"></a>1. 先設定flex排版</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/23/CSS-flex/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -619,7 +594,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-02-22 23:51:21" itemprop="dateModified" datetime="2021-02-22T23:51:21+08:00">2021-02-22</time>
+                <time title="修改時間：2021-02-23 00:08:59" itemprop="dateModified" datetime="2021-02-23T00:08:59+08:00">2021-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -656,7 +631,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>在meta裡面加入一些東西</p>
+          <h2 id="前置-Settings"><a href="#前置-Settings" class="headerlink" title="前置 Settings"></a>前置 Settings</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>在meta裡面加入一些東西</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta</span><br><span class="line">  name=&quot;description&quot;</span><br><span class="line">  content=&quot;Travelly is a travel agency website that helps you pick out your holiday vacation&quot;</span><br><span class="line">/&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span> /&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
