@@ -9,7 +9,7 @@ date: 2021-02-23 00:56:50
 `-webkit-appearance` 為使用系統預設的外觀。
 
 `-webkit-appearance: none`，去除瀏覽器的預設樣式。
-
+<!--more-->
 webkit是一種瀏覽器的私有前綴，是瀏覽器對新css實現的一個提前支持。
 
 -webkit是指，webkit內核的瀏覽器(Safari和Google)，moz是Firefox內核的瀏覽器。
