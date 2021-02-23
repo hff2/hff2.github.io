@@ -319,91 +319,96 @@ h3 {
 
 [Hex to RGB](https://www.rgbtohex.net/hextorgb/)
 
-
-![](https://i.imgur.com/EkDQb7h.png)
-
+![](https://i.imgur.com/goqF6rq.png)
 
 ### City Section HTML
 
-```pug=
-section#locations
-  header.locations-head
-    h2 The Perfect Travelling Experience.
-    h3
-      | we cover everything from picking the perfect hotel,
-      br
-      | flight and
-      |             Travelly destination.
-    img.moving-cloud-1.cloud(src='img/cloud.png' alt='')
-    img.moving-cloud-2.cloud(src='img/cloud.png' alt='')
-
+```html=
+<section id="locations">
+  <header class="locations-head">
+    <h2>The Perfect Travelling Experience.</h2>
+    <h3>
+      we cover everything from picking the perfect hotel,<br />flight and
+      Travelly destination.
+    </h3>
+    <img src="img/cloud.png" class="moving-cloud-1 cloud" alt="" />
+    <img src="img/cloud.png" class="moving-cloud-2 cloud" alt="" />
+  </header>
+</section>
 ```
-### City Section CSS
 
-1. `width: 90%;margin: auto;`，在旁邊留下空白。
+### City Section CSS 解析
 
-![](https://i.imgur.com/Pjv4CyY.png)
+1. `overflow: hidden;`，不讓cloud跑出去，加在根元素section上。
+2. `text-decoration: underline;`，不一定每個瀏覽器都支援。
+3. `text-decoration-thickness: 0.5rem`，加粗底線。 
 
-2. `overflow: hidden;`，不讓cloud跑出去，加在根元素section上。
-3. `text-decoration: underline;`，不一定每個瀏覽器都支援。
-4. `text-decoration-thickness: 0.5rem`，加粗底線。 
+![](https://i.imgur.com/gPYtlJO.png)
 
-![](https://i.imgur.com/xniKvkX.png)
+4. 在字上面加上顏色，chrome需要在前面加上-webkit私有前綴才可以使用。
 
+![](https://i.imgur.com/KsLdsWK.png)
 
-5. `background: linear-gradient(#131c27, #663b64)`，`background-clip: text;`，`-webkit-text-fill-color: transparent`，讓h3的字體是漸層色 (Chrome不支援)。
+```css=
+.locations-head h3 {
+    padding: 4rem 0rem;
+    /* 只呈現在h3上的漸層 */
+    background: linear-gradient(#131c27, #663b34);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+```
+
+### City Section All CSS
   
 ```css=
 /* Locations Section */
 
 #locations {
-  /* section height */
-  min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
-    url("img/new-york-page.png");
-  /* 照片的設置 */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  position: relative;
-  /* 為了不讓cloud跑出去 */
-  overflow: hidden;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+        url("img/new-york-page.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-/* 在旁邊留下空白 */
 .locations-head {
-  width: 90%;
-  margin: auto;
+    width: 90%;
+    margin: auto;
 }
 
 .locations-head h2 {
-  padding: 1rem 0rem;
-  /*  加上底部的線條  */
-  text-decoration: underline;
-  /*  不一定每個瀏覽器都支援  */
-  /*  加粗底線  */
-  text-decoration-thickness: 0.5rem;
+    padding: 1rem 0rem;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5rem;
 }
 
 .locations-head h3 {
-  padding: 4rem 0rem;
-  /* 只呈現在h3的字上的漸層顏色 */
-  /* background: linear-gradient(#131c27, #663b64); */
-  /* background-clip: text; */
-  /*  下面這行意思是 text-fill-color: transparent  */
-  /* -webkit-text-fill-color: transparent; */
+    padding: 4rem 0rem;
+    /* 只呈現在h3上的漸層 */
+    background: linear-gradient(#131c27, #663b34);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
+.cloud {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 ```
 ### Cloud Animation
 
 1. transform，位移。
-    translate(mx,my)，元素以參考點為中心，X軸位移mx距離，Y軸位移my距離。
+    `translate(mx,my)`，元素以參考點為中心，X軸位移mx距離，Y軸位移my距離。
 2. animation屬性，normal，reverse，alternate，reverse-alternate。
  [參考網站](https://www.runoob.com/cssref/css3-pr-animation-direction.html)
-3. infinite為重複播放。
-4. -webkit-，支援該屬性的瀏覽器(Chrome，Safari)。
+3. `infinite`為重複播放。
+4. `@keyframe`製作動畫。
 ```css=
 .cloud {
   position: absolute;
@@ -442,39 +447,49 @@ section#locations
 
 ### Media Query
 
-1. `-webkit-text-fill-color: white;`，讓字體變白色。
-2.  `background: rgb(19, 28, 39, 0.8)`，加上一層背景。
+5. `-webkit-text-fill-color: white;`，讓字體變白色。
+6.  `background: rgb(19, 28, 39, 0.6)`，加上一層背景。
 
-![](https://i.imgur.com/gnmJwjN.png)
+![](https://i.imgur.com/f5YOZ75.png)
 
 
 ```css=
 /* Media Query */
 @media screen and (max-width: 932px) {
-  html {
-    font-size: 45%;
-  }
-  nav {
-    text-align: center;
-  }
-  #logo {
-    padding: 1rem;
-  }
-  .cloud {
-    height: 40rem;
-    pointer-events: none;
-  }
-  .moving-cloud-1 {
-    z-index: -1;
-  }
-  .moving-cloud-2 {
-    z-index: -2;
-  }
-  .locations-head h3 {
-    background: rgb(19, 28, 39, 0.8);
-    /*  讓字體變白色  */
-    -webkit-text-fill-color: white;
-  }
+    html {
+        font-size: 45%;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    #logo {
+        padding: 2rem;
+    }
+
+    .cloud {
+        height: 40rem;
+        /* 避免觸發選取 */
+        pointer-events: none;
+    }
+
+    .moving-cloud-1 {
+        z-index: -1;
+    }
+
+    .moving-cloud-2 {
+        z-index: -2;
+    }
+
+    .locations-head h2 {
+        text-align: center;
+    }
+
+    .locations-head h3 {
+        background: rgb(19, 28, 39, 0.6);
+        -webkit-text-fill-color: white;
+    }
 }
 
 ```
