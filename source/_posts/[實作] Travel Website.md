@@ -48,12 +48,12 @@ html {
 }
 ```
 
-## Creating Our Nav&Hero
+## Nav bar 和 Hero Section
 
 ![](https://i.imgur.com/ngnMpS9.jpg)
 
 <!--more-->
-### Header Html
+### Nav bar HTML
 超連結使點選標題時，直接到頁面的該位置。
 
 ```html=
@@ -69,7 +69,7 @@ html {
 </header>
 ```
 
-### Section Hero
+### Hero Section HTML
 
 ```html=
 <section id="hero">
@@ -82,7 +82,7 @@ html {
 </section>
 ```
 
-### Header Css
+### Nav bar CSS
 
 1. nav bar會隨著視窗做變化，但我們希望nav bar不要隨著視窗做變化時，可以使用`padding`+`min-height`代替。
 2. 要讓整個頁面的兩邊保持空間，`width: 90%`， `margin: auto`。
@@ -183,7 +183,7 @@ nav ul {
 
 ```
 
-### Hero Section
+### Hero Section CSS
 
 1. 對圖片進行設置，上面疊一層陰影`linear-gradient`，增加字的可視度。
 
@@ -309,7 +309,7 @@ h3 {
 }
 ```
 
-## Creating the City Section
+## City Section
 
 [Browser Prefixes](https://autoprefixer.github.io/)
 
@@ -359,7 +359,7 @@ h3 {
 }
 ```
 
-### City Section All CSS
+### City Section CSS
   
 ```css=
 /* Locations Section */
@@ -500,34 +500,41 @@ h3 {
 
 
 ### Card HTML
-```pug=
-section#benefits
-  header.benefits-head
-    h2 The Perfect Travel
-    h3
-      | We cover everything for picking the perfect hotel
-      br
-      | to flight and
-      |             destination.
-  .cards
-    .card
-      .card-icon
-        img(src='icons/route-solid.svg' alt='')
-      h4 Travel
-      p Travel in over 250 countries with no effort.
-    .card
-      .card-icon
-        img(src='icons/bed-solid.svg' alt='')
-      h4 Hotel
-      p Hotel located near popular areas.
-    .card
-      .card-icon
-        img(src='icons/plane-departure-solid.svg' alt='')
-      h4 Fly
-      p Flight included in every purchased trip.
-
+```html=
+<section id="benefits">
+        <header class="benefits-head">
+          <h2>The Perfect Travel</h2>
+          <h3>
+            We cover everything for picking the perfect hotel<br />to flight and
+            destination.
+          </h3>
+        </header>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">
+              <img src="icons/route-solid.svg" alt="" />
+            </div>
+            <h4>Travel</h4>
+            <p>Travel in over 250 countries with no effort.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <img src="icons/bed-solid.svg" alt="" />
+            </div>
+            <h4>Hotel</h4>
+            <p>Hotel located near popular areas.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <img src="icons/plane-departure-solid.svg" alt="" />
+            </div>
+            <h4>Fly</h4>
+            <p>Flight included in every purchased trip.</p>
+          </div>
+        </div>
+      </section>
 ```
-### Benefits Section Css
+### Card Section CSS
 
 ![](https://i.imgur.com/WiUjbuq.png)
 
@@ -548,12 +555,13 @@ section#benefits
   padding: 1rem;
 }
 ```
-![](https://i.imgur.com/jih7ZX3.png)
+![](https://i.imgur.com/HAloOLz.png)
 
 
-1. 卡片`min-height: 70vh;`，flex預設會有stretch，所以他會延伸到頁面下(70vh)，只要加上`align-item:center`就可以使他致中縮短。
+1. 卡片`min-height: 70vh;`，flex預設會是`stretch`，所以他會延伸到頁面下(70vh)，只要加上`align-item:center`就可以使他致中縮短。 [flex筆記](https://hff2.github.io/2021/02/22/CSS-flex/)
 2. `box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5)`，box-shadow: x y blur 顏色
-3. 開始調整前先把img改成`height:100px`，較為美觀。
+3. 開始調整前先把img改成`height:100px`，較容易查看。
+
 ```css=
 .cards {
   width: 90%;
@@ -604,25 +612,36 @@ section#benefits
 
 ### Form HTML
 
-注意表格的html怎麼寫!
+注意表格的html怎麼寫
 
-```pug=
-scection#contact
-  .form-wrapper
-    header.form-head
-      h2 Contact Us
-    form(action='https://formspree.io/f/mnqoggek' method='POST')
-      .name-form
-        label(for='name') Name:
-        input#name(type='text' name='name' required='')
-      .email-form
-        label(for='email') Email:
-        input#email(type='email' name='email' required='')
-      button(value='Send' type='submit') Submit
-
+```html=
+<scection id="contact">
+  <div class="form-wrapper">
+    <header class="form-head">
+      <h2>Contact Us</h2>
+    </header>
+    <form>
+    <!-- name -->
+      <div class="name-form">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" required />
+      </div>
+    <!-- email -->
+      <div class="email-form">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+        />
+      </div>
+      <button value="Send" type="submit">Submit</button>
+    </form>
+  </div>
+</scection>
 ```
 
-### Form Css
+### Form CSS
 1. `width: 100%`，延伸整個button。
 2. `border-bottom-left-radius: 20px`，改變button特定的邊邊圓角。
   
@@ -680,7 +699,8 @@ scection#contact
 }
 ```
 
-![](https://i.imgur.com/QJROdNm.png)
+![](https://i.imgur.com/3rvgFe9.png)
+
 
 ## Footer
 
@@ -690,24 +710,32 @@ scection#contact
 
 `&copy;`，Travelly旁邊的小c。
 
-```pug=
-footer
-  .footer-wrapper
-    h5 Travelly &copy;
-    ul
-      li
-        a(href='#' title='twitter-social-media')
-          img(src='icons/twitter.svg' alt='twitter-social-media')
-      li
-        a(href='#' title='youtube-social-media')
-          img(src='icons/youtube.svg' alt='youtube-social-media')
-      li
-        a(href='#' title='instagram-social-media')
-          img(src='icons/instagram.svg' alt='instagram-social-media')
-
+```html=
+<footer>
+  <div class="footer-wrapper">
+    <h5>Travelly &copy;</h5>
+    <ul>
+      <li>
+        <a href="#" title="twitter-social-media"
+          ><img src="icons/twitter.svg" alt="twitter-social-media"
+        /></a>
+      </li>
+      <li>
+        <a href="#" title="youtube-social-media"
+          ><img src="icons/youtube.svg" alt="youtube-social-media"
+        /></a>
+      </li>
+      <li>
+        <a href="#" title="instagram-social-media"
+          ><img src="icons/instagram.svg" alt="instagram-social-media"
+        /></a>
+      </li>
+    </ul>
+  </div>
+</footer>
 ```
 
-### Footer Css
+### Footer CSS
 
 1. flex不是在所有地方都會定位，要在有可以排列的(ul)的地方才可以做使用，如果放在footer裡面就無法排列。
 
@@ -800,22 +828,27 @@ button:focus {
 
 接受信件回覆的一種方法。
 
-```htmlembedded=
-<form action="https://formspree.io/f/mnqoggek" method="POST">
-   <div class="name-form">
-      <label for="name">Name:</label>
-      <input id="name" type="text" name="name" required />
-   </div>
-   <div class="email-form">
-      <label for="email">Email:</label>
-      <input
-         id="email"
-         type="email"
-         name="email"
-         required
-         name="_replyto"
-         />
-   </div>
-   <button value="Send" type="submit">Submit</button>
-</form>
+```html=
+<scection id="contact">
+  <div class="form-wrapper">
+    <header class="form-head">
+      <h2>Contact Us</h2>
+    </header>
+    <form action="https://formspree.io/f/mnqoggek" method="POST">
+      <div class="name-form">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" required />
+      </div>
+      <div class="email-form">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+        />
+      </div>
+      <button value="Send" type="submit">Submit</button>
+    </form>
+  </div>
+</scection>
 ```

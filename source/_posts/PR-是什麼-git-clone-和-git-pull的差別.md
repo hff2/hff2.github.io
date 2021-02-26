@@ -33,29 +33,21 @@ Github上面有很多開源專案，當我們想要幫忙修改內容或是添�
 
 1. 可以複製code下的ssh連結，在終端機打上` git clone `+複製的連結。
 
-![](https://i.imgur.com/6Zi3MKk.png)
-
 2. 建立新的branch
-
-![](https://i.imgur.com/jxVHGJv.png)
 
 3. 檢查branch是否存在
 
-![](https://i.imgur.com/61N7tBZ.png)
+4. 切換branch，`git checkout ...`
 
-5. 切換branch，`git checkout ...`
-
-![](https://i.imgur.com/UIjjZu9.png)
-
-7. `git add .` ，`git commit -m ...`
-8. `git push`
+5. `git add .` ，`git commit -m ...`
+6. `git push`
 
 ![](https://i.imgur.com/WsUjbpz.png)
 
-9. 到github pull-request頁面建立pull-request。
-10. 選擇自己創建的branch
-11. 發出pull-request
-12. 等待被merge
+7. 到github pull-request頁面建立pull-request。
+8. 選擇自己創建的branch
+9. 發出pull-request
+10. 等待被merge
 
 ## 當PR被Merge後，要如何發下一個 PR？
 
