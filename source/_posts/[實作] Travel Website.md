@@ -1,14 +1,16 @@
 ---
-title: '[實作] Travel Website'
+title: "[實作] Travel Website"
 author: Phoebe
 tags: HTML&CSS
 categories: Portfolio
 date: 2021-02-07 11:07:11
 ---
+
 ## 前置 Settings
+
 ### HTML
 
-在meta裡面加入一些東西
+在 meta 裡面加入一些東西
 
 ```html=
 <meta
@@ -18,8 +20,11 @@ date: 2021-02-07 11:07:11
 <meta name="robots" content="index,follow" />
 
 ```
+
 <!--more-->
-加入頁面標籤的icon
+
+加入頁面標籤的 icon
+
 ```html=
 <link rel="icon" href="icons/plane.svg" />
 ```
@@ -28,12 +33,11 @@ date: 2021-02-07 11:07:11
 
 font-size: 62.5%，1rem will be 10px。
 
+各瀏覽器預設字型字號為**16px**，16px 相當於 1rem。
 
-各瀏覽器預設字型字號為**16px**，16px相當於1rem。
+當我們定義 10px / 16px = 0.625 = 62.5% 時，瀏覽器的預設字型為 16px \* 62.5% = 10px。
 
-當我們定義 10px / 16px = 0.625 = 62.5% 時，瀏覽器的預設字型為16px * 62.5% = 10px。
-
-此時，10px相當於1rem。
+此時，10px 相當於 1rem。
 
 ```css=
 * {
@@ -53,7 +57,9 @@ html {
 ![](https://i.imgur.com/ngnMpS9.jpg)
 
 <!--more-->
+
 ### Nav bar HTML
+
 超連結使點選標題時，直接到頁面的該位置。
 
 ```html=
@@ -84,28 +90,29 @@ html {
 
 ### Nav bar CSS
 
-1. nav bar會隨著視窗做變化，但我們希望nav bar不要隨著視窗做變化時，可以使用`padding`+`min-height`代替。
+1. nav bar 會隨著視窗做變化，但我們希望 nav bar 不要隨著視窗做變化時，可以使用`padding`+`min-height`代替。
 2. 要讓整個頁面的兩邊保持空間，`width: 90%`， `margin: auto`。
 
 ![](https://i.imgur.com/U7LMA6s.png)
 
 3. `flex: 1 1 40rem`，flex: grow shrink basis。`flex-grow`不長大，`flex-shrink`不縮小，`flex-basis`基本標準。
 
-4. 直接套給logo的字體,`font-weight`可以在下載字體時設定。
+4. 直接套給 logo 的字體,`font-weight`可以在下載字體時設定。
 
 ```css=
-#logo{  
+#logo{
   font-family: "Pattaya", sans-serif;
   font-weight: 400;
 }
 ```
-5. `flex-wrap:wrap`，nav的標籤會自動Jump Down。[什麼是flex wrap](https://hff2.github.io/2021/02/23/CSS-flex/)
+
+5. `flex-wrap:wrap`，nav 的標籤會自動 Jump Down。[什麼是 flex wrap](https://hff2.github.io/2021/02/23/CSS-flex/)
 
 ![](https://i.imgur.com/7ksrvwj.png)
 
-6. `flex: 1 1 40rem;`，只要視窗空間小於40rem，就會馬上Jump Down。
+6. `flex: 1 1 40rem;`，只要視窗空間小於 40rem，就會馬上 Jump Down。
 
-7. 讓nav bar保持在上方，`position: sticky;`，`top: 0;`，`z-index: 3;`
+7. 讓 nav bar 保持在上方，`position: sticky;`，`top: 0;`，`z-index: 3;`
 
 ```css=
 h1 {
@@ -196,6 +203,7 @@ nav ul {
     background-position: center;
 }
 ```
+
 2. `min-height: 90vh;`圖片的最小高度，讓圖片伸展開來。
 
 ```css=
@@ -221,7 +229,7 @@ nav ul {
 
 ```
 
-讓h3跟旁邊撐開距離
+讓 h3 跟旁邊撐開距離
 
 ![](https://i.imgur.com/jnlu2ue.jpg)
 
@@ -231,7 +239,7 @@ nav ul {
 }
 ```
 
-更改button的樣式
+更改 button 的樣式
 
 ```css=
 button {
@@ -270,7 +278,7 @@ body {
 
 更改特定的字體粗細度
 
-`font-weight: normal`，更改它weight。
+`font-weight: normal`，更改它 weight。
 
 ```css=
 h3 {
@@ -281,7 +289,7 @@ h3 {
 
 ### Media Query
 
-> 可以確認他什麼size的時候，body會不見。
+> 可以確認他什麼 size 的時候，body 會不見。
 
 ```css=
 /* 小於932px的時候會消失 */
@@ -292,8 +300,7 @@ h3 {
 }
 ```
 
-更改字體大小，還有header的padding。
-
+更改字體大小，還有 header 的 padding。
 
 ```css=
 @media screen and (max-width: 932px) {
@@ -339,13 +346,13 @@ h3 {
 
 ### City Section CSS 解析
 
-1. `overflow: hidden;`，不讓cloud跑出去，加在根元素section上。
+1. `overflow: hidden;`，不讓 cloud 跑出去，加在根元素 section 上。
 2. `text-decoration: underline;`，不一定每個瀏覽器都支援。
-3. `text-decoration-thickness: 0.5rem`，加粗底線。 
+3. `text-decoration-thickness: 0.5rem`，加粗底線。
 
 ![](https://i.imgur.com/gPYtlJO.png)
 
-4. 在字上面加上顏色，chrome需要在前面加上-webkit私有前綴才可以使用。
+4. 在字上面加上顏色，chrome 需要在前面加上-webkit 私有前綴才可以使用。
 
 ![](https://i.imgur.com/KsLdsWK.png)
 
@@ -360,7 +367,7 @@ h3 {
 ```
 
 ### City Section CSS
-  
+
 ```css=
 /* Locations Section */
 
@@ -401,14 +408,16 @@ h3 {
     top: 0;
 }
 ```
+
 ### Cloud Animation
 
 1. transform，位移。
-    `translate(mx,my)`，元素以參考點為中心，X軸位移mx距離，Y軸位移my距離。
-2. animation屬性，normal，reverse，alternate，reverse-alternate。
- [參考網站](https://www.runoob.com/cssref/css3-pr-animation-direction.html)
+   `translate(mx,my)`，元素以參考點為中心，X 軸位移 mx 距離，Y 軸位移 my 距離。
+2. animation 屬性，normal，reverse，alternate，reverse-alternate。
+   [參考網站](https://www.runoob.com/cssref/css3-pr-animation-direction.html)
 3. `infinite`為重複播放。
 4. `@keyframe`製作動畫。
+
 ```css=
 .cloud {
   position: absolute;
@@ -448,10 +457,9 @@ h3 {
 ### Media Query
 
 5. `-webkit-text-fill-color: white;`，讓字體變白色。
-6.  `background: rgb(19, 28, 39, 0.6)`，加上一層背景。
+6. `background: rgb(19, 28, 39, 0.6)`，加上一層背景。
 
 ![](https://i.imgur.com/f5YOZ75.png)
-
 
 ```css=
 /* Media Query */
@@ -498,8 +506,8 @@ h3 {
 
 ![](https://i.imgur.com/cyN8ni6.png)
 
-
 ### Card HTML
+
 ```html=
 <section id="benefits">
         <header class="benefits-head">
@@ -534,6 +542,7 @@ h3 {
         </div>
       </section>
 ```
+
 ### Card Section CSS
 
 ![](https://i.imgur.com/WiUjbuq.png)
@@ -555,18 +564,18 @@ h3 {
   padding: 1rem;
 }
 ```
+
 ![](https://i.imgur.com/HAloOLz.png)
 
-
-1. 卡片`min-height: 70vh;`，flex預設會是`stretch`，所以他會延伸到頁面下(70vh)，只要加上`align-item:center`就可以使他致中縮短。 [flex筆記](https://hff2.github.io/2021/02/22/CSS-flex/)
+1. 卡片`min-height: 70vh;`，flex 預設會是`stretch`，所以他會延伸到頁面下(70vh)，只要加上`align-item:center`就可以使他致中縮短。 [flex 筆記](https://hff2.github.io/2021/02/22/CSS-flex/)
 2. `box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5)`，box-shadow: x y blur 顏色
-3. 開始調整前先把img改成`height:100px`，較容易查看。
+3. 開始調整前先把 img 改成`height:100px`，較容易查看。
 
 ```css=
 .cards {
   width: 90%;
   margin: auto;
-  /*  在根元素加上display:flex就可以使他平行  */    
+  /*  在根元素加上display:flex就可以使他平行  */
   display: flex;
   min-height: 70vh;
   /* flex預設會有strech所以他會延伸到頁面下(70vh)，
@@ -605,14 +614,13 @@ h3 {
 
 ```
 
-## Form Section 
+## Form Section
 
 ![](https://i.imgur.com/IidPbxy.jpg)
 
-
 ### Form HTML
 
-注意表格的html怎麼寫
+注意表格的 html 怎麼寫
 
 ```html=
 <scection id="contact">
@@ -642,9 +650,10 @@ h3 {
 ```
 
 ### Form CSS
-1. `width: 100%`，延伸整個button。
-2. `border-bottom-left-radius: 20px`，改變button特定的邊邊圓角。
-  
+
+1. `width: 100%`，延伸整個 button。
+2. `border-bottom-left-radius: 20px`，改變 button 特定的邊邊圓角。
+
 ```css=
 /* 圖片 */
 #contact {
@@ -701,14 +710,13 @@ h3 {
 
 ![](https://i.imgur.com/3rvgFe9.png)
 
-
 ## Footer
 
 ![](https://i.imgur.com/hhN3kEo.png)
 
 ### Footer HTML
 
-`&copy;`，Travelly旁邊的小c。
+`&copy;`，Travelly 旁邊的小 c。
 
 ```html=
 <footer>
@@ -737,7 +745,7 @@ h3 {
 
 ### Footer CSS
 
-1. flex不是在所有地方都會定位，要在有可以排列的(ul)的地方才可以做使用，如果放在footer裡面就無法排列。
+1. flex 不是在所有地方都會定位，要在有可以排列的(ul)的地方才可以做使用，如果放在 footer 裡面就無法排列。
 
 ```css=
 footer {
@@ -777,7 +785,7 @@ button:focus {
 
 ### Media Query
 
-1. `.form-wrapper {width: 100%;}`，讓input框框不會突出背景色。
+1. `.form-wrapper {width: 100%;}`，讓 input 框框不會突出背景色。
 
 2. `pointer-events: none;`，不會點到雲。
 
