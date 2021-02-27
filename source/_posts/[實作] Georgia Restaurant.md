@@ -111,6 +111,8 @@ date: 2021-02-26 11:07:11
 
 #### 如何產生 \*\*\* 的樣子?
 
+![](https://i.imgur.com/LHjWHH6.png)
+
 `<i class="fas fa-star-of-life star"></i>`，可以引入**星字號**，做一個 quote 的效果。
 
 需要在一開始加上 fontawesome 的連結
@@ -132,6 +134,8 @@ date: 2021-02-26 11:07:11
 #### 畫面如何分成兩塊(圖與文字)?
 
 左邊 width 佔`60%`，右邊 width 佔`40%`。
+
+![](https://i.imgur.com/TtoUQYg.png)
 
 ```scss=
 .description {
