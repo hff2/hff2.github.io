@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="學習到的知識點CSS disable !important">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phoebe&#39;s Blog">
+<meta property="og:url" content="https://hff2.github.io.com/2021/03/01/[%E5%AF%A6%E4%BD%9C]%20Tic%20Tac%20Toe/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="學習到的知識點CSS disable !important">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/KPMiLxU.png">
+<meta property="og:image" content="https://i.imgur.com/a2ChBcm.png">
+<meta property="article:published_time" content="2021-03-01T07:53:29.704Z">
+<meta property="article:modified_time" content="2021-03-01T07:56:26.851Z">
+<meta property="article:author" content="Phoebe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/KPMiLxU.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/03/01/[%E5%AF%A6%E4%BD%9C]%20Tic%20Tac%20Toe/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title> | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/03/01/[%E5%AF%A6%E4%BD%9C]%20Tic%20Tac%20Toe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-03-01 15:53:29 / 修改時間：15:56:26" itemprop="dateCreated datePublished" datetime="2021-03-01T15:53:29+08:00">2021-03-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li><code>disable</code></li>
+<li><code>!important</code><a id="more"></a>
+
+</li>
+</ul>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li><code>.hasClass</code>，檢查被選擇的元素<strong>是否包含</strong>指定的<code>class</code>。</li>
+<li><code>.text</code></li>
+<li><code>.removeClass</code></li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a target="_blank" rel="noopener" href="https://hff2.github.io/My-Projects/Tic_Tac_Toe/index.html">Demo</a></p>
+<ul>
+<li>判斷兩方誰先連線</li>
+<li>需兩方輪流操作點擊後新增圈圈與叉叉</li>
+<li>判斷是否合局</li>
+</ul>
+<p><img src="https://i.imgur.com/KPMiLxU.png"></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>結構十分簡單，利用<code>ul</code>和<code>li</code>來建立。</p>
+<p>最下面新增一個<strong>清除</strong>的按鈕。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Tic Tac Toe<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;board&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot1&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot2&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot3&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot4&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot5&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot6&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot7&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot8&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot9&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clearfix&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;reset&quot;</span>&gt;</span>Reset Game<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h2><h3 id="disable-按鈕禁用"><a href="#disable-按鈕禁用" class="headerlink" title="disable 按鈕禁用"></a>disable 按鈕禁用</h3><p>HTML button disabled 是用來讓按鈕禁止使用的，簡單來說當你的網頁有按鈕出現，卻又不希望使用者按下按鈕，就可以使用 disabled 這樣的語法，讓按鈕功能失效。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">disabled</span>=<span class="string">&quot;disabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;這個按鈕不能使用&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="important的用法"><a href="#important的用法" class="headerlink" title="!important的用法"></a><code>!important</code>的用法</h3><p>預設狀態下，CSS 採用順序為：</p>
+<p>style 定義 &gt; class 定義 &gt; default 定義</p>
+<p>如果在 class 內的特定項目後面加上<code>!important</code>時，則採用順序會變成</p>
+<p>class 內有(!important)項目 &gt; style 定義 &gt; class 定義 &gt; default 定義。</p>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><p><a target="_blank" rel="noopener" href="https://github.com/hff2/My-Projects/blob/tic-tac-toe/Tic_Tac_Toe/script.js">完整 Code</a></p>
+<h3 id="如何在li被點擊時出現反應"><a href="#如何在li被點擊時出現反應" class="headerlink" title="如何在li被點擊時出現反應?"></a>如何在<code>li</code>被點擊時出現反應?</h3><p><img src="https://i.imgur.com/a2ChBcm.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">&quot;x&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="string">&quot;o&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> turns = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    $(<span class="string">&quot;#board li&quot;</span>).on(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;clicked&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="如果第九次沒有出現贏家"><a href="#如果第九次沒有出現贏家" class="headerlink" title="如果第九次沒有出現贏家?"></a>如果第九次沒有出現贏家?</h3><p>平手的話，就重新開始。</p>
+<p>turn 也歸零。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(turns == <span class="number">9</span>)&#123;</span><br><span class="line">    alert(<span class="string">&#x27;Tie Game&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).text(<span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;disable&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">    turns = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="可以重複切換圈圈叉叉怎麼辦"><a href="#可以重複切換圈圈叉叉怎麼辦" class="headerlink" title="可以重複切換圈圈叉叉怎麼辦?"></a>可以重複切換圈圈叉叉怎麼辦?</h3><p>加上 CSS 屬性<code>disable</code>，就可以使按鈕禁止使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>($(<span class="built_in">this</span>).hasClass(<span class="string">&#x27;disable&#x27;</span>))&#123;</span><br><span class="line">    alert(<span class="string">&#x27;This spot is already filled&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="點擊li時，如何出現圈圈與叉叉"><a href="#點擊li時，如何出現圈圈與叉叉" class="headerlink" title="點擊li時，如何出現圈圈與叉叉?"></a>點擊<code>li</code>時，如何出現圈圈與叉叉?</h3><p>每當點擊時，次數要+1。</p>
+<p>增加<code>text</code>( 圈圈或叉叉 )與<code>class disable</code>。</p>
+<p>而每次點擊完圈圈與叉叉後，都需要判斷是否連線了，如果連線了，就清空所有使用者添加的元素，回到 reset 狀態。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(turns%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    turns++;</span><br><span class="line">    $(<span class="built_in">this</span>).text(o);</span><br><span class="line">    $(<span class="built_in">this</span>).addClass(<span class="string">&#x27;disable o&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot2.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot4.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot6.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot7.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot8.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot4.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot7.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot2.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot8.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot6.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot7.hasClass(<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">    )&#123;</span><br><span class="line">        alert(<span class="string">&#x27;Winner: O&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).text(<span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;disable&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">        turns = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjIxsmxzI7vAhU6K6YKHfweDRcQFjABegQIAxAD&url=https://www.itread01.com/content/1535990526.html&usg=AOvVaw1dNqiZIwP7NkP-BJI377J0"># css !important 用法以及 CSS 樣式使用優先級判斷</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:disabled">:disabled - CSS（层叠样式表） | MDN (mozilla.org)</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/26/%5B%E5%AF%A6%E4%BD%9C%5D%20Georgia%20Restaurant/" rel="prev" title="[實作] Georgia Restaurant">
+      <i class="fa fa-chevron-left"></i> [實作] Georgia Restaurant
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AD%98%E9%BB%9E"><span class="nav-number">1.</span> <span class="nav-text">學習到的知識點</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">1.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">1.2.</span> <span class="nav-text">JS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B"><span class="nav-number">3.1.</span> <span class="nav-text">結構</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-1"><span class="nav-number">4.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#disable-%E6%8C%89%E9%88%95%E7%A6%81%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">disable 按鈕禁用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#important%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">!important的用法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-1"><span class="nav-number">5.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8li%E8%A2%AB%E9%BB%9E%E6%93%8A%E6%99%82%E5%87%BA%E7%8F%BE%E5%8F%8D%E6%87%89"><span class="nav-number">5.1.</span> <span class="nav-text">如何在li被點擊時出現反應?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E7%AC%AC%E4%B9%9D%E6%AC%A1%E6%B2%92%E6%9C%89%E5%87%BA%E7%8F%BE%E8%B4%8F%E5%AE%B6"><span class="nav-number">5.2.</span> <span class="nav-text">如果第九次沒有出現贏家?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E9%87%8D%E8%A4%87%E5%88%87%E6%8F%9B%E5%9C%88%E5%9C%88%E5%8F%89%E5%8F%89%E6%80%8E%E9%BA%BC%E8%BE%A6"><span class="nav-number">5.3.</span> <span class="nav-text">可以重複切換圈圈叉叉怎麼辦?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%9E%E6%93%8Ali%E6%99%82%EF%BC%8C%E5%A6%82%E4%BD%95%E5%87%BA%E7%8F%BE%E5%9C%88%E5%9C%88%E8%88%87%E5%8F%89%E5%8F%89"><span class="nav-number">5.4.</span> <span class="nav-text">點擊li時，如何出現圈圈與叉叉?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">6.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">161k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:26</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
