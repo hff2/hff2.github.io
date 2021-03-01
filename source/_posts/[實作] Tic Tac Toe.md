@@ -1,3 +1,11 @@
+---
+title: "[實作] Tic Tac Toe"
+author: Phoebe
+tags: Javascript
+categories: Portfolio
+date: 2021-03-01 11:07:11
+---
+
 ## 學習到的知識點
 
 ### CSS
