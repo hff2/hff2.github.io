@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="觀看 Amos 的金魚都能懂得 Bootstrap5 網頁框架開發影片學習。 1 Bootstrap5 快速簡介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bootstrap 5 學習紀錄">
+<meta property="og:url" content="https://hff2.github.io.com/2021/03/08/Bootstrap5%20%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="觀看 Amos 的金魚都能懂得 Bootstrap5 網頁框架開發影片學習。 1 Bootstrap5 快速簡介">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/b0RrZ0O.png">
+<meta property="og:image" content="https://i.imgur.com/lOIs67g.png">
+<meta property="og:image" content="https://i.imgur.com/XCTaP4j.png">
+<meta property="og:image" content="https://i.imgur.com/GJkUXSb.png">
+<meta property="og:image" content="https://i.imgur.com/0KiCLZU.png">
+<meta property="og:image" content="https://i.imgur.com/1YiCxQ3.png">
+<meta property="og:image" content="https://i.imgur.com/DuQDyyP.png">
+<meta property="og:image" content="https://i.imgur.com/4jcyoEG.png">
+<meta property="og:image" content="https://i.imgur.com/qoHaWOh.png">
+<meta property="article:published_time" content="2021-03-08T03:07:11.000Z">
+<meta property="article:modified_time" content="2021-03-09T07:20:28.857Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="Bootstrap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/b0RrZ0O.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/03/08/Bootstrap5%20%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Bootstrap 5 學習紀錄 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/03/08/Bootstrap5%20%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Bootstrap 5 學習紀錄
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2021-03-08 11:07:11" itemprop="dateCreated datePublished" datetime="2021-03-08T11:07:11+08:00">2021-03-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-03-09 15:20:28" itemprop="dateModified" datetime="2021-03-09T15:20:28+08:00">2021-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>16k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>15 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>觀看 Amos 的<a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLqivELodHt3jq3oWBZfdhMu0GE7774HBW">金魚都能懂得 Bootstrap5 網頁框架開發</a>影片學習。</p>
+<h2 id="1-Bootstrap5-快速簡介"><a href="#1-Bootstrap5-快速簡介" class="headerlink" title="1 Bootstrap5 快速簡介"></a>1 Bootstrap5 快速簡介</h2><a id="more"></a>
+
+<p>明明有第一手的資訊為什麼還要看二手的?</p>
+<h2 id="2-Bootstrap5-安裝與快速檢測方式"><a href="#2-Bootstrap5-安裝與快速檢測方式" class="headerlink" title="2 Bootstrap5 安裝與快速檢測方式"></a>2 Bootstrap5 安裝與快速檢測方式</h2><h3 id="第一種-預設的-template"><a href="#第一種-預設的-template" class="headerlink" title="第一種: 預設的 template"></a>第一種: 預設的 template</h3><p>使用 CDN 連結的方式</p>
+<p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/#starter-template">Bootstrap5 的首頁</a></p>
+<p><img src="https://i.imgur.com/b0RrZ0O.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Required meta tags --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Bootstrap CSS --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">integrity</span>=<span class="string">&quot;sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl&quot;</span> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Optional JavaScript; choose one of the two! --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Option 1: Bootstrap Bundle with Popper --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js&quot;</span> <span class="attr">integrity</span>=<span class="string">&quot;sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0&quot;</span> <span class="attr">crossorigin</span>=<span class="string">&quot;anonymous&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Option 2: Separate Popper and Bootstrap JS --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js&quot; integrity=&quot;sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js&quot; integrity=&quot;sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="第二種-下載到本地端"><a href="#第二種-下載到本地端" class="headerlink" title="第二種: 下載到本地端"></a>第二種: 下載到本地端</h3><p>不同的開發模式，會有安全性的問題，會採用把檔案下載到本地端，比較安全，別人無法更改這些檔案。</p>
+<p>popper.min.js 為第三方的東西</p>
+<p>要放入的檔案為:</p>
+<ol>
+<li>bootstrap.min.js</li>
+<li><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js">popper.min.js</a></li>
+<li>bootstrap.min.css</li>
+</ol>
+<p>Layout 裡面的 grid 是 bootstrap 採用 flex 做出來的格線系統，會稱為系統是因為有規則存在。</p>
+<p>格線系統是將<strong>空間</strong>分割成 12 欄，分割成<strong>12 等分</strong>。</p>
+<p><code>.container</code>，是一個定寬容器。(有固定的寬度，並且在不同的裝置會有不同的寬度)</p>
+<p><code>.container-fluid</code>，沒有固定寬度。</p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/phoebe-ho/pen/WNoXorJ">格線系統範例</a></p>
+<h2 id="3-Bootstrap5-格線系統入門"><a href="#3-Bootstrap5-格線系統入門" class="headerlink" title="3 Bootstrap5 格線系統入門"></a>3 Bootstrap5 格線系統入門</h2><h3 id="格線自動分欄"><a href="#格線自動分欄" class="headerlink" title="格線自動分欄"></a>格線自動分欄</h3><p>格線自動分欄，如果要做 5 個<code>item</code>在同一行要如何做?</p>
+<p>直接使用五個<code>col</code>即可，因為格線系統會自動分欄，要幾欄有幾欄，寬度它會幫我決定。</p>
+<p><img src="https://i.imgur.com/lOIs67g.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=10&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- w-100 寬度100% --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=15&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=20&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=20&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=20&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="固定寬度的格線用法"><a href="#固定寬度的格線用法" class="headerlink" title="固定寬度的格線用法"></a>固定寬度的格線用法</h3><p>格線系統是將空間分割成 12 欄，分割成 12 等分，所以假如要放 3 個 column，就使用 12/4=3，<code>col-4</code>。</p>
+<p><img src="https://i.imgur.com/XCTaP4j.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 每一個元素佔12/4=3格 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=10&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- w-100 寬度100% --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=15&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=20&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/layout/breakpoints/">Breakpoints · Bootstrap v5.0</a></p>
+<ul>
+<li>576px 最小型的裝置</li>
+<li>576px 手機的橫向</li>
+<li>768px 螢幕解析度大於等於 768 就會生效，平板的直向</li>
+<li>992px 平板的橫向(較舊的裝置)</li>
+<li>1200px 平板的橫向(ipad pro)</li>
+<li>1400px Bootstrap5 增加的</li>
+</ul>
+<p><img src="https://i.imgur.com/GJkUXSb.png"></p>
+<h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/layout/containers/">Containers · Bootstrap v5.0</a></p>
+<p><code>.container</code>旁邊都會留空間，讓畫面更好觀看。</p>
+<p><img src="https://i.imgur.com/0KiCLZU.png"></p>
+<h3 id="row-做了什麼事情"><a href="#row-做了什麼事情" class="headerlink" title=".row 做了什麼事情"></a>.row 做了什麼事情</h3><ol>
+<li><code>display flex</code> 做出幾欄幾欄的欄寬，可以進行橫向排列。</li>
+<li><code>flex wrap</code> 格線可以做換列。</li>
+<li><code>margin-left/right</code>的負值，<code>container</code>會友左右的<code>padding</code>，把它抵銷掉，可以占滿空間。</li>
+</ol>
+<h3 id="格線在不同尺寸的應用"><a href="#格線在不同尺寸的應用" class="headerlink" title="格線在不同尺寸的應用"></a>格線在不同尺寸的應用</h3><p>在手機為 12 欄，在 768px 以上的裝置為 4 欄，在 992px 以上為 3 欄，在 1400px 桌機上為 6 欄。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-4 col-lg-3 col-xxl-2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=65&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="自動欄寬-RWD-應用"><a href="#自動欄寬-RWD-應用" class="headerlink" title="自動欄寬 RWD 應用"></a>自動欄寬 RWD 應用</h3><p>全部設定為只有 col。</p>
+<p>直接在 row 上面動手腳，一樣可以達到效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row row-cols-md-3 row-cols-lg-4 row-cols-xxl-6&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- col在不同的裝置上面，有不同的設定，不同的欄寬數。 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 希望在平板上面有作用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=10&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="控制欄位的間距"><a href="#控制欄位的間距" class="headerlink" title="控制欄位的間距"></a>控制欄位的間距</h3><p><code>g-</code>為欄中間的間距</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;g-5 row row-cols-md-3 row-cols-lg-4 row-cols-xxl-6&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-md&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=10&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas corrupti, delectus minima ipsum ipsam laborum vero deleniti sint recusandae? Et libero ea beatae quod est dolorum hic excepturi totam exercitationem?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-Bootstrap-格線對齊與分布"><a href="#4-Bootstrap-格線對齊與分布" class="headerlink" title="4 Bootstrap 格線對齊與分布"></a>4 Bootstrap 格線對齊與分布</h2><h3 id="放三個-column，卻要置中該如何做"><a href="#放三個-column，卻要置中該如何做" class="headerlink" title="放三個 column，卻要置中該如何做?"></a>放三個 column，卻要置中該如何做?</h3><p>使用<code>col-3</code>卻只有 3 個<code>div</code>，會導致<code>div</code>偏左，右邊空了一格<code>col</code>。</p>
+<p><img src="https://i.imgur.com/1YiCxQ3.png"></p>
+<p>在<code>row</code>裡使用<code>justify-content-around</code>，跟純 CSS 比較起來，差在語法裡不用寫重複的<code>flex</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Here --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row justify-content-around&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=20&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, nihil!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=25&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, nihil!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;https://picsum.photos/300/200?random=30&#x27;</span> <span class="attr">class</span>=<span class="string">&quot;w-100&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h3</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, nihil!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="文字放到畫面正中央"><a href="#文字放到畫面正中央" class="headerlink" title="文字放到畫面正中央"></a>文字放到畫面正中央</h3><p>在<code>row</code>上面使用<code>justify-content-center</code>與<code>align-items-center</code>。</p>
+<p><img src="https://i.imgur.com/DuQDyyP.png"></p>
+<p>kv = key version</p>
+<p>使用<code>align-items-center</code>沒效果時，可能是<code>.container</code>與<code>.row</code>未設定高度的問題，所以在後面設置<code>h-100</code>即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;kv&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container h-100&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row justify-content-center align-items-center h-100&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-8 col-md-6&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;text&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>金魚都能懂得Bootstrap<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus, suscipit.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-格線排序控制"><a href="#5-格線排序控制" class="headerlink" title="5 格線排序控制"></a>5 格線排序控制</h2><p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/utilities/flex/#order">Order · Bootstrap v5.0</a></p>
+<h3 id="Order-的使用方法-1"><a href="#Order-的使用方法-1" class="headerlink" title="Order 的使用方法 1"></a>Order 的使用方法 1</h3><p><code>order-last</code>，order 設定一樣時，按照原始碼的順序，A 前 B 後。</p>
+<p><img src="https://i.imgur.com/4jcyoEG.png"></p>
+<blockquote>
+<p>order 要設定在誰身上?</p>
+</blockquote>
+<p><code>item</code>外面的<code>div</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- order-last--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-last&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>A Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- order-last--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-last&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>B Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>C Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>D Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Order-的使用方法-2"><a href="#Order-的使用方法-2" class="headerlink" title="Order 的使用方法 2"></a>Order 的使用方法 2</h3><p><code>order-順序</code>，直接指定排序。</p>
+<p><img src="https://i.imgur.com/qoHaWOh.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- order-順序 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-3&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>A Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-4&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>B Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-2&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>C Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-1&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>D Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Order-的使用方法-3"><a href="#Order-的使用方法-3" class="headerlink" title="Order 的使用方法 3"></a>Order 的使用方法 3</h3><p><code>order-first</code>，指定順序。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>A Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 &quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>B Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-first&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>C Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-first&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>D Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Order-的使用方法-4"><a href="#Order-的使用方法-4" class="headerlink" title="Order 的使用方法 4"></a>Order 的使用方法 4</h3><p>預設的<code>order</code>值為 0，所以只要大於 0，就會往後面排列。</p>
+<p>與<code>order-last</code>使用方法相同。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--  order-1往後排  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-1&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>A Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3 order-1&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>B Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>C Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-3&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span>D Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="在不同裝置呈現不同排序"><a href="#在不同裝置呈現不同排序" class="headerlink" title="在不同裝置呈現不同排序"></a>在不同裝置呈現不同排序</h3><p><code>mb-4</code>為<code>margin-bottom</code>。</p>
+<p><code>order-md-1</code>，可以控制在特定裝置的排序。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4 order-md-1&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>A Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4 order-md-3&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>B Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4 order-md-2&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>C Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4 order-md-4&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>D Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>與上述方法效果相同</p>
+<p>使用<code>order-md-last</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>A Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4 order-md-last&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>B Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>C Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-12 col-md-3 mb-4 order-md-last&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item h-100&quot;</span>&gt;</span>D Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae porro incidunt molestias consectetur eaque, enim distinctio voluptatem cumque! Cumque, repudiandae!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-格線距離控制"><a href="#6-格線距離控制" class="headerlink" title="6 格線距離控制"></a>6 格線距離控制</h2><h2 id="7-圖片與寬高尺寸控制"><a href="#7-圖片與寬高尺寸控制" class="headerlink" title="7 圖片與寬高尺寸控制"></a>7 圖片與寬高尺寸控制</h2><h2 id="8-共用開發項目"><a href="#8-共用開發項目" class="headerlink" title="8 共用開發項目"></a>8 共用開發項目</h2><h2 id="9-初視卡片組件"><a href="#9-初視卡片組件" class="headerlink" title="9 初視卡片組件"></a>9 初視卡片組件</h2><h2 id="10-再探卡片組件"><a href="#10-再探卡片組件" class="headerlink" title="10 再探卡片組件"></a>10 再探卡片組件</h2><h2 id="11-清單全組快速入門"><a href="#11-清單全組快速入門" class="headerlink" title="11 清單全組快速入門"></a>11 清單全組快速入門</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Bootstrap/" rel="tag"># Bootstrap</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/02/%5B%E5%AF%A6%E4%BD%9C%5D%20jQuery%20FAQ%20Slider/" rel="prev" title="[實作] jQuery FAQ Slider">
+      <i class="fa fa-chevron-left"></i> [實作] jQuery FAQ Slider
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Bootstrap5-%E5%BF%AB%E9%80%9F%E7%B0%A1%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">1 Bootstrap5 快速簡介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Bootstrap5-%E5%AE%89%E8%A3%9D%E8%88%87%E5%BF%AB%E9%80%9F%E6%AA%A2%E6%B8%AC%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">2 Bootstrap5 安裝與快速檢測方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A8%AE-%E9%A0%90%E8%A8%AD%E7%9A%84-template"><span class="nav-number">2.1.</span> <span class="nav-text">第一種: 預設的 template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A8%AE-%E4%B8%8B%E8%BC%89%E5%88%B0%E6%9C%AC%E5%9C%B0%E7%AB%AF"><span class="nav-number">2.2.</span> <span class="nav-text">第二種: 下載到本地端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Bootstrap5-%E6%A0%BC%E7%B7%9A%E7%B3%BB%E7%B5%B1%E5%85%A5%E9%96%80"><span class="nav-number">3.</span> <span class="nav-text">3 Bootstrap5 格線系統入門</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E8%87%AA%E5%8B%95%E5%88%86%E6%AC%84"><span class="nav-number">3.1.</span> <span class="nav-text">格線自動分欄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E5%AE%9A%E5%AF%AC%E5%BA%A6%E7%9A%84%E6%A0%BC%E7%B7%9A%E7%94%A8%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">固定寬度的格線用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Breakpoint"><span class="nav-number">3.3.</span> <span class="nav-text">Breakpoint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Container"><span class="nav-number">3.4.</span> <span class="nav-text">Container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#row-%E5%81%9A%E4%BA%86%E4%BB%80%E9%BA%BC%E4%BA%8B%E6%83%85"><span class="nav-number">3.5.</span> <span class="nav-text">.row 做了什麼事情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E7%B7%9A%E5%9C%A8%E4%B8%8D%E5%90%8C%E5%B0%BA%E5%AF%B8%E7%9A%84%E6%87%89%E7%94%A8"><span class="nav-number">3.6.</span> <span class="nav-text">格線在不同尺寸的應用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8B%95%E6%AC%84%E5%AF%AC-RWD-%E6%87%89%E7%94%A8"><span class="nav-number">3.7.</span> <span class="nav-text">自動欄寬 RWD 應用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%AC%84%E4%BD%8D%E7%9A%84%E9%96%93%E8%B7%9D"><span class="nav-number">3.8.</span> <span class="nav-text">控制欄位的間距</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Bootstrap-%E6%A0%BC%E7%B7%9A%E5%B0%8D%E9%BD%8A%E8%88%87%E5%88%86%E5%B8%83"><span class="nav-number">4.</span> <span class="nav-text">4 Bootstrap 格線對齊與分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BE%E4%B8%89%E5%80%8B-column%EF%BC%8C%E5%8D%BB%E8%A6%81%E7%BD%AE%E4%B8%AD%E8%A9%B2%E5%A6%82%E4%BD%95%E5%81%9A"><span class="nav-number">4.1.</span> <span class="nav-text">放三個 column，卻要置中該如何做?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E6%94%BE%E5%88%B0%E7%95%AB%E9%9D%A2%E6%AD%A3%E4%B8%AD%E5%A4%AE"><span class="nav-number">4.2.</span> <span class="nav-text">文字放到畫面正中央</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%A0%BC%E7%B7%9A%E6%8E%92%E5%BA%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">5 格線排序控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Order-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-number">5.1.</span> <span class="nav-text">Order 的使用方法 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Order-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="nav-number">5.2.</span> <span class="nav-text">Order 的使用方法 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Order-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="nav-number">5.3.</span> <span class="nav-text">Order 的使用方法 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Order-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-4"><span class="nav-number">5.4.</span> <span class="nav-text">Order 的使用方法 4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%A3%9D%E7%BD%AE%E5%91%88%E7%8F%BE%E4%B8%8D%E5%90%8C%E6%8E%92%E5%BA%8F"><span class="nav-number">5.5.</span> <span class="nav-text">在不同裝置呈現不同排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%A0%BC%E7%B7%9A%E8%B7%9D%E9%9B%A2%E6%8E%A7%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text">6 格線距離控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%9C%96%E7%89%87%E8%88%87%E5%AF%AC%E9%AB%98%E5%B0%BA%E5%AF%B8%E6%8E%A7%E5%88%B6"><span class="nav-number">7.</span> <span class="nav-text">7 圖片與寬高尺寸控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%85%B1%E7%94%A8%E9%96%8B%E7%99%BC%E9%A0%85%E7%9B%AE"><span class="nav-number">8.</span> <span class="nav-text">8 共用開發項目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%88%9D%E8%A6%96%E5%8D%A1%E7%89%87%E7%B5%84%E4%BB%B6"><span class="nav-number">9.</span> <span class="nav-text">9 初視卡片組件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%86%8D%E6%8E%A2%E5%8D%A1%E7%89%87%E7%B5%84%E4%BB%B6"><span class="nav-number">10.</span> <span class="nav-text">10 再探卡片組件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E6%B8%85%E5%96%AE%E5%85%A8%E7%B5%84%E5%BF%AB%E9%80%9F%E5%85%A5%E9%96%80"><span class="nav-number">11.</span> <span class="nav-text">11 清單全組快速入門</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">178k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">2:42</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
