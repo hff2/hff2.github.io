@@ -1,5 +1,5 @@
 ---
-title: "Bootstrap 5 學習紀錄"
+title: "Bootstrap 5 格線系統筆記"
 author: Phoebe
 tags: Bootstrap
 categories: Portfolio
@@ -8,13 +8,13 @@ date: 2021-03-8 11:07:11
 
 觀看 Amos 的[金魚都能懂得 Bootstrap5 網頁框架開發](https://www.youtube.com/playlist?list=PLqivELodHt3jq3oWBZfdhMu0GE7774HBW)影片學習。
 
-## 1 Bootstrap5 快速簡介
+## Bootstrap5 快速簡介
 
 <!--more-->
 
 明明有第一手的資訊為什麼還要看二手的?
 
-## 2 Bootstrap5 安裝與快速檢測方式
+## Bootstrap5 安裝與快速檢測方式
 
 ### 第一種: 預設的 template
 
@@ -76,7 +76,7 @@ Layout 裡面的 grid 是 bootstrap 採用 flex 做出來的格線系統，會�
 
 [格線系統範例](https://codepen.io/phoebe-ho/pen/WNoXorJ)
 
-## 3 Bootstrap5 格線系統入門
+## Bootstrap5 格線系統入門
 
 ### 格線自動分欄
 
@@ -226,7 +226,7 @@ Layout 裡面的 grid 是 bootstrap 採用 flex 做出來的格線系統，會�
 </div>
 ```
 
-## 4 Bootstrap 格線對齊與分布
+## Bootstrap 格線對齊與分布
 
 ### 放三個 column，卻要置中該如何做?
 
@@ -290,7 +290,7 @@ kv = key version
 </div>
 ```
 
-## 5 格線排序控制
+## 格線排序控制
 
 [Order · Bootstrap v5.0](https://getbootstrap.com/docs/5.0/utilities/flex/#order)
 
@@ -446,14 +446,59 @@ kv = key version
 </div>
 ```
 
-## 6 格線距離控制
+## `offset`格線距離控制
 
-## 7 圖片與寬高尺寸控制
+[Columns · Bootstrap v5.0](https://getbootstrap.com/docs/5.0/layout/columns/#offsetting-columns)
 
-## 8 共用開發項目
+![](https://i.imgur.com/9kHdEqg.png)
 
-## 9 初視卡片組件
+旁邊少一格的狀況，可以使用`offset`進行調整。
 
-## 10 再探卡片組件
+### 如何做出交錯的版?
 
-## 11 清單全組快速入門
+![](https://i.imgur.com/x07JOHU.png)
+
+`offset`的使用主要為：將元素推向右方。實際上原本的空間然後再加上其他空間的感覺。
+
+已下方圖為例，`col-4`+`offset-4`就會變成 8，於是就將`div`推過去了。
+
+![](https://i.imgur.com/jW0AZdf.png)
+
+1. 設定`col-md-7`，讓元素變成兩行。
+2. 再將文字 div 設定`offset-md-5`，往右推五個欄位。
+
+設定`md`為，讓它**平板以上**才吃到這個設定，要不然手機版面會跑版!
+
+```html=
+<div class="col-12 col-md-7">
+    <div class="pic">
+        <img src='https://picsum.photos/300/200?random=25' class="w-100">
+    </div>
+</div>
+<!-- offset-md-5，推過去5欄。 -->
+<div class="col-12 col-md-7 offset-md-5 txt-block">
+    <div class="txt">
+        <h2>title</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id cupiditate ipsam nihil voluptatem nisi odit dolorem architecto, molestias atque, corporis non laudantium consectetur quisquam eum, est dicta debitis accusantium? Laudantium!</p>
+    </div>
+</div>
+```
+
+交錯方法同上。
+
+![](https://i.imgur.com/sGE0Mgi.png)
+
+```html=
+<div class="col-12 col-md-7 mt-5 offset-md-5">
+    <div class="pic">
+        <img src='https://picsum.photos/300/200?random=55' class="w-100">
+    </div>
+</div>
+<!--  -->
+<div class="col-12 col-md-7 txt-block">
+    <div class="txt">
+        <h2>title</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id cupiditate ipsam nihil voluptatem nisi odit dolorem architecto, molestias atque, corporis non laudantium consectetur quisquam eum, est dicta debitis accusantium? Laudantium!</p>
+    </div>
+</div>
+```
