@@ -1,5 +1,5 @@
 ---
-title: '[實作] Weather Forecast'
+title: "[實作] Weather Forecast"
 author: Phoebe
 tags: Javascript
 categories: Portfolio
@@ -15,13 +15,14 @@ date: 2021-02-08 11:07:11
 - `transform`
 - `box-shadow`
 <!--more-->
+
 ### JS
 
 - ajax
 
 ## 簡介
-[Demo](https://)
 
+[Demo](https://)
 
 可以選擇區域查看當天與未來七天的天氣。
 
@@ -74,7 +75,8 @@ date: 2021-02-08 11:07:11
 
 ### 超連結
 
-選單使用到[fontawesome](https://fontawesome.com/)的icon，需插入連結才可以使用。
+選單使用到[fontawesome](https://fontawesome.com/)的 icon，需插入連結才可以使用。
+
 ```html=
 <link
       rel="stylesheet"
@@ -86,13 +88,13 @@ date: 2021-02-08 11:07:11
 
 ## CSS
 
-[完整Code](https://github.com/hff2/My-Projects/blob/weather-forecast/Weather_Forecast/style.css)
+[完整 Code](https://github.com/hff2/My-Projects/blob/weather-forecast/Weather_Forecast/style.css)
 
 ### Media Query
 
-`min-width`為最小為1300px，所以當網頁寬度**大於**1300px時，就套用下方的style。
+`min-width`為最小為 1300px，所以當網頁寬度**大於**1300px 時，就套用下方的 style。
 
-反之，如果小於1300px，則照舊。
+反之，如果小於 1300px，則照舊。
 
 `min-width`和`max-width`在寫得時候有點搞混，以此紀錄。
 
@@ -128,29 +130,37 @@ appearance: none;
 -webkit-appearance: none;
 ```
 
-#### 偽元素加上icon
+#### 偽元素加上 icon
 
-`\f358`為icon的編號，`Font Awesome 5 Free`為使用fontawesome icon需要加上的。
+`\f358`為 icon 的編號，`Font Awesome 5 Free`為使用 fontawesome icon 需要加上的。
 
 ```css=
-content: "\f358";
-font-family: "Font Awesome 5 Free";
+{
+  content: "\f358";
+  font-family: "Font Awesome 5 Free";
+}
 ```
 
 固定圖案後面的背景
+
 ```css=
-top: 0;
-right: 0;
-width: 5rem;
-height: 5rem;
+{
+  top: 0;
+  right: 0;
+  width: 5rem;
+  height: 5rem;
+}
 ```
 
 將圖案放到中間
+
 ```css=
-text-align: center;
+{
+  text-align: center;
+}
 ```
 
-滑鼠放到icon上的動畫，`transition`為動畫進行的時間，`:hover`為偽類(要放在偽元素前面)。
+滑鼠放到 icon 上的動畫，`transition`為動畫進行的時間，`:hover`為偽類(要放在偽元素前面)。
 
 ```css=
 .areaSelect:before {
@@ -203,8 +213,8 @@ text-align: center;
 }
 
 ```
-### 漂浮動畫
 
+### 漂浮動畫
 
 #### 陰影效果
 
@@ -245,9 +255,9 @@ text-align: center;
 
 ## JS
 
-### 取得API
+### 取得 API
 
-到[中央氣象局開放資料平臺之資料擷取API](https://opendata.cwb.gov.tw/dist/opendata-swagger.html)網站註冊後，取得API。
+到[中央氣象局開放資料平臺之資料擷取 API](https://opendata.cwb.gov.tw/dist/opendata-swagger.html)網站註冊後，取得 API。
 
 ```javascript=
 const api = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-071?Authorization=CWB-9374D590-DA77-47DF-B677-81B70B7016E6`;
@@ -262,26 +272,25 @@ $.ajax({
 });
 ```
 
-1. 註冊完成後，點選try it out，然後輸入Authorization。
+1. 註冊完成後，點選 try it out，然後輸入 Authorization。
 
 ![](https://i.imgur.com/CoeHaqm.png)
 
-2. 因為下面還有許多欄位，一開始不知道還要輸入什麼，然後就在網路上看了其他人的文章也沒有人特別提及。所以，我就直接按下最下面的Execute，讓他產生連結，過程大約需要一分鐘。
+2. 因為下面還有許多欄位，一開始不知道還要輸入什麼，然後就在網路上看了其他人的文章也沒有人特別提及。所以，我就直接按下最下面的 Execute，讓他產生連結，過程大約需要一分鐘。
 
 ![](https://i.imgur.com/D0EjUgQ.png)
 
-3. 產生Request URL後就可以直接複製使用
+3. 產生 Request URL 後就可以直接複製使用
 
 ![](https://i.imgur.com/4ASfX1b.png)
 
-使用Jquery的ajax方法，就可以看到回傳的資料。
+使用 Jquery 的 ajax 方法，就可以看到回傳的資料。
 
 ![](https://i.imgur.com/lUbJdwb.png)
 
-
 ### 取得和更換區域名稱
 
-將得到的資料放到`areaName`變數裡，`areaIndex`為選單選擇到的區域的Index，使用`change`只要有變動就會觸發事件。
+將得到的資料放到`areaName`變數裡，`areaIndex`為選單選擇到的區域的 Index，使用`change`只要有變動就會觸發事件。
 
 再將內容更換到`.header`上。
 
@@ -297,24 +306,22 @@ areaSelect.addEventListener("change", (e) => {
   selectArea(data, areaIndex);
 });
 ```
+
 ### 取得天氣資料
 
-取出資料的步驟比較繁雜，一個區域會獲得15筆天氣資料，再輸入需要的資料編號，就可以取出資料，放到變數裡。
+取出資料的步驟比較繁雜，一個區域會獲得 15 筆天氣資料，再輸入需要的資料編號，就可以取出資料，放到變數裡。
 
 `data.location[areaIndex].weatherElement[1].time[0].elementValue[0].value`
 
 就可以取出平均溫度。
 
-
 ![](https://i.imgur.com/0E2lg1h.png)
-
 
 #### 遇到的問題
 
-未來七天的天氣使用`for迴圈`取資料時，`for (let i = 3; i < 14; i += 2)`，i最後是`i+=2`，不是`i+2`，需要特別注意，因為原本寫成`i+2`，導致程式當掉。
+未來七天的天氣使用`for迴圈`取資料時，`for (let i = 3; i < 14; i += 2)`，i 最後是`i+=2`，不是`i+2`，需要特別注意，因為原本寫成`i+2`，導致程式當掉。
 
-` $("#future_weather").append(``)`，因為未來七天的資料有七筆，如果使用`.html()`就會只顯示最後一筆，所以需要改成`.append(``)`
-
+` $("#future_weather").append(``)`，因為未來七天的資料有七筆，如果使用`.html()`就會只顯示最後一筆，所以需要改成` .append(``) `
 
 ```javascript=
 function showWeatherInfo(data, areaIndex) {
@@ -358,10 +365,10 @@ function showWeatherInfo(data, areaIndex) {
       area[areaIndex].weatherElement[1].time[timeIndex].elementValue[0].value;
     // 天氣描述
     let FutureDesc =
-      area[areaIndex].weatherElement[6].time[timeIndex].elementValue[0].value; 
+      area[areaIndex].weatherElement[6].time[timeIndex].elementValue[0].value;
     // 最高體感溫度
     let FutureTempH =
-      area[areaIndex].weatherElement[5].time[timeIndex].elementValue[0].value; 
+      area[areaIndex].weatherElement[5].time[timeIndex].elementValue[0].value;
     // 最低體感溫度
     let FutureTempL =
       area[areaIndex].weatherElement[11].time[timeIndex].elementValue[0].value;
@@ -376,7 +383,7 @@ function showWeatherInfo(data, areaIndex) {
       <h3>${FutureDesc}</h3>
       <p>均溫: ${FutureTemp} °C</p>
       <p>${FutureTempL}°C / ${FutureTempH}°C</p>
-    </div> 
+    </div>
   `);
   }
 }
@@ -388,7 +395,7 @@ areaSelect.addEventListener("change", (e) => {
 });
 ```
 
-### 加上icon
+### 加上 icon
 
 這邊很簡單的就是進行判斷，然後再將天氣的描述放到函式。但是我在這邊卡了很久。
 
@@ -398,8 +405,7 @@ areaSelect.addEventListener("change", (e) => {
 
 ![](https://i.imgur.com/IKjtXMG.png)
 
-
-2. 原本使用直接在函式裡判斷好Info之後直接顯示在HTML，但是發現這樣未來七天的天氣又需要使用迴圈，整個函數會變得很龐大，最後以呼叫函數然後傳入Info，判斷完成後，再`return`結果。
+2. 原本使用直接在函式裡判斷好 Info 之後直接顯示在 HTML，但是發現這樣未來七天的天氣又需要使用迴圈，整個函數會變得很龐大，最後以呼叫函數然後傳入 Info，判斷完成後，再`return`結果。
 
 ```javascript=
 function setIcon(WeatherInfo) {
@@ -433,21 +439,21 @@ function setIcon(WeatherInfo) {
   }
 }
 ```
+
 ### 後紀
 
-天氣API不會很難完成，但我也是研究了三天才做到還可以的程度，完成後才發覺沒有想像中困難。
+天氣 API 不會很難完成，但我也是研究了三天才做到還可以的程度，完成後才發覺沒有想像中困難。
 
-一開始不知道該如何存取資料就一些時間查資料，後來遇到for迴圈的問題，一直不知道為什麼執行程式時就會直接當掉，後來才發現是少寫=。
+一開始不知道該如何存取資料就一些時間查資料，後來遇到 for 迴圈的問題，一直不知道為什麼執行程式時就會直接當掉，後來才發現是少寫=。
 
-使用html資料只出現一筆時，花了一些時間才找到bug。
+使用 html 資料只出現一筆時，花了一些時間才找到 bug。
 
-skyicons api的圖案也嘗試了很久，但最後還是無法，因為他本來是給一個叫做darksky的api資料做使用，所以最後只好折衷使用img代替。
+skyicons api 的圖案也嘗試了很久，但最後還是無法，因為他本來是給一個叫做 darksky 的 api 資料做使用，所以最後只好折衷使用 img 代替。
 
 ## 參考文章
 
-[一般天氣預報-今明36小時天氣預報](https://opendata.cwb.gov.tw/dataset/forecast/F-C0032-001)
+[一般天氣預報-今明 36 小時天氣預報](https://opendata.cwb.gov.tw/dataset/forecast/F-C0032-001)
 
-[中央氣象局開放資料平臺之資料擷取API](https://opendata.cwb.gov.tw/dist/opendata-swagger.html)
-
+[中央氣象局開放資料平臺之資料擷取 API](https://opendata.cwb.gov.tw/dist/opendata-swagger.html)
 
 [CSS3 box-shadow 區塊陰影](https://abgne.tw/css/css3-lab/css3-box-shadow.html)
