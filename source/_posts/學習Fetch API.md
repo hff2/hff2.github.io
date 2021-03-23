@@ -14,7 +14,7 @@ XMLHttpRequest（XHR）是 Javascript 較古老的 API，取得伺服器資料�
 
 非同步的網路架構稱為 AJAX，但現在已經不推薦使用，因為其結構設計已經無法應對現今複雜的 Web 環境，且容易掉入 Callback Hell 裡。
 
-```html=
+```javascript=
 function reqOnload () {
   const data = JSON.parse(this.responseText);
   console.log(data)
