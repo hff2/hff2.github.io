@@ -1,5 +1,5 @@
 ---
-title: "JS 中的變數提升 Hoisting是什麼"
+title: "JS 中的變數提升 Hoisting 是什麼"
 author: Phoebe
 tags: Javascript
 categories: Javascript
@@ -70,7 +70,7 @@ function a(){}
 
 ## `let` `const` `var` 與 hoisting
 
-### `let` `const`
+### `let` 與 `const` 的作用域
 
 `let` `const` `var` 最主要的差異是：ES6 `let` 和 `const` 以「區塊」作為其作用域 ( scope )。而 `var` 以「函數」作為其作用域。
 
@@ -86,7 +86,7 @@ console.log(name); // undefined
 
 `name` 這個變數只有在大括號裡，也就是區域內才看的到。
 
-### `var`
+### `var`的作用域
 
 `var` 的作用域是函式作用域 ( function-level scope )。
 
