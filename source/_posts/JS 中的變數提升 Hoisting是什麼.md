@@ -10,6 +10,8 @@ date: 2021-04-13 11:07:11
 
 Hoisting 就是「提升」的意思。
 
+<!--more-->
+
 ```javascript=
 console.log(i)
 //Uncaught ReferenceError: i is not defined
