@@ -12,6 +12,8 @@ Hoisting 就是「提升」的意思。
 
 舉例來說，當只有`console.log`時，就會出現 not defined，因為我們試圖去對一個**還沒被宣告的變數**取值，才會出現此錯誤。
 
+<!--more-->
+
 ```javascript=
 console.log(i)
 //Uncaught ReferenceError: i is not defined
