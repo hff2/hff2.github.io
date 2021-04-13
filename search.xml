@@ -23,6 +23,53 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS flex</title>
+    <url>/2021/02/22/CSS-flex/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。</p>
+<p><a href="https://codepen.io/frank890417/pen/ayLvRp">參考範例</a></p>
+<h3 id="1-先設定flex排版"><a href="#1-先設定flex排版" class="headerlink" title="1. 先設定flex排版"></a>1. 先設定flex排版</h3><a id="more"></a>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-設定排版方向-flex-direction"><a href="#2-設定排版方向-flex-direction" class="headerlink" title="2. 設定排版方向 flex-direction"></a>2. 設定排版方向 <code>flex-direction</code></h3><p>預設是<code>row</code></p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-direction">flex-direction</a> 效果預覽。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row|row-reverse|column|column-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-元素超出螢幕範圍時是否換行-flex-wrap"><a href="#3-元素超出螢幕範圍時是否換行-flex-wrap" class="headerlink" title="3. 元素超出螢幕範圍時是否換行 flex-wrap"></a>3. 元素超出螢幕範圍時是否換行 <code>flex-wrap</code></h3><p>視窗縮小時，不會被強行擠壓，自動換行。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-wrap">flex-wrap</a> 預覽效果</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap|wrap|wrap-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-direction-和-wrap-二合一-flex-flow"><a href="#4-direction-和-wrap-二合一-flex-flow" class="headerlink" title="4. direction 和 wrap 二合一 flex-flow"></a>4. direction 和 wrap 二合一 <code>flex-flow</code></h3><p>用flex-flow可以只寫一行，就把direction 和 wrap 二合一。</p>
+<p>第一個參數direction，第二個是wrap。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-flow</span>:row-reverse nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-元素對齊的方式之一-justify-content"><a href="#5-元素對齊的方式之一-justify-content" class="headerlink" title="5.元素對齊的方式之一 justify-content"></a>5.元素對齊的方式之一 <code>justify-content</code></h3><p><code>justify-content</code>是元素對齊的方式</p>
+<p>是一種<strong>水平排版</strong>的方式，但會隨著主軸和副軸產生變化。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_justify-content">justify-content</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start|flex-end|center|space-between|space-around|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-元素對齊的方式之二-align-items"><a href="#6-元素對齊的方式之二-align-items" class="headerlink" title="6.元素對齊的方式之二 align-items"></a>6.元素對齊的方式之二 <code>align-items</code></h3><p><code>align-items</code>是元素對齊的方式</p>
+<p>是一種<strong>垂直置中</strong>的方式，但會隨著主軸和副軸產生變化。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-items">align-items</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-多行元素對齊的方式-align-content"><a href="#7-多行元素對齊的方式-align-content" class="headerlink" title="7.多行元素對齊的方式 align-content"></a>7.多行元素對齊的方式 <code>align-content</code></h3><p>align-content是<strong>多行元素對齊</strong>的方式。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-content">align-content</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-content</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="CSS-Flex個別子元素的排版"><a href="#CSS-Flex個別子元素的排版" class="headerlink" title="CSS Flex個別子元素的排版"></a>CSS Flex個別子元素的排版</h2><h3 id="1-個別子元素的對齊-–-align-self"><a href="#1-個別子元素的對齊-–-align-self" class="headerlink" title="1.個別子元素的對齊 – align-self"></a>1.個別子元素的對齊 – align-self</h3><p><code>align-self</code>是針對個別子元素的對齊調整，外層需要是flex。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-self">align-self</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">align-self</span>: auto|stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-個別子元素的寬度-–-flex-grow-amp-flex-shrink"><a href="#2-個別子元素的寬度-–-flex-grow-amp-flex-shrink" class="headerlink" title="2.個別子元素的寬度 – flex-grow &amp; flex-shrink"></a>2.個別子元素的寬度 – flex-grow &amp; flex-shrink</h3><p>字面上的意思就是增加與減少，針對個別子元素的寬度調整。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-grow">flex-grow</a> 效果預覽</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-shrink">flex-shrink</a> 效果預覽</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">flex-shrink</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div2</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-最基本的寬度-flex-basis"><a href="#3-最基本的寬度-flex-basis" class="headerlink" title="3. 最基本的寬度 flex-basis"></a>3. 最基本的寬度 <code>flex-basis</code></h3><p><code>flex-grow</code>不能使<code>flex-wrap</code>功能運行，會<strong>無法跳行</strong>。</p>
+<p>但是，只要設定了<code>flex-basis</code>之後可以換行。假如設定<code>flex-basis</code>為10rem，只要視窗讓方框小於10rem，它就會換行。</p>
+<p>flex-basis有點像是最基本(最小)的寬度。</p>
+<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-basis">flex-basis</a> 效果預覽</p>
+<p><a href="https://codepen.io/phoebe-ho/pen/ExgWqeB">flex 實際練習</a></p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>HTML&amp;CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS 偽元素</title>
     <url>/2021/01/30/CSS-%E5%81%BD%E5%85%83%E7%B4%A0/</url>
     <content><![CDATA[<h2 id="什麼是「偽元素」？"><a href="#什麼是「偽元素」？" class="headerlink" title="什麼是「偽元素」？"></a>什麼是「偽元素」？</h2><p>「偽元素」之所以稱作「偽」，有兩個原因。</p>
@@ -126,53 +173,6 @@
 <h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.oxxostudio.tw/articles/201706/pseudo-element-1.html">CSS 偽元素 ( before 與 after )</a></p>
 <p><a href="https://ithelp.ithome.com.tw/articles/10196924">Day24：小事之 CSS 偽類 與 偽元素</a></p>
 <p><a href="https://medium.com/enjoy-life-enjoy-coding/css-%E5%85%A8%E9%83%BD%E6%98%AF%E5%81%87%E7%9A%84-%E9%97%9C%E6%96%BC%E9%82%A3%E4%BA%9B%E5%81%BD%E9%A1%9E%E5%92%8C%E5%81%BD%E5%85%83%E7%B4%A0-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95-4de48feb8607">CSS | 全都是假的！關於那些偽類和偽元素 - 基本用法</a></p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>HTML&amp;CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSS flex</title>
-    <url>/2021/02/22/CSS-flex/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。</p>
-<p><a href="https://codepen.io/frank890417/pen/ayLvRp">參考範例</a></p>
-<h3 id="1-先設定flex排版"><a href="#1-先設定flex排版" class="headerlink" title="1. 先設定flex排版"></a>1. 先設定flex排版</h3><a id="more"></a>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-設定排版方向-flex-direction"><a href="#2-設定排版方向-flex-direction" class="headerlink" title="2. 設定排版方向 flex-direction"></a>2. 設定排版方向 <code>flex-direction</code></h3><p>預設是<code>row</code></p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-direction">flex-direction</a> 效果預覽。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row|row-reverse|column|column-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-元素超出螢幕範圍時是否換行-flex-wrap"><a href="#3-元素超出螢幕範圍時是否換行-flex-wrap" class="headerlink" title="3. 元素超出螢幕範圍時是否換行 flex-wrap"></a>3. 元素超出螢幕範圍時是否換行 <code>flex-wrap</code></h3><p>視窗縮小時，不會被強行擠壓，自動換行。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-wrap">flex-wrap</a> 預覽效果</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap|wrap|wrap-reverse|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-direction-和-wrap-二合一-flex-flow"><a href="#4-direction-和-wrap-二合一-flex-flow" class="headerlink" title="4. direction 和 wrap 二合一 flex-flow"></a>4. direction 和 wrap 二合一 <code>flex-flow</code></h3><p>用flex-flow可以只寫一行，就把direction 和 wrap 二合一。</p>
-<p>第一個參數direction，第二個是wrap。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-flow</span>:row-reverse nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-元素對齊的方式之一-justify-content"><a href="#5-元素對齊的方式之一-justify-content" class="headerlink" title="5.元素對齊的方式之一 justify-content"></a>5.元素對齊的方式之一 <code>justify-content</code></h3><p><code>justify-content</code>是元素對齊的方式</p>
-<p>是一種<strong>水平排版</strong>的方式，但會隨著主軸和副軸產生變化。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_justify-content">justify-content</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start|flex-end|center|space-between|space-around|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-元素對齊的方式之二-align-items"><a href="#6-元素對齊的方式之二-align-items" class="headerlink" title="6.元素對齊的方式之二 align-items"></a>6.元素對齊的方式之二 <code>align-items</code></h3><p><code>align-items</code>是元素對齊的方式</p>
-<p>是一種<strong>垂直置中</strong>的方式，但會隨著主軸和副軸產生變化。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-items">align-items</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="7-多行元素對齊的方式-align-content"><a href="#7-多行元素對齊的方式-align-content" class="headerlink" title="7.多行元素對齊的方式 align-content"></a>7.多行元素對齊的方式 <code>align-content</code></h3><p>align-content是<strong>多行元素對齊</strong>的方式。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-content">align-content</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-content</span>: stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="CSS-Flex個別子元素的排版"><a href="#CSS-Flex個別子元素的排版" class="headerlink" title="CSS Flex個別子元素的排版"></a>CSS Flex個別子元素的排版</h2><h3 id="1-個別子元素的對齊-–-align-self"><a href="#1-個別子元素的對齊-–-align-self" class="headerlink" title="1.個別子元素的對齊 – align-self"></a>1.個別子元素的對齊 – align-self</h3><p><code>align-self</code>是針對個別子元素的對齊調整，外層需要是flex。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_align-self">align-self</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">align-self</span>: auto|stretch|center|flex-start|flex-end|baseline|initial|inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-個別子元素的寬度-–-flex-grow-amp-flex-shrink"><a href="#2-個別子元素的寬度-–-flex-grow-amp-flex-shrink" class="headerlink" title="2.個別子元素的寬度 – flex-grow &amp; flex-shrink"></a>2.個別子元素的寬度 – flex-grow &amp; flex-shrink</h3><p>字面上的意思就是增加與減少，針對個別子元素的寬度調整。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-grow">flex-grow</a> 效果預覽</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-shrink">flex-shrink</a> 效果預覽</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div</span> &#123; </span><br><span class="line">  <span class="attribute">flex-shrink</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.div2</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>:<span class="number">8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-最基本的寬度-flex-basis"><a href="#3-最基本的寬度-flex-basis" class="headerlink" title="3. 最基本的寬度 flex-basis"></a>3. 最基本的寬度 <code>flex-basis</code></h3><p><code>flex-grow</code>不能使<code>flex-wrap</code>功能運行，會<strong>無法跳行</strong>。</p>
-<p>但是，只要設定了<code>flex-basis</code>之後可以換行。假如設定<code>flex-basis</code>為10rem，只要視窗讓方框小於10rem，它就會換行。</p>
-<p>flex-basis有點像是最基本(最小)的寬度。</p>
-<p><a href="https://www.w3schools.com/cssref/playit.asp?filename=playcss_flex-basis">flex-basis</a> 效果預覽</p>
-<p><a href="https://codepen.io/phoebe-ho/pen/ExgWqeB">flex 實際練習</a></p>
 ]]></content>
       <categories>
         <category>Web</category>
@@ -449,24 +449,41 @@
       </tags>
   </entry>
   <entry>
-    <title>Hoisting 變數提升是什麼</title>
-    <url>/2021/04/13/Hoisting%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%E6%98%AF%E4%BB%80%E9%BA%BC/</url>
+    <title>JS 中的變數提升 Hoisting 是什麼</title>
+    <url>/2021/04/13/JS%20%E4%B8%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%20Hoisting%E6%98%AF%E4%BB%80%E9%BA%BC/</url>
     <content><![CDATA[<h2 id="什麼是-Hoisting"><a href="#什麼是-Hoisting" class="headerlink" title="什麼是 Hoisting?"></a>什麼是 Hoisting?</h2><p>Hoisting 就是「提升」的意思。</p>
-<p>舉例來說，當只有<code>console.log</code>時，就會出現 not defined，因為我們試圖去對一個<strong>還沒被宣告的變數</strong>取值，才會出現此錯誤。</p>
 <a id="more"></a>
 
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: i is not defined</span></span><br></pre></td></tr></table></figure>
-<p>但是在下方宣告變數時，會出現 undefined，此現象就叫做<strong>Hoisting</strong>。</p>
-<p>不同於以往我們對程式的認知為一行一行跑，第二行的<code>var i</code>，因為某些原因，被提升到了最上面。</p>
+<p>舉例來說，當只有<code>console.log</code>時，就會出現 not defined，因為我們試圖去對一個<strong>還沒被宣告的變數</strong>取值，才會出現此錯誤。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i</span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>但是變數提升，只會提升變數的宣告會提升。賦與的值(賦值)並不會被提升。依然會是 undefined。</p>
+<p>上面的例子中，是在下方 ( 第二行 ) 宣告變數時，會出現 undefined，此現象就叫做<strong>Hoisting</strong>。</p>
+<p>不同於以往我們對程式的認知為一行一行跑，第二行的<code>var i</code>，因為某些原因，被提升到了最上面。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">5</span></span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>當以 function 宣告的時候，會出現<code>10</code>，而不是<code>undefined</code>。</p>
+<p>但是變數提升，只會提升變數的宣告會提升。<strong>賦與的值( 賦值 )並不會被提升</strong>。依然會是 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// PART 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PART2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>當以 function 宣告的時候，會出現<code>10</code>，而不是 <code>undefined</code>。</p>
 <p>因為值會是以 PART2 的樣子，出現在 Function 的第一行，就被宣告且賦值了！</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// PART 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// PART2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>最後，functoin 的宣告也會提升而且優先權較高，所以程式會輸出<code>function</code>而不是<code>undefined</code>。</p>
+<p>最後，functoin 的宣告也會提升而且優<strong>先權較高</strong>，所以程式會輸出<code>function</code>而不是<code>undefined</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">// [Functoin: a]</span></span><br></pre></td></tr></table></figure>
-<h2 id="let-跟-const-與-hoisting"><a href="#let-跟-const-與-hoisting" class="headerlink" title="let 跟 const 與 hoisting"></a>let 跟 const 與 hoisting</h2><h2 id="為什麼我們需要-hoisting？"><a href="#為什麼我們需要-hoisting？" class="headerlink" title="為什麼我們需要 hoisting？"></a>為什麼我們需要 hoisting？</h2><h2 id="hoisting-到底是怎麼運作的？"><a href="#hoisting-到底是怎麼運作的？" class="headerlink" title="hoisting 到底是怎麼運作的？"></a>hoisting 到底是怎麼運作的？</h2><h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a></p>
+<h2 id="let-const-var-與-hoisting"><a href="#let-const-var-與-hoisting" class="headerlink" title="let const var 與 hoisting"></a><code>let</code> <code>const</code> <code>var</code> 與 hoisting</h2><h3 id="let-與-const-的作用域"><a href="#let-與-const-的作用域" class="headerlink" title="let 與 const 的作用域"></a><code>let</code> 與 <code>const</code> 的作用域</h3><p><code>let</code> <code>const</code> <code>var</code> 最主要的差異是：ES6 <code>let</code> 和 <code>const</code> 以「區塊」作為其作用域 ( scope )。而 <code>var</code> 以「函數」作為其作用域。</p>
+<p><code>let</code> 與 <code>const</code> 換句話說，就是只有在<strong>區域</strong>裡面才看的到。以下方的例子來說。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">&quot;Phoebe&quot;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(name); <span class="comment">// Phoebe</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p><code>name</code> 這個變數只有在大括號裡，也就是區域內才看的到。</p>
+<h3 id="var的作用域"><a href="#var的作用域" class="headerlink" title="var的作用域"></a><code>var</code>的作用域</h3><p><code>var</code> 的作用域是函式作用域 ( function-level scope )。</p>
+<p>換句話說就是，用 <code>var</code> 宣告的變數，只有在「函式」裡可以看得到。</p>
+<h2 id="為什麼我們需要-hoisting-呢？"><a href="#為什麼我們需要-hoisting-呢？" class="headerlink" title="為什麼我們需要 hoisting 呢？"></a>為什麼我們需要 hoisting 呢？</h2><p>可以從反向思考，「如果沒有 hoisting 會怎麼樣?」</p>
+<ol>
+<li>一定要宣告變數才可以使用 (其他語言的習慣)</li>
+<li>一定要宣告函式才可以用 (特別注意)</li>
+<li>沒有辦法達成 function 互相呼叫</li>
+</ol>
+<p>舉個例子</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n&gt;<span class="number">1</span>) &#123;</span><br><span class="line">        show(--n)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n, n % <span class="number">2</span> ? <span class="string">&#x27;奇數&#x27;</span> : <span class="string">&#x27;偶數&#x27;</span>)</span><br><span class="line">    loop(n)</span><br><span class="line">&#125;</span><br><span class="line">loop(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p>我們在 loop 裡面呼叫 <code>show()</code>，在 <code>show()</code> 裡面也呼叫 <code>loop()</code>，如果沒有 hoisting ，以上程式碼就不會達成。</p>
+<p>因為，不可能做到 A 在 B 上面，而 B 又在 A 上面。</p>
+<p>所以 hoisting 就是為了解決上述的問題 !</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a></p>
 <p><a href="https://shubo.io/javascript-hoisting/">[教學] JavaScript 中的 Hoisting 是什麼意思？let const var 的差異居然是這個？ | Shubo 的程式教學筆記</a></p>
 ]]></content>
       <categories>
@@ -474,62 +491,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PR 是什麼? git clone 和 git pull的差別 ?</title>
-    <url>/2021/01/10/PR-%E6%98%AF%E4%BB%80%E9%BA%BC-git-clone-%E5%92%8C-git-pull%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<h2 id="PR是什麼"><a href="#PR是什麼" class="headerlink" title="PR是什麼?"></a>PR是什麼?</h2><p>Github上面有很多開源專案，當我們想要幫忙修改內容或是添加新功能時，一開始不需要經過原作者同意就能下載使用。</p>
-<p>做好了之後，再發個通知跟作者說我做好了，請你看一下要不要做使用(Merge)。</p>
-<a id="more"></a>
-
-<p>發個通知就是Pull Request(PR)。</p>
-<h2 id="如何發PR"><a href="#如何發PR" class="headerlink" title="如何發PR?"></a>如何發PR?</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ol>
-<li>可以先Fork一分到自己的帳號下，可以獲得完整的權限，隨便你改。</li>
-</ol>
-<p><img src="https://i.imgur.com/XFyKDp4.png"></p>
-<ol start="2">
-<li>改完之後，在推回(git push)自己的帳號</li>
-<li>然後”發通知”告訴原作者，我對你的專案做了一些事情，請你看一下。</li>
-<li>原作者覺得有幫助時，就會把我們做的修改合併(merge)到他的專案。</li>
-</ol>
-<p>發出通知，就是Pull Request(PR)，請原作者看看我的修改，作者覺得可以時，就把我的請求(Request)拉(Pull)回去到他的專案裡。</p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ol>
-<li><p>可以複製code下的ssh連結，在終端機打上<code>git clone</code>+複製的連結。</p>
-</li>
-<li><p>建立新的branch</p>
-</li>
-<li><p>檢查branch是否存在</p>
-</li>
-<li><p>切換branch，<code>git checkout ...</code></p>
-</li>
-<li><p><code>git add .</code> ，<code>git commit -m ...</code></p>
-</li>
-<li><p><code>git push</code></p>
-</li>
-</ol>
-<p><img src="https://i.imgur.com/WsUjbpz.png"></p>
-<ol start="7">
-<li>到github pull-request頁面建立pull-request。</li>
-<li>選擇自己創建的branch</li>
-<li>發出pull-request</li>
-<li>等待被merge</li>
-</ol>
-<h2 id="當PR被Merge後，要如何發下一個-PR？"><a href="#當PR被Merge後，要如何發下一個-PR？" class="headerlink" title="當PR被Merge後，要如何發下一個 PR？"></a>當PR被Merge後，要如何發下一個 PR？</h2><ol>
-<li>切回main branch</li>
-<li>使用<code>git pull</code>下載最新版本</li>
-<li>創建新的branch</li>
-<li><code>git push</code>，完成更新。</li>
-</ol>
-<h2 id="git-clone與git-pull的差別"><a href="#git-clone與git-pull的差別" class="headerlink" title="git clone與git pull的差別?"></a>git clone與git pull的差別?</h2><p>git clone 是當我第一次看到別人的專案，想要下載到我電腦裡執行的指令。</p>
-<p>git pull是下載之後，想要更新專案的最新內容，就要使用pull。</p>
-<p>簡單來說，<code>git clone</code>只會用在第一次，其他的更新都是使用<code>git pull</code>。</p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -596,49 +557,59 @@
       </tags>
   </entry>
   <entry>
-    <title>WSL之Command Line常用指令</title>
-    <url>/2020/11/25/WSL%E4%B9%8BCommand-Line%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h3 id="cd-切換資料夾"><a href="#cd-切換資料夾" class="headerlink" title="cd:切換資料夾"></a>cd:切換資料夾</h3><p><img src="https://i.imgur.com/bFDrP8T.png"></p>
-<p>打開wsl預設會在使用者目錄(家目錄)，會是/home/[使用者名稱]，我的目錄就是/home/phoebe。</p>
+    <title>PR 是什麼? git clone 和 git pull的差別 ?</title>
+    <url>/2021/01/10/PR-%E6%98%AF%E4%BB%80%E9%BA%BC-git-clone-%E5%92%8C-git-pull%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<h2 id="PR是什麼"><a href="#PR是什麼" class="headerlink" title="PR是什麼?"></a>PR是什麼?</h2><p>Github上面有很多開源專案，當我們想要幫忙修改內容或是添加新功能時，一開始不需要經過原作者同意就能下載使用。</p>
+<p>做好了之後，再發個通知跟作者說我做好了，請你看一下要不要做使用(Merge)。</p>
 <a id="more"></a>
-<p><img src="https://i.imgur.com/zrtbSb5.png"></p>
-<h3 id="pwd-顯示目前目錄"><a href="#pwd-顯示目前目錄" class="headerlink" title="pwd:顯示目前目錄"></a>pwd:顯示目前目錄</h3><p><img src="https://i.imgur.com/O8y05ot.png"></p>
-<h3 id="cd-回到家目錄"><a href="#cd-回到家目錄" class="headerlink" title="cd ~:回到家目錄"></a>cd ~:回到家目錄</h3><p><img src="https://i.imgur.com/D2JAni1.png"></p>
-<h3 id="ls-看資料夾下面有什麼檔案"><a href="#ls-看資料夾下面有什麼檔案" class="headerlink" title="ls:看資料夾下面有什麼檔案"></a>ls:看資料夾下面有什麼檔案</h3><ul>
-<li>ls      查看資料夾內的檔案</li>
-<li>ls -l   查看資料夾內的檔案和詳細資料</li>
-<li>ls -al  查看資料夾內的隱藏檔案和詳細資料</li>
-</ul>
-<p><img src="https://i.imgur.com/Vw30wqL.png"></p>
-<h3 id="mnt-c-進入C槽"><a href="#mnt-c-進入C槽" class="headerlink" title="/mnt/c:進入C槽"></a>/mnt/c:進入C槽</h3><p>WSL預設把Windows的C:槽掛在/mnt/c，D:槽掛在/mnt/d。</p>
-<p>如果在桌面開一個project資料夾，WSL中就會在/mnt/c/Users/user/Desktop/project。</p>
-<p>先從Linux資料夾跳出後，到C槽裡的git資料夾。</p>
-<p><img src="https://i.imgur.com/QyW4HHb.png"></p>
-<h3 id="mkdir-新增資料夾"><a href="#mkdir-新增資料夾" class="headerlink" title="mkdir:新增資料夾"></a>mkdir:新增資料夾</h3><p><img src="https://i.imgur.com/1z0lxoS.png"></p>
-<h3 id="touch-建立檔案"><a href="#touch-建立檔案" class="headerlink" title="touch:建立檔案"></a>touch:建立檔案</h3><p><img src="https://i.imgur.com/gWl4vOl.png"></p>
-<h3 id="cat-讀取檔案內容"><a href="#cat-讀取檔案內容" class="headerlink" title="cat:讀取檔案內容"></a>cat:讀取檔案內容</h3><p><img src="https://i.imgur.com/ES0Bqgt.png"></p>
-<h3 id="mv-可以用來移動檔案或重新命名檔案："><a href="#mv-可以用來移動檔案或重新命名檔案：" class="headerlink" title="mv:可以用來移動檔案或重新命名檔案："></a>mv:可以用來移動檔案或重新命名檔案：</h3><ul>
-<li>移動檔案位置</li>
-</ul>
-<p>mv /mnt/c/Users/user/git/1121.txt ~/1121.txt</p>
-<ul>
-<li>將 1120.txt 改名成 1121.txt</li>
-</ul>
-<p>mv 1120.txt 1121.txt</p>
-<p><img src="https://i.imgur.com/i7id1xy.png"></p>
-<h3 id="cp-用來複製檔案或資料夾"><a href="#cp-用來複製檔案或資料夾" class="headerlink" title="cp: 用來複製檔案或資料夾"></a>cp: 用來複製檔案或資料夾</h3><p>Test資料夾出現1120.txt</p>
-<p><img src="https://i.imgur.com/k7xKHZ4.png"></p>
-<h3 id="rm：remove-刪除目錄或檔案"><a href="#rm：remove-刪除目錄或檔案" class="headerlink" title="rm：remove 刪除目錄或檔案"></a>rm：remove 刪除目錄或檔案</h3><p><img src="https://i.imgur.com/3FxUZ5v.png"></p>
-<h3 id="rm-i-：刪除之前會詢問"><a href="#rm-i-：刪除之前會詢問" class="headerlink" title="rm -i ：刪除之前會詢問"></a>rm -i ：刪除之前會詢問</h3><p>如果要刪除建議使用這個參數，可以避免誤刪。<br><img src="https://i.imgur.com/QL4rnMr.png"></p>
-<h3 id="rm-f-刪除整個資料夾-徹底刪除"><a href="#rm-f-刪除整個資料夾-徹底刪除" class="headerlink" title="rm -f :刪除整個資料夾(徹底刪除)"></a>rm -f :刪除整個資料夾(徹底刪除)</h3><p>強制刪除檔案或目錄，不會有警告，請小心使用。</p>
-<h3 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h3><p>使用cmder時，遇到許多問題，每次開始前都要輸入wsl才能開始正常使用指令，別人安裝好都可以直接運行ls，car，touch…等指令，但我的就是無法…後來發現Microsoft商店有介面超好看的Terminal，而且可以開不同的分頁，可以運行cmd,powershell,wsl都非常方便。</p>
-<p>遇到Microsoft Terminal問題時，網路上的教學也比Cmder來的多，雖然花了很多時間研究怎麼樣弄好Cmder，後來也成功運行，但Terminal還是方便多，所以還是直接換過去了XD。</p>
+
+<p>發個通知就是Pull Request(PR)。</p>
+<h2 id="如何發PR"><a href="#如何發PR" class="headerlink" title="如何發PR?"></a>如何發PR?</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ol>
+<li>可以先Fork一分到自己的帳號下，可以獲得完整的權限，隨便你改。</li>
+</ol>
+<p><img src="https://i.imgur.com/XFyKDp4.png"></p>
+<ol start="2">
+<li>改完之後，在推回(git push)自己的帳號</li>
+<li>然後”發通知”告訴原作者，我對你的專案做了一些事情，請你看一下。</li>
+<li>原作者覺得有幫助時，就會把我們做的修改合併(merge)到他的專案。</li>
+</ol>
+<p>發出通知，就是Pull Request(PR)，請原作者看看我的修改，作者覺得可以時，就把我的請求(Request)拉(Pull)回去到他的專案裡。</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ol>
+<li><p>可以複製code下的ssh連結，在終端機打上<code>git clone</code>+複製的連結。</p>
+</li>
+<li><p>建立新的branch</p>
+</li>
+<li><p>檢查branch是否存在</p>
+</li>
+<li><p>切換branch，<code>git checkout ...</code></p>
+</li>
+<li><p><code>git add .</code> ，<code>git commit -m ...</code></p>
+</li>
+<li><p><code>git push</code></p>
+</li>
+</ol>
+<p><img src="https://i.imgur.com/WsUjbpz.png"></p>
+<ol start="7">
+<li>到github pull-request頁面建立pull-request。</li>
+<li>選擇自己創建的branch</li>
+<li>發出pull-request</li>
+<li>等待被merge</li>
+</ol>
+<h2 id="當PR被Merge後，要如何發下一個-PR？"><a href="#當PR被Merge後，要如何發下一個-PR？" class="headerlink" title="當PR被Merge後，要如何發下一個 PR？"></a>當PR被Merge後，要如何發下一個 PR？</h2><ol>
+<li>切回main branch</li>
+<li>使用<code>git pull</code>下載最新版本</li>
+<li>創建新的branch</li>
+<li><code>git push</code>，完成更新。</li>
+</ol>
+<h2 id="git-clone與git-pull的差別"><a href="#git-clone與git-pull的差別" class="headerlink" title="git clone與git pull的差別?"></a>git clone與git pull的差別?</h2><p>git clone 是當我第一次看到別人的專案，想要下載到我電腦裡執行的指令。</p>
+<p>git pull是下載之後，想要更新專案的最新內容，就要使用pull。</p>
+<p>簡單來說，<code>git clone</code>只會用在第一次，其他的更新都是使用<code>git pull</code>。</p>
 ]]></content>
       <categories>
-        <category>Window</category>
+        <category>Git</category>
       </categories>
       <tags>
-        <tag>WSL</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -693,6 +664,52 @@
       </categories>
       <tags>
         <tag>HTML&amp;CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSL之Command Line常用指令</title>
+    <url>/2020/11/25/WSL%E4%B9%8BCommand-Line%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h3 id="cd-切換資料夾"><a href="#cd-切換資料夾" class="headerlink" title="cd:切換資料夾"></a>cd:切換資料夾</h3><p><img src="https://i.imgur.com/bFDrP8T.png"></p>
+<p>打開wsl預設會在使用者目錄(家目錄)，會是/home/[使用者名稱]，我的目錄就是/home/phoebe。</p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/zrtbSb5.png"></p>
+<h3 id="pwd-顯示目前目錄"><a href="#pwd-顯示目前目錄" class="headerlink" title="pwd:顯示目前目錄"></a>pwd:顯示目前目錄</h3><p><img src="https://i.imgur.com/O8y05ot.png"></p>
+<h3 id="cd-回到家目錄"><a href="#cd-回到家目錄" class="headerlink" title="cd ~:回到家目錄"></a>cd ~:回到家目錄</h3><p><img src="https://i.imgur.com/D2JAni1.png"></p>
+<h3 id="ls-看資料夾下面有什麼檔案"><a href="#ls-看資料夾下面有什麼檔案" class="headerlink" title="ls:看資料夾下面有什麼檔案"></a>ls:看資料夾下面有什麼檔案</h3><ul>
+<li>ls      查看資料夾內的檔案</li>
+<li>ls -l   查看資料夾內的檔案和詳細資料</li>
+<li>ls -al  查看資料夾內的隱藏檔案和詳細資料</li>
+</ul>
+<p><img src="https://i.imgur.com/Vw30wqL.png"></p>
+<h3 id="mnt-c-進入C槽"><a href="#mnt-c-進入C槽" class="headerlink" title="/mnt/c:進入C槽"></a>/mnt/c:進入C槽</h3><p>WSL預設把Windows的C:槽掛在/mnt/c，D:槽掛在/mnt/d。</p>
+<p>如果在桌面開一個project資料夾，WSL中就會在/mnt/c/Users/user/Desktop/project。</p>
+<p>先從Linux資料夾跳出後，到C槽裡的git資料夾。</p>
+<p><img src="https://i.imgur.com/QyW4HHb.png"></p>
+<h3 id="mkdir-新增資料夾"><a href="#mkdir-新增資料夾" class="headerlink" title="mkdir:新增資料夾"></a>mkdir:新增資料夾</h3><p><img src="https://i.imgur.com/1z0lxoS.png"></p>
+<h3 id="touch-建立檔案"><a href="#touch-建立檔案" class="headerlink" title="touch:建立檔案"></a>touch:建立檔案</h3><p><img src="https://i.imgur.com/gWl4vOl.png"></p>
+<h3 id="cat-讀取檔案內容"><a href="#cat-讀取檔案內容" class="headerlink" title="cat:讀取檔案內容"></a>cat:讀取檔案內容</h3><p><img src="https://i.imgur.com/ES0Bqgt.png"></p>
+<h3 id="mv-可以用來移動檔案或重新命名檔案："><a href="#mv-可以用來移動檔案或重新命名檔案：" class="headerlink" title="mv:可以用來移動檔案或重新命名檔案："></a>mv:可以用來移動檔案或重新命名檔案：</h3><ul>
+<li>移動檔案位置</li>
+</ul>
+<p>mv /mnt/c/Users/user/git/1121.txt ~/1121.txt</p>
+<ul>
+<li>將 1120.txt 改名成 1121.txt</li>
+</ul>
+<p>mv 1120.txt 1121.txt</p>
+<p><img src="https://i.imgur.com/i7id1xy.png"></p>
+<h3 id="cp-用來複製檔案或資料夾"><a href="#cp-用來複製檔案或資料夾" class="headerlink" title="cp: 用來複製檔案或資料夾"></a>cp: 用來複製檔案或資料夾</h3><p>Test資料夾出現1120.txt</p>
+<p><img src="https://i.imgur.com/k7xKHZ4.png"></p>
+<h3 id="rm：remove-刪除目錄或檔案"><a href="#rm：remove-刪除目錄或檔案" class="headerlink" title="rm：remove 刪除目錄或檔案"></a>rm：remove 刪除目錄或檔案</h3><p><img src="https://i.imgur.com/3FxUZ5v.png"></p>
+<h3 id="rm-i-：刪除之前會詢問"><a href="#rm-i-：刪除之前會詢問" class="headerlink" title="rm -i ：刪除之前會詢問"></a>rm -i ：刪除之前會詢問</h3><p>如果要刪除建議使用這個參數，可以避免誤刪。<br><img src="https://i.imgur.com/QL4rnMr.png"></p>
+<h3 id="rm-f-刪除整個資料夾-徹底刪除"><a href="#rm-f-刪除整個資料夾-徹底刪除" class="headerlink" title="rm -f :刪除整個資料夾(徹底刪除)"></a>rm -f :刪除整個資料夾(徹底刪除)</h3><p>強制刪除檔案或目錄，不會有警告，請小心使用。</p>
+<h3 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h3><p>使用cmder時，遇到許多問題，每次開始前都要輸入wsl才能開始正常使用指令，別人安裝好都可以直接運行ls，car，touch…等指令，但我的就是無法…後來發現Microsoft商店有介面超好看的Terminal，而且可以開不同的分頁，可以運行cmd,powershell,wsl都非常方便。</p>
+<p>遇到Microsoft Terminal問題時，網路上的教學也比Cmder來的多，雖然花了很多時間研究怎麼樣弄好Cmder，後來也成功運行，但Terminal還是方便多，所以還是直接換過去了XD。</p>
+]]></content>
+      <categories>
+        <category>Window</category>
+      </categories>
+      <tags>
+        <tag>WSL</tag>
       </tags>
   </entry>
   <entry>
@@ -853,6 +870,18 @@
       </tags>
   </entry>
   <entry>
+    <title>[實作] Login Admin</title>
+    <url>/2021/01/19/%5B%E5%AF%A6%E4%BD%9C%5D%20Login%20Admin/</url>
+    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><p>待更…</p>
+]]></content>
+      <categories>
+        <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Bootstrap</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[實作] Tic Tac Toe</title>
     <url>/2021/03/01/%5B%E5%AF%A6%E4%BD%9C%5D%20Tic%20Tac%20Toe/</url>
     <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
@@ -902,18 +931,6 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[實作] Login Admin</title>
-    <url>/2021/01/19/%5B%E5%AF%A6%E4%BD%9C%5D%20Login%20Admin/</url>
-    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><p>待更…</p>
-]]></content>
-      <categories>
-        <category>Portfolio</category>
-      </categories>
-      <tags>
-        <tag>Bootstrap</tag>
       </tags>
   </entry>
   <entry>
@@ -1008,62 +1025,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[實作] jQuery FAQ Slider</title>
-    <url>/2021/03/02/%5B%E5%AF%A6%E4%BD%9C%5D%20jQuery%20FAQ%20Slider/</url>
-    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h3><ul>
-<li>slideToggle</li>
-<li>siblings<a id="more"></a></li>
-<li>slideUp</li>
-<li>children</li>
-<li>not</li>
-<li>toggleClass</li>
-</ul>
-<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a href="https://hff2.github.io/My-Projects/Faq_Slider/index.html">Demo</a></p>
-<p>學習使用 Jquery UI 的<a href="https://jqueryui.com/accordion/">Accordion</a>如何使用。</p>
-<p><img src="https://i.imgur.com/jfCO8FF.png"></p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>使用<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>實作。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>jQuery FAQ Slider<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>FAQ Slider Using jQuery<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;faq&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;q&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./img/arrow.png&quot;</span>&gt;</span></span><br><span class="line">            Lorem ipsum dolor sit amet consectetur adipisicing elit deleniti?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;a&quot;</span>&gt;</span></span><br><span class="line">            soluta ut blanditiis illo quisquam id consequatur dolor ipsam ipsa?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p><a href="https://github.com/hff2/My-Projects/blob/faq-slider/Faq_Slider/css/style.css">完整 Code</a></p>
-<h3 id="如何讓-answer-一開始不出現"><a href="#如何讓-answer-一開始不出現" class="headerlink" title="如何讓 answer 一開始不出現?"></a>如何讓 answer 一開始不出現?</h3><p>使用<code>display:none</code>預設為不出現。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.faq</span> <span class="selector-tag">li</span><span class="selector-class">.a</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="點擊-Question-時，img-如何出現翻轉"><a href="#點擊-Question-時，img-如何出現翻轉" class="headerlink" title="點擊 Question 時，img 如何出現翻轉?"></a>點擊 Question 時，img 如何出現翻轉?</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.rotate</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><h3 id="如何讓-Answer-出現"><a href="#如何讓-Answer-出現" class="headerlink" title="如何讓 Answer 出現?"></a>如何讓 Answer 出現?</h3><p><img src="https://i.imgur.com/Fazl8hr.png"></p>
-<p>這邊使用了<strong>鍊式</strong>的技巧。</p>
-<ol>
-<li>當<code>class=&quot;q&quot;</code>被<code>click</code>的時候，他的<code>next()</code>也就是<code>class=&quot;a&quot;</code>，</li>
-</ol>
-<p><img src="https://i.imgur.com/JSRJvxb.png"></p>
-<ol start="2">
-<li><p>使用<code>slideToggle</code>就可以產生上下收起的效果</p>
-</li>
-<li><p><code>siblings</code>選取到同父元素的所有其他元素。</p>
-</li>
-<li><p><code>slideUp</code>向上滑動</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> action = <span class="string">&quot;click&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> speed=<span class="string">&quot;500&quot;</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//Question handler</span></span><br><span class="line">    $(<span class="string">&quot;li.q&quot;</span>).on(action,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// Get next element</span></span><br><span class="line">        $(<span class="built_in">this</span>).next()</span><br><span class="line">            .slideToggle(speed)</span><br><span class="line">                <span class="comment">// Select all other answers</span></span><br><span class="line">                .siblings(<span class="string">&quot;li.a&quot;</span>)</span><br><span class="line">                    .slideUp();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="怎麼樣讓箭頭在點擊時-90-度旋轉"><a href="#怎麼樣讓箭頭在點擊時-90-度旋轉" class="headerlink" title="怎麼樣讓箭頭在點擊時 90 度旋轉?"></a>怎麼樣讓箭頭在點擊時 90 度旋轉?</h3><ol>
-<li><p><code>children</code>是返回所有子元素(父元素為<code>li.q</code>)，所以裡面的 img 會被選取到。</p>
-</li>
-<li><p><code>.not</code>刪除所有符合表達式條件的元素。只要不是<code>img</code>的，都要去除掉<code>.rotate</code>。</p>
-</li>
-<li><p><code>.toggleClass</code>可以進行<strong>設置與移除</strong>的切換。</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Get image for active question</span></span><br><span class="line"><span class="keyword">var</span> img = $(<span class="built_in">this</span>).children(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Remove the &#x27;rotate&#x27; class for all images except the active</span></span><br><span class="line">$(<span class="string">&#x27;img&#x27;</span>).not(img).removeClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Toggle rotate class</span></span><br><span class="line">img.toggleClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.itread01.com/content/1549818083.html">Jquery 中 next()方法與 prev()方法的使有和詳解</a></p>
-<p><a href="https://api.jquery.com/slidetoggle/">.slideToggle()</a></p>
-<p><a href="http://www.w3big.com/zh-TW/jquery/traversing-siblings.html">jQuery siblings() 方法</a></p>
-<p><a href="https://www.fooish.com/jquery/traversing.html">jQuery 篩選元素 (Traversing)</a></p>
-]]></content>
-      <categories>
-        <category>Portfolio</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[實作] Youtube Search</title>
     <url>/2021/02/12/%5B%E5%AF%A6%E4%BD%9C%5D%20Youtube%20Search/</url>
     <content><![CDATA[<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>利用Youtube API，可以搜尋Youtube影片。</p>
@@ -1140,6 +1101,62 @@
 <h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.jianshu.com/p/70b7589fefd1">vsc-initialized是什么</a></p>
 <p><a href="https://ithelp.ithome.com.tw/articles/10090569">JQuery Chaining</a></p>
 <p><a href="https://zh-tw.learnlayout.com/clearfix.html">.clearfix</a> </p>
+]]></content>
+      <categories>
+        <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[實作] jQuery FAQ Slider</title>
+    <url>/2021/03/02/%5B%E5%AF%A6%E4%BD%9C%5D%20jQuery%20FAQ%20Slider/</url>
+    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h3><ul>
+<li>slideToggle</li>
+<li>siblings<a id="more"></a></li>
+<li>slideUp</li>
+<li>children</li>
+<li>not</li>
+<li>toggleClass</li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a href="https://hff2.github.io/My-Projects/Faq_Slider/index.html">Demo</a></p>
+<p>學習使用 Jquery UI 的<a href="https://jqueryui.com/accordion/">Accordion</a>如何使用。</p>
+<p><img src="https://i.imgur.com/jfCO8FF.png"></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>使用<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>實作。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>jQuery FAQ Slider<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>FAQ Slider Using jQuery<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;faq&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;q&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./img/arrow.png&quot;</span>&gt;</span></span><br><span class="line">            Lorem ipsum dolor sit amet consectetur adipisicing elit deleniti?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;a&quot;</span>&gt;</span></span><br><span class="line">            soluta ut blanditiis illo quisquam id consequatur dolor ipsam ipsa?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p><a href="https://github.com/hff2/My-Projects/blob/faq-slider/Faq_Slider/css/style.css">完整 Code</a></p>
+<h3 id="如何讓-answer-一開始不出現"><a href="#如何讓-answer-一開始不出現" class="headerlink" title="如何讓 answer 一開始不出現?"></a>如何讓 answer 一開始不出現?</h3><p>使用<code>display:none</code>預設為不出現。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.faq</span> <span class="selector-tag">li</span><span class="selector-class">.a</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="點擊-Question-時，img-如何出現翻轉"><a href="#點擊-Question-時，img-如何出現翻轉" class="headerlink" title="點擊 Question 時，img 如何出現翻轉?"></a>點擊 Question 時，img 如何出現翻轉?</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.rotate</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><h3 id="如何讓-Answer-出現"><a href="#如何讓-Answer-出現" class="headerlink" title="如何讓 Answer 出現?"></a>如何讓 Answer 出現?</h3><p><img src="https://i.imgur.com/Fazl8hr.png"></p>
+<p>這邊使用了<strong>鍊式</strong>的技巧。</p>
+<ol>
+<li>當<code>class=&quot;q&quot;</code>被<code>click</code>的時候，他的<code>next()</code>也就是<code>class=&quot;a&quot;</code>，</li>
+</ol>
+<p><img src="https://i.imgur.com/JSRJvxb.png"></p>
+<ol start="2">
+<li><p>使用<code>slideToggle</code>就可以產生上下收起的效果</p>
+</li>
+<li><p><code>siblings</code>選取到同父元素的所有其他元素。</p>
+</li>
+<li><p><code>slideUp</code>向上滑動</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> action = <span class="string">&quot;click&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> speed=<span class="string">&quot;500&quot;</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//Question handler</span></span><br><span class="line">    $(<span class="string">&quot;li.q&quot;</span>).on(action,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// Get next element</span></span><br><span class="line">        $(<span class="built_in">this</span>).next()</span><br><span class="line">            .slideToggle(speed)</span><br><span class="line">                <span class="comment">// Select all other answers</span></span><br><span class="line">                .siblings(<span class="string">&quot;li.a&quot;</span>)</span><br><span class="line">                    .slideUp();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="怎麼樣讓箭頭在點擊時-90-度旋轉"><a href="#怎麼樣讓箭頭在點擊時-90-度旋轉" class="headerlink" title="怎麼樣讓箭頭在點擊時 90 度旋轉?"></a>怎麼樣讓箭頭在點擊時 90 度旋轉?</h3><ol>
+<li><p><code>children</code>是返回所有子元素(父元素為<code>li.q</code>)，所以裡面的 img 會被選取到。</p>
+</li>
+<li><p><code>.not</code>刪除所有符合表達式條件的元素。只要不是<code>img</code>的，都要去除掉<code>.rotate</code>。</p>
+</li>
+<li><p><code>.toggleClass</code>可以進行<strong>設置與移除</strong>的切換。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Get image for active question</span></span><br><span class="line"><span class="keyword">var</span> img = $(<span class="built_in">this</span>).children(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Remove the &#x27;rotate&#x27; class for all images except the active</span></span><br><span class="line">$(<span class="string">&#x27;img&#x27;</span>).not(img).removeClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Toggle rotate class</span></span><br><span class="line">img.toggleClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.itread01.com/content/1549818083.html">Jquery 中 next()方法與 prev()方法的使有和詳解</a></p>
+<p><a href="https://api.jquery.com/slidetoggle/">.slideToggle()</a></p>
+<p><a href="http://www.w3big.com/zh-TW/jquery/traversing-siblings.html">jQuery siblings() 方法</a></p>
+<p><a href="https://www.fooish.com/jquery/traversing.html">jQuery 篩選元素 (Traversing)</a></p>
 ]]></content>
       <categories>
         <category>Portfolio</category>
@@ -1304,91 +1321,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用 Github Pages 上傳你的第一個網頁</title>
-    <url>/2020/12/03/%E4%BD%BF%E7%94%A8-Github-Pages-%E4%B8%8A%E5%82%B3%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%B2%E9%A0%81/</url>
-    <content><![CDATA[<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
-<li>初始化資料夾</li>
-</ol>
-<p><img src="https://i.imgur.com/Bveok8Y.png"></p>
-<a id="more"></a>
-<ol start="2">
-<li>建立資料夾</li>
-</ol>
-<p><img src="https://i.imgur.com/R9pDD1b.png"></p>
-<ol start="3">
-<li>將變更內容註冊到索引上</li>
-</ol>
-<p><img src="https://i.imgur.com/P4YnSWK.png"></p>
-<ol>
-<li>將索引的內容提交至本機儲存庫上</li>
-</ol>
-<p><img src="https://i.imgur.com/Ht6Tv4L.png"></p>
-<ol start="5">
-<li>輸入指令<code>code .</code> 打開vscode編輯</li>
-</ol>
-<p><img src="https://i.imgur.com/FJLUuLn.png"></p>
-<p>vscode檔案出現M代表編輯過，需要重新將內容註冊到索引上。</p>
-<p><img src="https://i.imgur.com/Cys7bV4.png"></p>
-<ol start="6">
-<li>對他重新進行add和commit指令。</li>
-</ol>
-<p><img src="https://i.imgur.com/jWnQzo4.png"></p>
-<p>vscode顯示也會取消</p>
-<p><img src="https://i.imgur.com/OGNR5QL.png"></p>
-<ol start="7">
-<li>建立分支，切換分支</li>
-</ol>
-<p><img src="https://i.imgur.com/19EgRbG.png"></p>
-<p><img src="https://i.imgur.com/uUcScBh.png"></p>
-<ol start="8">
-<li>在Github上建立一個Repository，照著已存在的檔案操作。</li>
-</ol>
-<p><img src="https://i.imgur.com/wrjX9iA.png"></p>
-<ol start="9">
-<li>複製貼上</li>
-</ol>
-<p><img src="https://i.imgur.com/ZeGmQGr.png"></p>
-<p><img src="https://i.imgur.com/LmJKSaz.png"></p>
-<ol start="10">
-<li>成功上傳</li>
-</ol>
-<p>開啟github</p>
-<p><img src="https://i.imgur.com/6cKmpBU.png"></p>
-<p><a href="https://hff2.github.io/test/">網頁連結</a></p>
-<h2 id="遇到問題-1"><a href="#遇到問題-1" class="headerlink" title="遇到問題 1"></a>遇到問題 1</h2><p><img src="https://i.imgur.com/h4Ybd0U.png"></p>
-<p>出現這個錯誤的常見原因為三種:</p>
-<ul>
-<li>本地端git目錄沒有檔案</li>
-<li>本地端add後未commit</li>
-<li>git init錯誤</li>
-</ul>
-<p>我認為我是第三種，我的處理的方法為，輸入指令</p>
-<ol>
-<li>git config user.name “someone”</li>
-<li>git config user.email “<a href="mailto:&#x73;&#x6f;&#x6d;&#101;&#111;&#x6e;&#101;&#64;&#115;&#x6f;&#109;&#101;&#112;&#x6c;&#97;&#x63;&#x65;&#x2e;&#99;&#111;&#109;">&#x73;&#x6f;&#x6d;&#101;&#111;&#x6e;&#101;&#64;&#115;&#x6f;&#109;&#101;&#112;&#x6c;&#97;&#x63;&#x65;&#x2e;&#99;&#111;&#109;</a>“</li>
-<li>git add .</li>
-<li>git commit -m “some init msg”</li>
-</ol>
-<p>在git創建項目時出現，是因為在創建git文件夾的時候訊息不完善導致的。</p>
-<p>重新認識了我的帳號之後，就可以成功上傳。</p>
-<h2 id="遇到問題-2"><a href="#遇到問題-2" class="headerlink" title="遇到問題 2"></a>遇到問題 2</h2><p>github page跑不出來</p>
-<p>後來更改了page設定，在settings裡做修改。</p>
-<p><img src="https://i.imgur.com/I7eBftv.png"></p>
-<h2 id="遇到問題-3"><a href="#遇到問題-3" class="headerlink" title="遇到問題 3"></a>遇到問題 3</h2><p>GitHub以Main取代Master做為新Git儲存庫預設名稱。</p>
-<p><img src="https://i.imgur.com/wrjX9iA.png"></p>
-<p>這行指令中的git branch -M main，就是將Main作為預設存庫的名稱。</p>
-<p>原因是為響應黑人平權運動，GitHub宣布從2020的10月1日起改變新Git儲存庫的預設命名，以main來取代原本的master。</p>
-<p>不過這項變更並不會影響現有儲存庫的名稱。開發人員也可以不要變更，隨時到設定區，把個人、組織和公司的新儲存庫預設命名從main改成別的!</p>
-<p><a href="https://www.ithome.com.tw/news/140094">參考連結</a></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>什麼是 IIFE?</title>
     <url>/2021/01/24/%E4%BB%80%E9%BA%BC%E6%98%AF-IIFE/</url>
     <content><![CDATA[<h2 id="當迴圈遇到setTimeout"><a href="#當迴圈遇到setTimeout" class="headerlink" title="當迴圈遇到setTimeout()"></a>當迴圈遇到<code>setTimeout()</code></h2><p>假設想透過迴圈 + <code>setTimeout()</code> 來做到，在五秒鐘之內，每秒鐘依序透過 console.log 印出： 0 1 2 3 4</p>
@@ -1453,6 +1385,91 @@
       </categories>
       <tags>
         <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Github Pages 上傳你的第一個網頁</title>
+    <url>/2020/12/03/%E4%BD%BF%E7%94%A8-Github-Pages-%E4%B8%8A%E5%82%B3%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%B2%E9%A0%81/</url>
+    <content><![CDATA[<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
+<li>初始化資料夾</li>
+</ol>
+<p><img src="https://i.imgur.com/Bveok8Y.png"></p>
+<a id="more"></a>
+<ol start="2">
+<li>建立資料夾</li>
+</ol>
+<p><img src="https://i.imgur.com/R9pDD1b.png"></p>
+<ol start="3">
+<li>將變更內容註冊到索引上</li>
+</ol>
+<p><img src="https://i.imgur.com/P4YnSWK.png"></p>
+<ol>
+<li>將索引的內容提交至本機儲存庫上</li>
+</ol>
+<p><img src="https://i.imgur.com/Ht6Tv4L.png"></p>
+<ol start="5">
+<li>輸入指令<code>code .</code> 打開vscode編輯</li>
+</ol>
+<p><img src="https://i.imgur.com/FJLUuLn.png"></p>
+<p>vscode檔案出現M代表編輯過，需要重新將內容註冊到索引上。</p>
+<p><img src="https://i.imgur.com/Cys7bV4.png"></p>
+<ol start="6">
+<li>對他重新進行add和commit指令。</li>
+</ol>
+<p><img src="https://i.imgur.com/jWnQzo4.png"></p>
+<p>vscode顯示也會取消</p>
+<p><img src="https://i.imgur.com/OGNR5QL.png"></p>
+<ol start="7">
+<li>建立分支，切換分支</li>
+</ol>
+<p><img src="https://i.imgur.com/19EgRbG.png"></p>
+<p><img src="https://i.imgur.com/uUcScBh.png"></p>
+<ol start="8">
+<li>在Github上建立一個Repository，照著已存在的檔案操作。</li>
+</ol>
+<p><img src="https://i.imgur.com/wrjX9iA.png"></p>
+<ol start="9">
+<li>複製貼上</li>
+</ol>
+<p><img src="https://i.imgur.com/ZeGmQGr.png"></p>
+<p><img src="https://i.imgur.com/LmJKSaz.png"></p>
+<ol start="10">
+<li>成功上傳</li>
+</ol>
+<p>開啟github</p>
+<p><img src="https://i.imgur.com/6cKmpBU.png"></p>
+<p><a href="https://hff2.github.io/test/">網頁連結</a></p>
+<h2 id="遇到問題-1"><a href="#遇到問題-1" class="headerlink" title="遇到問題 1"></a>遇到問題 1</h2><p><img src="https://i.imgur.com/h4Ybd0U.png"></p>
+<p>出現這個錯誤的常見原因為三種:</p>
+<ul>
+<li>本地端git目錄沒有檔案</li>
+<li>本地端add後未commit</li>
+<li>git init錯誤</li>
+</ul>
+<p>我認為我是第三種，我的處理的方法為，輸入指令</p>
+<ol>
+<li>git config user.name “someone”</li>
+<li>git config user.email “<a href="mailto:&#115;&#111;&#x6d;&#x65;&#x6f;&#110;&#x65;&#x40;&#115;&#111;&#109;&#101;&#112;&#x6c;&#97;&#x63;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#115;&#111;&#x6d;&#x65;&#x6f;&#110;&#x65;&#x40;&#115;&#111;&#109;&#101;&#112;&#x6c;&#97;&#x63;&#x65;&#46;&#x63;&#x6f;&#x6d;</a>“</li>
+<li>git add .</li>
+<li>git commit -m “some init msg”</li>
+</ol>
+<p>在git創建項目時出現，是因為在創建git文件夾的時候訊息不完善導致的。</p>
+<p>重新認識了我的帳號之後，就可以成功上傳。</p>
+<h2 id="遇到問題-2"><a href="#遇到問題-2" class="headerlink" title="遇到問題 2"></a>遇到問題 2</h2><p>github page跑不出來</p>
+<p>後來更改了page設定，在settings裡做修改。</p>
+<p><img src="https://i.imgur.com/I7eBftv.png"></p>
+<h2 id="遇到問題-3"><a href="#遇到問題-3" class="headerlink" title="遇到問題 3"></a>遇到問題 3</h2><p>GitHub以Main取代Master做為新Git儲存庫預設名稱。</p>
+<p><img src="https://i.imgur.com/wrjX9iA.png"></p>
+<p>這行指令中的git branch -M main，就是將Main作為預設存庫的名稱。</p>
+<p>原因是為響應黑人平權運動，GitHub宣布從2020的10月1日起改變新Git儲存庫的預設命名，以main來取代原本的master。</p>
+<p>不過這項變更並不會影響現有儲存庫的名稱。開發人員也可以不要變更，隨時到設定區，把個人、組織和公司的新儲存庫預設命名從main改成別的!</p>
+<p><a href="https://www.ithome.com.tw/news/140094">參考連結</a></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -1941,71 +1958,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[實作] 表單驗證</title>
-    <url>/2021/01/16/%E5%AF%A6%E4%BD%9C-%E8%A1%A8%E5%96%AE%E9%A9%97%E8%AD%89/</url>
-    <content><![CDATA[<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><img src="https://i.imgur.com/7Wf2FMh.png"></p>
-<a id="more"></a>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Form Validator<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- form#form.form --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;form&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Register With Us<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;username&quot;</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- input#username --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;username&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter username&quot;</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;email&quot;</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;email&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter email&quot;</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password&quot;</span>&gt;</span>Password<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          &lt;input</span><br><span class="line">            type=&quot;password&quot;</span><br><span class="line">            id=&quot;password&quot;</span><br><span class="line">            placeholder=&quot;Enter password&quot;</span><br><span class="line">            autocomplete=&quot;on&quot;</span><br><span class="line">          /&gt;</span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password2&quot;</span>&gt;</span>Confirm password<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          &lt;input</span><br><span class="line">            type=&quot;password&quot;</span><br><span class="line">            id=&quot;password2&quot;</span><br><span class="line">            placeholder=&quot;Enter password again&quot;</span><br><span class="line">            autocomplete=&quot;on&quot;</span><br><span class="line">          /&gt;</span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;script.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>Css的變數使用</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">  <span class="attribute">--success-color</span>: <span class="number">#2ecc71</span>;</span><br><span class="line">  <span class="attribute">--error-color</span>: <span class="number">#e74c3c</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>利用Js動態存取Css</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.success</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--success-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: visible;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完整Code</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@import</span> url(<span class="string">&quot;https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 變數 */</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--success-color</span>: <span class="number">#2ecc71</span>;</span><br><span class="line">  <span class="attribute">--error-color</span>: <span class="number">#e74c3c</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f9fafb</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Open Sans&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>);</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">30px</span> <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">label</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#777</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#f0f0f0</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#777</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* dynamic with javascript */</span></span><br><span class="line"><span class="comment">/* js存取時才出現 */</span></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.success</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--success-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: visible;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form</span> <span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#3498db</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#3498db</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><p>利用id取的元素</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">.getElementById</span><br></pre></td></tr></table></figure>
-<p>.addEventListener</p>
-<p>who: form<br>when: 按下submit的時候<br>what: 做function</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="設定submit"><a href="#設定submit" class="headerlink" title="設定submit"></a>設定submit</h3><p>可以檢測submit是不是正常work。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 取得要操作元素的id</span></span><br><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> username = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> email = <span class="built_in">document</span>.getElementById(<span class="string">&quot;email&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event Listener，監聽submit按鈕。</span></span><br><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Hi&quot;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(username); <span class="comment">//&lt;input type=&quot;text&quot; id=&quot;username&quot; placeholder=&quot;Enter username&quot;&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(username.value); <span class="comment">//Phoebe</span></span><br></pre></td></tr></table></figure>
-<h3 id="Simple-Validation"><a href="#Simple-Validation" class="headerlink" title="Simple Validation"></a>Simple Validation</h3><p>透過if…else…簡易判斷</p>
-<p>parentElement取得父元素，覆寫成form-control的class。</p>
-<p>.className加上這個class的意思。</p>
-<p><a href="https://codepen.io/phoebe-ho/pen/LYRmKGd?editors=1000">.className範例</a></p>
-<blockquote>
-<p>getelementbyid 與 queryselectort 差別?</p>
-</blockquote>
-<p><code>qeurySelector</code>屬於W3s中的Selectors API的規範。屬於靜態static node。</p>
-<p><code>getElementById</code>屬於DOM的規範。屬於動態live node list，會隨著對文檔操作的改變。</p>
-<p><a href="https://leowangsite.wordpress.com/2017/03/23/qeuryselector%E8%88%87getelementbyid%E7%9A%84%E5%B7%AE%E5%88%A5/">參考文章</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control class，變成form-control error。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control error&quot;</span>;</span><br><span class="line">  <span class="comment">// 選取到small(顯示錯誤的文字)</span></span><br><span class="line">  <span class="keyword">const</span> small = formControl.querySelector(<span class="string">&quot;small&quot;</span>);</span><br><span class="line">  <span class="comment">//將不同的function string填入</span></span><br><span class="line">  small.innerText = message;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> username = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> email = <span class="built_in">document</span>.getElementById(<span class="string">&quot;email&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show Input Error message 顯示錯誤的框</span></span><br><span class="line"><span class="comment">//input指EventListener取得的值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">input, message</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 取得父元素(parenetElement就是form-control)</span></span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control class，變成form-control error。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control error&quot;</span>;</span><br><span class="line">  <span class="comment">// 選取到small(顯示錯誤的文字)</span></span><br><span class="line">  <span class="keyword">const</span> small = formControl.querySelector(<span class="string">&quot;small&quot;</span>);</span><br><span class="line">  <span class="comment">//將不同的function string填入</span></span><br><span class="line">  small.innerText = message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show success outline 顯示成功的框</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showSuccess</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control，變成form-control success。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control success&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check email is valid</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidEmail</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> re = <span class="regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</span>;</span><br><span class="line">  <span class="keyword">return</span> re.test(<span class="built_in">String</span>(email).toLowerCase());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event Listener事件監聽</span></span><br><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 防止送出時跳掉</span></span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="keyword">if</span> (username.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(username, <span class="string">&quot;Usrename is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(username);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (email.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(email, <span class="string">&quot;Email is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidEmail(email.value)) &#123;</span><br><span class="line">    showError(email, <span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(email);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (password.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(password, <span class="string">&quot;Password is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(password);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (password2.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(password2, <span class="string">&quot;Password 2 is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(password2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="Check-Required-amp-Refactor"><a href="#Check-Required-amp-Refactor" class="headerlink" title="Check Required &amp; Refactor"></a>Check Required &amp; Refactor</h3><p>原本程式太多判斷式，使用functiont重構和ES6語法優化。</p>
-<blockquote>
-<p>甚麼是Refactor?</p>
-</blockquote>
-<p>中文為”代碼重構”，指對程式做任何更動以增加可讀性或者簡化結構，但不影響輸出結果。 </p>
-<h4 id="講解如何使用checkRequired"><a href="#講解如何使用checkRequired" class="headerlink" title="講解如何使用checkRequired"></a>講解如何使用checkRequired</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  checkRequired([username, email, password, password2]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkRequired</span>(<span class="params">inputArr</span>) </span>&#123;</span><br><span class="line">  inputArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(input.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/NW9yGLa.png"></p>
-<h4 id="在checkRequire加上判斷式顯示正確或錯誤"><a href="#在checkRequire加上判斷式顯示正確或錯誤" class="headerlink" title="在checkRequire加上判斷式顯示正確或錯誤"></a>在checkRequire加上判斷式顯示正確或錯誤</h4><p><code>charAt(0)</code>回傳遞第零個值。</p>
-<p><code>slice([begin,end])</code>方法會回傳一個新陣列物件，為陣列選擇 begin 至 end。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFieldName</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//轉換成大寫。加上後面的字母。</span></span><br><span class="line">  <span class="keyword">return</span> input.id.charAt(<span class="number">0</span>).toUpperCase() + input.id.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ES6語法<code>‵‵</code>，<code>$&#123;&#125;</code> 錢字號可以帶入變數。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">showError(input, <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> is required`</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  checkRequired([username, email, password, password2]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check requires fields</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkRequired</span>(<span class="params">inputArr</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 使用array的方法，再用foreach去讀取每個元素(username，email...)</span></span><br><span class="line"><span class="comment">// trim()將字串去除空白</span></span><br><span class="line">  inputArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input.value.trim() === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">      <span class="comment">//可以取得username，email，password，password2</span></span><br><span class="line">      <span class="comment">//console.log(input.id); </span></span><br><span class="line">      <span class="comment">// 增加function getFieldName</span></span><br><span class="line">      showError(input, <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> is required`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      showSuccess(input);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get fieldname</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFieldName</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// charAt(0).toUpperCase()只回傳第零個元素，轉換成大寫。加上後面的字母。</span></span><br><span class="line">  <span class="keyword">return</span> input.id.charAt(<span class="number">0</span>).toUpperCase() + input.id.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="Check-Length-Email-amp-Password-Match-完成"><a href="#Check-Length-Email-amp-Password-Match-完成" class="headerlink" title="Check Length, Email &amp; Password Match 完成"></a>Check Length, Email &amp; Password Match 完成</h3><blockquote>
-<p>增加的功能</p>
-</blockquote>
-<ol>
-<li>checkLength</li>
-<li>優化isValidEmail</li>
-<li>checkPasswordMatch</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> username = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> email = <span class="built_in">document</span>.getElementById(<span class="string">&quot;email&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show Input Error message</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">input, message</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 取得父元素</span></span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control class，變成</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control error&quot;</span>;</span><br><span class="line">  <span class="comment">// 選取到small</span></span><br><span class="line">  <span class="keyword">const</span> small = formControl.querySelector(<span class="string">&quot;small&quot;</span>);</span><br><span class="line">  <span class="comment">//將不同的function string填入</span></span><br><span class="line">  small.innerText = message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show success outline</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showSuccess</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control，變成form-control success。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control success&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check email is valid</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidEmail</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> re = <span class="regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</span>;</span><br><span class="line">  <span class="keyword">if</span> (re.test(input.value.trim())) &#123;</span><br><span class="line">    showSuccess(input);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showError(input, <span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check requires fields</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkRequired</span>(<span class="params">inputArr</span>) </span>&#123;</span><br><span class="line">  inputArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input.value.trim() === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">      <span class="comment">//console.log(input.id); //可以取得username，email，password，password2</span></span><br><span class="line">      <span class="comment">// 增加function getFieldName</span></span><br><span class="line">      showError(input, <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> is required`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      showSuccess(input);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check input length</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkLength</span>(<span class="params">input, min, max</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input.value.length &lt; min) &#123;</span><br><span class="line">    showError(</span><br><span class="line">      input,</span><br><span class="line">      <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> must be at least <span class="subst">$&#123;min&#125;</span> characters`</span></span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input.value.length &gt; max) &#123;</span><br><span class="line">    showError(</span><br><span class="line">      input,</span><br><span class="line">      <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> must be less than <span class="subst">$&#123;max&#125;</span> characters`</span></span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(input);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Check password match</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkPasswordMatch</span>(<span class="params">input1, input2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input1.value !== input2.value) &#123;</span><br><span class="line">    showError(input2, <span class="string">&quot;Passwords do not match&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Get fieldname</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFieldName</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 第零個元素，轉換成大寫，加上後面的字母</span></span><br><span class="line">  <span class="keyword">return</span> input.id.charAt(<span class="number">0</span>).toUpperCase() + input.id.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event Listener</span></span><br><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line"></span><br><span class="line">  checkRequired([username, email, password, password2]);</span><br><span class="line">  <span class="comment">// (username,min,max)</span></span><br><span class="line">  checkLength(username, <span class="number">3</span>, <span class="number">15</span>);</span><br><span class="line">  checkLength(password, <span class="number">6</span>, <span class="number">25</span>);</span><br><span class="line">  isValidEmail(email);</span><br><span class="line">  checkPasswordMatch(password, password2);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h2><p><img src="https://i.imgur.com/0nLMwwM.png"></p>
-<p>一開始開發者工具會一直跳出這個錯誤</p>
-<p><a href="https://stackoverflow.com/questions/54970352/input-elements-should-have-autocomplete-attributes">解決辦法</a></p>
-]]></content>
-      <categories>
-        <category>Portfolio</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[實作] 猜數字互動遊戲</title>
     <url>/2021/01/29/%E5%AF%A6%E4%BD%9C-%E7%8C%9C%E6%95%B8%E5%AD%97%E4%BA%92%E5%8B%95%E9%81%8A%E6%88%B2-1/</url>
     <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
@@ -2109,6 +2061,71 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;body&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (e.target.id == <span class="string">&quot;play-again&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.reload();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://ithelp.ithome.com.tw/articles/10196577">Day 21 - Speech Detection</a></p>
 <p><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/284046/">jquery append()方法與html()方法的區別及使用介紹</a></p>
+]]></content>
+      <categories>
+        <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[實作] 表單驗證</title>
+    <url>/2021/01/16/%E5%AF%A6%E4%BD%9C-%E8%A1%A8%E5%96%AE%E9%A9%97%E8%AD%89/</url>
+    <content><![CDATA[<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><img src="https://i.imgur.com/7Wf2FMh.png"></p>
+<a id="more"></a>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Form Validator<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- form#form.form --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;form&quot;</span> <span class="attr">class</span>=<span class="string">&quot;form&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Register With Us<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;username&quot;</span>&gt;</span>Username<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- input#username --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;username&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter username&quot;</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;email&quot;</span>&gt;</span>Email<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;email&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;Enter email&quot;</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password&quot;</span>&gt;</span>Password<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          &lt;input</span><br><span class="line">            type=&quot;password&quot;</span><br><span class="line">            id=&quot;password&quot;</span><br><span class="line">            placeholder=&quot;Enter password&quot;</span><br><span class="line">            autocomplete=&quot;on&quot;</span><br><span class="line">          /&gt;</span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-control&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;password2&quot;</span>&gt;</span>Confirm password<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          &lt;input</span><br><span class="line">            type=&quot;password&quot;</span><br><span class="line">            id=&quot;password2&quot;</span><br><span class="line">            placeholder=&quot;Enter password again&quot;</span><br><span class="line">            autocomplete=&quot;on&quot;</span><br><span class="line">          /&gt;</span><br><span class="line">          <span class="tag">&lt;<span class="name">small</span>&gt;</span>Error message<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;script.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>Css的變數使用</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span>&#123;</span><br><span class="line">  <span class="attribute">--success-color</span>: <span class="number">#2ecc71</span>;</span><br><span class="line">  <span class="attribute">--error-color</span>: <span class="number">#e74c3c</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用Js動態存取Css</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.success</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--success-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: visible;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整Code</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@import</span> url(<span class="string">&quot;https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 變數 */</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--success-color</span>: <span class="number">#2ecc71</span>;</span><br><span class="line">  <span class="attribute">--error-color</span>: <span class="number">#e74c3c</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f9fafb</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Open Sans&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.3</span>);</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">30px</span> <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">padding-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">label</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#777</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#f0f0f0</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">input</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">  <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#777</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* dynamic with javascript */</span></span><br><span class="line"><span class="comment">/* js存取時才出現 */</span></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.success</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--success-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--error-color);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form-control</span><span class="selector-class">.error</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">  <span class="attribute">visibility</span>: visible;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.form</span> <span class="selector-tag">button</span> &#123;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#3498db</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> solid <span class="number">#3498db</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><p>利用id取的元素</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">.getElementById</span><br></pre></td></tr></table></figure>
+<p>.addEventListener</p>
+<p>who: form<br>when: 按下submit的時候<br>what: 做function</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="設定submit"><a href="#設定submit" class="headerlink" title="設定submit"></a>設定submit</h3><p>可以檢測submit是不是正常work。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 取得要操作元素的id</span></span><br><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> username = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> email = <span class="built_in">document</span>.getElementById(<span class="string">&quot;email&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event Listener，監聽submit按鈕。</span></span><br><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;Hi&quot;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(username); <span class="comment">//&lt;input type=&quot;text&quot; id=&quot;username&quot; placeholder=&quot;Enter username&quot;&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(username.value); <span class="comment">//Phoebe</span></span><br></pre></td></tr></table></figure>
+<h3 id="Simple-Validation"><a href="#Simple-Validation" class="headerlink" title="Simple Validation"></a>Simple Validation</h3><p>透過if…else…簡易判斷</p>
+<p>parentElement取得父元素，覆寫成form-control的class。</p>
+<p>.className加上這個class的意思。</p>
+<p><a href="https://codepen.io/phoebe-ho/pen/LYRmKGd?editors=1000">.className範例</a></p>
+<blockquote>
+<p>getelementbyid 與 queryselectort 差別?</p>
+</blockquote>
+<p><code>qeurySelector</code>屬於W3s中的Selectors API的規範。屬於靜態static node。</p>
+<p><code>getElementById</code>屬於DOM的規範。屬於動態live node list，會隨著對文檔操作的改變。</p>
+<p><a href="https://leowangsite.wordpress.com/2017/03/23/qeuryselector%E8%88%87getelementbyid%E7%9A%84%E5%B7%AE%E5%88%A5/">參考文章</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control class，變成form-control error。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control error&quot;</span>;</span><br><span class="line">  <span class="comment">// 選取到small(顯示錯誤的文字)</span></span><br><span class="line">  <span class="keyword">const</span> small = formControl.querySelector(<span class="string">&quot;small&quot;</span>);</span><br><span class="line">  <span class="comment">//將不同的function string填入</span></span><br><span class="line">  small.innerText = message;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> username = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> email = <span class="built_in">document</span>.getElementById(<span class="string">&quot;email&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show Input Error message 顯示錯誤的框</span></span><br><span class="line"><span class="comment">//input指EventListener取得的值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">input, message</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 取得父元素(parenetElement就是form-control)</span></span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control class，變成form-control error。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control error&quot;</span>;</span><br><span class="line">  <span class="comment">// 選取到small(顯示錯誤的文字)</span></span><br><span class="line">  <span class="keyword">const</span> small = formControl.querySelector(<span class="string">&quot;small&quot;</span>);</span><br><span class="line">  <span class="comment">//將不同的function string填入</span></span><br><span class="line">  small.innerText = message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show success outline 顯示成功的框</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showSuccess</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control，變成form-control success。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control success&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check email is valid</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidEmail</span>(<span class="params">email</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> re = <span class="regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</span>;</span><br><span class="line">  <span class="keyword">return</span> re.test(<span class="built_in">String</span>(email).toLowerCase());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event Listener事件監聽</span></span><br><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 防止送出時跳掉</span></span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="keyword">if</span> (username.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(username, <span class="string">&quot;Usrename is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(username);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (email.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(email, <span class="string">&quot;Email is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidEmail(email.value)) &#123;</span><br><span class="line">    showError(email, <span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(email);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (password.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(password, <span class="string">&quot;Password is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(password);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (password2.value === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    showError(password2, <span class="string">&quot;Password 2 is required&quot;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(password2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Check-Required-amp-Refactor"><a href="#Check-Required-amp-Refactor" class="headerlink" title="Check Required &amp; Refactor"></a>Check Required &amp; Refactor</h3><p>原本程式太多判斷式，使用functiont重構和ES6語法優化。</p>
+<blockquote>
+<p>甚麼是Refactor?</p>
+</blockquote>
+<p>中文為”代碼重構”，指對程式做任何更動以增加可讀性或者簡化結構，但不影響輸出結果。 </p>
+<h4 id="講解如何使用checkRequired"><a href="#講解如何使用checkRequired" class="headerlink" title="講解如何使用checkRequired"></a>講解如何使用checkRequired</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  checkRequired([username, email, password, password2]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkRequired</span>(<span class="params">inputArr</span>) </span>&#123;</span><br><span class="line">  inputArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(input.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/NW9yGLa.png"></p>
+<h4 id="在checkRequire加上判斷式顯示正確或錯誤"><a href="#在checkRequire加上判斷式顯示正確或錯誤" class="headerlink" title="在checkRequire加上判斷式顯示正確或錯誤"></a>在checkRequire加上判斷式顯示正確或錯誤</h4><p><code>charAt(0)</code>回傳遞第零個值。</p>
+<p><code>slice([begin,end])</code>方法會回傳一個新陣列物件，為陣列選擇 begin 至 end。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFieldName</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//轉換成大寫。加上後面的字母。</span></span><br><span class="line">  <span class="keyword">return</span> input.id.charAt(<span class="number">0</span>).toUpperCase() + input.id.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ES6語法<code>‵‵</code>，<code>$&#123;&#125;</code> 錢字號可以帶入變數。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">showError(input, <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> is required`</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  checkRequired([username, email, password, password2]);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check requires fields</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkRequired</span>(<span class="params">inputArr</span>) </span>&#123;</span><br><span class="line"><span class="comment">// 使用array的方法，再用foreach去讀取每個元素(username，email...)</span></span><br><span class="line"><span class="comment">// trim()將字串去除空白</span></span><br><span class="line">  inputArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input.value.trim() === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">      <span class="comment">//可以取得username，email，password，password2</span></span><br><span class="line">      <span class="comment">//console.log(input.id); </span></span><br><span class="line">      <span class="comment">// 增加function getFieldName</span></span><br><span class="line">      showError(input, <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> is required`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      showSuccess(input);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get fieldname</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFieldName</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// charAt(0).toUpperCase()只回傳第零個元素，轉換成大寫。加上後面的字母。</span></span><br><span class="line">  <span class="keyword">return</span> input.id.charAt(<span class="number">0</span>).toUpperCase() + input.id.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Check-Length-Email-amp-Password-Match-完成"><a href="#Check-Length-Email-amp-Password-Match-完成" class="headerlink" title="Check Length, Email &amp; Password Match 完成"></a>Check Length, Email &amp; Password Match 完成</h3><blockquote>
+<p>增加的功能</p>
+</blockquote>
+<ol>
+<li>checkLength</li>
+<li>優化isValidEmail</li>
+<li>checkPasswordMatch</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> form = <span class="built_in">document</span>.getElementById(<span class="string">&quot;form&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> username = <span class="built_in">document</span>.getElementById(<span class="string">&quot;username&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> email = <span class="built_in">document</span>.getElementById(<span class="string">&quot;email&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> password2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show Input Error message</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showError</span>(<span class="params">input, message</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 取得父元素</span></span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control class，變成</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control error&quot;</span>;</span><br><span class="line">  <span class="comment">// 選取到small</span></span><br><span class="line">  <span class="keyword">const</span> small = formControl.querySelector(<span class="string">&quot;small&quot;</span>);</span><br><span class="line">  <span class="comment">//將不同的function string填入</span></span><br><span class="line">  small.innerText = message;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Show success outline</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showSuccess</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> formControl = input.parentElement;</span><br><span class="line">  <span class="comment">// 增加classname，覆寫form-control，變成form-control success。</span></span><br><span class="line">  formControl.className = <span class="string">&quot;form-control success&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check email is valid</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isValidEmail</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> re = <span class="regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</span>;</span><br><span class="line">  <span class="keyword">if</span> (re.test(input.value.trim())) &#123;</span><br><span class="line">    showSuccess(input);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showError(input, <span class="string">&quot;Email is not valid&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check requires fields</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkRequired</span>(<span class="params">inputArr</span>) </span>&#123;</span><br><span class="line">  inputArr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (input.value.trim() === <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">      <span class="comment">//console.log(input.id); //可以取得username，email，password，password2</span></span><br><span class="line">      <span class="comment">// 增加function getFieldName</span></span><br><span class="line">      showError(input, <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> is required`</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      showSuccess(input);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Check input length</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkLength</span>(<span class="params">input, min, max</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input.value.length &lt; min) &#123;</span><br><span class="line">    showError(</span><br><span class="line">      input,</span><br><span class="line">      <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> must be at least <span class="subst">$&#123;min&#125;</span> characters`</span></span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input.value.length &gt; max) &#123;</span><br><span class="line">    showError(</span><br><span class="line">      input,</span><br><span class="line">      <span class="string">`<span class="subst">$&#123;getFieldName(input)&#125;</span> must be less than <span class="subst">$&#123;max&#125;</span> characters`</span></span><br><span class="line">    );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    showSuccess(input);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Check password match</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkPasswordMatch</span>(<span class="params">input1, input2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (input1.value !== input2.value) &#123;</span><br><span class="line">    showError(input2, <span class="string">&quot;Passwords do not match&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Get fieldname</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFieldName</span>(<span class="params">input</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 第零個元素，轉換成大寫，加上後面的字母</span></span><br><span class="line">  <span class="keyword">return</span> input.id.charAt(<span class="number">0</span>).toUpperCase() + input.id.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Event Listener</span></span><br><span class="line">form.addEventListener(<span class="string">&quot;submit&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line"></span><br><span class="line">  checkRequired([username, email, password, password2]);</span><br><span class="line">  <span class="comment">// (username,min,max)</span></span><br><span class="line">  checkLength(username, <span class="number">3</span>, <span class="number">15</span>);</span><br><span class="line">  checkLength(password, <span class="number">6</span>, <span class="number">25</span>);</span><br><span class="line">  isValidEmail(email);</span><br><span class="line">  checkPasswordMatch(password, password2);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="遇到的問題"><a href="#遇到的問題" class="headerlink" title="遇到的問題"></a>遇到的問題</h2><p><img src="https://i.imgur.com/0nLMwwM.png"></p>
+<p>一開始開發者工具會一直跳出這個錯誤</p>
+<p><a href="https://stackoverflow.com/questions/54970352/input-elements-should-have-autocomplete-attributes">解決辦法</a></p>
 ]]></content>
       <categories>
         <category>Portfolio</category>

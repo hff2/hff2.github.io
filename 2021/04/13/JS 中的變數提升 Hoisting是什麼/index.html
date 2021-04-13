@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="什麼是 Hoisting?Hoisting 就是「提升」的意思。 舉例來說，當只有console.log時，就會出現 not defined，因為我們試圖去對一個還沒被宣告的變數取值，才會出現此錯誤。">
+  <meta name="description" content="什麼是 Hoisting?Hoisting 就是「提升」的意思。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hoisting 變數提升是什麼">
-<meta property="og:url" content="https://hff2.github.io.com/2021/04/13/Hoisting%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%E6%98%AF%E4%BB%80%E9%BA%BC/index.html">
+<meta property="og:title" content="JS 中的變數提升 Hoisting 是什麼">
+<meta property="og:url" content="https://hff2.github.io.com/2021/04/13/JS%20%E4%B8%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%20Hoisting%E6%98%AF%E4%BB%80%E9%BA%BC/index.html">
 <meta property="og:site_name" content="Phoebe&#39;s Blog">
-<meta property="og:description" content="什麼是 Hoisting?Hoisting 就是「提升」的意思。 舉例來說，當只有console.log時，就會出現 not defined，因為我們試圖去對一個還沒被宣告的變數取值，才會出現此錯誤。">
+<meta property="og:description" content="什麼是 Hoisting?Hoisting 就是「提升」的意思。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-04-13T03:07:11.000Z">
-<meta property="article:modified_time" content="2021-04-13T09:21:52.732Z">
+<meta property="article:modified_time" content="2021-04-13T12:22:03.365Z">
 <meta property="article:author" content="Phoebe">
 <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://hff2.github.io.com/2021/04/13/Hoisting%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%E6%98%AF%E4%BB%80%E9%BA%BC/">
+<link rel="canonical" href="https://hff2.github.io.com/2021/04/13/JS%20%E4%B8%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%20Hoisting%E6%98%AF%E4%BB%80%E9%BA%BC/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>Hoisting 變數提升是什麼 | Phoebe's Blog</title>
+  <title>JS 中的變數提升 Hoisting 是什麼 | Phoebe's Blog</title>
   
 
 
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/04/13/Hoisting%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%E6%98%AF%E4%BB%80%E9%BA%BC/">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/04/13/JS%20%E4%B8%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%20Hoisting%E6%98%AF%E4%BB%80%E9%BA%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -203,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hoisting 變數提升是什麼
+          JS 中的變數提升 Hoisting 是什麼
         </h1>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-04-13 11:07:11 / 修改時間：17:21:52" itemprop="dateCreated datePublished" datetime="2021-04-13T11:07:11+08:00">2021-04-13</time>
+              <time title="創建時間：2021-04-13 11:07:11 / 修改時間：20:22:03" itemprop="dateCreated datePublished" datetime="2021-04-13T11:07:11+08:00">2021-04-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>828</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -252,21 +252,38 @@
 
       
         <h2 id="什麼是-Hoisting"><a href="#什麼是-Hoisting" class="headerlink" title="什麼是 Hoisting?"></a>什麼是 Hoisting?</h2><p>Hoisting 就是「提升」的意思。</p>
-<p>舉例來說，當只有<code>console.log</code>時，就會出現 not defined，因為我們試圖去對一個<strong>還沒被宣告的變數</strong>取值，才會出現此錯誤。</p>
 <a id="more"></a>
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: i is not defined</span></span><br></pre></td></tr></table></figure>
-<p>但是在下方宣告變數時，會出現 undefined，此現象就叫做<strong>Hoisting</strong>。</p>
-<p>不同於以往我們對程式的認知為一行一行跑，第二行的<code>var i</code>，因為某些原因，被提升到了最上面。</p>
+<p>舉例來說，當只有<code>console.log</code>時，就會出現 not defined，因為我們試圖去對一個<strong>還沒被宣告的變數</strong>取值，才會出現此錯誤。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i</span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>但是變數提升，只會提升變數的宣告會提升。賦與的值(賦值)並不會被提升。依然會是 undefined。</p>
+<p>上面的例子中，是在下方 ( 第二行 ) 宣告變數時，會出現 undefined，此現象就叫做<strong>Hoisting</strong>。</p>
+<p>不同於以往我們對程式的認知為一行一行跑，第二行的<code>var i</code>，因為某些原因，被提升到了最上面。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">5</span></span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>當以 function 宣告的時候，會出現<code>10</code>，而不是<code>undefined</code>。</p>
+<p>但是變數提升，只會提升變數的宣告會提升。<strong>賦與的值( 賦值 )並不會被提升</strong>。依然會是 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PART 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PART2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>當以 function 宣告的時候，會出現<code>10</code>，而不是 <code>undefined</code>。</p>
 <p>因為值會是以 PART2 的樣子，出現在 Function 的第一行，就被宣告且賦值了！</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PART 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// PART2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>最後，functoin 的宣告也會提升而且優先權較高，所以程式會輸出<code>function</code>而不是<code>undefined</code>。</p>
+<p>最後，functoin 的宣告也會提升而且優<strong>先權較高</strong>，所以程式會輸出<code>function</code>而不是<code>undefined</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">// [Functoin: a]</span></span><br></pre></td></tr></table></figure>
-<h2 id="let-跟-const-與-hoisting"><a href="#let-跟-const-與-hoisting" class="headerlink" title="let 跟 const 與 hoisting"></a>let 跟 const 與 hoisting</h2><h2 id="為什麼我們需要-hoisting？"><a href="#為什麼我們需要-hoisting？" class="headerlink" title="為什麼我們需要 hoisting？"></a>為什麼我們需要 hoisting？</h2><h2 id="hoisting-到底是怎麼運作的？"><a href="#hoisting-到底是怎麼運作的？" class="headerlink" title="hoisting 到底是怎麼運作的？"></a>hoisting 到底是怎麼運作的？</h2><h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a></p>
+<h2 id="let-const-var-與-hoisting"><a href="#let-const-var-與-hoisting" class="headerlink" title="let const var 與 hoisting"></a><code>let</code> <code>const</code> <code>var</code> 與 hoisting</h2><h3 id="let-與-const-的作用域"><a href="#let-與-const-的作用域" class="headerlink" title="let 與 const 的作用域"></a><code>let</code> 與 <code>const</code> 的作用域</h3><p><code>let</code> <code>const</code> <code>var</code> 最主要的差異是：ES6 <code>let</code> 和 <code>const</code> 以「區塊」作為其作用域 ( scope )。而 <code>var</code> 以「函數」作為其作用域。</p>
+<p><code>let</code> 與 <code>const</code> 換句話說，就是只有在<strong>區域</strong>裡面才看的到。以下方的例子來說。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">&quot;Phoebe&quot;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(name); <span class="comment">// Phoebe</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p><code>name</code> 這個變數只有在大括號裡，也就是區域內才看的到。</p>
+<h3 id="var的作用域"><a href="#var的作用域" class="headerlink" title="var的作用域"></a><code>var</code>的作用域</h3><p><code>var</code> 的作用域是函式作用域 ( function-level scope )。</p>
+<p>換句話說就是，用 <code>var</code> 宣告的變數，只有在「函式」裡可以看得到。</p>
+<h2 id="為什麼我們需要-hoisting-呢？"><a href="#為什麼我們需要-hoisting-呢？" class="headerlink" title="為什麼我們需要 hoisting 呢？"></a>為什麼我們需要 hoisting 呢？</h2><p>可以從反向思考，「如果沒有 hoisting 會怎麼樣?」</p>
+<ol>
+<li>一定要宣告變數才可以使用 (其他語言的習慣)</li>
+<li>一定要宣告函式才可以用 (特別注意)</li>
+<li>沒有辦法達成 function 互相呼叫</li>
+</ol>
+<p>舉個例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n&gt;<span class="number">1</span>) &#123;</span><br><span class="line">        show(--n)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n, n % <span class="number">2</span> ? <span class="string">&#x27;奇數&#x27;</span> : <span class="string">&#x27;偶數&#x27;</span>)</span><br><span class="line">    loop(n)</span><br><span class="line">&#125;</span><br><span class="line">loop(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p>我們在 loop 裡面呼叫 <code>show()</code>，在 <code>show()</code> 裡面也呼叫 <code>loop()</code>，如果沒有 hoisting ，以上程式碼就不會達成。</p>
+<p>因為，不可能做到 A 在 B 上面，而 B 又在 A 上面。</p>
+<p>所以 hoisting 就是為了解決上述的問題 !</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a></p>
 <p><a target="_blank" rel="noopener" href="https://shubo.io/javascript-hoisting/">[教學] JavaScript 中的 Hoisting 是什麼意思？let const var 的差異居然是這個？ | Shubo 的程式教學筆記</a></p>
 
     </div>
@@ -348,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-Hoisting"><span class="nav-number">1.</span> <span class="nav-text">什麼是 Hoisting?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let-%E8%B7%9F-const-%E8%88%87-hoisting"><span class="nav-number">2.</span> <span class="nav-text">let 跟 const 與 hoisting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E5%80%91%E9%9C%80%E8%A6%81-hoisting%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">為什麼我們需要 hoisting？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hoisting-%E5%88%B0%E5%BA%95%E6%98%AF%E6%80%8E%E9%BA%BC%E9%81%8B%E4%BD%9C%E7%9A%84%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">hoisting 到底是怎麼運作的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">5.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-Hoisting"><span class="nav-number">1.</span> <span class="nav-text">什麼是 Hoisting?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#let-const-var-%E8%88%87-hoisting"><span class="nav-number">2.</span> <span class="nav-text">let const var 與 hoisting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-%E8%88%87-const-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">let 與 const 的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.2.</span> <span class="nav-text">var的作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%88%91%E5%80%91%E9%9C%80%E8%A6%81-hoisting-%E5%91%A2%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">為什麼我們需要 hoisting 呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">4.</span> <span class="nav-text">參考文章</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -426,7 +443,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">2:48</span>
+    <span title="所需總閱讀時間">2:49</span>
 </div>
 
         
