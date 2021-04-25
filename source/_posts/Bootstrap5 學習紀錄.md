@@ -6,8 +6,6 @@ categories: Bootstrap
 date: 2021-03-8 11:07:11
 ---
 
-觀看 Amos 的[金魚都能懂得 Bootstrap5 網頁框架開發](https://www.youtube.com/playlist?list=PLqivELodHt3jq3oWBZfdhMu0GE7774HBW)影片學習。
-
 ## Bootstrap5 快速簡介
 
 <!--more-->
