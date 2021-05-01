@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="簡述HTML5 中的 Drag &amp; Drop API 可以讓我們在瀏覽器中做到拖曳元素、排序元素、或者是讓使用者透過拖拉的方式把要上傳的檔案拉到瀏覽器當中。">
+  <meta name="description" content="學習到的知識點 透過 CSS 選擇元素 (querySelector) Date 時間物件 取得日期物件的本地時間 (getHours，getSeconds，getMinutes) 透過 JS 控制 CSS (style.transform) JS 計時器 (setInterval，setTimeout，requestAnimationFrame)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML5 Drag and Drop API 筆記">
-<meta property="og:url" content="https://hff2.github.io.com/2021/02/02/HTML5-Drag-and-Drop-API-%E7%AD%86%E8%A8%98/index.html">
+<meta property="og:title" content="[實作] JS30 - Day 2 JS + CSS Clock">
+<meta property="og:url" content="https://hff2.github.io.com/2021/05/01/[%E5%AF%A6%E4%BD%9C]%20JS30%20-%20Day%202%20JS%20+%20CSS%20Clock/index.html">
 <meta property="og:site_name" content="Phoebe&#39;s Blog">
-<meta property="og:description" content="簡述HTML5 中的 Drag &amp; Drop API 可以讓我們在瀏覽器中做到拖曳元素、排序元素、或者是讓使用者透過拖拉的方式把要上傳的檔案拉到瀏覽器當中。">
+<meta property="og:description" content="學習到的知識點 透過 CSS 選擇元素 (querySelector) Date 時間物件 取得日期物件的本地時間 (getHours，getSeconds，getMinutes) 透過 JS 控制 CSS (style.transform) JS 計時器 (setInterval，setTimeout，requestAnimationFrame)">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://i.imgur.com/8YizrxC.png">
-<meta property="article:published_time" content="2021-02-02T02:46:36.000Z">
-<meta property="article:modified_time" content="2021-02-16T13:04:31.541Z">
+<meta property="article:published_time" content="2021-05-01T03:07:11.000Z">
+<meta property="article:modified_time" content="2021-05-01T05:00:29.242Z">
 <meta property="article:author" content="Phoebe">
 <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/8YizrxC.png">
 
-<link rel="canonical" href="https://hff2.github.io.com/2021/02/02/HTML5-Drag-and-Drop-API-%E7%AD%86%E8%A8%98/">
+<link rel="canonical" href="https://hff2.github.io.com/2021/05/01/[%E5%AF%A6%E4%BD%9C]%20JS30%20-%20Day%202%20JS%20+%20CSS%20Clock/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>HTML5 Drag and Drop API 筆記 | Phoebe's Blog</title>
+  <title>[實作] JS30 - Day 2 JS + CSS Clock | Phoebe's Blog</title>
   
 
 
@@ -192,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/02/02/HTML5-Drag-and-Drop-API-%E7%AD%86%E8%A8%98/">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/05/01/[%E5%AF%A6%E4%BD%9C]%20JS30%20-%20Day%202%20JS%20+%20CSS%20Clock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -205,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          HTML5 Drag and Drop API 筆記
+          [實作] JS30 - Day 2 JS + CSS Clock
         </h1>
 
         <div class="post-meta">
@@ -214,23 +212,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2021-02-02 10:46:36" itemprop="dateCreated datePublished" datetime="2021-02-02T10:46:36+08:00">2021-02-02</time>
+              <time title="創建時間：2021-05-01 11:07:11 / 修改時間：13:00:29" itemprop="dateCreated datePublished" datetime="2021-05-01T11:07:11+08:00">2021-05-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-02-16 21:04:31" itemprop="dateModified" datetime="2021-02-16T21:04:31+08:00">2021-02-16</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分類於</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a>
+                  <a href="/categories/JS-30/" itemprop="url" rel="index"><span itemprop="name">JS 30</span></a>
                 </span>
             </span>
 
@@ -240,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>722</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -259,68 +251,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="簡述"><a href="#簡述" class="headerlink" title="簡述"></a>簡述</h2><p>HTML5 中的 Drag &amp; Drop API 可以讓我們在瀏覽器中做到<strong>拖曳元素</strong>、<strong>排序元素</strong>、或者是讓使用者透過拖拉的方式把要上傳的檔案拉到瀏覽器當中。</p>
+        <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><ul>
+<li>透過 CSS 選擇元素 (<code>querySelector</code>)</li>
+<li>Date 時間物件</li>
+<li>取得日期物件的本地時間 (<code>getHours</code>，<code>getSeconds</code>，<code>getMinutes</code>)</li>
+<li>透過 JS 控制 CSS (<code>style.transform</code>)</li>
+<li>JS 計時器 (<code>setInterval</code>，<code>setTimeout</code>，<code>requestAnimationFrame</code>)</li>
+</ul>
 <a id="more"></a>
-<p>在學習 HTML5 Drag &amp; Drop API 時，最重要的是去區分 Drag Source 和 Drop Target，因為它們會需要各自去監聽不同的事件。</p>
-<p><img src="https://i.imgur.com/8YizrxC.png"></p>
+
+<h2 id="思考分析"><a href="#思考分析" class="headerlink" title="思考分析"></a>思考分析</h2><ol>
+<li>取得本地時間，顯示在時鐘上。</li>
+<li>計算每秒要改變的角度</li>
+<li>角度更新到時鐘，改變時鐘每秒狀態。</li>
+</ol>
+<h3 id="1-取得時針，分針，秒針"><a href="#1-取得時針，分針，秒針" class="headerlink" title="1. 取得時針，分針，秒針"></a>1. 取得時針，分針，秒針</h3><p>在開始撰寫程式之前，先使用立即函式(IIFE)將整個程式包起來，進行封裝。</p>
+<p>在前面打個分號的用意為，當載入比較多東西時，有個分號會比較保險。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p><code>querySelector</code>：JS 原生 CSS 選擇器，需要注意的地方是，若找不到相對應的元素會回傳 null，否則會回傳第一個符合的元素。所以，如果是多個屬性具有相同的名稱時，他只會選擇到第一個符合的元素。</p>
+<p>選取時針 (<code>hour</code>)，分針 (<code>min</code>)，秒針 (<code>second</code>)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> second = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.second-hand&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> min = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.min-hand&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> hour = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.hour-hand&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-建立函式，計算每秒要改變的角度"><a href="#2-建立函式，計算每秒要改變的角度" class="headerlink" title="2. 建立函式，計算每秒要改變的角度"></a>2. 建立函式，計算每秒要改變的角度</h3><p>使用 <code>new Date</code> 建立一個 Date 物件。</p>
+<p>再使用 <code>getSeconds()</code> - 取得幾秒，<code>getMinutes</code> - 取得幾分， <code>getHours</code> - 取得幾小時。</p>
 <ul>
-<li><code>Drag Source</code> 指的是<strong>被點擊要拖曳的物件，也就是藍色的圓</strong>，通常是一個 element。</li>
-<li><code>Drop Target</code> 指的是<strong>拖曳的物件被放置的區域，也就是右邊的綠色區域</strong>，通常是一個 div container。</li>
+<li>秒數後面的乘 6，是因為 ( 360 度 / 一圈 60 秒 )。所以，一秒代表六度。</li>
+<li>分鐘與秒是相同的道理。</li>
+<li>小時後面的乘 30，是因為 ( 360 度 / 一圈 12 小時 )。所以，一小時代表 30 度。</li>
 </ul>
-<h2 id="Drag-amp-Drop-主要事件"><a href="#Drag-amp-Drop-主要事件" class="headerlink" title="Drag &amp; Drop 主要事件"></a>Drag &amp; Drop 主要事件</h2><p>Drag &amp; Drop 提供的事件主要包含<code>dragstart, drag, dragend, dragenter, dragover, dragleave, drop</code>，其中有些是針對 Drag Source 的，有些則是針對 Drop Target 的，整理如下表：</p>
-<table>
-<thead>
-<tr>
-<th>x</th>
-<th>Drag Source</th>
-<th>Drag Target</th>
-<th>解釋</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>dragstart</td>
-<td></td>
-<td><strong>開始</strong>拖曳元素時觸發此事件 (點擊元素的瞬間)</td>
-</tr>
-<tr>
-<td>2</td>
-<td>drag</td>
-<td>dragenter</td>
-<td><strong>拖曳</strong>元素時觸發此事件</td>
-</tr>
-<tr>
-<td>3</td>
-<td></td>
-<td>dragover</td>
-<td>當元素拖曳到<strong>有效位置</strong>放置則觸發此事件</td>
-</tr>
-<tr>
-<td>4</td>
-<td></td>
-<td>dragleave</td>
-<td>拖曳的元素<strong>離開有效的位置</strong>時觸發</td>
-</tr>
-<tr>
-<td>5</td>
-<td></td>
-<td>drop</td>
-<td>在<strong>有效位置</strong>上<strong>放置</strong>元素時觸發此事件 (放下元素)</td>
-</tr>
-<tr>
-<td>6</td>
-<td>dropend</td>
-<td></td>
-<td>當拖曳<strong>結束</strong>時會觸發此事件</td>
-</tr>
-</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setClock</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 獲得時間物件</span></span><br><span class="line">  <span class="keyword">let</span> data = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> secondDeg = data.getSeconds() * <span class="number">6</span>; <span class="comment">//(360/60sec)</span></span><br><span class="line">  <span class="keyword">let</span> minDeg = data.getMinutes() * <span class="number">6</span>+ data.getSeconds() * <span class="number">6</span>/<span class="number">60</span>; <span class="comment">//(360/60min)</span></span><br><span class="line">  <span class="keyword">let</span> hourDeg = data.getHours() * <span class="number">30</span> + data.getMinutes() * <span class="number">30</span>/<span class="number">60</span>; <span class="comment">//(360/12hr)</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-將計算好的角度，更新到時鐘上"><a href="#3-將計算好的角度，更新到時鐘上" class="headerlink" title="3. 將計算好的角度，更新到時鐘上"></a>3. 將計算好的角度，更新到時鐘上</h3><p>透過 JS 控制 CSS，使用 <code>.style.transform = rotate</code> ，就可以將角度更新到時鐘上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setClock</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  second.style.transform = <span class="string">`rotate(<span class="subst">$&#123;secondDeg&#125;</span>deg)`</span>;</span><br><span class="line">  min.style.transform = <span class="string">`rotate(<span class="subst">$&#123;minDeg&#125;</span>deg)`</span>;</span><br><span class="line">  hour.style.transform = <span class="string">`rotate(<span class="subst">$&#123;hourDeg&#125;</span>deg)`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-每秒更新時鐘的狀態"><a href="#4-每秒更新時鐘的狀態" class="headerlink" title="4. 每秒更新時鐘的狀態"></a>4. 每秒更新時鐘的狀態</h3><p>這邊會講解三種計時器的運用。</p>
 <ul>
-<li>drag：在 drag source <strong>被拖曳</strong>時會持續被觸發。</li>
-<li>dragover：當拖曳的 drag source 到 drop target 上方時會持續被觸發。</li>
+<li><code>setInterval</code></li>
+<li><code>setTimeout</code></li>
+<li><code>requestAnimatoin</code></li>
 </ul>
-<p><strong>記得要針對被拖曳的物件取消預設行為（default）</strong></p>
-<h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><p><a target="_blank" rel="noopener" href="https://pjchender.blogspot.com/2017/08/html5-drag-and-drop-api.html">製作可拖曳的元素（HTML5 Drag and Drop API）</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41229588/article/details/106574573?ops_request_misc=&request_id=&biz_id=102&utm_term=dragleave&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-5-106574573.pc_search_result_before_js">详解Html5关于拖拽（Drag 和 drop）的使用和事件</a></p>
+<h2 id="延伸學習"><a href="#延伸學習" class="headerlink" title="延伸學習"></a>延伸學習</h2><h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/CSS/transform">transform - CSS | MDN</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fooish.com/javascript/date/">JavaScript Date 時間和日期 - JavaScript (JS) 教學 Tutorial</a></p>
 
     </div>
 
@@ -339,13 +307,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/02/01/%E5%AF%A6%E4%BD%9C%E5%8F%AF%E6%8E%92%E5%BA%8F%E7%9A%84%E6%B8%85%E5%96%AE-%E8%AA%8D%E8%AD%98-Drag-Drop-API/" rel="prev" title="[實作] 可排序的清單 認識 Drag & Drop API ">
-      <i class="fa fa-chevron-left"></i> [實作] 可排序的清單 認識 Drag & Drop API 
+    <a href="/2021/04/24/%5B%E5%AF%A6%E4%BD%9C%5D%20JS30%20-%20Day%201%20JS%20Drum%20Kit/" rel="prev" title="[實作] JS30 - Day 1 JS Drum Kit">
+      <i class="fa fa-chevron-left"></i> [實作] JS30 - Day 1 JS Drum Kit
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/02/04/%E5%AF%A6%E4%BD%9C-Github-Finder/" rel="next" title="[實作] Github Finder">
-      [實作] Github Finder <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -404,7 +369,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">簡述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Drag-amp-Drop-%E4%B8%BB%E8%A6%81%E4%BA%8B%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">Drag &amp; Drop 主要事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E9%80%A3%E7%B5%90"><span class="nav-number">3.</span> <span class="nav-text">參考連結</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%B8%E7%BF%92%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AD%98%E9%BB%9E"><span class="nav-number">1.</span> <span class="nav-text">學習到的知識點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">思考分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8F%96%E5%BE%97%E6%99%82%E9%87%9D%EF%BC%8C%E5%88%86%E9%87%9D%EF%BC%8C%E7%A7%92%E9%87%9D"><span class="nav-number">2.1.</span> <span class="nav-text">1. 取得時針，分針，秒針</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BB%BA%E7%AB%8B%E5%87%BD%E5%BC%8F%EF%BC%8C%E8%A8%88%E7%AE%97%E6%AF%8F%E7%A7%92%E8%A6%81%E6%94%B9%E8%AE%8A%E7%9A%84%E8%A7%92%E5%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">2. 建立函式，計算每秒要改變的角度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B0%87%E8%A8%88%E7%AE%97%E5%A5%BD%E7%9A%84%E8%A7%92%E5%BA%A6%EF%BC%8C%E6%9B%B4%E6%96%B0%E5%88%B0%E6%99%82%E9%90%98%E4%B8%8A"><span class="nav-number">2.3.</span> <span class="nav-text">3. 將計算好的角度，更新到時鐘上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%AF%8F%E7%A7%92%E6%9B%B4%E6%96%B0%E6%99%82%E9%90%98%E7%9A%84%E7%8B%80%E6%85%8B"><span class="nav-number">2.4.</span> <span class="nav-text">4. 每秒更新時鐘的狀態</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E4%BC%B8%E5%AD%B8%E7%BF%92"><span class="nav-number">3.</span> <span class="nav-text">延伸學習</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E7%B6%B2%E7%AB%99"><span class="nav-number">4.</span> <span class="nav-text">參考網站</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

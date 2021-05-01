@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CSS 私有前綴</title>
-    <url>/2021/02/23/CSS%20%E7%A7%81%E6%9C%89%E5%89%8D%E7%B6%B4/</url>
-    <content><![CDATA[<p><code>-webkit-appearance</code> 為使用系統預設的外觀。</p>
-<p><code>-webkit-appearance: none</code>，去除瀏覽器的預設樣式。</p>
-<a id="more"></a>
-<p>webkit是一種瀏覽器的私有前綴，是瀏覽器對新css實現的一個提前支持。</p>
-<p>-webkit是指，webkit內核的瀏覽器(Safari和Google)，moz是Firefox內核的瀏覽器。</p>
-<blockquote>
-<p>為什麼會出現webkit跟moz這種私有前綴?</p>
-</blockquote>
-<p>因為制定HTML和CSS標準的組織W3C動作較慢。</p>
-<p>通常，W3C組織成員提出新屬性，比如說<code>border-radius</code>，但要審核一個屬性通過需要很多審查，瀏覽器商不想等這麼久，就會在瀏覽器中先加入支持。</p>
-<p>但是，避免W3C公布標準時有變更，就會加入一個私有前綴，比如<code>-webkit-border-radius</code>，通過這種方式來提前支持屬性。</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>HTML&amp;CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSS flex</title>
     <url>/2021/02/22/CSS-flex/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>flex 可以控制比例縮減分配，也能夠控制膨脹、縮減，順序。</p>
@@ -289,6 +267,48 @@
       </tags>
   </entry>
   <entry>
+    <title>CSS 私有前綴</title>
+    <url>/2021/02/23/CSS%20%E7%A7%81%E6%9C%89%E5%89%8D%E7%B6%B4/</url>
+    <content><![CDATA[<p><code>-webkit-appearance</code> 為使用系統預設的外觀。</p>
+<p><code>-webkit-appearance: none</code>，去除瀏覽器的預設樣式。</p>
+<a id="more"></a>
+<p>webkit是一種瀏覽器的私有前綴，是瀏覽器對新css實現的一個提前支持。</p>
+<p>-webkit是指，webkit內核的瀏覽器(Safari和Google)，moz是Firefox內核的瀏覽器。</p>
+<blockquote>
+<p>為什麼會出現webkit跟moz這種私有前綴?</p>
+</blockquote>
+<p>因為制定HTML和CSS標準的組織W3C動作較慢。</p>
+<p>通常，W3C組織成員提出新屬性，比如說<code>border-radius</code>，但要審核一個屬性通過需要很多審查，瀏覽器商不想等這麼久，就會在瀏覽器中先加入支持。</p>
+<p>但是，避免W3C公布標準時有變更，就會加入一個私有前綴，比如<code>-webkit-border-radius</code>，通過這種方式來提前支持屬性。</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>HTML&amp;CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML 5 中的資料屬性（data-* attribute）</title>
+    <url>/2021/04/22/HTML5%20%E4%B8%AD%E7%9A%84%E8%B3%87%E6%96%99%E5%B1%AC%E6%80%A7/</url>
+    <content><![CDATA[<p><code>data-* attribute</code> 這個東西很常出現，但卻常常搞不清楚他到底是什麼？</p>
+<h2 id="解釋屬性"><a href="#解釋屬性" class="headerlink" title="解釋屬性"></a>解釋屬性</h2><a id="more"></a>
+
+<p>會有<code>data-* attribute</code>的出現，是因為在製作網頁的過程，我們會添加一些屬性名稱方便自己理解。</p>
+<p>但是，不能每個人都定義自己的屬性名稱，為了要避免大家在 HTML 中隨意添加屬性，在 HTML5 中就多了 data-_ attribute 這個屬性。其中，<code>_</code>就是可以自定義的部分。</p>
+<p>在使用 <code>data-* attribute</code> 時，* 字號的地方不能包含大寫字母，也就是屬性名稱不能包含大寫字母，而屬性值則可以是任何的字串。</p>
+<p>在 JS30 的 Day1 中，作者也有使用到了這個屬性。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-key</span>=<span class="string">&quot;65&quot;</span> <span class="attr">class</span>=<span class="string">&quot;key&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>A<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sound&quot;</span>&gt;</span>clap<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-key</span>=<span class="string">&quot;83&quot;</span> <span class="attr">class</span>=<span class="string">&quot;key&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>S<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sound&quot;</span>&gt;</span>hihat<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用-JS-取得-data-attribute-的屬性值"><a href="#使用-JS-取得-data-attribute-的屬性值" class="headerlink" title="使用 JS 取得 data-* attribute 的屬性值"></a>使用 JS 取得 data-* attribute 的屬性值</h2><p>當我們要取得 <code>data-* attribute</code>的屬性值時，我們可以簡單利用 JavaScript 中的 <code>dataset</code> 物件，就可以取得。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> key = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;.key&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(key[<span class="number">0</span>].dataset.key);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Grid 排版練習</title>
     <url>/2020/12/22/Grid-%E6%8E%92%E7%89%88/</url>
     <content><![CDATA[<p><a href="https://css-tricks.com/snippets/css/complete-guide-grid/">參考網站</a></p>
@@ -376,71 +396,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HTML 5 中的資料屬性（data-* attribute）</title>
-    <url>/2021/04/22/HTML5%20%E4%B8%AD%E7%9A%84%E8%B3%87%E6%96%99%E5%B1%AC%E6%80%A7/</url>
-    <content><![CDATA[<p><code>data-* attribute</code> 這個東西很常出現，但卻常常搞不清楚他到底是什麼？</p>
-<h2 id="解釋屬性"><a href="#解釋屬性" class="headerlink" title="解釋屬性"></a>解釋屬性</h2><a id="more"></a>
-
-<p>會有<code>data-* attribute</code>的出現，是因為在製作網頁的過程，我們會添加一些屬性名稱方便自己理解。</p>
-<p>但是，不能每個人都定義自己的屬性名稱，為了要避免大家在 HTML 中隨意添加屬性，在 HTML5 中就多了 data-_ attribute 這個屬性。其中，<code>_</code>就是可以自定義的部分。</p>
-<p>在使用 <code>data-* attribute</code> 時，* 字號的地方不能包含大寫字母，也就是屬性名稱不能包含大寫字母，而屬性值則可以是任何的字串。</p>
-<p>在 JS30 的 Day1 中，作者也有使用到了這個屬性。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-key</span>=<span class="string">&quot;65&quot;</span> <span class="attr">class</span>=<span class="string">&quot;key&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>A<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sound&quot;</span>&gt;</span>clap<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-key</span>=<span class="string">&quot;83&quot;</span> <span class="attr">class</span>=<span class="string">&quot;key&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>S<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sound&quot;</span>&gt;</span>hihat<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用-JS-取得-data-attribute-的屬性值"><a href="#使用-JS-取得-data-attribute-的屬性值" class="headerlink" title="使用 JS 取得 data-* attribute 的屬性值"></a>使用 JS 取得 data-* attribute 的屬性值</h2><p>當我們要取得 <code>data-* attribute</code>的屬性值時，我們可以簡單利用 JavaScript 中的 <code>dataset</code> 物件，就可以取得。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> key = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;.key&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(key[<span class="number">0</span>].dataset.key);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS 中的變數提升 Hoisting 是什麼</title>
-    <url>/2021/04/13/JS%20%E4%B8%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%20Hoisting%E6%98%AF%E4%BB%80%E9%BA%BC/</url>
-    <content><![CDATA[<h2 id="什麼是-Hoisting"><a href="#什麼是-Hoisting" class="headerlink" title="什麼是 Hoisting?"></a>什麼是 Hoisting?</h2><p>Hoisting 就是「提升」的意思。</p>
-<a id="more"></a>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: i is not defined</span></span><br></pre></td></tr></table></figure>
-<p>舉例來說，當只有<code>console.log</code>時，就會出現 not defined，因為我們試圖去對一個<strong>還沒被宣告的變數</strong>取值，才會出現此錯誤。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i</span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>上面的例子中，是在下方 ( 第二行 ) 宣告變數時，會出現 undefined，此現象就叫做<strong>Hoisting</strong>。</p>
-<p>不同於以往我們對程式的認知為一行一行跑，第二行的<code>var i</code>，因為某些原因，被提升到了最上面。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">5</span></span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-<p>但是變數提升，只會提升變數的宣告會提升。<strong>賦與的值( 賦值 )並不會被提升</strong>。依然會是 undefined。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// PART 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PART2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-<p>當以 function 宣告的時候，會出現<code>10</code>，而不是 <code>undefined</code>。</p>
-<p>因為值會是以 PART2 的樣子，出現在 Function 的第一行，就被宣告且賦值了！</p>
-<p>最後，functoin 的宣告也會提升而且優<strong>先權較高</strong>，所以程式會輸出<code>function</code>而不是<code>undefined</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">// [Functoin: a]</span></span><br></pre></td></tr></table></figure>
-<h2 id="let-const-var-與-hoisting"><a href="#let-const-var-與-hoisting" class="headerlink" title="let const var 與 hoisting"></a><code>let</code> <code>const</code> <code>var</code> 與 hoisting</h2><h3 id="let-與-const-的作用域"><a href="#let-與-const-的作用域" class="headerlink" title="let 與 const 的作用域"></a><code>let</code> 與 <code>const</code> 的作用域</h3><p><code>let</code> <code>const</code> <code>var</code> 最主要的差異是：ES6 <code>let</code> 和 <code>const</code> 以「區塊」作為其作用域 ( scope )。而 <code>var</code> 以「函數」作為其作用域。</p>
-<p><code>let</code> 與 <code>const</code> 換句話說，就是只有在<strong>區域</strong>裡面才看的到。以下方的例子來說。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">&quot;Phoebe&quot;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(name); <span class="comment">// Phoebe</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<p><code>name</code> 這個變數只有在大括號裡，也就是區域內才看的到。</p>
-<h3 id="var的作用域"><a href="#var的作用域" class="headerlink" title="var的作用域"></a><code>var</code>的作用域</h3><p><code>var</code> 的作用域是函式作用域 ( function-level scope )。</p>
-<p>換句話說就是，用 <code>var</code> 宣告的變數，只有在「函式」裡可以看得到。</p>
-<h2 id="為什麼我們需要-hoisting-呢？"><a href="#為什麼我們需要-hoisting-呢？" class="headerlink" title="為什麼我們需要 hoisting 呢？"></a>為什麼我們需要 hoisting 呢？</h2><p>可以從反向思考，「如果沒有 hoisting 會怎麼樣?」</p>
-<ol>
-<li>一定要宣告變數才可以使用 (其他語言的習慣)</li>
-<li>一定要宣告函式才可以用 (特別注意)</li>
-<li>沒有辦法達成 function 互相呼叫</li>
-</ol>
-<p>舉個例子</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n&gt;<span class="number">1</span>) &#123;</span><br><span class="line">        show(--n)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n, n % <span class="number">2</span> ? <span class="string">&#x27;奇數&#x27;</span> : <span class="string">&#x27;偶數&#x27;</span>)</span><br><span class="line">    loop(n)</span><br><span class="line">&#125;</span><br><span class="line">loop(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-<p>我們在 loop 裡面呼叫 <code>show()</code>，在 <code>show()</code> 裡面也呼叫 <code>loop()</code>，如果沒有 hoisting ，以上程式碼就不會達成。</p>
-<p>因為，不可能做到 A 在 B 上面，而 B 又在 A 上面。</p>
-<p>所以 hoisting 就是為了解決上述的問題 !</p>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a></p>
-<p><a href="https://shubo.io/javascript-hoisting/">[教學] JavaScript 中的 Hoisting 是什麼意思？let const var 的差異居然是這個？ | Shubo 的程式教學筆記</a></p>
-]]></content>
-      <categories>
-        <category>Javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTML5 Drag and Drop API 筆記</title>
     <url>/2021/02/02/HTML5-Drag-and-Drop-API-%E7%AD%86%E8%A8%98/</url>
     <content><![CDATA[<h2 id="簡述"><a href="#簡述" class="headerlink" title="簡述"></a>簡述</h2><p>HTML5 中的 Drag &amp; Drop API 可以讓我們在瀏覽器中做到<strong>拖曳元素</strong>、<strong>排序元素</strong>、或者是讓使用者透過拖拉的方式把要上傳的檔案拉到瀏覽器當中。</p>
@@ -505,6 +460,51 @@
 <p><strong>記得要針對被拖曳的物件取消預設行為（default）</strong></p>
 <h2 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h2><p><a href="https://pjchender.blogspot.com/2017/08/html5-drag-and-drop-api.html">製作可拖曳的元素（HTML5 Drag and Drop API）</a></p>
 <p><a href="https://blog.csdn.net/weixin_41229588/article/details/106574573?ops_request_misc=&request_id=&biz_id=102&utm_term=dragleave&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-5-106574573.pc_search_result_before_js">详解Html5关于拖拽（Drag 和 drop）的使用和事件</a></p>
+]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS 中的變數提升 Hoisting 是什麼</title>
+    <url>/2021/04/13/JS%20%E4%B8%AD%E7%9A%84%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%20Hoisting%E6%98%AF%E4%BB%80%E9%BA%BC/</url>
+    <content><![CDATA[<h2 id="什麼是-Hoisting"><a href="#什麼是-Hoisting" class="headerlink" title="什麼是 Hoisting?"></a>什麼是 Hoisting?</h2><p>Hoisting 就是「提升」的意思。</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="comment">//Uncaught ReferenceError: i is not defined</span></span><br></pre></td></tr></table></figure>
+<p>舉例來說，當只有<code>console.log</code>時，就會出現 not defined，因為我們試圖去對一個<strong>還沒被宣告的變數</strong>取值，才會出現此錯誤。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i</span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>上面的例子中，是在下方 ( 第二行 ) 宣告變數時，會出現 undefined，此現象就叫做<strong>Hoisting</strong>。</p>
+<p>不同於以往我們對程式的認知為一行一行跑，第二行的<code>var i</code>，因為某些原因，被提升到了最上面。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(i)</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">5</span></span><br><span class="line"><span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>但是變數提升，只會提升變數的宣告會提升。<strong>賦與的值( 賦值 )並不會被提升</strong>。依然會是 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// PART 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// PART2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>當以 function 宣告的時候，會出現<code>10</code>，而不是 <code>undefined</code>。</p>
+<p>因為值會是以 PART2 的樣子，出現在 Function 的第一行，就被宣告且賦值了！</p>
+<p>最後，functoin 的宣告也會提升而且優<strong>先權較高</strong>，所以程式會輸出<code>function</code>而不是<code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"><span class="keyword">var</span> a</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">// [Functoin: a]</span></span><br></pre></td></tr></table></figure>
+<h2 id="let-const-var-與-hoisting"><a href="#let-const-var-與-hoisting" class="headerlink" title="let const var 與 hoisting"></a><code>let</code> <code>const</code> <code>var</code> 與 hoisting</h2><h3 id="let-與-const-的作用域"><a href="#let-與-const-的作用域" class="headerlink" title="let 與 const 的作用域"></a><code>let</code> 與 <code>const</code> 的作用域</h3><p><code>let</code> <code>const</code> <code>var</code> 最主要的差異是：ES6 <code>let</code> 和 <code>const</code> 以「區塊」作為其作用域 ( scope )。而 <code>var</code> 以「函數」作為其作用域。</p>
+<p><code>let</code> 與 <code>const</code> 換句話說，就是只有在<strong>區域</strong>裡面才看的到。以下方的例子來說。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">&quot;Phoebe&quot;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(name); <span class="comment">// Phoebe</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p><code>name</code> 這個變數只有在大括號裡，也就是區域內才看的到。</p>
+<h3 id="var的作用域"><a href="#var的作用域" class="headerlink" title="var的作用域"></a><code>var</code>的作用域</h3><p><code>var</code> 的作用域是函式作用域 ( function-level scope )。</p>
+<p>換句話說就是，用 <code>var</code> 宣告的變數，只有在「函式」裡可以看得到。</p>
+<h2 id="為什麼我們需要-hoisting-呢？"><a href="#為什麼我們需要-hoisting-呢？" class="headerlink" title="為什麼我們需要 hoisting 呢？"></a>為什麼我們需要 hoisting 呢？</h2><p>可以從反向思考，「如果沒有 hoisting 會怎麼樣?」</p>
+<ol>
+<li>一定要宣告變數才可以使用 (其他語言的習慣)</li>
+<li>一定要宣告函式才可以用 (特別注意)</li>
+<li>沒有辦法達成 function 互相呼叫</li>
+</ol>
+<p>舉個例子</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n&gt;<span class="number">1</span>) &#123;</span><br><span class="line">        show(--n)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(n, n % <span class="number">2</span> ? <span class="string">&#x27;奇數&#x27;</span> : <span class="string">&#x27;偶數&#x27;</span>)</span><br><span class="line">    loop(n)</span><br><span class="line">&#125;</span><br><span class="line">loop(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p>我們在 loop 裡面呼叫 <code>show()</code>，在 <code>show()</code> 裡面也呼叫 <code>loop()</code>，如果沒有 hoisting ，以上程式碼就不會達成。</p>
+<p>因為，不可能做到 A 在 B 上面，而 B 又在 A 上面。</p>
+<p>所以 hoisting 就是為了解決上述的問題 !</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://blog.techbridge.cc/2018/11/10/javascript-hoisting/">我知道你懂 hoisting，可是你了解到多深？</a></p>
+<p><a href="https://shubo.io/javascript-hoisting/">[教學] JavaScript 中的 Hoisting 是什麼意思？let const var 的差異居然是這個？ | Shubo 的程式教學筆記</a></p>
 ]]></content>
       <categories>
         <category>Javascript</category>
@@ -730,6 +730,55 @@
       </categories>
       <tags>
         <tag>WSL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[實作] JS30 - Day 2 JS + CSS Clock</title>
+    <url>/2021/05/01/%5B%E5%AF%A6%E4%BD%9C%5D%20JS30%20-%20Day%202%20JS%20+%20CSS%20Clock/</url>
+    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><ul>
+<li>透過 CSS 選擇元素 (<code>querySelector</code>)</li>
+<li>Date 時間物件</li>
+<li>取得日期物件的本地時間 (<code>getHours</code>，<code>getSeconds</code>，<code>getMinutes</code>)</li>
+<li>透過 JS 控制 CSS (<code>style.transform</code>)</li>
+<li>JS 計時器 (<code>setInterval</code>，<code>setTimeout</code>，<code>requestAnimationFrame</code>)</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="思考分析"><a href="#思考分析" class="headerlink" title="思考分析"></a>思考分析</h2><ol>
+<li>取得本地時間，顯示在時鐘上。</li>
+<li>計算每秒要改變的角度</li>
+<li>角度更新到時鐘，改變時鐘每秒狀態。</li>
+</ol>
+<h3 id="1-取得時針，分針，秒針"><a href="#1-取得時針，分針，秒針" class="headerlink" title="1. 取得時針，分針，秒針"></a>1. 取得時針，分針，秒針</h3><p>在開始撰寫程式之前，先使用立即函式(IIFE)將整個程式包起來，進行封裝。</p>
+<p>在前面打個分號的用意為，當載入比較多東西時，有個分號會比較保險。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p><code>querySelector</code>：JS 原生 CSS 選擇器，需要注意的地方是，若找不到相對應的元素會回傳 null，否則會回傳第一個符合的元素。所以，如果是多個屬性具有相同的名稱時，他只會選擇到第一個符合的元素。</p>
+<p>選取時針 (<code>hour</code>)，分針 (<code>min</code>)，秒針 (<code>second</code>)。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> second = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.second-hand&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> min = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.min-hand&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> hour = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;.hour-hand&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-建立函式，計算每秒要改變的角度"><a href="#2-建立函式，計算每秒要改變的角度" class="headerlink" title="2. 建立函式，計算每秒要改變的角度"></a>2. 建立函式，計算每秒要改變的角度</h3><p>使用 <code>new Date</code> 建立一個 Date 物件。</p>
+<p>再使用 <code>getSeconds()</code> - 取得幾秒，<code>getMinutes</code> - 取得幾分， <code>getHours</code> - 取得幾小時。</p>
+<ul>
+<li>秒數後面的乘 6，是因為 ( 360 度 / 一圈 60 秒 )。所以，一秒代表六度。</li>
+<li>分鐘與秒是相同的道理。</li>
+<li>小時後面的乘 30，是因為 ( 360 度 / 一圈 12 小時 )。所以，一小時代表 30 度。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setClock</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 獲得時間物件</span></span><br><span class="line">  <span class="keyword">let</span> data = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> secondDeg = data.getSeconds() * <span class="number">6</span>; <span class="comment">//(360/60sec)</span></span><br><span class="line">  <span class="keyword">let</span> minDeg = data.getMinutes() * <span class="number">6</span>+ data.getSeconds() * <span class="number">6</span>/<span class="number">60</span>; <span class="comment">//(360/60min)</span></span><br><span class="line">  <span class="keyword">let</span> hourDeg = data.getHours() * <span class="number">30</span> + data.getMinutes() * <span class="number">30</span>/<span class="number">60</span>; <span class="comment">//(360/12hr)</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-將計算好的角度，更新到時鐘上"><a href="#3-將計算好的角度，更新到時鐘上" class="headerlink" title="3. 將計算好的角度，更新到時鐘上"></a>3. 將計算好的角度，更新到時鐘上</h3><p>透過 JS 控制 CSS，使用 <code>.style.transform = rotate</code> ，就可以將角度更新到時鐘上。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setClock</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  second.style.transform = <span class="string">`rotate(<span class="subst">$&#123;secondDeg&#125;</span>deg)`</span>;</span><br><span class="line">  min.style.transform = <span class="string">`rotate(<span class="subst">$&#123;minDeg&#125;</span>deg)`</span>;</span><br><span class="line">  hour.style.transform = <span class="string">`rotate(<span class="subst">$&#123;hourDeg&#125;</span>deg)`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-每秒更新時鐘的狀態"><a href="#4-每秒更新時鐘的狀態" class="headerlink" title="4. 每秒更新時鐘的狀態"></a>4. 每秒更新時鐘的狀態</h3><p>這邊會講解三種計時器的運用。</p>
+<ul>
+<li><code>setInterval</code></li>
+<li><code>setTimeout</code></li>
+<li><code>requestAnimatoin</code></li>
+</ul>
+<h2 id="延伸學習"><a href="#延伸學習" class="headerlink" title="延伸學習"></a>延伸學習</h2><h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/CSS/transform">transform - CSS | MDN</a></p>
+<p><a href="https://www.fooish.com/javascript/date/">JavaScript Date 時間和日期 - JavaScript (JS) 教學 Tutorial</a></p>
+]]></content>
+      <categories>
+        <category>JS 30</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -984,6 +1033,58 @@
       </tags>
   </entry>
   <entry>
+    <title>[實作] Tic Tac Toe</title>
+    <url>/2021/03/01/%5B%E5%AF%A6%E4%BD%9C%5D%20Tic%20Tac%20Toe/</url>
+    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
+<li><code>disable</code></li>
+<li><code>!important</code><a id="more"></a>
+
+</li>
+</ul>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li><code>.hasClass</code>，檢查被選擇的元素<strong>是否包含</strong>指定的<code>class</code>。</li>
+<li><code>.text</code></li>
+<li><code>.removeClass</code></li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a href="https://hff2.github.io/My-Projects/Tic_Tac_Toe/index.html">Demo</a></p>
+<ul>
+<li>判斷兩方誰先連線</li>
+<li>需兩方輪流操作點擊後新增圈圈與叉叉</li>
+<li>判斷是否平手</li>
+</ul>
+<p><img src="https://i.imgur.com/KPMiLxU.png"></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>結構十分簡單，利用<code>ul</code>和<code>li</code>來建立。</p>
+<p>最下面新增一個<strong>清除</strong>的按鈕。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Tic Tac Toe<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;board&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot1&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot2&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot3&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot4&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot5&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot6&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot7&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot8&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot9&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clearfix&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;reset&quot;</span>&gt;</span>Reset Game<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h2><h3 id="disable-按鈕禁用"><a href="#disable-按鈕禁用" class="headerlink" title="disable 按鈕禁用"></a>disable 按鈕禁用</h3><p>HTML button disabled 是用來讓按鈕禁止使用的，簡單來說當你的網頁有按鈕出現，卻又不希望使用者按下按鈕，就可以使用 disabled 這樣的語法，讓按鈕功能失效。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">disabled</span>=<span class="string">&quot;disabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;這個按鈕不能使用&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="important的用法"><a href="#important的用法" class="headerlink" title="!important的用法"></a><code>!important</code>的用法</h3><p>預設狀態下，CSS 採用順序為：</p>
+<p>style 定義 &gt; class 定義 &gt; default 定義</p>
+<p>如果在 class 內的特定項目後面加上<code>!important</code>時，則採用順序會變成</p>
+<p>class 內有(!important)項目 &gt; style 定義 &gt; class 定義 &gt; default 定義。</p>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><p><a href="https://github.com/hff2/My-Projects/blob/tic-tac-toe/Tic_Tac_Toe/script.js">完整 Code</a></p>
+<h3 id="如何在li被點擊時出現反應"><a href="#如何在li被點擊時出現反應" class="headerlink" title="如何在li被點擊時出現反應?"></a>如何在<code>li</code>被點擊時出現反應?</h3><p><img src="https://i.imgur.com/a2ChBcm.png"></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">&quot;x&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="string">&quot;o&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> turns = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    $(<span class="string">&quot;#board li&quot;</span>).on(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;clicked&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="如果第九次沒有出現贏家"><a href="#如果第九次沒有出現贏家" class="headerlink" title="如果第九次沒有出現贏家?"></a>如果第九次沒有出現贏家?</h3><p>平手的話，就重新開始。</p>
+<p>turn 也歸零。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(turns == <span class="number">9</span>)&#123;</span><br><span class="line">    alert(<span class="string">&#x27;Tie Game&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).text(<span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;disable&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">    turns = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="可以重複切換圈圈叉叉怎麼辦"><a href="#可以重複切換圈圈叉叉怎麼辦" class="headerlink" title="可以重複切換圈圈叉叉怎麼辦?"></a>可以重複切換圈圈叉叉怎麼辦?</h3><p>加上 CSS 屬性<code>disable</code>，就可以使按鈕禁止使用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>($(<span class="built_in">this</span>).hasClass(<span class="string">&#x27;disable&#x27;</span>))&#123;</span><br><span class="line">    alert(<span class="string">&#x27;This spot is already filled&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="點擊li時，如何出現圈圈與叉叉"><a href="#點擊li時，如何出現圈圈與叉叉" class="headerlink" title="點擊li時，如何出現圈圈與叉叉?"></a>點擊<code>li</code>時，如何出現圈圈與叉叉?</h3><p>每當點擊時，次數要+1。</p>
+<p>增加<code>text</code>( 圈圈或叉叉 )與<code>class disable</code>。</p>
+<p>而每次點擊完圈圈與叉叉後，都需要判斷是否連線了，如果連線了，就清空所有使用者添加的元素，回到 reset 狀態。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(turns%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    turns++;</span><br><span class="line">    $(<span class="built_in">this</span>).text(o);</span><br><span class="line">    $(<span class="built_in">this</span>).addClass(<span class="string">&#x27;disable o&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot2.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot4.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot6.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot7.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot8.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot4.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot7.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot2.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot8.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot6.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot7.hasClass(<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">    )&#123;</span><br><span class="line">        alert(<span class="string">&#x27;Winner: O&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).text(<span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;disable&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">        turns = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjIxsmxzI7vAhU6K6YKHfweDRcQFjABegQIAxAD&url=https://www.itread01.com/content/1535990526.html&usg=AOvVaw1dNqiZIwP7NkP-BJI377J0"># css !important 用法以及 CSS 樣式使用優先級判斷</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:disabled">:disabled - CSS（层叠样式表） | MDN (mozilla.org)</a></p>
+]]></content>
+      <categories>
+        <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[實作] Weather Forecast</title>
     <url>/2021/02/08/%5B%E5%AF%A6%E4%BD%9C%5D%20Weather%20Forecast/</url>
     <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
@@ -1075,114 +1176,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[實作] Tic Tac Toe</title>
-    <url>/2021/03/01/%5B%E5%AF%A6%E4%BD%9C%5D%20Tic%20Tac%20Toe/</url>
-    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
-<li><code>disable</code></li>
-<li><code>!important</code><a id="more"></a>
-
-</li>
-</ul>
-<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
-<li><code>.hasClass</code>，檢查被選擇的元素<strong>是否包含</strong>指定的<code>class</code>。</li>
-<li><code>.text</code></li>
-<li><code>.removeClass</code></li>
-</ul>
-<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a href="https://hff2.github.io/My-Projects/Tic_Tac_Toe/index.html">Demo</a></p>
-<ul>
-<li>判斷兩方誰先連線</li>
-<li>需兩方輪流操作點擊後新增圈圈與叉叉</li>
-<li>判斷是否平手</li>
-</ul>
-<p><img src="https://i.imgur.com/KPMiLxU.png"></p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>結構十分簡單，利用<code>ul</code>和<code>li</code>來建立。</p>
-<p>最下面新增一個<strong>清除</strong>的按鈕。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Tic Tac Toe<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;board&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot1&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot2&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot3&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot4&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot5&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot6&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot7&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot8&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">&quot;spot9&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;clearfix&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;reset&quot;</span>&gt;</span>Reset Game<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h2><h3 id="disable-按鈕禁用"><a href="#disable-按鈕禁用" class="headerlink" title="disable 按鈕禁用"></a>disable 按鈕禁用</h3><p>HTML button disabled 是用來讓按鈕禁止使用的，簡單來說當你的網頁有按鈕出現，卻又不希望使用者按下按鈕，就可以使用 disabled 這樣的語法，讓按鈕功能失效。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">disabled</span>=<span class="string">&quot;disabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;這個按鈕不能使用&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="important的用法"><a href="#important的用法" class="headerlink" title="!important的用法"></a><code>!important</code>的用法</h3><p>預設狀態下，CSS 採用順序為：</p>
-<p>style 定義 &gt; class 定義 &gt; default 定義</p>
-<p>如果在 class 內的特定項目後面加上<code>!important</code>時，則採用順序會變成</p>
-<p>class 內有(!important)項目 &gt; style 定義 &gt; class 定義 &gt; default 定義。</p>
-<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><p><a href="https://github.com/hff2/My-Projects/blob/tic-tac-toe/Tic_Tac_Toe/script.js">完整 Code</a></p>
-<h3 id="如何在li被點擊時出現反應"><a href="#如何在li被點擊時出現反應" class="headerlink" title="如何在li被點擊時出現反應?"></a>如何在<code>li</code>被點擊時出現反應?</h3><p><img src="https://i.imgur.com/a2ChBcm.png"></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="string">&quot;x&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="string">&quot;o&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> turns = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    $(<span class="string">&quot;#board li&quot;</span>).on(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&quot;clicked&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="如果第九次沒有出現贏家"><a href="#如果第九次沒有出現贏家" class="headerlink" title="如果第九次沒有出現贏家?"></a>如果第九次沒有出現贏家?</h3><p>平手的話，就重新開始。</p>
-<p>turn 也歸零。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(turns == <span class="number">9</span>)&#123;</span><br><span class="line">    alert(<span class="string">&#x27;Tie Game&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).text(<span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;disable&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">    $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">    turns = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="可以重複切換圈圈叉叉怎麼辦"><a href="#可以重複切換圈圈叉叉怎麼辦" class="headerlink" title="可以重複切換圈圈叉叉怎麼辦?"></a>可以重複切換圈圈叉叉怎麼辦?</h3><p>加上 CSS 屬性<code>disable</code>，就可以使按鈕禁止使用。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>($(<span class="built_in">this</span>).hasClass(<span class="string">&#x27;disable&#x27;</span>))&#123;</span><br><span class="line">    alert(<span class="string">&#x27;This spot is already filled&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="點擊li時，如何出現圈圈與叉叉"><a href="#點擊li時，如何出現圈圈與叉叉" class="headerlink" title="點擊li時，如何出現圈圈與叉叉?"></a>點擊<code>li</code>時，如何出現圈圈與叉叉?</h3><p>每當點擊時，次數要+1。</p>
-<p>增加<code>text</code>( 圈圈或叉叉 )與<code>class disable</code>。</p>
-<p>而每次點擊完圈圈與叉叉後，都需要判斷是否連線了，如果連線了，就清空所有使用者添加的元素，回到 reset 狀態。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(turns%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    turns++;</span><br><span class="line">    $(<span class="built_in">this</span>).text(o);</span><br><span class="line">    $(<span class="built_in">this</span>).addClass(<span class="string">&#x27;disable o&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot2.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot4.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot6.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot7.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot8.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot4.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot7.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot2.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot8.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot6.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot1.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot9.hasClass(<span class="string">&#x27;o&#x27;</span>) ||</span><br><span class="line">        spot3.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot5.hasClass(<span class="string">&#x27;o&#x27;</span>) &amp;&amp; spot7.hasClass(<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">    )&#123;</span><br><span class="line">        alert(<span class="string">&#x27;Winner: O&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).text(<span class="string">&#x27;+&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;disable&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;o&#x27;</span>);</span><br><span class="line">        $(<span class="string">&#x27;#board li&#x27;</span>).removeClass(<span class="string">&#x27;x&#x27;</span>);</span><br><span class="line">        turns = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjIxsmxzI7vAhU6K6YKHfweDRcQFjABegQIAxAD&url=https://www.itread01.com/content/1535990526.html&usg=AOvVaw1dNqiZIwP7NkP-BJI377J0"># css !important 用法以及 CSS 樣式使用優先級判斷</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:disabled">:disabled - CSS（层叠样式表） | MDN (mozilla.org)</a></p>
-]]></content>
-      <categories>
-        <category>Portfolio</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[實作] jQuery FAQ Slider</title>
-    <url>/2021/03/02/%5B%E5%AF%A6%E4%BD%9C%5D%20jQuery%20FAQ%20Slider/</url>
-    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h3><ul>
-<li>slideToggle</li>
-<li>siblings<a id="more"></a></li>
-<li>slideUp</li>
-<li>children</li>
-<li>not</li>
-<li>toggleClass</li>
-</ul>
-<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a href="https://hff2.github.io/My-Projects/Faq_Slider/index.html">Demo</a></p>
-<p>學習使用 Jquery UI 的<a href="https://jqueryui.com/accordion/">Accordion</a>如何使用。</p>
-<p><img src="https://i.imgur.com/jfCO8FF.png"></p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>使用<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>實作。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>jQuery FAQ Slider<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>FAQ Slider Using jQuery<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;faq&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;q&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./img/arrow.png&quot;</span>&gt;</span></span><br><span class="line">            Lorem ipsum dolor sit amet consectetur adipisicing elit deleniti?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;a&quot;</span>&gt;</span></span><br><span class="line">            soluta ut blanditiis illo quisquam id consequatur dolor ipsam ipsa?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p><a href="https://github.com/hff2/My-Projects/blob/faq-slider/Faq_Slider/css/style.css">完整 Code</a></p>
-<h3 id="如何讓-answer-一開始不出現"><a href="#如何讓-answer-一開始不出現" class="headerlink" title="如何讓 answer 一開始不出現?"></a>如何讓 answer 一開始不出現?</h3><p>使用<code>display:none</code>預設為不出現。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.faq</span> <span class="selector-tag">li</span><span class="selector-class">.a</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="點擊-Question-時，img-如何出現翻轉"><a href="#點擊-Question-時，img-如何出現翻轉" class="headerlink" title="點擊 Question 時，img 如何出現翻轉?"></a>點擊 Question 時，img 如何出現翻轉?</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.rotate</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><h3 id="如何讓-Answer-出現"><a href="#如何讓-Answer-出現" class="headerlink" title="如何讓 Answer 出現?"></a>如何讓 Answer 出現?</h3><p><img src="https://i.imgur.com/Fazl8hr.png"></p>
-<p>這邊使用了<strong>鍊式</strong>的技巧。</p>
-<ol>
-<li>當<code>class=&quot;q&quot;</code>被<code>click</code>的時候，他的<code>next()</code>也就是<code>class=&quot;a&quot;</code>，</li>
-</ol>
-<p><img src="https://i.imgur.com/JSRJvxb.png"></p>
-<ol start="2">
-<li><p>使用<code>slideToggle</code>就可以產生上下收起的效果</p>
-</li>
-<li><p><code>siblings</code>選取到同父元素的所有其他元素。</p>
-</li>
-<li><p><code>slideUp</code>向上滑動</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> action = <span class="string">&quot;click&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> speed=<span class="string">&quot;500&quot;</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//Question handler</span></span><br><span class="line">    $(<span class="string">&quot;li.q&quot;</span>).on(action,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// Get next element</span></span><br><span class="line">        $(<span class="built_in">this</span>).next()</span><br><span class="line">            .slideToggle(speed)</span><br><span class="line">                <span class="comment">// Select all other answers</span></span><br><span class="line">                .siblings(<span class="string">&quot;li.a&quot;</span>)</span><br><span class="line">                    .slideUp();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="怎麼樣讓箭頭在點擊時-90-度旋轉"><a href="#怎麼樣讓箭頭在點擊時-90-度旋轉" class="headerlink" title="怎麼樣讓箭頭在點擊時 90 度旋轉?"></a>怎麼樣讓箭頭在點擊時 90 度旋轉?</h3><ol>
-<li><p><code>children</code>是返回所有子元素(父元素為<code>li.q</code>)，所以裡面的 img 會被選取到。</p>
-</li>
-<li><p><code>.not</code>刪除所有符合表達式條件的元素。只要不是<code>img</code>的，都要去除掉<code>.rotate</code>。</p>
-</li>
-<li><p><code>.toggleClass</code>可以進行<strong>設置與移除</strong>的切換。</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Get image for active question</span></span><br><span class="line"><span class="keyword">var</span> img = $(<span class="built_in">this</span>).children(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Remove the &#x27;rotate&#x27; class for all images except the active</span></span><br><span class="line">$(<span class="string">&#x27;img&#x27;</span>).not(img).removeClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Toggle rotate class</span></span><br><span class="line">img.toggleClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.itread01.com/content/1549818083.html">Jquery 中 next()方法與 prev()方法的使有和詳解</a></p>
-<p><a href="https://api.jquery.com/slidetoggle/">.slideToggle()</a></p>
-<p><a href="http://www.w3big.com/zh-TW/jquery/traversing-siblings.html">jQuery siblings() 方法</a></p>
-<p><a href="https://www.fooish.com/jquery/traversing.html">jQuery 篩選元素 (Traversing)</a></p>
-]]></content>
-      <categories>
-        <category>Portfolio</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[實作] Youtube Search</title>
     <url>/2021/02/12/%5B%E5%AF%A6%E4%BD%9C%5D%20Youtube%20Search/</url>
     <content><![CDATA[<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>利用Youtube API，可以搜尋Youtube影片。</p>
@@ -1262,6 +1255,82 @@
 ]]></content>
       <categories>
         <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[實作] jQuery FAQ Slider</title>
+    <url>/2021/03/02/%5B%E5%AF%A6%E4%BD%9C%5D%20jQuery%20FAQ%20Slider/</url>
+    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h3><ul>
+<li>slideToggle</li>
+<li>siblings<a id="more"></a></li>
+<li>slideUp</li>
+<li>children</li>
+<li>not</li>
+<li>toggleClass</li>
+</ul>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p><a href="https://hff2.github.io/My-Projects/Faq_Slider/index.html">Demo</a></p>
+<p>學習使用 Jquery UI 的<a href="https://jqueryui.com/accordion/">Accordion</a>如何使用。</p>
+<p><img src="https://i.imgur.com/jfCO8FF.png"></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><p>使用<code>&lt;ul&gt;</code>和<code>&lt;li&gt;</code>實作。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>jQuery FAQ Slider<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>FAQ Slider Using jQuery<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">&quot;faq&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 1 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;q&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./img/arrow.png&quot;</span>&gt;</span></span><br><span class="line">            Lorem ipsum dolor sit amet consectetur adipisicing elit deleniti?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;a&quot;</span>&gt;</span></span><br><span class="line">            soluta ut blanditiis illo quisquam id consequatur dolor ipsam ipsa?</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p><a href="https://github.com/hff2/My-Projects/blob/faq-slider/Faq_Slider/css/style.css">完整 Code</a></p>
+<h3 id="如何讓-answer-一開始不出現"><a href="#如何讓-answer-一開始不出現" class="headerlink" title="如何讓 answer 一開始不出現?"></a>如何讓 answer 一開始不出現?</h3><p>使用<code>display:none</code>預設為不出現。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.faq</span> <span class="selector-tag">li</span><span class="selector-class">.a</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ddd</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="點擊-Question-時，img-如何出現翻轉"><a href="#點擊-Question-時，img-如何出現翻轉" class="headerlink" title="點擊 Question 時，img 如何出現翻轉?"></a>點擊 Question 時，img 如何出現翻轉?</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.rotate</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><h3 id="如何讓-Answer-出現"><a href="#如何讓-Answer-出現" class="headerlink" title="如何讓 Answer 出現?"></a>如何讓 Answer 出現?</h3><p><img src="https://i.imgur.com/Fazl8hr.png"></p>
+<p>這邊使用了<strong>鍊式</strong>的技巧。</p>
+<ol>
+<li>當<code>class=&quot;q&quot;</code>被<code>click</code>的時候，他的<code>next()</code>也就是<code>class=&quot;a&quot;</code>，</li>
+</ol>
+<p><img src="https://i.imgur.com/JSRJvxb.png"></p>
+<ol start="2">
+<li><p>使用<code>slideToggle</code>就可以產生上下收起的效果</p>
+</li>
+<li><p><code>siblings</code>選取到同父元素的所有其他元素。</p>
+</li>
+<li><p><code>slideUp</code>向上滑動</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> action = <span class="string">&quot;click&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> speed=<span class="string">&quot;500&quot;</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//Question handler</span></span><br><span class="line">    $(<span class="string">&quot;li.q&quot;</span>).on(action,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// Get next element</span></span><br><span class="line">        $(<span class="built_in">this</span>).next()</span><br><span class="line">            .slideToggle(speed)</span><br><span class="line">                <span class="comment">// Select all other answers</span></span><br><span class="line">                .siblings(<span class="string">&quot;li.a&quot;</span>)</span><br><span class="line">                    .slideUp();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="怎麼樣讓箭頭在點擊時-90-度旋轉"><a href="#怎麼樣讓箭頭在點擊時-90-度旋轉" class="headerlink" title="怎麼樣讓箭頭在點擊時 90 度旋轉?"></a>怎麼樣讓箭頭在點擊時 90 度旋轉?</h3><ol>
+<li><p><code>children</code>是返回所有子元素(父元素為<code>li.q</code>)，所以裡面的 img 會被選取到。</p>
+</li>
+<li><p><code>.not</code>刪除所有符合表達式條件的元素。只要不是<code>img</code>的，都要去除掉<code>.rotate</code>。</p>
+</li>
+<li><p><code>.toggleClass</code>可以進行<strong>設置與移除</strong>的切換。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Get image for active question</span></span><br><span class="line"><span class="keyword">var</span> img = $(<span class="built_in">this</span>).children(<span class="string">&#x27;img&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Remove the &#x27;rotate&#x27; class for all images except the active</span></span><br><span class="line">$(<span class="string">&#x27;img&#x27;</span>).not(img).removeClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Toggle rotate class</span></span><br><span class="line">img.toggleClass(<span class="string">&#x27;rotate&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.itread01.com/content/1549818083.html">Jquery 中 next()方法與 prev()方法的使有和詳解</a></p>
+<p><a href="https://api.jquery.com/slidetoggle/">.slideToggle()</a></p>
+<p><a href="http://www.w3big.com/zh-TW/jquery/traversing-siblings.html">jQuery siblings() 方法</a></p>
+<p><a href="https://www.fooish.com/jquery/traversing.html">jQuery 篩選元素 (Traversing)</a></p>
+]]></content>
+      <categories>
+        <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>keydown, keypress, keyup的差異</title>
+    <url>/2021/04/23/keydown,%20keypress,%20keyup%E7%9A%84%E5%B7%AE%E7%95%B0/</url>
+    <content><![CDATA[<h1 id="鍵盤的操作"><a href="#鍵盤的操作" class="headerlink" title="鍵盤的操作"></a>鍵盤的操作</h1><p>網頁中鍵盤的操作分為三種，<code>keydown</code>，<code>keypress</code>，<code>keyup</code>。</p>
+<p>可以在此<a href="http://keycode.info/">網站</a>查詢鍵值。</p>
+<a id="more"></a>
+
+<h2 id="比較它們的差異"><a href="#比較它們的差異" class="headerlink" title="比較它們的差異"></a>比較它們的差異</h2><h3 id="keydown"><a href="#keydown" class="headerlink" title="keydown"></a>keydown</h3><p>keydown 就是指按下的那瞬間，任何的鍵盤按下都可以取的對應的按鍵鍵碼。a -&gt; 65，s -&gt; 83。</p>
+<h3 id="keypress"><a href="#keypress" class="headerlink" title="keypress"></a>keypress</h3><p>與 keydown 不同在於，keypress 只會針對可以輸出文字符號的按鍵有效，ESC、方向鍵…等。這類沒有辦法輸出文字的鍵，是無法觸發事件。</p>
+<h3 id="keyup"><a href="#keyup" class="headerlink" title="keyup"></a>keyup</h3><p>而 keyup 是指放開鍵盤的那個剎那，觸發該事件。取得 keyCode 的部分基本上跟 keydown 是一樣。</p>
+<p>三者事件的觸發優先順序為：keydown → keypress → keyup</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://medium.com/@yitailin/%E6%AF%94%E8%BC%83-keydown-keypress-keyup-%E7%9A%84%E5%B7%AE%E7%95%B0-4e873ba17e81">比較 keydown, keypress, keyup 的差異. 在網頁的鍵盤事件操作有三種 keydown, keypress… | by Tommy | Medium</a></p>
+]]></content>
+      <categories>
+        <category>Javascript</category>
       </categories>
       <tags>
         <tag>Javascript</tag>
@@ -1364,17 +1433,56 @@
       </tags>
   </entry>
   <entry>
-    <title>keydown, keypress, keyup的差異</title>
-    <url>/2021/04/23/keydown,%20keypress,%20keyup%E7%9A%84%E5%B7%AE%E7%95%B0/</url>
-    <content><![CDATA[<h1 id="鍵盤的操作"><a href="#鍵盤的操作" class="headerlink" title="鍵盤的操作"></a>鍵盤的操作</h1><p>網頁中鍵盤的操作分為三種，<code>keydown</code>，<code>keypress</code>，<code>keyup</code>。</p>
-<p>可以在此<a href="http://keycode.info/">網站</a>查詢鍵值。</p>
+    <title>什麼是 Callback Function?</title>
+    <url>/2021/01/25/%E4%BB%80%E9%BA%BC%E6%98%AF-Callback-Function/</url>
+    <content><![CDATA[<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>Callback Function，又稱回呼函式，簡單來說，就是在<strong>一支函式執行完後，才要執行的函式。</strong></p>
+<p>在 ES6 中的 Promise 語法還未能使用前，就很常使用 Callback function 來接收<strong>非同步的資料</strong>。</p>
 <a id="more"></a>
-
-<h2 id="比較它們的差異"><a href="#比較它們的差異" class="headerlink" title="比較它們的差異"></a>比較它們的差異</h2><h3 id="keydown"><a href="#keydown" class="headerlink" title="keydown"></a>keydown</h3><p>keydown 就是指按下的那瞬間，任何的鍵盤按下都可以取的對應的按鍵鍵碼。a -&gt; 65，s -&gt; 83。</p>
-<h3 id="keypress"><a href="#keypress" class="headerlink" title="keypress"></a>keypress</h3><p>與 keydown 不同在於，keypress 只會針對可以輸出文字符號的按鍵有效，ESC、方向鍵…等。這類沒有辦法輸出文字的鍵，是無法觸發事件。</p>
-<h3 id="keyup"><a href="#keyup" class="headerlink" title="keyup"></a>keyup</h3><p>而 keyup 是指放開鍵盤的那個剎那，觸發該事件。取得 keyCode 的部分基本上跟 keydown 是一樣。</p>
-<p>三者事件的觸發優先順序為：keydown → keypress → keyup</p>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://medium.com/@yitailin/%E6%AF%94%E8%BC%83-keydown-keypress-keyup-%E7%9A%84%E5%B7%AE%E7%95%B0-4e873ba17e81">比較 keydown, keypress, keyup 的差異. 在網頁的鍵盤事件操作有三種 keydown, keypress… | by Tommy | Medium</a></p>
+<p>例如一支函式<code>First()</code>，在執行結束才執行<code>Second()</code>，這個<code>Second()</code>就是一支Callback Function。</p>
+<h3 id="舉例來說"><a href="#舉例來說" class="headerlink" title="舉例來說"></a>舉例來說</h3><blockquote>
+<p>程式碼</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">callback();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">First(Second); <span class="comment">//呼叫Second()</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>輸出：</p>
+</blockquote>
+<p><img src="https://i.imgur.com/xuvoDQ7.png"></p>
+<p>跟下面這段程式是相同的。</p>
+<blockquote>
+<p>程式碼</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>輸出：</p>
+</blockquote>
+<p><img src="https://i.imgur.com/xuvoDQ7.png"></p>
+<p>但是，如果是以下的情況就不同了。</p>
+<h2 id="非同步處理-Asynchronous"><a href="#非同步處理-Asynchronous" class="headerlink" title="非同步處理 Asynchronous"></a>非同步處理 Asynchronous</h2><p>原本<code>First()</code>中直接印出First文字的工作，改交給<code>setTimeout()</code>這個非同步(Asynchronous)程式處理。</p>
+<p><code>setTimeout()</code>的第一個參數為<strong>時間到時要被執行的程式</strong>，第二個參數為<strong>要延遲的時間（毫秒）</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>); <span class="comment">// 非同步，3秒後才執行</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">First();</span><br><span class="line">Second();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>輸出：</p>
+</blockquote>
+<p><img src="https://i.imgur.com/8e9qDvH.png"></p>
+<p>為什麼Second會出現在First上面?</p>
+<p>因為<code>setTimeout()</code>是非同步，所以下面的<code>Second()</code><strong>不須等待</strong><code>First()</code>執行完就會先被執行了。</p>
+<p>所以為了確保<code>Second()</code>，要在<code>First()</code>中的<code>setTimeout()</code><strong>後</strong>執行。</p>
+<p>我們可以將<code>Second()</code>做為<strong>callback函式以參數</strong>傳入<code>First()</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">  callback(); <span class="comment">//在印出First之後，才印出Second</span></span><br><span class="line">&#125;, <span class="number">3000</span>); </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">First(Second);</span><br></pre></td></tr></table></figure>
+<h3 id="同步與非同步的差異"><a href="#同步與非同步的差異" class="headerlink" title="同步與非同步的差異?"></a>同步與非同步的差異?</h3><p><img src="https://i.imgur.com/qrIV88s.png"></p>
+<p>同步(Synchronous)，指程式<strong>必須</strong>等待前面的程式執行完才能執行。</p>
+<p>非同步(Asynchronous)，指程式<strong>不須</strong>等待前面的程式執行完就能執行。</p>
+<p>同步就像只有一個隊伍，而非同步有好幾個隊伍執行。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>因此Callback function的作用，是保證一支程式會在一支程式執行後才執行。</p>
+<p>至於被傳入callback函式的函式，也就是上面的<code>First(callback)</code>，又稱為Higher Order Function（高階函式）。</p>
+<p>所以Callback Function又可以解釋為「以參數型態傳入另一個函式的函式」。</p>
+<p>白話一點就是，把函式當作另一個函式的參數，透過另一個函式來呼叫它。</p>
+<h3 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h3><p>當函式之間的相依過深，callback太多層之後，就會出現很常看到，解說文章裡的波動拳圖片XD。</p>
+<p><img src="https://i.imgur.com/T2dnFh7.jpg"></p>
+<p>如果真的必須要寫到多層，就可以使用Promise來避免這種情況。</p>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://matthung0807.blogspot.com/2019/05/javascript-callback-callback-function.html">JavaScript 什麼是Callback函式 (Callback Function)？</a></p>
+<p><a href="https://wcc723.github.io/development/2020/09/24/first-class-function/">JavaScript 一級函式 （First Class Functions）</a></p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10192739">重新認識 JavaScript: Day 18 Callback Function 與 IIFE</a></p>
 ]]></content>
       <categories>
         <category>Javascript</category>
@@ -1451,65 +1559,6 @@
       </tags>
   </entry>
   <entry>
-    <title>什麼是 Callback Function?</title>
-    <url>/2021/01/25/%E4%BB%80%E9%BA%BC%E6%98%AF-Callback-Function/</url>
-    <content><![CDATA[<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>Callback Function，又稱回呼函式，簡單來說，就是在<strong>一支函式執行完後，才要執行的函式。</strong></p>
-<p>在 ES6 中的 Promise 語法還未能使用前，就很常使用 Callback function 來接收<strong>非同步的資料</strong>。</p>
-<a id="more"></a>
-<p>例如一支函式<code>First()</code>，在執行結束才執行<code>Second()</code>，這個<code>Second()</code>就是一支Callback Function。</p>
-<h3 id="舉例來說"><a href="#舉例來說" class="headerlink" title="舉例來說"></a>舉例來說</h3><blockquote>
-<p>程式碼</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">callback();</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">First(Second); <span class="comment">//呼叫Second()</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>輸出：</p>
-</blockquote>
-<p><img src="https://i.imgur.com/xuvoDQ7.png"></p>
-<p>跟下面這段程式是相同的。</p>
-<blockquote>
-<p>程式碼</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>輸出：</p>
-</blockquote>
-<p><img src="https://i.imgur.com/xuvoDQ7.png"></p>
-<p>但是，如果是以下的情況就不同了。</p>
-<h2 id="非同步處理-Asynchronous"><a href="#非同步處理-Asynchronous" class="headerlink" title="非同步處理 Asynchronous"></a>非同步處理 Asynchronous</h2><p>原本<code>First()</code>中直接印出First文字的工作，改交給<code>setTimeout()</code>這個非同步(Asynchronous)程式處理。</p>
-<p><code>setTimeout()</code>的第一個參數為<strong>時間到時要被執行的程式</strong>，第二個參數為<strong>要延遲的時間（毫秒）</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>); <span class="comment">// 非同步，3秒後才執行</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">First();</span><br><span class="line">Second();</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>輸出：</p>
-</blockquote>
-<p><img src="https://i.imgur.com/8e9qDvH.png"></p>
-<p>為什麼Second會出現在First上面?</p>
-<p>因為<code>setTimeout()</code>是非同步，所以下面的<code>Second()</code><strong>不須等待</strong><code>First()</code>執行完就會先被執行了。</p>
-<p>所以為了確保<code>Second()</code>，要在<code>First()</code>中的<code>setTimeout()</code><strong>後</strong>執行。</p>
-<p>我們可以將<code>Second()</code>做為<strong>callback函式以參數</strong>傳入<code>First()</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> First = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;First&quot;</span>);</span><br><span class="line">  callback(); <span class="comment">//在印出First之後，才印出Second</span></span><br><span class="line">&#125;, <span class="number">3000</span>); </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> Second = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Second&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line">First(Second);</span><br></pre></td></tr></table></figure>
-<h3 id="同步與非同步的差異"><a href="#同步與非同步的差異" class="headerlink" title="同步與非同步的差異?"></a>同步與非同步的差異?</h3><p><img src="https://i.imgur.com/qrIV88s.png"></p>
-<p>同步(Synchronous)，指程式<strong>必須</strong>等待前面的程式執行完才能執行。</p>
-<p>非同步(Asynchronous)，指程式<strong>不須</strong>等待前面的程式執行完就能執行。</p>
-<p>同步就像只有一個隊伍，而非同步有好幾個隊伍執行。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>因此Callback function的作用，是保證一支程式會在一支程式執行後才執行。</p>
-<p>至於被傳入callback函式的函式，也就是上面的<code>First(callback)</code>，又稱為Higher Order Function（高階函式）。</p>
-<p>所以Callback Function又可以解釋為「以參數型態傳入另一個函式的函式」。</p>
-<p>白話一點就是，把函式當作另一個函式的參數，透過另一個函式來呼叫它。</p>
-<h3 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h3><p>當函式之間的相依過深，callback太多層之後，就會出現很常看到，解說文章裡的波動拳圖片XD。</p>
-<p><img src="https://i.imgur.com/T2dnFh7.jpg"></p>
-<p>如果真的必須要寫到多層，就可以使用Promise來避免這種情況。</p>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://matthung0807.blogspot.com/2019/05/javascript-callback-callback-function.html">JavaScript 什麼是Callback函式 (Callback Function)？</a></p>
-<p><a href="https://wcc723.github.io/development/2020/09/24/first-class-function/">JavaScript 一級函式 （First Class Functions）</a></p>
-<p><a href="https://ithelp.ithome.com.tw/articles/10192739">重新認識 JavaScript: Day 18 Callback Function 與 IIFE</a></p>
-]]></content>
-      <categories>
-        <category>Javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用 Github Pages 上傳你的第一個網頁</title>
     <url>/2020/12/03/%E4%BD%BF%E7%94%A8-Github-Pages-%E4%B8%8A%E5%82%B3%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%B2%E9%A0%81/</url>
     <content><![CDATA[<h2 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h2><ol>
@@ -1571,7 +1620,7 @@
 <p>我認為我是第三種，我的處理的方法為，輸入指令</p>
 <ol>
 <li>git config user.name “someone”</li>
-<li>git config user.email “<a href="mailto:&#x73;&#x6f;&#x6d;&#101;&#111;&#x6e;&#x65;&#64;&#x73;&#111;&#x6d;&#x65;&#x70;&#108;&#x61;&#x63;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x6f;&#x6d;&#101;&#111;&#x6e;&#x65;&#64;&#x73;&#111;&#x6d;&#x65;&#x70;&#108;&#x61;&#x63;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a>“</li>
+<li>git config user.email “<a href="mailto:&#x73;&#x6f;&#x6d;&#101;&#111;&#110;&#x65;&#x40;&#x73;&#111;&#109;&#x65;&#112;&#x6c;&#97;&#99;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x73;&#x6f;&#x6d;&#101;&#111;&#110;&#x65;&#x40;&#x73;&#111;&#109;&#x65;&#112;&#x6c;&#97;&#99;&#x65;&#46;&#x63;&#x6f;&#x6d;</a>“</li>
 <li>git add .</li>
 <li>git commit -m “some init msg”</li>
 </ol>
@@ -1875,83 +1924,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[實作] 新年倒數器</title>
-    <url>/2021/01/27/%E5%AF%A6%E4%BD%9C-%E6%96%B0%E5%B9%B4%E5%80%92%E6%95%B8%E5%99%A8/</url>
-    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
-<li>Date物件</li>
-<li><code>setInterval()</code><a id="more"></a>
-<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2></li>
-</ul>
-<p>新年倒數計時器</p>
-<p><img src="https://i.imgur.com/TP6nklD.jpg"></p>
-<p><a href="https://hff2.github.io/My-Projects/New_Year_Countdown/">Demo</a></p>
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><img src="https://i.imgur.com/izcxbbg.png"></p>
-<h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line">    &lt;script</span><br><span class="line">      src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js&quot;</span><br><span class="line">      integrity=&quot;sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==&quot;</span><br><span class="line">      crossorigin=&quot;anonymous&quot;</span><br><span class="line">    &gt;<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>New Year Countdown<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--  Js動態存取年分  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;year&quot;</span> <span class="attr">class</span>=<span class="string">&quot;year&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>New Year Countdown<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;countdown&quot;</span> <span class="attr">class</span>=<span class="string">&quot;countdown&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;days&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>days<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;hours&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>hours<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;minutes&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>minutes<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;seconds&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>seconds<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &lt;img</span><br><span class="line">      src=&quot;./img/spinner.gif&quot;</span><br><span class="line">      alt=&quot;Loading...&quot;</span><br><span class="line">      id=&quot;loading&quot;</span><br><span class="line">      class=&quot;loading&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="元素置中"><a href="#元素置中" class="headerlink" title="元素置中"></a>元素置中</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;https://images.unsplash.com/photo-1577737377853-7c0b1426b35e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1191&amp;q=80&quot;</span>);</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">background-position</span>: center center;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Permanent Marker&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="背景上疊一層layout"><a href="#背景上疊一層layout" class="headerlink" title="背景上疊一層layout"></a>背景上疊一層layout</h3><p>使用偽元素，再使用絕對定位，寬高撐滿視窗(100%)。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Add a dark overlay */</span></span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JS動態控制倒數的出現"><a href="#JS動態控制倒數的出現" class="headerlink" title="JS動態控制倒數的出現"></a>JS動態控制倒數的出現</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.countdown</span> &#123;</span><br><span class="line">  <span class="comment">/* display: flex; */</span> <span class="comment">/* 出現 */</span></span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Media-Query"><a href="#Media-Query" class="headerlink" title="Media Query"></a>Media Query</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width:</span> <span class="number">500px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">45px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.time</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">5px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.time</span> <span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.time</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><h3 id="宣告變數"><a href="#宣告變數" class="headerlink" title="宣告變數"></a>宣告變數</h3><blockquote>
-<p>Js</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> days = <span class="built_in">document</span>.getElementById(<span class="string">&quot;days&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> hours = <span class="built_in">document</span>.getElementById(<span class="string">&quot;hours&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> minutes = <span class="built_in">document</span>.getElementById(<span class="string">&quot;minutes&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> seconds = <span class="built_in">document</span>.getElementById(<span class="string">&quot;seconds&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> countdown = <span class="built_in">document</span>.getElementById(<span class="string">&quot;countdown&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得這一年的時間(2021)</span></span><br><span class="line"><span class="keyword">const</span> currentYear = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear();</span><br><span class="line"><span class="comment">// 2021+1=2022，得到新的一年的時間</span></span><br><span class="line"><span class="keyword">const</span> newYearTime = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">`January 01 <span class="subst">$&#123;currentYear + <span class="number">1</span>&#125;</span> 00:00:00`</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Jquery</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;#days&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#hours&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#minutes&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#seconds&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#countdown&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="製作倒數面板"><a href="#製作倒數面板" class="headerlink" title="製作倒數面板"></a>製作倒數面板</h3><blockquote>
-<p>Javascript</p>
-</blockquote>
-<ul>
-<li><p>JavaScript 的 <code>Date</code> 物件，讓我們可以用來做跟日期和時間相關的操作。</p>
-</li>
-<li><p><code>setInterval()</code>是固定延遲了某段時間之後，才去執行對應的程式碼，然後「不斷循環」。</p>
-</li>
-<li><p>以取的分鐘來說，<code>diff</code>為總毫秒，所以須先除1000，得到總秒數，再除以60得到分鐘數，在除與60後的餘數，就會是小時的剩下分鐘數。</p>
-</li>
-<li><p><code>Math.floor()</code>函式會回傳小於等於所給數字的最大整數，簡單來說就是，小數無條件捨去到比自身小的最大整數。</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateCountdown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> currentTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// 時間差</span></span><br><span class="line">  <span class="keyword">const</span> diff = newYearTime - currentTime;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//得到的值是毫秒，所以需要除以1000，變成秒。</span></span><br><span class="line">  <span class="keyword">const</span> d = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span><br><span class="line">  <span class="keyword">const</span> h = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span>) % <span class="number">24</span>;</span><br><span class="line">  <span class="keyword">const</span> m = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span>) % <span class="number">60</span>;</span><br><span class="line">  <span class="keyword">const</span> s = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span>) % <span class="number">60</span>;</span><br><span class="line">  <span class="comment">// 將取得的時間，更新到HTML上</span></span><br><span class="line">  days.innerHTML = d;</span><br><span class="line">  <span class="comment">// 如果不是十位數，就在前面加個0，使用三元運算子判斷。</span></span><br><span class="line">  hours.innerHTML = h &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + h : h;</span><br><span class="line">  minutes.innerHTML = m &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + m : m;</span><br><span class="line">  seconds.innerHTML = s &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + s : s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每1000毫秒(1秒)更新一次</span></span><br><span class="line"><span class="built_in">setInterval</span>(updateCountdown, <span class="number">1000</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Jquery</p>
-</blockquote>
-<p>這個實作的Jquery都比較簡單。</p>
-<p><code>hours.innerHTML =</code> 轉成 <code>.text()</code></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> currentYear = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newYearTime = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">`January 01 <span class="subst">$&#123;currentYear + <span class="number">1</span>&#125;</span> 00:00:00`</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateCountdown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> currentTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> diff = newYearTime - currentTime;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> d = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span><br><span class="line">  <span class="keyword">const</span> h = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span>) % <span class="number">24</span>;</span><br><span class="line">  <span class="keyword">const</span> m = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span>) % <span class="number">60</span>;</span><br><span class="line">  <span class="keyword">const</span> s = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span>) % <span class="number">60</span>;</span><br><span class="line">  $(<span class="string">&quot;#days&quot;</span>).text(d);</span><br><span class="line">  $(<span class="string">&quot;#hours&quot;</span>).text(h &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + h : h);</span><br><span class="line">  $(<span class="string">&quot;#minutes&quot;</span>).text(m &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + m : m);</span><br><span class="line">  $(<span class="string">&quot;#seconds&quot;</span>).text(s &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + s : s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(updateCountdown, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="動態產生年分與Loading-Gif"><a href="#動態產生年分與Loading-Gif" class="headerlink" title="動態產生年分與Loading Gif"></a>動態產生年分與Loading Gif</h3><p>倒數的面板，由Js動態控制CSS。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.countdown</span> &#123;</span><br><span class="line">  <span class="comment">/* display: flex; */</span></span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Javascript</p>
-</blockquote>
-<ul>
-<li>呈現Loading圖案時，將顯示的時間隱藏(<code>none</code>)起來，跑完Loading圖後，才顯示(<code>display</code>)。</li>
-<li> 顯示的year為明年，所以需要+1</li>
-<li>一秒過後，將 Loading Gif 去除，然後顯示倒數面板。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> year = <span class="built_in">document</span>.getElementById(<span class="string">&quot;year&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> loading = <span class="built_in">document</span>.getElementById(<span class="string">&quot;loading&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set background year</span></span><br><span class="line">year.innerText = currentYear + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  loading.remove();</span><br><span class="line">  countdown.style.display = <span class="string">&quot;flex&quot;</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Jquery</p>
-</blockquote>
-<ul>
-<li><code>.remove()</code> 為一樣寫法。</li>
-<li><code>.style.display = &quot;flex&quot;</code> 轉成 <code>.css(&quot;display&quot;, &quot;flex&quot;)</code></li>
-</ul>
-<p>須注意，Juqery另外一種寫法為<code>.removeClass</code>，這是需要移除class才用到的方法，在這邊為移除掉img，所以使用<code>.remove()</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;#year&quot;</span>).text(currentYear + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  $(<span class="string">&quot;#loading&quot;</span>).remove();</span><br><span class="line">  $(<span class="string">&quot;#countdown&quot;</span>).css(<span class="string">&quot;display&quot;</span>, <span class="string">&quot;flex&quot;</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://kuro.tw/posts/2019/02/23/%E8%AB%87%E8%AB%87-JavaScript-%E7%9A%84-setTimeout-%E8%88%87-setInterval/">談談 JavaScript 的 setTimeout 與 setInterval</a></p>
-<p><a href="https://www.fooish.com/javascript/date/">JavaScript Date 時間和日期</a></p>
-]]></content>
-      <categories>
-        <category>Portfolio</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[實作] 打字遊戲</title>
     <url>/2021/01/28/%E5%AF%A6%E4%BD%9C-%E6%89%93%E5%AD%97%E9%81%8A%E6%88%B2/</url>
     <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><ul>
@@ -2183,6 +2155,83 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;body&quot;</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (e.target.id == <span class="string">&quot;play-again&quot;</span>) &#123;</span><br><span class="line">    <span class="built_in">window</span>.location.reload();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://ithelp.ithome.com.tw/articles/10196577">Day 21 - Speech Detection</a></p>
 <p><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/284046/">jquery append()方法與html()方法的區別及使用介紹</a></p>
+]]></content>
+      <categories>
+        <category>Portfolio</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[實作] 新年倒數器</title>
+    <url>/2021/01/27/%E5%AF%A6%E4%BD%9C-%E6%96%B0%E5%B9%B4%E5%80%92%E6%95%B8%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><ul>
+<li>Date物件</li>
+<li><code>setInterval()</code><a id="more"></a>
+<h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2></li>
+</ul>
+<p>新年倒數計時器</p>
+<p><img src="https://i.imgur.com/TP6nklD.jpg"></p>
+<p><a href="https://hff2.github.io/My-Projects/New_Year_Countdown/">Demo</a></p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p><img src="https://i.imgur.com/izcxbbg.png"></p>
+<h3 id="結構"><a href="#結構" class="headerlink" title="結構"></a>結構</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line">    &lt;script</span><br><span class="line">      src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js&quot;</span><br><span class="line">      integrity=&quot;sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==&quot;</span><br><span class="line">      crossorigin=&quot;anonymous&quot;</span><br><span class="line">    &gt;<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>New Year Countdown<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--  Js動態存取年分  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;year&quot;</span> <span class="attr">class</span>=<span class="string">&quot;year&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>New Year Countdown<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;countdown&quot;</span> <span class="attr">class</span>=<span class="string">&quot;countdown&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;days&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>days<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;hours&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>hours<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;minutes&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>minutes<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;seconds&quot;</span>&gt;</span>00<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>seconds<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &lt;img</span><br><span class="line">      src=&quot;./img/spinner.gif&quot;</span><br><span class="line">      alt=&quot;Loading...&quot;</span><br><span class="line">      id=&quot;loading&quot;</span><br><span class="line">      class=&quot;loading&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;jquery.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="元素置中"><a href="#元素置中" class="headerlink" title="元素置中"></a>元素置中</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;https://images.unsplash.com/photo-1577737377853-7c0b1426b35e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1191&amp;q=80&quot;</span>);</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">  <span class="attribute">background-size</span>: cover;</span><br><span class="line">  <span class="attribute">background-position</span>: center center;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;Permanent Marker&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="背景上疊一層layout"><a href="#背景上疊一層layout" class="headerlink" title="背景上疊一層layout"></a>背景上疊一層layout</h3><p>使用偽元素，再使用絕對定位，寬高撐滿視窗(100%)。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* Add a dark overlay */</span></span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS動態控制倒數的出現"><a href="#JS動態控制倒數的出現" class="headerlink" title="JS動態控制倒數的出現"></a>JS動態控制倒數的出現</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.countdown</span> &#123;</span><br><span class="line">  <span class="comment">/* display: flex; */</span> <span class="comment">/* 出現 */</span></span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Media-Query"><a href="#Media-Query" class="headerlink" title="Media Query"></a>Media Query</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width:</span> <span class="number">500px</span>) &#123;</span><br><span class="line">  <span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">45px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.time</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">5px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.time</span> <span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.time</span> <span class="selector-tag">small</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS-1"><a href="#JS-1" class="headerlink" title="JS"></a>JS</h2><h3 id="宣告變數"><a href="#宣告變數" class="headerlink" title="宣告變數"></a>宣告變數</h3><blockquote>
+<p>Js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> days = <span class="built_in">document</span>.getElementById(<span class="string">&quot;days&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> hours = <span class="built_in">document</span>.getElementById(<span class="string">&quot;hours&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> minutes = <span class="built_in">document</span>.getElementById(<span class="string">&quot;minutes&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> seconds = <span class="built_in">document</span>.getElementById(<span class="string">&quot;seconds&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> countdown = <span class="built_in">document</span>.getElementById(<span class="string">&quot;countdown&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 取得這一年的時間(2021)</span></span><br><span class="line"><span class="keyword">const</span> currentYear = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear();</span><br><span class="line"><span class="comment">// 2021+1=2022，得到新的一年的時間</span></span><br><span class="line"><span class="keyword">const</span> newYearTime = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">`January 01 <span class="subst">$&#123;currentYear + <span class="number">1</span>&#125;</span> 00:00:00`</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;#days&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#hours&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#minutes&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#seconds&quot;</span>)</span><br><span class="line">$(<span class="string">&quot;#countdown&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="製作倒數面板"><a href="#製作倒數面板" class="headerlink" title="製作倒數面板"></a>製作倒數面板</h3><blockquote>
+<p>Javascript</p>
+</blockquote>
+<ul>
+<li><p>JavaScript 的 <code>Date</code> 物件，讓我們可以用來做跟日期和時間相關的操作。</p>
+</li>
+<li><p><code>setInterval()</code>是固定延遲了某段時間之後，才去執行對應的程式碼，然後「不斷循環」。</p>
+</li>
+<li><p>以取的分鐘來說，<code>diff</code>為總毫秒，所以須先除1000，得到總秒數，再除以60得到分鐘數，在除與60後的餘數，就會是小時的剩下分鐘數。</p>
+</li>
+<li><p><code>Math.floor()</code>函式會回傳小於等於所給數字的最大整數，簡單來說就是，小數無條件捨去到比自身小的最大整數。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateCountdown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> currentTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="comment">// 時間差</span></span><br><span class="line">  <span class="keyword">const</span> diff = newYearTime - currentTime;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//得到的值是毫秒，所以需要除以1000，變成秒。</span></span><br><span class="line">  <span class="keyword">const</span> d = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span><br><span class="line">  <span class="keyword">const</span> h = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span>) % <span class="number">24</span>;</span><br><span class="line">  <span class="keyword">const</span> m = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span>) % <span class="number">60</span>;</span><br><span class="line">  <span class="keyword">const</span> s = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span>) % <span class="number">60</span>;</span><br><span class="line">  <span class="comment">// 將取得的時間，更新到HTML上</span></span><br><span class="line">  days.innerHTML = d;</span><br><span class="line">  <span class="comment">// 如果不是十位數，就在前面加個0，使用三元運算子判斷。</span></span><br><span class="line">  hours.innerHTML = h &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + h : h;</span><br><span class="line">  minutes.innerHTML = m &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + m : m;</span><br><span class="line">  seconds.innerHTML = s &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + s : s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每1000毫秒(1秒)更新一次</span></span><br><span class="line"><span class="built_in">setInterval</span>(updateCountdown, <span class="number">1000</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<p>這個實作的Jquery都比較簡單。</p>
+<p><code>hours.innerHTML =</code> 轉成 <code>.text()</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> currentYear = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newYearTime = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">`January 01 <span class="subst">$&#123;currentYear + <span class="number">1</span>&#125;</span> 00:00:00`</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateCountdown</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> currentTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> diff = newYearTime - currentTime;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> d = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span>);</span><br><span class="line">  <span class="keyword">const</span> h = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span>) % <span class="number">24</span>;</span><br><span class="line">  <span class="keyword">const</span> m = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span> / <span class="number">60</span>) % <span class="number">60</span>;</span><br><span class="line">  <span class="keyword">const</span> s = <span class="built_in">Math</span>.floor(diff / <span class="number">1000</span>) % <span class="number">60</span>;</span><br><span class="line">  $(<span class="string">&quot;#days&quot;</span>).text(d);</span><br><span class="line">  $(<span class="string">&quot;#hours&quot;</span>).text(h &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + h : h);</span><br><span class="line">  $(<span class="string">&quot;#minutes&quot;</span>).text(m &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + m : m);</span><br><span class="line">  $(<span class="string">&quot;#seconds&quot;</span>).text(s &lt; <span class="number">10</span> ? <span class="string">&quot;0&quot;</span> + s : s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setInterval</span>(updateCountdown, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="動態產生年分與Loading-Gif"><a href="#動態產生年分與Loading-Gif" class="headerlink" title="動態產生年分與Loading Gif"></a>動態產生年分與Loading Gif</h3><p>倒數的面板，由Js動態控制CSS。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.countdown</span> &#123;</span><br><span class="line">  <span class="comment">/* display: flex; */</span></span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Javascript</p>
+</blockquote>
+<ul>
+<li>呈現Loading圖案時，將顯示的時間隱藏(<code>none</code>)起來，跑完Loading圖後，才顯示(<code>display</code>)。</li>
+<li> 顯示的year為明年，所以需要+1</li>
+<li>一秒過後，將 Loading Gif 去除，然後顯示倒數面板。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> year = <span class="built_in">document</span>.getElementById(<span class="string">&quot;year&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> loading = <span class="built_in">document</span>.getElementById(<span class="string">&quot;loading&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set background year</span></span><br><span class="line">year.innerText = currentYear + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  loading.remove();</span><br><span class="line">  countdown.style.display = <span class="string">&quot;flex&quot;</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Jquery</p>
+</blockquote>
+<ul>
+<li><code>.remove()</code> 為一樣寫法。</li>
+<li><code>.style.display = &quot;flex&quot;</code> 轉成 <code>.css(&quot;display&quot;, &quot;flex&quot;)</code></li>
+</ul>
+<p>須注意，Juqery另外一種寫法為<code>.removeClass</code>，這是需要移除class才用到的方法，在這邊為移除掉img，所以使用<code>.remove()</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&quot;#year&quot;</span>).text(currentYear + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  $(<span class="string">&quot;#loading&quot;</span>).remove();</span><br><span class="line">  $(<span class="string">&quot;#countdown&quot;</span>).css(<span class="string">&quot;display&quot;</span>, <span class="string">&quot;flex&quot;</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://kuro.tw/posts/2019/02/23/%E8%AB%87%E8%AB%87-JavaScript-%E7%9A%84-setTimeout-%E8%88%87-setInterval/">談談 JavaScript 的 setTimeout 與 setInterval</a></p>
+<p><a href="https://www.fooish.com/javascript/date/">JavaScript Date 時間和日期</a></p>
 ]]></content>
       <categories>
         <category>Portfolio</category>
@@ -2796,6 +2845,55 @@
       </tags>
   </entry>
   <entry>
+    <title>箭頭函式 Arrow functions</title>
+    <url>/2021/01/31/%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-functions/</url>
+    <content><![CDATA[<p>箭頭函式，在ES6出現的語法，有著更<strong>簡短的語法</strong>以及<strong>重新定義</strong>的 <code>this</code>。</p>
+<a id="more"></a>
+<h2 id="簡短的語法"><a href="#簡短的語法" class="headerlink" title="簡短的語法"></a>簡短的語法</h2><p>箭頭函式與 function 的用法大致一致，可以傳入<strong>參數</strong>、也有<strong>大括號</strong>包起來，除此之外箭頭函式也有更簡短的寫法如下</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 正常寫法，在大括號內的 &#123;&#125; 是需要自行加入 return。</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 縮寫，單一行陳述不需要 &#123;&#125;</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只有一個參數可以不加括號</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 沒有參數時，一定要有括號</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">() =&gt;</span> <span class="string">&quot;Phoebe&quot;</span> + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="沒有-arguments-參數"><a href="#沒有-arguments-參數" class="headerlink" title="沒有 arguments 參數"></a>沒有 arguments 參數</h2><p>要使用 arguments 這個參數了解總共傳入了幾次並加總，但在箭頭函式內是<strong>沒有此變數</strong>的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> Money = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> Spend = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> cash = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// arguments is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">Spend (<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/US9HUMX.png"></p>
+<p>所以當需要使用 arguments 需維持使用 function</p>
+<h2 id="綁定的-this-不同"><a href="#綁定的-this-不同" class="headerlink" title="綁定的 this 不同"></a>綁定的 this 不同</h2><ul>
+<li>傳統函式：依呼叫的方法而定</li>
+<li>箭頭函式：<strong>綁定到其定義時所在的物件</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;全域先生&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">&quot;function小姐&quot;</span>,</span><br><span class="line">  callName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 注意，這裡是 function，以此為基準產生一個作用域</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 1 function小姐</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;2&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 2 function小姐</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;3&quot;</span>, <span class="built_in">this</span>); <span class="comment">// 3 person 這個物件</span></span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  callName2: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 注意，如果使用箭頭函式，this 依然指向 window</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 4 全域先生</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;5&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 5 全域先生</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;6&quot;</span>, <span class="built_in">this</span>); <span class="comment">// 6 window 物件</span></span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.callName();</span><br><span class="line">person.callName2();</span><br></pre></td></tr></table></figure>
+<p><code>綁定到其定義時所在的物件</code>，我們要了解一般函式在建立時是在 <strong>window</strong> 下，所以在 window 下使用<strong>箭頭函式</strong>自然會指向 window。</p>
+<p>要確實將<strong>箭頭函式宣告在物件內部</strong>，這樣 <code>this</code> 才會指向該物件。</p>
+<p>簡單來說，一般函數式是建立在window下，所以箭頭函式，會指向window。但是，若將箭頭函式先告在物件內部，就會指向物件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 這裡才算真正的建立一個物件</span></span><br><span class="line">  <span class="comment">// 因此要在此物件下的箭頭函式才會以此作為基準</span></span><br><span class="line">  <span class="keyword">var</span> func3 = &#123;</span><br><span class="line">    func: func2,</span><br><span class="line">    var4: <span class="number">4</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  func2(); <span class="comment">// this = window</span></span><br><span class="line">  func3.func(); <span class="comment">// func3 Object</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func();</span><br><span class="line"><span class="comment">// 就算在這裡新增一個 function，也不會影響到內層的箭頭函式</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/tK4tg5w.png"></p>
+<ul>
+<li><code>func()</code> 是最外層的函式，他對於內層的箭頭不會有影響。</li>
+<li><code>func2()</code> 是包覆在內層的函式，但由於箭頭函式不是在物件內，所以沒有影響。</li>
+<li><code>func3()</code> 是呼叫在物件內的函式，因此箭頭函式會是使用它所在的物件。</li>
+</ul>
+<p>因為物件<code>func3</code>呼叫了函式<code>func()</code>，所以<strong>箭頭函式會指向他<code>func3</code>所使用所在的物件。</strong></p>
+<h2 id="縮寫的方法"><a href="#縮寫的方法" class="headerlink" title="縮寫的方法"></a>縮寫的方法</h2><ol>
+<li>去除function</li>
+<li>加上等號</li>
+<li>宣告變數</li>
+<li>增加箭頭</li>
+<li>去除大括號</li>
+<li>去除return </li>
+</ol>
+<h3 id="Arrow-Function-1"><a href="#Arrow-Function-1" class="headerlink" title="Arrow Function 1"></a>Arrow Function 1</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 去掉function，加上等號，宣告變數，增加箭頭</span></span><br><span class="line"><span class="keyword">let</span> sum2 = <span class="function">(<span class="params">a,b</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//去除return與大括號</span></span><br><span class="line"><span class="keyword">let</span> sum3 = <span class="function">(<span class="params">a,b</span>) =&gt;</span> a+b</span><br></pre></td></tr></table></figure>
+<h3 id="Arrow-Function-2"><a href="#Arrow-Function-2" class="headerlink" title="Arrow Function 2"></a>Arrow Function 2</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPositive</span>(<span class="params">number</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> number &gt;= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isPositive2 = <span class="function"><span class="params">number</span> =&gt;</span> number  &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h3 id="Arow-Function-3"><a href="#Arow-Function-3" class="headerlink" title="Arow Function 3"></a>Arow Function 3</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> randomNumber2 = <span class="function">() =&gt;</span>  <span class="built_in">Math</span>.random</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Arrow-Function4"><a href="#Arrow-Function4" class="headerlink" title="Arrow Function4"></a>Arrow Function4</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Click&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener = (<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) =&gt;  <span class="title">console</span>.<span class="title">log</span>(<span class="params"><span class="string">&#x27;Click&#x27;</span></span>))</span></span><br></pre></td></tr></table></figure>
+<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.youtube.com/watch?v=h33Srr5J9nY&list=PLZlA0Gpn_vH-0FlQnruw2rd1HuiYJHHkm&index=3">JavaScript ES6 Arrow Functions Tutorial</a></p>
+<p><a href="https://wcc723.github.io/javascript/2017/12/21/javascript-es6-arrow-function/">鐵人賽：箭頭函式 (Arrow functions)</a></p>
+]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>認識 HTML、CSS 與實作第一個網頁</title>
     <url>/2020/12/01/%E8%AA%8D%E8%AD%98-HTML%E3%80%81CSS-%E8%88%87%E5%AF%A6%E4%BD%9C%E7%AC%AC%E4%B8%80%E5%80%8B%E7%B6%B2%E9%A0%81/</url>
     <content><![CDATA[<h2 id="HTML是什麼"><a href="#HTML是什麼" class="headerlink" title="HTML是什麼?"></a>HTML是什麼?</h2><p><img src="https://i.imgur.com/ICRsLf0.png"></p>
@@ -2878,55 +2976,6 @@
       </categories>
       <tags>
         <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>箭頭函式 Arrow functions</title>
-    <url>/2021/01/31/%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-functions/</url>
-    <content><![CDATA[<p>箭頭函式，在ES6出現的語法，有著更<strong>簡短的語法</strong>以及<strong>重新定義</strong>的 <code>this</code>。</p>
-<a id="more"></a>
-<h2 id="簡短的語法"><a href="#簡短的語法" class="headerlink" title="簡短的語法"></a>簡短的語法</h2><p>箭頭函式與 function 的用法大致一致，可以傳入<strong>參數</strong>、也有<strong>大括號</strong>包起來，除此之外箭頭函式也有更簡短的寫法如下</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 正常寫法，在大括號內的 &#123;&#125; 是需要自行加入 return。</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 縮寫，單一行陳述不需要 &#123;&#125;</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只有一個參數可以不加括號</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">(<span class="params">someone</span>) =&gt;</span> someone + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 沒有參數時，一定要有括號</span></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function">() =&gt;</span> <span class="string">&quot;Phoebe&quot;</span> + <span class="string">&quot;say Hi&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">&quot;Phoebe&quot;</span>));</span><br></pre></td></tr></table></figure>
-<h2 id="沒有-arguments-參數"><a href="#沒有-arguments-參數" class="headerlink" title="沒有 arguments 參數"></a>沒有 arguments 參數</h2><p>要使用 arguments 這個參數了解總共傳入了幾次並加總，但在箭頭函式內是<strong>沒有此變數</strong>的。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> Money = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">const</span> Spend = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> cash = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// arguments is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">Spend (<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/US9HUMX.png"></p>
-<p>所以當需要使用 arguments 需維持使用 function</p>
-<h2 id="綁定的-this-不同"><a href="#綁定的-this-不同" class="headerlink" title="綁定的 this 不同"></a>綁定的 this 不同</h2><ul>
-<li>傳統函式：依呼叫的方法而定</li>
-<li>箭頭函式：<strong>綁定到其定義時所在的物件</strong></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;全域先生&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">  name: <span class="string">&quot;function小姐&quot;</span>,</span><br><span class="line">  callName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 注意，這裡是 function，以此為基準產生一個作用域</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;1&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 1 function小姐</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;2&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 2 function小姐</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;3&quot;</span>, <span class="built_in">this</span>); <span class="comment">// 3 person 這個物件</span></span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  callName2: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 注意，如果使用箭頭函式，this 依然指向 window</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;4&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 4 全域先生</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;5&quot;</span>, <span class="built_in">this</span>.name); <span class="comment">// 5 全域先生</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;6&quot;</span>, <span class="built_in">this</span>); <span class="comment">// 6 window 物件</span></span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">person.callName();</span><br><span class="line">person.callName2();</span><br></pre></td></tr></table></figure>
-<p><code>綁定到其定義時所在的物件</code>，我們要了解一般函式在建立時是在 <strong>window</strong> 下，所以在 window 下使用<strong>箭頭函式</strong>自然會指向 window。</p>
-<p>要確實將<strong>箭頭函式宣告在物件內部</strong>，這樣 <code>this</code> 才會指向該物件。</p>
-<p>簡單來說，一般函數式是建立在window下，所以箭頭函式，會指向window。但是，若將箭頭函式先告在物件內部，就會指向物件。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> func2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 這裡才算真正的建立一個物件</span></span><br><span class="line">  <span class="comment">// 因此要在此物件下的箭頭函式才會以此作為基準</span></span><br><span class="line">  <span class="keyword">var</span> func3 = &#123;</span><br><span class="line">    func: func2,</span><br><span class="line">    var4: <span class="number">4</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  func2(); <span class="comment">// this = window</span></span><br><span class="line">  func3.func(); <span class="comment">// func3 Object</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func();</span><br><span class="line"><span class="comment">// 就算在這裡新增一個 function，也不會影響到內層的箭頭函式</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/tK4tg5w.png"></p>
-<ul>
-<li><code>func()</code> 是最外層的函式，他對於內層的箭頭不會有影響。</li>
-<li><code>func2()</code> 是包覆在內層的函式，但由於箭頭函式不是在物件內，所以沒有影響。</li>
-<li><code>func3()</code> 是呼叫在物件內的函式，因此箭頭函式會是使用它所在的物件。</li>
-</ul>
-<p>因為物件<code>func3</code>呼叫了函式<code>func()</code>，所以<strong>箭頭函式會指向他<code>func3</code>所使用所在的物件。</strong></p>
-<h2 id="縮寫的方法"><a href="#縮寫的方法" class="headerlink" title="縮寫的方法"></a>縮寫的方法</h2><ol>
-<li>去除function</li>
-<li>加上等號</li>
-<li>宣告變數</li>
-<li>增加箭頭</li>
-<li>去除大括號</li>
-<li>去除return </li>
-</ol>
-<h3 id="Arrow-Function-1"><a href="#Arrow-Function-1" class="headerlink" title="Arrow Function 1"></a>Arrow Function 1</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 去掉function，加上等號，宣告變數，增加箭頭</span></span><br><span class="line"><span class="keyword">let</span> sum2 = <span class="function">(<span class="params">a,b</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//去除return與大括號</span></span><br><span class="line"><span class="keyword">let</span> sum3 = <span class="function">(<span class="params">a,b</span>) =&gt;</span> a+b</span><br></pre></td></tr></table></figure>
-<h3 id="Arrow-Function-2"><a href="#Arrow-Function-2" class="headerlink" title="Arrow Function 2"></a>Arrow Function 2</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPositive</span>(<span class="params">number</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> number &gt;= <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isPositive2 = <span class="function"><span class="params">number</span> =&gt;</span> number  &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="Arow-Function-3"><a href="#Arow-Function-3" class="headerlink" title="Arow Function 3"></a>Arow Function 3</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> randomNumber2 = <span class="function">() =&gt;</span>  <span class="built_in">Math</span>.random</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="Arrow-Function4"><a href="#Arrow-Function4" class="headerlink" title="Arrow Function4"></a>Arrow Function4</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Click&#x27;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener = (<span class="string">&#x27;click&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) =&gt;  <span class="title">console</span>.<span class="title">log</span>(<span class="params"><span class="string">&#x27;Click&#x27;</span></span>))</span></span><br></pre></td></tr></table></figure>
-<h2 id="參考文章"><a href="#參考文章" class="headerlink" title="參考文章"></a>參考文章</h2><p><a href="https://www.youtube.com/watch?v=h33Srr5J9nY&list=PLZlA0Gpn_vH-0FlQnruw2rd1HuiYJHHkm&index=3">JavaScript ES6 Arrow Functions Tutorial</a></p>
-<p><a href="https://wcc723.github.io/javascript/2017/12/21/javascript-es6-arrow-function/">鐵人賽：箭頭函式 (Arrow functions)</a></p>
-]]></content>
-      <categories>
-        <category>Javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
