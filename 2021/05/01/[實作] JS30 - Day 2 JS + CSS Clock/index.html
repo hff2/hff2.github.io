@@ -28,7 +28,7 @@
 <meta property="og:description" content="學習到的知識點 透過 CSS 選擇元素 (querySelector) Date 時間物件 取得日期物件的本地時間 (getHours，getSeconds，getMinutes) 透過 JS 控制 CSS (style.transform) JS 計時器 (setInterval，setTimeout，requestAnimationFrame)">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-05-01T03:07:11.000Z">
-<meta property="article:modified_time" content="2021-05-01T06:30:12.914Z">
+<meta property="article:modified_time" content="2021-05-01T06:44:20.704Z">
 <meta property="article:author" content="Phoebe">
 <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-05-01 11:07:11 / 修改時間：14:30:12" itemprop="dateCreated datePublished" datetime="2021-05-01T11:07:11+08:00">2021-05-01</time>
+              <time title="創建時間：2021-05-01 11:07:11 / 修改時間：14:44:20" itemprop="dateCreated datePublished" datetime="2021-05-01T11:07:11+08:00">2021-05-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +232,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>2k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -295,10 +295,13 @@
 <h4 id="第二種用法-setTimeout"><a href="#第二種用法-setTimeout" class="headerlink" title="第二種用法 setTimeout"></a>第二種用法 <code>setTimeout</code></h4><p>此用法像是球賽喊暫停一樣，所以需要呼叫自己達到連續的動作。</p>
 <p><strong>設定延遲，執行一次。</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timeoutHandler</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  setClock();</span><br><span class="line">  <span class="built_in">setTimeout</span>(timeoutHandler,<span class="number">1000</span>); <span class="comment">// 呼叫自己</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(timeoutHandler,<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="第三種用法-requestAnimatoin"><a href="#第三種用法-requestAnimatoin" class="headerlink" title="第三種用法 requestAnimatoin"></a>第三種用法 <code>requestAnimatoin</code></h4><p>和<code>setTimeout</code>十分相似，他也需要呼叫自己，但<code>requestAnimatoin</code>屬於專門處理畫面。</p>
+<h4 id="第三種用法-requestAnimatoin"><a href="#第三種用法-requestAnimatoin" class="headerlink" title="第三種用法 requestAnimatoin"></a>第三種用法 <code>requestAnimatoin</code></h4><p>和<code>setTimeout</code>十分相似，他也需要呼叫自己，但<code>requestAnimatoin</code>屬於專門處理畫面的用法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animationHandler</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  setClock();</span><br><span class="line">  <span class="built_in">window</span>.requestAnimationFrame(animationHandler);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.requestAnimationFrame(animationHandler);</span><br></pre></td></tr></table></figure>
-<h2 id="延伸學習"><a href="#延伸學習" class="headerlink" title="延伸學習"></a>延伸學習</h2><h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/CSS/transform">transform - CSS | MDN</a></p>
+<h2 id="延伸學習"><a href="#延伸學習" class="headerlink" title="延伸學習"></a>延伸學習</h2><p><a target="_blank" rel="noopener" href="https://hackmd.io/@PhoebeHo/rkizdu9w_">Javascript 中的 setTimeout 與 setInterval</a></p>
+<h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/CSS/transform">transform - CSS | MDN</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.fooish.com/javascript/date/">JavaScript Date 時間和日期 - JavaScript (JS) 教學 Tutorial</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.fooish.com/javascript/timer.html">JavaScript Timer setTimeout(), setInterval() 計時器 - JavaScript (JS) 教學 Tutorial</a></p>
+<p><a target="_blank" rel="noopener" href="https://kuro.tw/posts/2019/02/23/%E8%AB%87%E8%AB%87-JavaScript-%E7%9A%84-setTimeout-%E8%88%87-setInterval/">談談 JavaScript 的 setTimeout 與 setInterval | Kuro’s Blog</a></p>
 
     </div>
 
@@ -457,7 +460,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">2:55</span>
+    <span title="所需總閱讀時間">2:56</span>
 </div>
 
         
