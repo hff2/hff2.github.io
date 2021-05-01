@@ -13,7 +13,6 @@ date: 2021-05-1 11:07:11
 - 取得日期物件的本地時間 (`getHours`，`getSeconds`，`getMinutes`)
 - 透過 JS 控制 CSS (`style.transform`)
 - JS 計時器 (`setInterval`，`setTimeout`，`requestAnimationFrame`)
-
 <!--more-->
 
 ## 思考分析
@@ -54,6 +53,10 @@ const hour = document.querySelector('.hour-hand')
 - 分鐘與秒是相同的道理。
 - 小時後面的乘 30，是因為 ( 360 度 / 一圈 12 小時 )。所以，一小時代表 30 度。
 
+`hourDeg` 後面加上 `data.getSeconds() * 6/60`，意思為一小時有 60 分鐘，每分鐘移動 6 (360/60) 度。讓時間再跑的同時，時針也可以有細微的變動，屬於比較細節的部份。
+
+`minDeg`，是相同的意思。
+
 ```javascript=
 function setClock(){
   // 獲得時間物件
@@ -84,10 +87,54 @@ function setClock(){
 - `setTimeout`
 - `requestAnimatoin`
 
+#### 第一種用法 `setInterval`
+
+固定延遲了某段時間之後 ( 在這邊是 1000 毫秒 )，才去執行對應的程式碼，然後「不斷循環」。
+
+**設定間隔，持續執行。**
+
+```javascript=
+setInterval(setClock,1000);
+```
+
+#### 第二種用法 `setTimeout`
+
+此用法像是球賽喊暫停一樣，所以需要呼叫自己達到連續的動作。
+
+**設定延遲，執行一次。**
+
+```javascript=
+function timeoutHandler(){
+  setClock();
+  setTimeout(timeoutHandler,1000); // 呼叫自己
+}
+
+setTimeout(timeoutHandler,1000);
+```
+
+#### 第三種用法 `requestAnimatoin`
+
+和`setTimeout`十分相似，他也需要呼叫自己，但`requestAnimatoin`屬於專門處理畫面的用法。
+
+```javascript=
+function animationHandler(){
+  setClock();
+  window.requestAnimationFrame(animationHandler);
+}
+
+window.requestAnimationFrame(animationHandler);
+```
+
 ## 延伸學習
+
+[Javascript 中的 setTimeout 與 setInterval](https://hackmd.io/@PhoebeHo/rkizdu9w_)
 
 ## 參考網站
 
 [transform - CSS | MDN](https://developer.mozilla.org/zh-TW/docs/Web/CSS/transform)
 
 [JavaScript Date 時間和日期 - JavaScript (JS) 教學 Tutorial](https://www.fooish.com/javascript/date/)
+
+[JavaScript Timer setTimeout(), setInterval() 計時器 - JavaScript (JS) 教學 Tutorial](https://www.fooish.com/javascript/timer.html)
+
+[談談 JavaScript 的 setTimeout 與 setInterval | Kuro's Blog](https://kuro.tw/posts/2019/02/23/%E8%AB%87%E8%AB%87-JavaScript-%E7%9A%84-setTimeout-%E8%88%87-setInterval/)
