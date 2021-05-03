@@ -1,5 +1,5 @@
 ---
-title: "[實作] JS30 - Day 2 JS + CSS Clock"
+title: '[JS30] Day 2 JS + CSS Clock'
 author: Phoebe
 tags: Javascript
 categories: JS 30
