@@ -1,5 +1,5 @@
 ---
-title: '[JS30] Day 1 JS Drum Kit'
+title: '[JS30] Day1 - JS Drum Kit'
 author: Phoebe
 tags: Javascript
 categories: JS 30

@@ -1,5 +1,5 @@
 ---
-title: '[JS30] Day3 CSS Variable'
+title: '[JS30] Day3 - CSS Variable'
 author: Phoebe
 tags: Javascript
 categories: JS 30
@@ -13,6 +13,8 @@ date: 2021-05-3 11:07:11
 1. 選取所有的`input`
 2. 判斷更改哪一個`input`(padding，blur，color)
 3. 更改`input`後，可以觸發網頁上的元件產生變化
+
+<!--more-->
 
 ![](https://i.imgur.com/JJtF4ua.png)
 
