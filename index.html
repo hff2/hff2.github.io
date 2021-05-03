@@ -184,6 +184,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/05/03/[JS30]%20Day3%20CSS%20Variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/03/%5BJS30%5D%20Day3%20CSS%20Variable/" class="post-title-link" itemprop="url">[JS30] Day3 CSS Variable</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-05-03 11:07:11 / 修改時間：22:49:19" itemprop="dateCreated datePublished" datetime="2021-05-03T11:07:11+08:00">2021-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS-30/" itemprop="url" rel="index"><span itemprop="name">JS 30</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>682</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h2 id="思考分析"><a href="#思考分析" class="headerlink" title="思考分析"></a>思考分析</h2><ol>
+<li>選取所有的<code>input</code></li>
+<li>判斷更改哪一個<code>input</code>(padding，blur，color)</li>
+<li>更改<code>input</code>後，可以觸發網頁上的元件產生變化</li>
+</ol>
+<p><img src="https://i.imgur.com/JJtF4ua.png"></p>
+<h3 id="1-選取所有的input"><a href="#1-選取所有的input" class="headerlink" title="1. 選取所有的input"></a>1. 選取所有的<code>input</code></h3><p><code>querySelectorAll</code>選出來的不是純陣列。</p>
+<p>有人稱他像是半殘的 Array。</p>
+<p>(待補充)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inputs = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;.controls input&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-監聽事件"><a href="#2-監聽事件" class="headerlink" title="2. 監聽事件"></a>2. 監聽事件</h3><p><code>change</code>這個事件是做在最後，所以當滑鼠在來回移動時，他並不會被觸發。</p>
+<p>所以加上<code>changeHandler</code>就可以偵測來回移動時的變數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inputs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">input</span>)</span>&#123;</span><br><span class="line">    input.addEventListener(<span class="string">&#x27;change&#x27;</span>,changeHandler)</span><br><span class="line">    input.addEventListener(<span class="string">&#x27;mousemove&#x27;</span>,changeHandler)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-撰寫函式"><a href="#3-撰寫函式" class="headerlink" title="3. 撰寫函式"></a>3. 撰寫函式</h3><p>這裡的<code>dataset</code>是寫在 HTML 裡。</p>
+<p><img src="https://i.imgur.com/UWzebSh.png"></p>
+<p>藉由<code>dataset</code>來判斷他是否有單位。如果有單位的話，就加上，沒有單位的話，就為空值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeHandler</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> unit = <span class="built_in">this</span>.dataset.sizing || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="built_in">document</span>.documentElement.style.setProperty(<span class="string">`--<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>, <span class="built_in">this</span>.value + unit);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="延伸學習"><a href="#延伸學習" class="headerlink" title="延伸學習"></a>延伸學習</h2><h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/05/01/[JS30]%20Day%202%20JS%20+%20CSS%20Clock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1038,102 +1136,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/02/26/[%E5%AF%A6%E4%BD%9C]%20Georgia%20Restaurant/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Phoebe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoebe's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/26/%5B%E5%AF%A6%E4%BD%9C%5D%20Georgia%20Restaurant/" class="post-title-link" itemprop="url">[實作] Georgia Restaurant</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2021-02-26 11:07:11" itemprop="dateCreated datePublished" datetime="2021-02-26T11:07:11+08:00">2021-02-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-02-27 23:27:03" itemprop="dateModified" datetime="2021-02-27T23:27:03+08:00">2021-02-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Portfolio/" itemprop="url" rel="index"><span itemprop="name">Portfolio</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">文章字數：</span>
-              <span>4.7k</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
-              <span>4 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>這個實作有點難以做筆記，這邊的 code 都以 commit 的紀錄來解析，以記錄切版流程為主，方便以後自己實作可以參考。</p>
-<h2 id="建立-Header"><a href="#建立-Header" class="headerlink" title="建立 Header"></a>建立 Header</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/26/%5B%E5%AF%A6%E4%BD%9C%5D%20Georgia%20Restaurant/#more" rel="contents">
-                閱讀全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1205,7 +1207,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1262,7 +1264,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">193k</span>
+    <span title="總字數">194k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
