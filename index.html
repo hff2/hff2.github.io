@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-05-25 00:00:45" itemprop="dateModified" datetime="2021-05-25T00:00:45+08:00">2021-05-25</time>
+                <time title="修改時間：2021-05-25 14:21:09" itemprop="dateModified" datetime="2021-05-25T14:21:09+08:00">2021-05-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,14 +233,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>1.5k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
-              <span>1 分鐘</span>
+              <span>3 分鐘</span>
             </span>
 
         </div>
@@ -252,41 +252,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2><h2 id="思考分析"><a href="#思考分析" class="headerlink" title="思考分析"></a>思考分析</h2><p>JS30 的第四天為使用八個範例，介紹關於 <code>Array</code> 的各種操作。</p>
-<h3 id="1-filter"><a href="#1-filter" class="headerlink" title="1. filter()"></a>1. <code>filter()</code></h3><p>第一個練習為，篩選出生年為 1500 - 1600 的 inventor。</p>
-<p><code>filter</code> 的用法就是給了一組資料給它，它會從這組資料保留符合條件，做為一個新的陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Filter the list of inventors for those who were born in the 1500&#x27;s</span></span><br><span class="line"><span class="keyword">let</span> ans = inventors.filter(<span class="function"><span class="keyword">function</span>(<span class="params">inventor</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> inventor.year &gt;= <span class="number">1500</span> &amp;&amp; inventor.year &lt; <span class="number">1600</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>也可以使用箭頭函式的寫法，使用箭頭函式就不需要加上<code>return</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ans = inventors.filter(<span class="function"><span class="params">inventors</span> =&gt;</span> inventor.year &gt;= <span class="number">1500</span> &amp;&amp; inventor.year &lt; <span class="number">1600</span>);</span><br></pre></td></tr></table></figure>
-<p>結果：</p>
-<p>這裡有個小技巧就是，使用 <code>console.table</code> 就可以用表格看資料，相較之下比較好閱讀。</p>
-<p><img src="https://i.imgur.com/wcFFErh.png"></p>
-<h3 id="2-map"><a href="#2-map" class="headerlink" title="2. map()"></a>2. <code>map()</code></h3><p>第二題的練習為，將 inventors 內的 <code>first</code> 與 <code>last</code> 組合成一個陣列。</p>
-<p>這裡會和<code>forEach</code>一起做比較。</p>
-<h4 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ans = inventors.map(<span class="function"><span class="params">inventor</span> =&gt;</span> inventor.first + <span class="string">&#x27; &#x27;</span> + inventor.last)</span><br><span class="line"><span class="built_in">console</span>.table(ans);</span><br></pre></td></tr></table></figure>
-<p><code>map</code> 會 <code>return</code> 新的陣列。</p>
-<h4 id="ForEach"><a href="#ForEach" class="headerlink" title="ForEach"></a><code>ForEach</code></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ans = [];</span><br><span class="line">inventors.forEach(<span class="function"><span class="params">inventor</span> =&gt;</span> ans.push(inventor.first + <span class="string">&#x27; &#x27;</span> + inventor.last))</span><br><span class="line"><span class="built_in">console</span>.table(ans);</span><br></pre></td></tr></table></figure>
-<p><code>foreach</code> 不會回傳陣列，所以需要自己設一個陣列，再將資料推進去。</p>
-<p>假設，今天要對陣列做一件事情，沒有要產生新的內容，就要使用 <code>forEach</code>。</p>
-<p>如果希望是產生一個對應的<strong>新陣列</strong>，這時候就可以用<code>map</code>。</p>
-<p>最大的差別就是，有沒有產生一個新的陣列。</p>
-<p>結果：<br><img src="https://i.imgur.com/ou1GOFr.png"></p>
-<h3 id="3-sort"><a href="#3-sort" class="headerlink" title="3. sort()"></a>3. <code>sort()</code></h3><p>第三題為依據生日，由大至小排序所有的 inventor。</p>
-<p><code>sort</code> 會有穩定排序和非穩定排序。</p>
-<p>當數值一樣時，將會維持原本的排序，就是穩定排序。</p>
-<p>使用數值相減的方法會相對穩定。</p>
-<p>寫法一：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ordered = inventors.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.year &gt; b.year) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>寫法二：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ans = inventors.sort(<span class="function">(<span class="params">a,b</span>)=&gt;</span> a.year - b.year);</span><br><span class="line"><span class="built_in">console</span>.table(ans);</span><br></pre></td></tr></table></figure>
-<p>結果：</p>
-<p>預設由小排到大。<br><img src="https://i.imgur.com/EhbGvHI.png"></p>
-<h3 id="4-reduce"><a href="#4-reduce" class="headerlink" title="4. reduce()"></a>4. <code>reduce()</code></h3><h3 id="5-sort"><a href="#5-sort" class="headerlink" title="5. sort()"></a>5. <code>sort()</code></h3><h3 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h3><h3 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h3><h3 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h3><h2 id="延伸學習"><a href="#延伸學習" class="headerlink" title="延伸學習"></a>延伸學習</h2><h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p>console.table(inventors)</p>
-<p><img src="https://i.imgur.com/Sn6zLlG.png"></p>
-<p>NodeList 不是陣列</p>
-<p><img src="https://i.imgur.com/OvVh95i.png"></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ary = []</span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">&#x27;.mw-category-group li a&#x27;</span>).forEach(<span class="function">(<span class="params">a</span>)=&gt;</span>&#123;</span><br><span class="line">    ary.push(a.title)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ans = ary.filter(<span class="function"><span class="params">title</span>=&gt;</span>title.indexOf(<span class="string">&#x27;de&#x27;</span>) !== -<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+          <h2 id="學習到的知識點"><a href="#學習到的知識點" class="headerlink" title="學習到的知識點"></a>學習到的知識點</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/24/%5BJS30%5D%20Day4%20Array%20Cardio/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1284,12 +1258,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">197k</span>
+    <span title="總字數">199k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">2:59</span>
+    <span title="所需總閱讀時間">3:01</span>
 </div>
 
         
