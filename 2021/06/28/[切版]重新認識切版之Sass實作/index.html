@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/web-programming.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-coding.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-coding.png">
+  <link rel="mask-icon" href="/images/logo-coding.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hff2.github.io.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="雖然之前整理過一篇 Sass 筆記，但許多實作的地方紀錄的還是有點不清楚。 為什麼要使用 Sass?管理 css 的時候非常方便。 但是，網頁只看的懂 css 檔案，副檔名還是 css，不用改 sass。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重新認識切版 - Sass實作">
+<meta property="og:url" content="https://hff2.github.io.com/2021/06/28/[%E5%88%87%E7%89%88]%E9%87%8D%E6%96%B0%E8%AA%8D%E8%AD%98%E5%88%87%E7%89%88%E4%B9%8BSass%E5%AF%A6%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Phoebe&#39;s Blog">
+<meta property="og:description" content="雖然之前整理過一篇 Sass 筆記，但許多實作的地方紀錄的還是有點不清楚。 為什麼要使用 Sass?管理 css 的時候非常方便。 但是，網頁只看的懂 css 檔案，副檔名還是 css，不用改 sass。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/31P4vev.png">
+<meta property="og:image" content="https://i.imgur.com/vdx96Jf.png">
+<meta property="article:published_time" content="2021-06-28T03:07:11.000Z">
+<meta property="article:modified_time" content="2021-06-28T13:04:59.999Z">
+<meta property="article:author" content="Phoebe">
+<meta property="article:tag" content="HTML&amp;CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/31P4vev.png">
+
+<link rel="canonical" href="https://hff2.github.io.com/2021/06/28/[%E5%88%87%E7%89%88]%E9%87%8D%E6%96%B0%E8%AA%8D%E8%AD%98%E5%88%87%E7%89%88%E4%B9%8BSass%E5%AF%A6%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>重新認識切版 - Sass實作 | Phoebe's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoebe's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜尋
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜尋..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://hff2.github.io.com/2021/06/28/[%E5%88%87%E7%89%88]%E9%87%8D%E6%96%B0%E8%AA%8D%E8%AD%98%E5%88%87%E7%89%88%E4%B9%8BSass%E5%AF%A6%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Phoebe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoebe's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          重新認識切版 - Sass實作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-06-28 11:07:11 / 修改時間：21:04:59" itemprop="dateCreated datePublished" datetime="2021-06-28T11:07:11+08:00">2021-06-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%87%E7%89%88/" itemprop="url" rel="index"><span itemprop="name">切版</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>雖然之前整理過一篇 Sass 筆記，但許多實作的地方紀錄的還是有點不清楚。</p>
+<h2 id="為什麼要使用-Sass"><a href="#為什麼要使用-Sass" class="headerlink" title="為什麼要使用 Sass?"></a>為什麼要使用 Sass?</h2><p>管理 css 的時候非常方便。</p>
+<p>但是，網頁只看的懂 css 檔案，副檔名還是 css，不用改 sass。</p>
+<a id="more"></a>
+
+<p>sass 的原理為，css 都寫在 sass 檔案裡面，途中就是經過<strong>編譯</strong>的地方，再轉換成 css。</p>
+<p><img src="https://i.imgur.com/31P4vev.png"></p>
+<p>Sass 程式語言，兩種格式寫法</p>
+<ol>
+<li>SASS (利用空格去區分階層)</li>
+<li>SCSS (保有括號與逗號)</li>
+</ol>
+<p><img src="https://i.imgur.com/vdx96Jf.png"></p>
+<h2 id="如何編譯-Sass"><a href="#如何編譯-Sass" class="headerlink" title="如何編譯 Sass?"></a>如何編譯 Sass?</h2><ol>
+<li>軟體編譯</li>
+<li>gulp，webpack 前端軟體 / 打包工具</li>
+<li>編輯器內建的插件</li>
+</ol>
+<p>&amp; 連接符號，可以跟據上一層的結構，繼續進行編譯。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="selector-class">.content</span>&#123;</span><br><span class="line">        <span class="attribute">background</span>: yellow;</span><br><span class="line">        <span class="selector-tag">a</span>&#123;</span><br><span class="line">            <span class="attribute">color</span>:white;</span><br><span class="line">            &amp;<span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">                <span class="attribute">color</span>:pink;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用變數"><a href="#使用變數" class="headerlink" title="使用變數"></a>使用變數</h3><ul>
+<li>時常需要設定的 css 可以放在變數來管理。</li>
+<li>變數使用美元 <code>$</code> 符號開頭</li>
+<li>結尾需使用分號</li>
+<li>變數放在前面的位置，後面的 css 才會吃到</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$link-color</span>: <span class="number">#ffff</span>;</span><br><span class="line"><span class="variable">$font-l</span>:<span class="number">18px</span>;</span><br><span class="line"><span class="variable">$text-color</span>: <span class="number">#f00</span>;</span><br><span class="line"><span class="variable">$font-size</span>: <span class="number">13px</span>;</span><br><span class="line"><span class="variable">$width</span>: <span class="number">960px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.shop</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">4</span>; &lt;!--  編譯出240px    --&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">color</span>:<span class="variable">$link-color</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">$font-l</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="變數搭配加減乘除好方便"><a href="#變數搭配加減乘除好方便" class="headerlink" title="變數搭配加減乘除好方便"></a>變數搭配加減乘除好方便</h3><p>變數格式</p>
+<ul>
+<li>格式<ul>
+<li>數字： 10，1px，3em</li>
+<li>字串： ‘test’，”../images/big”</li>
+<li>顏色： red，#000000</li>
+<li>布林： true，flase</li>
+<li>空值： null</li>
+</ul>
+</li>
+<li>支援運算 (1em+1em，6px*2)</li>
+</ul>
+<h3 id="數字"><a href="#數字" class="headerlink" title="數字"></a>數字</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$link-color</span>: <span class="number">#ff0000</span>;</span><br><span class="line"><span class="variable">$font-m</span>: <span class="number">16px</span>;</span><br><span class="line"><span class="variable">$font-l</span>: <span class="variable">$font-m</span> * <span class="number">1.2</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="字串"><a href="#字串" class="headerlink" title="字串"></a>字串</h3><p>設定不同的字體格式。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$font-family-base</span>: <span class="string">&quot;Arial,sans-serif&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="調出理想的顏色"><a href="#調出理想的顏色" class="headerlink" title="調出理想的顏色"></a>調出理想的顏色</h3><p><a target="_blank" rel="noopener" href="https://codepen.io/phoebeho/pen/bGqJLPd">範例</a></p>
+<p><code>darken</code>，<code>lighten</code>的使用方法。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$base-color</span>: <span class="number">#008000</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box2</span>&#123;</span><br><span class="line">	<span class="attribute">background</span>: darken(<span class="variable">$base-color</span>,<span class="number">20%</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box3</span>&#123;</span><br><span class="line">	<span class="attribute">background</span>: lighten(<span class="variable">$base-color</span>,<span class="number">30%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Sass-import-切分檔案好工具，維護管理更方便"><a href="#Sass-import-切分檔案好工具，維護管理更方便" class="headerlink" title="Sass import - 切分檔案好工具，維護管理更方便"></a>Sass import - 切分檔案好工具，維護管理更方便</h2><p><code>@import</code>，可將 Scss 檔案彙整成一隻 CSS 檔。</p>
+<p>有<strong>下底線</strong>的是會被合併的，<code>_variable.scss</code>。</p>
+<h3 id="拆開管理"><a href="#拆開管理" class="headerlink" title="拆開管理"></a>拆開管理</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;varialbe&quot;</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>_variable.scss</li>
+<li>_all.scss (import 全部的檔案)</li>
+<li>_main.scss</li>
+</ul>
+<h3 id="常見的錯誤"><a href="#常見的錯誤" class="headerlink" title="常見的錯誤"></a>常見的錯誤</h3><ul>
+<li>沒有在結束的地方加上分號</li>
+<li>variable 檔案(變數)，放在 main 下方(找不到變數)</li>
+</ul>
+<h3 id="CSS-Reset-的差異"><a href="#CSS-Reset-的差異" class="headerlink" title="CSS Reset 的差異"></a>CSS Reset 的差異</h3><ul>
+<li>meyerweb</li>
+</ul>
+<p>全部清空</p>
+<ul>
+<li>Normalize</li>
+</ul>
+<p>保有瀏覽器該有的樣式</p>
+<h3 id="整合-Reset-流程"><a href="#整合-Reset-流程" class="headerlink" title="整合 Reset 流程"></a>整合 Reset 流程</h3><ol>
+<li>_variable.scss</li>
+<li>reset.scss</li>
+<li>main.scss (自己寫的 css)</li>
+<li>hover (載入別人的第三方插件)</li>
+</ol>
+<p>從網路上載下來的檔案，直接在 css 後面改 scss 就好，前方加上下底線 _。</p>
+<h2 id="Sass-Mixin-讓你不會回想原理，而中斷思緒"><a href="#Sass-Mixin-讓你不會回想原理，而中斷思緒" class="headerlink" title="Sass Mixin - 讓你不會回想原理，而中斷思緒"></a>Sass Mixin - 讓你不會回想原理，而中斷思緒</h2><p><code>@mixin</code> 能記住 css 技巧，讓你不用再因回想原理而思緒中斷。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> hide-text&#123;</span><br><span class="line">    <span class="attribute">text-indent</span>:<span class="number">110%</span>;</span><br><span class="line">    <span class="attribute">white-space</span>:nowrap;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> <span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>:url(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">@include</span> hide-text;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Mixin-import-組合技"><a href="#Mixin-import-組合技" class="headerlink" title="Mixin + import 組合技"></a>Mixin + import 組合技</h3><p>新增 _mixin.scss，在 all.css 加上此檔案。注意要放在 main.css 的上面。</p>
+<h3 id="搭配參數，讓-Mixin-更加靈活！"><a href="#搭配參數，讓-Mixin-更加靈活！" class="headerlink" title="搭配參數，讓 Mixin 更加靈活！"></a>搭配參數，讓 Mixin 更加靈活！</h3><p>在<code>@mixin</code>加上變數，可以更靈活使用。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> color(<span class="variable">$color</span>)&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$color</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">5px</span> solid <span class="variable">$color</span>;</span><br><span class="line">    <span class="attribute">text-decoration</span>: <span class="variable">$color</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header h1&#123;</span><br><span class="line">    @include color(blue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="熟悉-Mixin-後，搭配-RWD-宛如天衣無縫"><a href="#熟悉-Mixin-後，搭配-RWD-宛如天衣無縫" class="headerlink" title="熟悉 Mixin 後，搭配 RWD 宛如天衣無縫"></a>熟悉 Mixin 後，搭配 RWD 宛如天衣無縫</h2><p><code>@content</code> 可以在撰寫 main.scss 的時候，放入適合的內容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@mixin ipad &#123;</span><br><span class="line">    @media(max-width:768px)&#123;</span><br><span class="line">        @content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@mixin mobile &#123;</span><br><span class="line">    @media(max-width:568px)&#123;</span><br><span class="line">        @content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.header h1&#123;</span><br><span class="line">    width:100px;</span><br><span class="line">    @include ipad &#123;</span><br><span class="line">        width:13px;</span><br><span class="line">        font-size: 20px;</span><br><span class="line">    &#125;</span><br><span class="line">    @include mobile&#123;</span><br><span class="line">        width:6px;</span><br><span class="line">        font-size: 10px;</span><br><span class="line">    &#125;</span><br><span class="line">    a&#123;</span><br><span class="line">        background: #000;</span><br><span class="line">        @include mobile&#123;</span><br><span class="line">            color: red;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Sass-CSS-設計模式-教您最實用的網頁收納術！"><a href="#Sass-CSS-設計模式-教您最實用的網頁收納術！" class="headerlink" title="Sass/CSS 設計模式 - 教您最實用的網頁收納術！"></a>Sass/CSS 設計模式 - 教您最實用的網頁收納術！</h2><p>OOCSS 是 CSS 的架構方法，在這基本原則下 CSS 具有以下特點：</p>
+<ol>
+<li>結構與樣式分離</li>
+<li>容器與內容分離</li>
+</ol>
+<p>新技術的出現，就是要解決當下的問題。OOCSS 的出現，是就是強化了 <strong>CSS 的可複用性</strong> 與 <strong>CSS 的擴展能力</strong>。</p>
+<h3 id="結構與樣式"><a href="#結構與樣式" class="headerlink" title="結構與樣式"></a>結構與樣式</h3><p>樣式表就像是幫手機換上不同的手機殼。結構與樣式分開，當想要換上手機殼時，只需要更換樣式就好。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 結構 */</span></span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span></span><br><span class="line">    margin: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>:hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 樣式 */</span></span><br><span class="line"><span class="selector-class">.header-shadow</span>&#123;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">10px</span> <span class="number">10px</span> <span class="number">10px</span> <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="容器與內容"><a href="#容器與內容" class="headerlink" title="容器與內容"></a>容器與內容</h3><p><a target="_blank" rel="noopener" href="https://960.gs/demo.html">960 Grid System</a> 就是一款容器與內容分離的格線系統。</p>
+<p>容器處理容器的事情，內容處理內容的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 容器 */</span></span><br><span class="line"><span class="selector-class">.container_12</span> <span class="selector-class">.grid_12</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">940px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 內容 */</span></span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">771px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML-CSS/" rel="tag"># HTML&CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/26/%5B%E5%88%87%E7%89%88%5D%E9%87%8D%E6%96%B0%E8%AA%8D%E8%AD%98%E5%88%87%E7%89%88Ep02/" rel="prev" title="重新認識切版 - Ep02">
+      <i class="fa fa-chevron-left"></i> 重新認識切版 - Ep02
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E4%BD%BF%E7%94%A8-Sass"><span class="nav-number">1.</span> <span class="nav-text">為什麼要使用 Sass?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%B7%A8%E8%AD%AF-Sass"><span class="nav-number">2.</span> <span class="nav-text">如何編譯 Sass?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AE%8A%E6%95%B8"><span class="nav-number">2.1.</span> <span class="nav-text">使用變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%8A%E6%95%B8%E6%90%AD%E9%85%8D%E5%8A%A0%E6%B8%9B%E4%B9%98%E9%99%A4%E5%A5%BD%E6%96%B9%E4%BE%BF"><span class="nav-number">2.2.</span> <span class="nav-text">變數搭配加減乘除好方便</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B8%E5%AD%97"><span class="nav-number">2.3.</span> <span class="nav-text">數字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%B8%B2"><span class="nav-number">2.4.</span> <span class="nav-text">字串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AA%BF%E5%87%BA%E7%90%86%E6%83%B3%E7%9A%84%E9%A1%8F%E8%89%B2"><span class="nav-number">2.5.</span> <span class="nav-text">調出理想的顏色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-import-%E5%88%87%E5%88%86%E6%AA%94%E6%A1%88%E5%A5%BD%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%B6%AD%E8%AD%B7%E7%AE%A1%E7%90%86%E6%9B%B4%E6%96%B9%E4%BE%BF"><span class="nav-number">3.</span> <span class="nav-text">Sass import - 切分檔案好工具，維護管理更方便</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%86%E9%96%8B%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">拆開管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A6%8B%E7%9A%84%E9%8C%AF%E8%AA%A4"><span class="nav-number">3.2.</span> <span class="nav-text">常見的錯誤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Reset-%E7%9A%84%E5%B7%AE%E7%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">CSS Reset 的差異</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88-Reset-%E6%B5%81%E7%A8%8B"><span class="nav-number">3.4.</span> <span class="nav-text">整合 Reset 流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-Mixin-%E8%AE%93%E4%BD%A0%E4%B8%8D%E6%9C%83%E5%9B%9E%E6%83%B3%E5%8E%9F%E7%90%86%EF%BC%8C%E8%80%8C%E4%B8%AD%E6%96%B7%E6%80%9D%E7%B7%92"><span class="nav-number">4.</span> <span class="nav-text">Sass Mixin - 讓你不會回想原理，而中斷思緒</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixin-import-%E7%B5%84%E5%90%88%E6%8A%80"><span class="nav-number">4.1.</span> <span class="nav-text">Mixin + import 組合技</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E9%85%8D%E5%8F%83%E6%95%B8%EF%BC%8C%E8%AE%93-Mixin-%E6%9B%B4%E5%8A%A0%E9%9D%88%E6%B4%BB%EF%BC%81"><span class="nav-number">4.2.</span> <span class="nav-text">搭配參數，讓 Mixin 更加靈活！</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%86%9F%E6%82%89-Mixin-%E5%BE%8C%EF%BC%8C%E6%90%AD%E9%85%8D-RWD-%E5%AE%9B%E5%A6%82%E5%A4%A9%E8%A1%A3%E7%84%A1%E7%B8%AB"><span class="nav-number">5.</span> <span class="nav-text">熟悉 Mixin 後，搭配 RWD 宛如天衣無縫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass-CSS-%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F-%E6%95%99%E6%82%A8%E6%9C%80%E5%AF%A6%E7%94%A8%E7%9A%84%E7%B6%B2%E9%A0%81%E6%94%B6%E7%B4%8D%E8%A1%93%EF%BC%81"><span class="nav-number">6.</span> <span class="nav-text">Sass&#x2F;CSS 設計模式 - 教您最實用的網頁收納術！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E6%A7%8B%E8%88%87%E6%A8%A3%E5%BC%8F"><span class="nav-number">6.1.</span> <span class="nav-text">結構與樣式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E8%88%87%E5%85%A7%E5%AE%B9"><span class="nav-number">6.2.</span> <span class="nav-text">容器與內容</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Phoebe"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Phoebe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hff2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hff2" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hophoebeho@gmail.com" title="E-Mail → mailto:hophoebeho@gmail.com" rel="noopener" target="_blank"><i class="fas fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoebe</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">213k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">3:13</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
